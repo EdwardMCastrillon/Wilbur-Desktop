@@ -24,8 +24,7 @@ public class AsignarPerfil extends javax.swing.JFrame {
     String nombreVentana;
 
     public AsignarPerfil() {
-        initComponents();
-        this.setVisible(true);
+        initComponents(); 
     }
 
     public AsignarPerfil(String usuarios[][], ListaUsuario Lu) {
