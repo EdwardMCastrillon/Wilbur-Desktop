@@ -34,6 +34,9 @@ public class RecuperarPass extends javax.swing.JFrame {
         U = N;
         Usuarios = usuarios;
 
+        
+        
+        //Ensayando actualizaciones en GitHub
     }
 
     @SuppressWarnings("unchecked")
