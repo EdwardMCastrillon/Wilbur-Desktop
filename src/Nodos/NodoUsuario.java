@@ -12,15 +12,17 @@ import Identidades.*;
  * @author Edward
  */
 public class NodoUsuario {
-    private Granja Usuario;
+    private DatosPersonal Usuario;
 
-    public Granja getUsuario() {
+    public DatosPersonal getUsuario() {
         return Usuario;
     }
 
-    public void setUsuario(Granja Usuario) {
+    public void setUsuario(DatosPersonal Usuario) {
         this.Usuario = Usuario;
     }
+
+    
 
     public NodoUsuario getLiga() {
         return Liga;

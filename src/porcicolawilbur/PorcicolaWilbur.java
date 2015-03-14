@@ -6,7 +6,7 @@
 package porcicolawilbur;
 
 import Formularios.Ingreso;
-import Identidades.Granja;
+import Identidades.DatosPersonal;
 import Identidades.Razas;
 import Listas.ListaAnimal;
 import Listas.ListaPartos;
@@ -72,7 +72,7 @@ public class PorcicolaWilbur {
         usuarios[2][2] = "Ivan.1585";
         usuarios[2][3] = "Administrador";
         
-        Granja persona = new Granja();
+        DatosPersonal persona = new DatosPersonal();
     	persona.setTipoDoc("Cedula de Ciudadania");
     	persona.setDocumento("8359459");
     	persona.setNombre("Ivan Dario Villa");

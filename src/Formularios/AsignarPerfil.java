@@ -1,6 +1,6 @@
 package Formularios;
 
-import Identidades.Granja;
+import Identidades.DatosPersonal;
 import Listas.ListaUsuario;
 import Nodos.NodoUsuario;
 import javax.swing.JOptionPane;
@@ -20,7 +20,7 @@ public class AsignarPerfil extends javax.swing.JFrame {
     int[] conta;
     int swModif = 0;
     ImageIcon icoMensajeInfor, icoMensajePre;
-    Granja buscarUsuario;
+    DatosPersonal buscarUsuario;
     String nombreVentana;
 
     public AsignarPerfil() {

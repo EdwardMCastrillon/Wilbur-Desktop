@@ -19,7 +19,7 @@ public class ListaUsuario {
     private NodoUsuario ultimo;
     private int counter = 0;
 
-    public boolean guardarUsuario(Granja U) {
+    public boolean guardarUsuario(DatosPersonal U) {
         boolean sw = false;
         NodoUsuario p = new NodoUsuario();
         p.setUsuario(U);
@@ -40,7 +40,7 @@ public class ListaUsuario {
         return sw;
     }
 
-    public boolean modificarUsuario(Granja U) {
+    public boolean modificarUsuario(DatosPersonal U) {
         boolean sw = false;
         NodoUsuario temp = primero;
 
@@ -54,9 +54,9 @@ public class ListaUsuario {
         return sw;
     }
 
-    public Granja cargarUsuario(String documento) {
+    public DatosPersonal cargarUsuario(String documento) {
         NodoUsuario p = primero;
-        Granja result = null;
+        DatosPersonal result = null;
         while (p != null) {
             if (p.getUsuario().getDocumento().equals(documento)) {
                 result = p.getUsuario();

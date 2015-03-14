@@ -30,7 +30,7 @@ public class Validaciones {
 	   return m.matches();
 	
 	}
-   public String Validacion(Granja u){
+   public String Validacion(DatosPersonal u){
        String s="";
         if(!validarEmail(u.getCorreo()))
         {

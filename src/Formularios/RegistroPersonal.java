@@ -26,7 +26,7 @@ public class RegistroPersonal extends javax.swing.JFrame {
      */
     private FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivo de Imagen", ".jpg");
     String rutaimagen;
-    Granja buscarPersonal, persona;
+    DatosPersonal buscarPersonal, persona;
     Validaciones Va = new Validaciones();
     ListaUsuario Lu;
     DepartamentosMunicipios deparMuni;
@@ -68,8 +68,8 @@ public class RegistroPersonal extends javax.swing.JFrame {
         rutaimagen = "";
         jCbxDepartamento = deparMuni.cargarDepartamentos();
         this.cargarComboBox();
-        persona = new Granja();
-        buscarPersonal = new Granja();
+        persona = new DatosPersonal();
+        buscarPersonal = new DatosPersonal();
         this.DesactivarCampos();
         nombreVentana = "Gestionar Personal - G.A.P.";
     }
@@ -953,7 +953,7 @@ public class RegistroPersonal extends javax.swing.JFrame {
             if (s.equals("")) {
                 if (swModifi == 0) {
                     if (!Lu.existe(persona.getDocumento())) {
-                        Granja u2 = persona;
+                        DatosPersonal u2 = persona;
 
                         if (Lu.guardarUsuario(u2)) {
                             JOptionPane.showMessageDialog(this, "Se guardó Correctamente", "Registro Personal - G.A.P", JOptionPane.YES_NO_OPTION,
@@ -1534,8 +1534,8 @@ public class RegistroPersonal extends javax.swing.JFrame {
 
     }
 
-    public Granja GuardarCamposU() {
-        Granja u2 = new Granja();
+    public DatosPersonal GuardarCamposU() {
+        DatosPersonal u2 = new DatosPersonal();
         u2.setDocumento(JTDocumento.getText());
         u2.setDireccion(JTDireccion.getText());
         u2.setTelefono(JTelefono.getText());
