@@ -129,4 +129,18 @@ public class Validaciones {
 		}  
 	}
     
+    public static String convertirPassword(char[] cPassword)
+        {
+                // Declare variables
+                String strRet = new String("");
+                
+                // Go through each character
+                for (int i = 0; i < cPassword.length; i++)
+                {
+                        strRet += cPassword[i];
+                }
+                
+                return strRet;
+        }
+    
 }

@@ -5,6 +5,7 @@ import Listas.ListaUsuario;
 import Nodos.NodoUsuario;
 import javax.swing.JOptionPane;
 import Utilidades.Validaciones;
+import java.awt.event.ItemEvent;
 import javax.swing.ImageIcon;
 
 /**
@@ -24,7 +25,7 @@ public class AsignarPerfil extends javax.swing.JFrame {
     String nombreVentana;
 
     public AsignarPerfil() {
-        initComponents(); 
+        initComponents();
     }
 
     public AsignarPerfil(String usuarios[][], ListaUsuario Lu) {
@@ -128,6 +129,17 @@ public class AsignarPerfil extends javax.swing.JFrame {
         jPassContra.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jPassContraFocusLost(evt);
+            }
+        });
+        jPassContra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPassContraActionPerformed(evt);
+            }
+        });
+
+        jPassRepeContra.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jPassRepeContraFocusLost(evt);
             }
         });
 
@@ -515,9 +527,10 @@ public class AsignarPerfil extends javax.swing.JFrame {
 
     private void jPassContraFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPassContraFocusLost
 
-        if (!jPassContra.getText().equals("")) {
+        String contra;
+        if (!jPassContra.getPassword().toString().equals("")) {
 
-            if (!validar.validarContraseñ(jPassContra.getPassword().toString(), conta)) {
+            if (!validar.validarContraseñ(validar.convertirPassword(jPassContra.getPassword()), conta)) {
 
                 JOptionPane.showMessageDialog(null, "La contraseña debe contener al menos:" + "\n" + "1 caracter especial" + "\n" + "1 letra mayúscula, minúscula"
                         + "\n" + "1 número y un tamnaño como mínimo de 8 caracteres", "Asignar Perfil - S.A.P",
@@ -539,12 +552,7 @@ public class AsignarPerfil extends javax.swing.JFrame {
 
     private void JComboPerfilItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_JComboPerfilItemStateChanged
 
-        
-// TODO add your handling code here:
-    }//GEN-LAST:event_JComboPerfilItemStateChanged
-
-    private void JComboPerfilFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_JComboPerfilFocusLost
-
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
             if (JComboPerfil.getSelectedIndex() == 0) {
 
                 JOptionPane.showMessageDialog(null, "Debe seleccionar un perfil", "Asignar Perfil - G.A.P", JOptionPane.YES_OPTION,
@@ -554,9 +562,38 @@ public class AsignarPerfil extends javax.swing.JFrame {
 
                 JComboPerfil.transferFocus();
             }
-        
+        }
+// TODO add your handling code here:
+    }//GEN-LAST:event_JComboPerfilItemStateChanged
+
+    private void JComboPerfilFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_JComboPerfilFocusLost
+
 // TODO add your handling code here:
     }//GEN-LAST:event_JComboPerfilFocusLost
+
+    private void jPassContraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPassContraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPassContraActionPerformed
+
+    private void jPassRepeContraFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPassRepeContraFocusLost
+
+        if (jPassRepeContra.getPassword().toString().equals("")) {
+
+            JOptionPane.showMessageDialog(null, "Campo obligatorio", "Asignar Perfil - G.A.P", JOptionPane.YES_OPTION,
+                    icoMensajeInfor);
+            jPassRepeContra.requestFocusInWindow();
+        } else {
+
+            if (!validar.convertirPassword(jPassRepeContra.getPassword()).equals(validar.convertirPassword(jPassContra.getPassword()))) {
+
+                JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden", "Asignar Perfil - G.A.P", JOptionPane.YES_OPTION,
+                        icoMensajeInfor);
+                jPassRepeContra.requestFocusInWindow();
+                jPassRepeContra.setText("");
+            }
+        }
+// TODO add your handling code here:
+    }//GEN-LAST:event_jPassRepeContraFocusLost
 
     /**
      * @param args the command line arguments

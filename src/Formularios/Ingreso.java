@@ -17,7 +17,7 @@ public class Ingreso extends javax.swing.JFrame {
 
     String Usuarios[][] = new String[8][4];
     String[][] departamentos = new String[33][126];
-    int perfil = 0;
+    String perfil;
     ListaAnimal A;
     ListaUsuario U;
     ListaPartos P;
@@ -25,6 +25,7 @@ public class Ingreso extends javax.swing.JFrame {
     ImageIcon icoMensajeInfor, icoMensajePre;
     Validaciones validar;
     String nombreVentana;
+    int posUsuario=0;
 
     public Ingreso() {
         initComponents();
@@ -240,7 +241,7 @@ public class Ingreso extends javax.swing.JFrame {
             try {
                 if (ValidarUsuario(usuario, password, Usuarios)) {
                     System.out.println(perfil);
-                    MenuPrincipal mn = new MenuPrincipal(Usuarios, perfil, A, U, P, R);
+                    MenuPrincipal mn = new MenuPrincipal(Usuarios, perfil, posUsuario, A, U, P, R);
                     this.dispose();
                 } else {
                     JOptionPane.showMessageDialog(this, "Este usuario no está registrado.", "Gestión Administrativa Pórcicola", JOptionPane.YES_NO_OPTION,
@@ -328,7 +329,8 @@ public class Ingreso extends javax.swing.JFrame {
             if (Usuarios[i][0] != null) {
                 if (Usuarios[i][1].equalsIgnoreCase(Usuario) && Usuarios[i][2].equals(Password)) {
                     JOptionPane.showMessageDialog(this, "*" + Usuario + "* Bienvenido a G.A.P.", "Bienvenido!", JOptionPane.INFORMATION_MESSAGE, icoMensajeInfor);
-                    perfil = i;
+                    perfil = Usuarios[i][3];
+                    posUsuario = i;
                     return true;
                 }
             } else {

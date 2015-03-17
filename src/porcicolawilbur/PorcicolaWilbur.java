@@ -70,7 +70,7 @@ public class PorcicolaWilbur {
         usuarios[2][0] = "Ivan Dario Villa";
         usuarios[2][1] = "Ivan";
         usuarios[2][2] = "Ivan.1585";
-        usuarios[2][3] = "Administrador";
+        usuarios[2][3] = "Veterinario";
         
         DatosPersonal persona = new DatosPersonal();
     	persona.setTipoDoc("Cedula de Ciudadania");

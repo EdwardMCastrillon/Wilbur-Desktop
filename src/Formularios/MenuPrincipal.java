@@ -34,7 +34,7 @@ public class MenuPrincipal implements ActionListener {
     ImageIcon iconFondo, icoMensajePre;
     Image icoCabecera;
     JLabel labelFondo;
-    int control, perfil;
+    int control, posUsuario;
     ListaAnimal listaAnima;
     ListaPartos listaPart;
     ListaRazas listaRazas;
@@ -43,33 +43,32 @@ public class MenuPrincipal implements ActionListener {
     String perfil1;
     String[][] usuarios;
 
-    public MenuPrincipal(String[][] usuarios, int perfil, ListaAnimal listaAnima, ListaUsuario listaPersona, ListaPartos listaPart, ListaRazas R) {
+    public MenuPrincipal(String[][] usuarios, String perfil, int posUsuario, ListaAnimal listaAnima, ListaUsuario listaPersona, ListaPartos listaPart, ListaRazas R) {
 
         FraMenuPri = new JFrame("Menú Principal - PERFIL ");
         FraMenuPri.setBounds(10, 10, 1350, 710);
         FraMenuPri.setLayout(null);
         FraMenuPri.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//DETENER LA EJECUCIÓN CUANDO CIERRE
         FraMenuPri.setResizable(false);
-        icoCabecera = Toolkit.getDefaultToolkit().getImage("Imagenes\\Menui.jpg");
+        icoCabecera = Toolkit.getDefaultToolkit().getImage("C:\\Users\\Ivan\\Desktop\\Original Porcicola Wilburg\\src\\Imagenes\\1_Icono_Form.jpg");
         FraMenuPri.setIconImage(icoCabecera);
         FraMenuPri.setVisible(true);
 
-        iconFondo = new ImageIcon("Imagenes\\FondoPrin.jpg");
+        iconFondo = new ImageIcon("C:\\Users\\Ivan\\Desktop\\Original Porcicola Wilburg\\src\\Imagenes\\granjaHome.jpg");
         labelFondo = new JLabel(iconFondo);
-        labelFondo.setBounds(0, 0, 1350, 700);
+        labelFondo.setBounds(0, 0, 1550, 750);
         FraMenuPri.add(labelFondo);
         labelFondo.setVisible(true);
 
         MenuBarPPal = new JMenuBar();
-        FraMenuPri.setJMenuBar(MenuBarPPal);
-        perfil1 = "ADMINISTRADOR";
+        FraMenuPri.setJMenuBar(MenuBarPPal); 
 
-        if (perfil1.equals("ADMINISTRADOR")) {
+        if (perfil.equals("Administrador")) {
 
             control = 1;
         } else {
 
-            if (perfil1.equals("VETERINARIO")) {
+            if (perfil.equals("Veterinario")) {
 
                 control = 2;
             } else {
@@ -241,6 +240,7 @@ public class MenuPrincipal implements ActionListener {
         this.listaRazas = R;
         this.listaPersona = listaPersona;
         this.usuarios = usuarios;
+        this.posUsuario=posUsuario;
         //reporte = new ReportePerfiles();
 
     }
@@ -267,7 +267,7 @@ public class MenuPrincipal implements ActionListener {
 
         if (e.getSource() == menItemModContra) {
 
-            JFrameCambiarContraseña cc = new JFrameCambiarContraseña(usuarios, perfil);
+            JFrameCambiarContraseña cc = new JFrameCambiarContraseña(usuarios, posUsuario);
         }
 
         if (e.getSource() == menItemReportes) {

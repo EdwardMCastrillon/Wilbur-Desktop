@@ -447,6 +447,11 @@ public class JFrameGestionDatAnimal extends javax.swing.JFrame {
                 jcbx_procedenciaItemStateChanged(evt);
             }
         });
+        jcbx_procedencia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbx_procedenciaActionPerformed(evt);
+            }
+        });
 
         jLabel20.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel20.setText("Procedencia:");
@@ -850,7 +855,7 @@ public class JFrameGestionDatAnimal extends javax.swing.JFrame {
 
             if (jtxt_codparto.getText().equals("")) {
 
-                JOptionPane.showMessageDialog(null, "Ingrese el código de la madre", "Gestionar Animal - S.G.P",
+                JOptionPane.showMessageDialog(null, "Ingrese el código del parto", "Gestionar Animal - S.G.P",
                         JOptionPane.OK_OPTION, icoMensajeInfor);
                 jtxt_codparto.requestFocus();
             } else {
@@ -890,6 +895,10 @@ public class JFrameGestionDatAnimal extends javax.swing.JFrame {
         }
 // TODO add your handling code here:
     }//GEN-LAST:event_jcbx_procedenciaItemStateChanged
+
+    private void jcbx_procedenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbx_procedenciaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcbx_procedenciaActionPerformed
 
     /**
      * @param args the command line arguments

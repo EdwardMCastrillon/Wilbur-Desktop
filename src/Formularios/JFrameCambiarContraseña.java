@@ -7,7 +7,7 @@ package Formularios;
 import javax.swing.ImageIcon; //Se importa la clase para poner el icono en los formularios.
 import javax.swing.JOptionPane;
 import Utilidades.CambiarContraseña;
-import javax.swing.JTextField;
+import javax.swing.JPasswordField; 
 
 /**
  * @author Equipo de desarrollo GAP (Edward Monsalve, Pedro Garces, Juan Esteban
@@ -34,7 +34,7 @@ public class JFrameCambiarContraseña extends javax.swing.JFrame {
         icoMensajeInfor = new ImageIcon("C:\\Users\\Ivan\\Desktop\\Proyecto Git\\src\\Imagenes\\IconoInformacion.jpg");
         icoMensajePre = new ImageIcon("C:\\Users\\Ivan\\Desktop\\Proyecto Git\\src\\Imagenes\\IconoPregunta.jpg");
 
-        jTactPass.requestFocus();
+        jPactPass.requestFocus();
 
         Logins = Usuarios;
         nickName = posperfil;
@@ -63,9 +63,9 @@ public class JFrameCambiarContraseña extends javax.swing.JFrame {
         jTuserName = new javax.swing.JTextField();
         jBtnGuardar = new javax.swing.JButton();
         jBtnLimpiar = new javax.swing.JButton();
-        jTactPass = new javax.swing.JPasswordField();
-        jTnewPass = new javax.swing.JPasswordField();
-        jTconfPass = new javax.swing.JPasswordField();
+        jPactPass = new javax.swing.JPasswordField();
+        jPnewPass = new javax.swing.JPasswordField();
+        jPconfPass = new javax.swing.JPasswordField();
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/1_Icono_Form.JPG"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -122,17 +122,6 @@ public class JFrameCambiarContraseña extends javax.swing.JFrame {
             }
         });
 
-        jTactPass.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jTactPass.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTactPassActionPerformed(evt);
-            }
-        });
-
-        jTnewPass.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-
-        jTconfPass.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -141,21 +130,23 @@ public class JFrameCambiarContraseña extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTconfPass, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jPconfPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTuserName)
-                            .addComponent(jTactPass)
-                            .addComponent(jTnewPass, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE))))
-                .addContainerGap())
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPactPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTuserName, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPnewPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(89, 89, 89))
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -172,7 +163,7 @@ public class JFrameCambiarContraseña extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jTactPass, jTconfPass, jTnewPass});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jPactPass, jPconfPass, jPnewPass, jTuserName});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -182,28 +173,30 @@ public class JFrameCambiarContraseña extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(jLabel2)
                     .addComponent(jBtnVolver))
-                .addGap(45, 45, 45)
+                .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jTuserName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTuserName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jTactPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPactPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jTnewPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPnewPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jTconfPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPconfPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBtnGuardar)
                     .addComponent(jBtnLimpiar))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jPactPass, jPconfPass, jPnewPass, jTuserName});
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -211,9 +204,9 @@ public class JFrameCambiarContraseña extends javax.swing.JFrame {
     private void jBtnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnGuardarActionPerformed
         // Se cargan las variables con los datos de las cajas de texto.
         userName = jTuserName.getText();
-        actPass = jTactPass.getText();
-        newPass = jTnewPass.getText();
-        confPass = jTconfPass.getText();
+        actPass = jPactPass.getText();
+        newPass = jPnewPass.getText();
+        confPass = jPconfPass.getText();
 
         CambiarContraseña cP = new CambiarContraseña(userName, actPass, newPass, confPass);
 
@@ -231,9 +224,9 @@ public class JFrameCambiarContraseña extends javax.swing.JFrame {
                 } else {
                     if (cP.CaracterEspecial() == (false)) {
                         JOptionPane.showMessageDialog(this, "La contraseña debe tener al menos un caracter especial.");
-                        jTnewPass.setText(null);
-                        jTconfPass.setText(null);
-                        jTnewPass.requestFocus();
+                        jPnewPass.setText(null);
+                        jPconfPass.setText(null);
+                        jPnewPass.requestFocus();
                     } else {
                         int resp = JOptionPane.showConfirmDialog(null, "¿Esta seguro de cambiar su contraseña?", "Cambio de contraseña", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icoMensajePre);
                         if (resp == 0) {
@@ -255,10 +248,6 @@ public class JFrameCambiarContraseña extends javax.swing.JFrame {
     private void jBtnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnVolverActionPerformed
         this.dispose();
     }//GEN-LAST:event_jBtnVolverActionPerformed
-
-    private void jTactPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTactPassActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTactPassActionPerformed
 
     /**
      * @param args the command line arguments
@@ -304,35 +293,35 @@ public class JFrameCambiarContraseña extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JPasswordField jTactPass;
-    private javax.swing.JPasswordField jTconfPass;
-    private javax.swing.JPasswordField jTnewPass;
+    private javax.swing.JPasswordField jPactPass;
+    private javax.swing.JPasswordField jPconfPass;
+    private javax.swing.JPasswordField jPnewPass;
     private javax.swing.JTextField jTuserName;
     // End of variables declaration//GEN-END:variables
 
     public void LimpiarCampos() {
         //jTuserName.setText(null);
-        jTactPass.setText(null);
-        jTnewPass.setText(null);
-        jTconfPass.setText(null);
+        jPactPass.setText(null);
+        jPnewPass.setText(null);
+        jPconfPass.setText(null);
     }
 
     public void ValidarEspacios() {
-        this.jTnewPass.addKeyListener(new java.awt.event.KeyAdapter() {
+        this.jPnewPass.addKeyListener(new java.awt.event.KeyAdapter() {
             @Override
             public void keyTyped(java.awt.event.KeyEvent e) {
-                SinEspacios(jTnewPass, e);
+                SinEspacios(jPnewPass, e);
             }
         });
-        this.jTconfPass.addKeyListener(new java.awt.event.KeyAdapter() {
+        this.jPconfPass.addKeyListener(new java.awt.event.KeyAdapter() {
             @Override
             public void keyTyped(java.awt.event.KeyEvent e) {
-                SinEspacios(jTconfPass, e);
+                SinEspacios(jPconfPass, e);
             }
         });
     }
 
-    public void SinEspacios(JTextField j, java.awt.event.KeyEvent e) {
+    public void SinEspacios(JPasswordField j, java.awt.event.KeyEvent e) {
         char c = e.getKeyChar(); // para leer el caracter correspondiente a la tecla
         int numero = (int) (c);
 

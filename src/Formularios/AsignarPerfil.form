@@ -209,9 +209,13 @@
         <Component class="javax.swing.JPasswordField" name="jPassContra">
           <Events>
             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jPassContraFocusLost"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jPassContraActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JPasswordField" name="jPassRepeContra">
+          <Events>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jPassRepeContraFocusLost"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JComboBox" name="JComboPerfil">
           <Properties>

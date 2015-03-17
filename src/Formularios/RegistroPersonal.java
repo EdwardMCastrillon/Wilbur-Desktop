@@ -17,6 +17,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import porcicolawilbur.*;
 import Utilidades.*;
 import Identidades.*;
+import java.awt.event.ItemEvent;
 import java.util.Date;
 
 public class RegistroPersonal extends javax.swing.JFrame {
@@ -1264,26 +1265,47 @@ public class RegistroPersonal extends javax.swing.JFrame {
 
     private void ComboDocItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ComboDocItemStateChanged
 
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+
+            if (ComboDoc.getSelectedIndex() == 0) {
+
+                JOptionPane.showMessageDialog(null, "Debe seleccionar un tipo de documento", "Registrar Personal - G.A.P", JOptionPane.YES_OPTION,
+                        icoMensajeInfor);
+                ComboDoc.requestFocusInWindow();
+            } else {
+
+                ComboDoc.transferFocus();
+            }
+        }
+
 // TODO add your handling code here:
     }//GEN-LAST:event_ComboDocItemStateChanged
 
     private void ComboDocFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ComboDocFocusLost
 
-        if (ComboDoc.getSelectedIndex() == 0) {
-
-            JOptionPane.showMessageDialog(null, "Debe seleccionar un tipo de documento", "Registrar Personal - G.A.P", JOptionPane.YES_OPTION,
-                    icoMensajeInfor);
-            ComboDoc.requestFocusInWindow();
-        } else {
-
-            ComboDoc.transferFocus();
-        }
 // TODO add your handling code here:
     }//GEN-LAST:event_ComboDocFocusLost
 
     private void JTDocumentoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_JTDocumentoFocusLost
 
-        Va.validarObligatorios(JTDocumento, nombreVentana);
+        if (JTDocumento.getText().toString().equals("")) {
+
+            JOptionPane.showMessageDialog(null, "Campo obligatorio", "Gestionar Personal - G.A.P", JOptionPane.YES_OPTION,
+                    icoMensajeInfor);
+            JTDocumento.requestFocusInWindow();
+        }else{
+            
+            if ( Lu.existe(JTDocumento.getText())){
+                
+                JOptionPane.showMessageDialog(null, "Este número de documento ya esta registrado", "Gestionar Personal - G.A.P", JOptionPane.YES_OPTION,
+                    icoMensajeInfor);
+                JTDocumento.setText("");
+                JTDocumento.requestFocusInWindow();
+            }else{
+                
+                JTDocumento.transferFocus();
+            }
+        }
 // TODO add your handling code here:
     }//GEN-LAST:event_JTDocumentoFocusLost
 
@@ -1294,7 +1316,7 @@ public class RegistroPersonal extends javax.swing.JFrame {
     }//GEN-LAST:event_JTNombreFocusLost
 
     private void JTDireccionFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_JTDireccionFocusLost
-    
+
         Va.validarObligatorios(JTDireccion, nombreVentana);
 // TODO add your handling code here:
     }//GEN-LAST:event_JTDireccionFocusLost
@@ -1313,7 +1335,6 @@ public class RegistroPersonal extends javax.swing.JFrame {
 
     private void JTCorreoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_JTCorreoFocusLost
 
-        
 // TODO add your handling code here:
     }//GEN-LAST:event_JTCorreoFocusLost
 
