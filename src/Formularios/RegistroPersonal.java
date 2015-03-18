@@ -1305,6 +1305,10 @@ public class RegistroPersonal extends javax.swing.JFrame {
                 
                 JTDocumento.transferFocus();
             }
+            
+            
+            
+            
         }
 // TODO add your handling code here:
     }//GEN-LAST:event_JTDocumentoFocusLost
