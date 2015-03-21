@@ -1,0 +1,79 @@
+commit 628473e1a4dfbc7d6019d25b82fc9fd1fbe722a5
+Author: Ivan Dario Villa <trezeguet55@gmail.com>
+Date:   Sat Mar 21 10:49:10 2015 -0500
+
+    Actualización del 21 de marzo
+
+commit c5964b0d085222fb9220994b245570f7f672e2a7
+Author: Ivan Dario Villa <trezeguet55@gmail.com>
+Date:   Tue Mar 17 12:02:11 2015 -0500
+
+    Fondo del menu Organizado
+
+commit 49ecc47b71d8a9fd2a7133c7b62f9a83409eec21
+Merge: 9704ee8 5551a81
+Author: Ivan Dario Villa <trezeguet55@gmail.com>
+Date:   Sat Mar 14 15:46:30 2015 -0500
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 5551a81e2cb8976bb413e97381f74830c16d34c2
+Author: Edward Monsalve <Edwardm0213@hotmail.com>
+Date:   Sat Mar 14 15:45:25 2015 -0500
+
+    Solucion de librerias
+
+commit 9704ee87bd76e6ee0848251912b9131193ce7ef7
+Author: Ivan Dario Villa <trezeguet55@gmail.com>
+Date:   Sat Mar 14 15:42:10 2015 -0500
+
+    Solucion de conflictos
+
+commit 1a4e21f43ca541137d7a08351d6144243d66662c
+Merge: cf3f1f4 97d5536
+Author: Edward Monsalve <Edwardm0213@hotmail.com>
+Date:   Sat Mar 14 15:37:27 2015 -0500
+
+    Commit de solucion
+
+commit cf3f1f4e2a0ca0a3ad6ccc424b9e4dfe73e26a1a
+Author: Edward Monsalve <Edwardm0213@hotmail.com>
+Date:   Sat Mar 14 15:34:55 2015 -0500
+
+    Archivos XML
+
+commit 97d5536553eb87c3159fac39c2573f8cf267be39
+Author: Juan Esteban Acevedo Gallego <juan_acevedo23141@elpoli.edu.co>
+Date:   Sat Mar 14 15:26:25 2015 -0500
+
+    Prueba de actualizacion en Git JuanAce
+
+commit bdb67f3b27d6b3dff73bf782493de7203cec8c6b
+Author: Ivan Dario Villa <trezeguet55@gmail.com>
+Date:   Sat Mar 14 15:18:05 2015 -0500
+
+    Clase Identidades
+
+commit b26df6793e58d49cae9ffdef7adad74b03d3f8b6
+Author: Ivan Dario Villa <trezeguet55@gmail.com>
+Date:   Sat Mar 14 15:00:58 2015 -0500
+
+    Actualización de identidades
+
+commit 1c885cdca4d6cbac1e3af4f3a35367919e176cea
+Author: Ivan Dario Villa <trezeguet55@gmail.com>
+Date:   Wed Mar 11 12:49:57 2015 -0500
+
+    Ensayo uno para empezar
+
+commit a06b29add10b3af7d93980063a54c198e804ab53
+Author: Edward Monsalve <Edwardm0213@hotmail.com>
+Date:   Wed Mar 11 12:33:42 2015 -0500
+
+    Proyecto inicial y Estructura Base
+
+commit 7ccb3f6b85dfe8a732649773b54ba5e2ed12b974
+Author: Edward Monsalve Castrillon <edwardm0213@hotmail.com>
+Date:   Wed Mar 11 12:27:10 2015 -0500
+
+    Initial commit
