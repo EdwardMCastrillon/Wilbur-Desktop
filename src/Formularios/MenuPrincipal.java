@@ -54,7 +54,7 @@ public class MenuPrincipal implements ActionListener {
         FraMenuPri.setIconImage(icoCabecera);
         FraMenuPri.setVisible(true);
 
-        iconFondo = new ImageIcon("C:\\Users\\Ivan\\Desktop\\Original Porcicola Wilburg\\src\\Imagenes\\granjaHome.jpg");
+        iconFondo = new ImageIcon("/home/ivanvilla/Escritorio/Wilbur-Desktop/src/Imagenes/granjaHome.jpg");
         labelFondo = new JLabel(iconFondo);
         labelFondo.setBounds(0, 0, 1550, 750);
         FraMenuPri.add(labelFondo);
