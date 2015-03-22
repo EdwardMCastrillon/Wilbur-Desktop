@@ -6,10 +6,9 @@
 package porcicolawilbur;
 
 import Formularios.Ingreso;
+import Identidades.DatosPerfil;
 import Identidades.DatosPersonal;
-import Identidades.Razas;
-import Listas.ListaAnimal;
-import Listas.ListaPartos;
+import Identidades.Razas; 
 import Listas.*;
 import java.io.File;
 import java.util.Date;
@@ -55,22 +54,38 @@ public class PorcicolaWilbur {
         ListaAnimal A = new ListaAnimal();
         ListaUsuario U = new ListaUsuario();
         ListaPartos P = new ListaPartos();
+        ListaPerfil Pe = new ListaPerfil();
         String[][] usuarios = new String[8][4];
         
-        usuarios[0][0] = "Edward Monsalve Castrillon";
-        usuarios[0][1] = "Edward";
-        usuarios[0][2] = "Edward6628";
-        usuarios[0][3] = "Administrador";
-                
-        usuarios[1][0] = "Juan Esteban Acevedo Gallego";
-        usuarios[1][1] = "Juan";
-        usuarios[1][2] = "Ju@N1984";
-        usuarios[1][3] = "Administrador";
+        DatosPerfil perfil = new DatosPerfil();
+    	perfil.setNumCedula("8359450");
+        perfil.setNombre("Edward Monsalve Cantrillon");
+    	perfil.setPerfil("Administrador");
+    	perfil.setUsuario("Edward");
+    	perfil.setContraIngreso("1478");
+    	perfil.setRepetirContraIngreso("1478"); 
+    	perfil.setFecha(new Date(114,10,11));
+    	Pe.guardarPerfil(perfil);
+    	
+    	DatosPerfil perfil1 = new DatosPerfil();
+    	perfil1.setNumCedula("8359459");
+        perfil.setNombre("Ivan Dario Villa Ramirez"); 
+    	perfil1.setPerfil("Veterinario");
+    	perfil1.setUsuario("Ivan");
+    	perfil1.setContraIngreso("Ivan.1585");
+    	perfil1.setRepetirContraIngreso("Ivan.1585"); 
+    	perfil.setFecha(new Date(114,10,11));
+    	Pe.guardarPerfil(perfil1);
         
-        usuarios[2][0] = "Ivan Dario Villa";
-        usuarios[2][1] = "Ivan";
-        usuarios[2][2] = "Ivan.1585";
-        usuarios[2][3] = "Veterinario";
+        DatosPerfil perfil12= new DatosPerfil();
+    	perfil12.setNumCedula("8359452");
+        perfil.setNombre("Juan Esteban Acevedo"); 
+    	perfil12.setPerfil("Administrador");
+    	perfil12.setUsuario("Juan");
+    	perfil12.setContraIngreso("Ju@N1984");
+    	perfil12.setRepetirContraIngreso("Ju@N1984");
+    	perfil.setFecha(new Date(114,10,11)); 
+    	Pe.guardarPerfil(perfil12); 
         
         DatosPersonal persona = new DatosPersonal();
     	persona.setTipoDoc("Cedula de Ciudadania");
@@ -99,7 +114,7 @@ public class PorcicolaWilbur {
     	U.guardarUsuario(persona);
    
 
-        new Ingreso(usuarios,U,P,A,R);
+        new Ingreso(U,P,A,R,Pe);
 
         // TODO code application logic here
     }

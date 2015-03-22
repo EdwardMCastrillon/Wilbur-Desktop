@@ -4,10 +4,15 @@
  */
 package Formularios;
 
+import Identidades.DatosPerfil;
+import Identidades.DatosPersonal;
+import Listas.ListaPerfil;
+import Listas.ListaUsuario;
 import javax.swing.ImageIcon; //Se importa la clase para poner el icono en los formularios.
 import javax.swing.JOptionPane;
 import Utilidades.CambiarContraseña;
-import javax.swing.JPasswordField; 
+import Utilidades.EnviarEmail;
+import javax.swing.JPasswordField;
 
 /**
  * @author Equipo de desarrollo GAP (Edward Monsalve, Pedro Garces, Juan Esteban
@@ -19,11 +24,19 @@ public class JFrameCambiarContraseña extends javax.swing.JFrame {
     private String Logins[][] = new String[8][3];
     int nickName;
     ImageIcon icoMensajeInfor, icoMensajePre;
+    DatosPerfil perfilModifiContra, datosPerfilEmail;
+    DatosPersonal usuario;
+    String pasActual, correo, usuari, nombre, contraseña;
+    ListaPerfil listaPerfi;
+    ListaUsuario listaPerso;
+    EnviarEmail mail;
+    String tipoMensaje = "Modificar Contraseña - G.A.P.";
+    
 
     public JFrameCambiarContraseña() {
     }
 
-    public JFrameCambiarContraseña(String Usuarios[][], int posperfil) {
+    public JFrameCambiarContraseña(ListaPerfil listaPerfi, ListaUsuario listaPerso) {
         initComponents();
         this.ValidarEspacios();
         this.setVisible(true);
@@ -36,12 +49,12 @@ public class JFrameCambiarContraseña extends javax.swing.JFrame {
 
         jPactPass.requestFocus();
 
-        Logins = Usuarios;
-        nickName = posperfil;
+        this.listaPerfi = listaPerfi;
+        this.listaPerso = listaPerso;
 
         jTuserName.setText(Logins[nickName][1]);
-        jTuserName.setEnabled(false);
-
+        jTuserName.setEnabled(true);
+        perfilModifiContra = new DatosPerfil();
     }
 
     /**
@@ -202,41 +215,20 @@ public class JFrameCambiarContraseña extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnGuardarActionPerformed
-        // Se cargan las variables con los datos de las cajas de texto.
-        userName = jTuserName.getText();
-        actPass = jPactPass.getText();
-        newPass = jPnewPass.getText();
-        confPass = jPconfPass.getText();
 
-        CambiarContraseña cP = new CambiarContraseña(userName, actPass, newPass, confPass);
-
-        if (cP.CamposObligatorios() == (true)) {
-            JOptionPane.showMessageDialog(this, "Campos obligatorios incompletos.", "Cambiar Contraseña - G.A.P", JOptionPane.YES_NO_OPTION,
-                                icoMensajePre);
+        this.guardarModificacion();
+        datosPerfilEmail = listaPerfi.modificarContraseñaIngrse(perfilModifiContra);
+        if (datosPerfilEmail != null) {
+            usuario = listaPerso.cargarUsuario(datosPerfilEmail.getNumCedula());
+            this.correo = usuario.getCorreo();
+            this.nombre = usuario.getNombre();
+            this.usuari = datosPerfilEmail.getUsuario();
+            this.contraseña = datosPerfilEmail.getContraIngreso();
+            mail = new EnviarEmail(correo, nombre, usuari, contraseña, tipoMensaje);
         } else {
-            if (cP.LongPass() == (true)) {
-                JOptionPane.showMessageDialog(this, "La nueva contraseña debe contener minimo 5 digitos.", "Cambiar Contraseña - G.A.P", JOptionPane.YES_NO_OPTION,
-                                icoMensajePre);
-            } else {
-                if (cP.EqualPass() == (true)) {
-                    JOptionPane.showMessageDialog(this, "La confirmación de la contraseña no coincide con la nueva contraseña.", "Cambiar Contraseña - G.A.P", JOptionPane.YES_NO_OPTION,
-                                icoMensajePre);
-                } else {
-                    if (cP.CaracterEspecial() == (false)) {
-                        JOptionPane.showMessageDialog(this, "La contraseña debe tener al menos un caracter especial.");
-                        jPnewPass.setText(null);
-                        jPconfPass.setText(null);
-                        jPnewPass.requestFocus();
-                    } else {
-                        int resp = JOptionPane.showConfirmDialog(null, "¿Esta seguro de cambiar su contraseña?", "Cambio de contraseña", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icoMensajePre);
-                        if (resp == 0) {
-                            cP.ChangePassword(Logins);
-                            LimpiarCampos();
-                            
-                        }
-                    }
-                }
-            }
+
+            JOptionPane.showMessageDialog(null, "Datos incorrectos", "Modificar Contraseña - S.G.P.", JOptionPane.OK_OPTION, icoMensajeInfor);
+            jTuserName.requestFocus();
         }
     }//GEN-LAST:event_jBtnGuardarActionPerformed
 
@@ -304,6 +296,14 @@ public class JFrameCambiarContraseña extends javax.swing.JFrame {
         jPactPass.setText(null);
         jPnewPass.setText(null);
         jPconfPass.setText(null);
+    }
+    
+    public void guardarModificacion(){
+        
+        perfilModifiContra.setUsuario(jTuserName.getText());
+        pasActual = jPactPass.getText();
+        perfilModifiContra.setContraIngreso(jPnewPass.getText());
+        perfilModifiContra.setRepetirContraIngreso(jPconfPass.getText());
     }
 
     public void ValidarEspacios() {

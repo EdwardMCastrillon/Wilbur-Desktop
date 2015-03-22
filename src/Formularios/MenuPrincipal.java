@@ -39,22 +39,23 @@ public class MenuPrincipal implements ActionListener {
     ListaPartos listaPart;
     ListaRazas listaRazas;
     ListaUsuario listaPersona;
+    ListaPerfil listaPerfi;
     //ReportePerfiles reporte;
     String perfil1;
     String[][] usuarios;
 
-    public MenuPrincipal(String[][] usuarios, String perfil, int posUsuario, ListaAnimal listaAnima, ListaUsuario listaPersona, ListaPartos listaPart, ListaRazas R) {
+    public MenuPrincipal( String perfil, int posUsuario, ListaAnimal listaAnima, ListaUsuario listaPersona, ListaPartos listaPart, ListaRazas R, ListaPerfil listaPerfi) {
 
         FraMenuPri = new JFrame("Menú Principal - PERFIL ");
         FraMenuPri.setBounds(10, 10, 1350, 710);
         FraMenuPri.setLayout(null);
         FraMenuPri.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//DETENER LA EJECUCIÓN CUANDO CIERRE
         FraMenuPri.setResizable(false);
-        icoCabecera = Toolkit.getDefaultToolkit().getImage("C:\\Users\\Ivan\\Desktop\\Original Porcicola Wilburg\\src\\Imagenes\\1_Icono_Form.jpg");
+        icoCabecera = Toolkit.getDefaultToolkit().getImage("C:\\Users\\Ivan\\Desktop\\OriginalPorcicolaWilburg\\src\\Imagenes\\1_Icono_Form.jpg");
         FraMenuPri.setIconImage(icoCabecera);
         FraMenuPri.setVisible(true);
 
-        iconFondo = new ImageIcon("/home/ivanvilla/Escritorio/Wilbur-Desktop/src/Imagenes/granjaHome.jpg");
+        iconFondo = new ImageIcon("C:\\Users\\Ivan\\Desktop\\OriginalPorcicolaWilburg\\src\\Imagenes\\granjaHome.jpg");
         labelFondo = new JLabel(iconFondo);
         labelFondo.setBounds(0, 0, 1550, 750);
         FraMenuPri.add(labelFondo);
@@ -241,6 +242,7 @@ public class MenuPrincipal implements ActionListener {
         this.listaPersona = listaPersona;
         this.usuarios = usuarios;
         this.posUsuario=posUsuario;
+        this.listaPerfi=listaPerfi;
         //reporte = new ReportePerfiles();
 
     }
@@ -255,19 +257,19 @@ public class MenuPrincipal implements ActionListener {
 
         if (e.getSource() == menItemPerfil) {
 
-            AsignarPerfil gPer = new AsignarPerfil(usuarios, listaPersona);
+            AsignarPerfil gPer = new AsignarPerfil(usuarios, listaPersona, listaPerfi);
 
         }
 
         if (e.getSource() == menItemRecuperar) {
 
-            RecuperarPass rC = new RecuperarPass(listaPersona.getPrimero(), usuarios);
+            RecuperarPass rC = new RecuperarPass(listaPersona.getPrimero(), listaPerfi.getCabeza());
 
         }
 
         if (e.getSource() == menItemModContra) {
 
-            JFrameCambiarContraseña cc = new JFrameCambiarContraseña(usuarios, posUsuario);
+            JFrameCambiarContraseña cc = new JFrameCambiarContraseña(listaPerfi, listaPersona);
         }
 
         if (e.getSource() == menItemReportes) {
@@ -302,7 +304,7 @@ public class MenuPrincipal implements ActionListener {
                     JOptionPane.QUESTION_MESSAGE, icoMensajePre);
             if (opc == 0) {
                 FraMenuPri.dispose();
-                Ingreso i = new Ingreso(usuarios, listaPersona, listaPart, listaAnima, listaRazas);
+                Ingreso i = new Ingreso( listaPersona, listaPart, listaAnima, listaRazas, listaPerfi);
 
             }
         }

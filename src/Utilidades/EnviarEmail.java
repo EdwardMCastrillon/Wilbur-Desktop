@@ -20,11 +20,11 @@ import javax.swing.JOptionPane;
  */
 public class EnviarEmail {
 
-    public EnviarEmail(String correo, String nombre, String usuario, String clave) {
+    public EnviarEmail(String correo, String nombre, String usuario, String clave, String tipoMensaje) {
 
-        if (enviarEmail(correo, nombre, usuario, clave)) {
+        if (enviarEmail(correo, nombre, usuario, clave, tipoMensaje)) {
             int sel1 = JOptionPane.showOptionDialog(null, "Se Envio un Mesaje al Correo que tiene Registrado",
-                    "Informaci\u00f3n de Envio", JOptionPane.YES_NO_CANCEL_OPTION,
+                    tipoMensaje, JOptionPane.YES_NO_CANCEL_OPTION,
                     JOptionPane.INFORMATION_MESSAGE, null, new Object[]{"Aceptar",}, "");
         } else {
             int seleccion = JOptionPane.showOptionDialog(null, "Error al  Enviar el Mensaje",
@@ -33,7 +33,7 @@ public class EnviarEmail {
         }
     }
 
-    private boolean enviarEmail(String correo, String nombre, String usuario, String clave) {
+    private boolean enviarEmail(String correo, String nombre, String usuario, String clave, String tipoMensaje) {
 
         try {
             // Propiedades de la conexión
@@ -50,7 +50,7 @@ public class EnviarEmail {
             String str_De = "porcicolawilbur@gmail.com";
             String str_PwRemitente = "admonwilbur";
             String str_Para = correo;
-            String str_Asunto = "Software G.A.P Recuperación de contraseña.";
+            String str_Asunto = tipoMensaje;
             String str_Mensaje = "Sistema de Administracion Granja Porcicola Wilbur G.A.P.\n\n"
                     + "Los Datos de Acceso de su cuenta son:\n"
                     + "\nNombre: " + nombre + "\n" + "Correo: " + correo + "\n" + "Usuario: " + usuario + "\n" + "Contraseña: " + clave

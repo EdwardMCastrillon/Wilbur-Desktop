@@ -1,5 +1,6 @@
 package Formularios;
 
+import Identidades.DatosPerfil;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.logging.Level;
@@ -14,18 +15,18 @@ import Utilidades.Validaciones;
  * @author Edward
  */
 public class Ingreso extends javax.swing.JFrame {
-
-    String Usuarios[][] = new String[8][4];
+ 
     String[][] departamentos = new String[33][126];
     String perfil;
     ListaAnimal A;
     ListaUsuario U;
     ListaPartos P;
     ListaRazas R;
+    ListaPerfil listaPerfi;
     ImageIcon icoMensajeInfor, icoMensajePre;
     Validaciones validar;
     String nombreVentana;
-    int posUsuario=0;
+    int posUsuario = 0;
 
     public Ingreso() {
         initComponents();
@@ -35,20 +36,20 @@ public class Ingreso extends javax.swing.JFrame {
      * @param usuarios[][]: Represanta la matriz de los usuarios del sistema.
      * @param Lu : Lista de personal *
      */
-    public Ingreso(String usuarios[][], ListaUsuario Lu, ListaPartos Lp, ListaAnimal La, ListaRazas Lr) {
+    public Ingreso(ListaUsuario Lu, ListaPartos Lp, ListaAnimal La, ListaRazas Lr, ListaPerfil listaPerfi) {
         initComponents();
         setVisible(true);
         U = Lu;
         P = Lp;
         A = La;
         R = Lr;
-        Usuarios = usuarios;
+        this.listaPerfi = listaPerfi; 
         setLocationRelativeTo(null);
         setResizable(false);
         setTitle("Ingreso al Sistema");
-        setIconImage(new ImageIcon(getClass().getResource("/Imagenes/1_Icono_Form.JPG")).getImage());
-        icoMensajeInfor = new ImageIcon("../Imagenes/IconoInformacion.jpg");
-        icoMensajePre = new ImageIcon("../Imagenes/IconoPregunta.jpg");
+        setIconImage(new ImageIcon(getClass().getResource("..\\Imagenes\\1_Icono_Form.JPG")).getImage());
+        icoMensajeInfor = new ImageIcon("..\\Imagenes\\IconoInformacion.jpg");
+        icoMensajePre = new ImageIcon("..\\Imagenes\\IconoPregunta.jpg");
         validar = new Validaciones();
         nombreVentana = "Ingraso al Sistema - G.A.P.";
 
@@ -234,30 +235,51 @@ public class Ingreso extends javax.swing.JFrame {
 
     private void JBIngresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBIngresoActionPerformed
 
-        String usuario = JTUsuario.getText();
-        String password = new String(JTClave.getPassword());
+        /*   String usuario = JTUsuario.getText();
+         String password = new String(JTClave.getPassword());
 
-        if (usuario.equalsIgnoreCase("") || password.equals("")) {
+         if (usuario.equalsIgnoreCase("") || password.equals("")) {
 
-            JOptionPane.showMessageDialog(this, "¡Debe diligenciar todos los campos!", "Información Incompleta", JOptionPane.YES_NO_OPTION,
-                    icoMensajePre);
+         JOptionPane.showMessageDialog(this, "¡Debe diligenciar todos los campos!", "Información Incompleta", JOptionPane.YES_NO_OPTION,
+         icoMensajePre);
 
+         } else {
+
+         try {
+         if (ValidarUsuario(usuario, password, Usuarios)) {
+         System.out.println(perfil);
+         MenuPrincipal mn = new MenuPrincipal(Usuarios, perfil, posUsuario, A, U, P, R, listaPerfi);
+         this.dispose();
+         } else {
+         JOptionPane.showMessageDialog(this, "Este usuario no está registrado.", "Gestión Administrativa Pórcicola", JOptionPane.YES_NO_OPTION,
+         icoMensajePre);
+         JTUsuario.setText("");
+         JTClave.setText("");
+         }
+         } catch (UnknownHostException ex) {
+         Logger.getLogger(Ingreso.class.getName()).log(Level.SEVERE, null, ex);
+         }
+         }*/
+        String nombre;
+        DatosPerfil perfi = listaPerfi.confirmarUsuario(JTUsuario.getText(), JTClave.getText());
+
+        if (perfi != null) {
+            if (perfi.getUsuario().equals(JTUsuario.getText()) && perfi.getContraIngreso().equals(JTClave.getText())) {
+                nombre = perfi.getPerfil();
+              /*  if (listaPerfi.fechaCambioContra(perfi.getFecha())) {
+                    JOptionPane.showMessageDialog(null, "Debe cambiar su contraseña." + "\n" + "Se recomienda cambiar cada 30 días,"
+                            + "\n" + "después del primer registro", "Inicio de Sesion - S.G.P", JOptionPane.OK_OPTION, icoMensajeInfor);
+                }*/
+                MenuPrincipal MeP = new MenuPrincipal( nombre, posUsuario, A, U, P, R, listaPerfi);
+                this.dispose();
+            }
         } else {
 
-            try {
-                if (ValidarUsuario(usuario, password, Usuarios)) {
-                    System.out.println(perfil);
-                    MenuPrincipal mn = new MenuPrincipal(Usuarios, perfil, posUsuario, A, U, P, R);
-                    this.dispose();
-                } else {
-                    JOptionPane.showMessageDialog(this, "Este usuario no está registrado.", "Gestión Administrativa Pórcicola", JOptionPane.YES_NO_OPTION,
-                            icoMensajePre);
-                    JTUsuario.setText("");
-                    JTClave.setText("");
-                }
-            } catch (UnknownHostException ex) {
-                Logger.getLogger(Ingreso.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            JOptionPane.showMessageDialog(null, "El usuario no existe", "Inicio de Sesion - S.G.P",
+                    JOptionPane.OK_OPTION, icoMensajeInfor);
+            JTUsuario.requestFocus();
+            JTUsuario.setText("");
+            JTClave.setText("");
         }
 
         // TODO add your handling code here:
@@ -268,7 +290,7 @@ public class Ingreso extends javax.swing.JFrame {
 
     private void JBOlvidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBOlvidoActionPerformed
 
-        new RecuperarPass(U.getPrimero(), Usuarios);
+        new RecuperarPass(U.getPrimero(), listaPerfi.getCabeza() );
 
         // TODO add your handling code here:
     }//GEN-LAST:event_JBOlvidoActionPerformed

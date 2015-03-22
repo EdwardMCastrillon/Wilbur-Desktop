@@ -1,4 +1,3 @@
-
 package Formularios;
 
 /**
@@ -6,25 +5,27 @@ package Formularios;
  * @author Edward
  */
 import Listas.*;
+import Nodos.NodoPerfil;
 import Nodos.NodoUsuario;
 import Utilidades.*;
 import javax.swing.JOptionPane;
 
 public class RecuperarPass extends javax.swing.JFrame {
 
-    String Usuarios[][] = new String[8][3];
+    NodoPerfil auxi;
     NodoUsuario U;
     boolean sw = false;
-
+    boolean sw1 = false;
     String correo, nombre, usuario, contraseña, perfil;
     int numUsuario;
+    String tipoMensaje = "Recuperar Contraseña - G.A.P.";
 
     public RecuperarPass() {
         initComponents();
         setVisible(true);
     }
 
-    public RecuperarPass(NodoUsuario N, String usuarios[][]) {
+    public RecuperarPass(NodoUsuario N, NodoPerfil auxi) {
         this.setVisible(true);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
@@ -32,10 +33,8 @@ public class RecuperarPass extends javax.swing.JFrame {
 
         initComponents();
         U = N;
-        Usuarios = usuarios;
+        this.auxi = auxi;
 
-        
-        
         //Ensayando actualizaciones en GitHub
     }
 
@@ -122,12 +121,18 @@ public class RecuperarPass extends javax.swing.JFrame {
             if (U.getUsuario().getDocumento().equals(documento)) {
                 nombre = U.getUsuario().getNombre();
                 correo = U.getUsuario().getCorreo();
-                perfil = U.getUsuario().getPerfil();
                 sw = true;
-                numUsuario = numeroUsuario(nombre, perfil);
-                usuario = Usuarios[numUsuario][1];
-                contraseña = Usuarios[numUsuario][2];
-                new EnviarEmail(correo, nombre, usuario, contraseña);
+                while (auxi != null && sw1 == false) {
+
+                    if (auxi.getPerfil().getNumCedula().equals(U.getUsuario().getDocumento())) {
+
+                        contraseña = auxi.getPerfil().getContraIngreso();
+                        perfil = auxi.getPerfil().getPerfil();
+                        sw1 = true;
+                    }
+                    auxi = auxi.getLiga();
+                }
+                new EnviarEmail(correo, nombre, usuario, contraseña, tipoMensaje);
                 this.dispose();
 
             } else {
@@ -189,14 +194,4 @@ public class RecuperarPass extends javax.swing.JFrame {
     private javax.swing.JTextField jtxtDocumento;
     // End of variables declaration//GEN-END:variables
 
-    public int numeroUsuario(String Nombre, String perf) {
-        int num = 0;
-        for (int i = 0; i < Usuarios.length; i++) {
-            if (Usuarios[i][0].equals(Nombre) && Usuarios[i][3].equals(perf)) {
-                num = i;
-                break;
-            }
-        }
-        return num;
-    }
 }

@@ -215,6 +215,7 @@
         <Component class="javax.swing.JPasswordField" name="jPassRepeContra">
           <Events>
             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jPassRepeContraFocusLost"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jPassRepeContraActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JComboBox" name="JComboPerfil">
@@ -262,7 +263,10 @@
     </Component>
     <Component class="javax.swing.JButton" name="JButtonCrearPerfil">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Guardar"/>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Imagenes/1_Guardar.png"/>
+        </Property>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JButtonCrearPerfilActionPerformed"/>
@@ -356,7 +360,6 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/Imagenes/1_Atras.png"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Volver"/>
         <Property name="horizontalAlignment" type="int" value="2"/>
         <Property name="horizontalTextPosition" type="int" value="2"/>
       </Properties>

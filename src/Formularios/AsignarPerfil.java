@@ -1,8 +1,11 @@
 package Formularios;
 
+import Identidades.DatosPerfil;
 import Identidades.DatosPersonal;
+import Listas.ListaPerfil;
 import Listas.ListaUsuario;
 import Nodos.NodoUsuario;
+import Utilidades.ReportePerfil;
 import javax.swing.JOptionPane;
 import Utilidades.Validaciones;
 import java.awt.event.ItemEvent;
@@ -22,13 +25,15 @@ public class AsignarPerfil extends javax.swing.JFrame {
     int swModif = 0;
     ImageIcon icoMensajeInfor, icoMensajePre;
     DatosPersonal buscarUsuario;
+    DatosPerfil perfil, buscarPerfil;
     String nombreVentana;
+    ListaPerfil listaPerfi;
 
     public AsignarPerfil() {
         initComponents();
     }
 
-    public AsignarPerfil(String usuarios[][], ListaUsuario Lu) {
+    public AsignarPerfil(String usuarios[][], ListaUsuario Lu, ListaPerfil listaPerfi) {
         initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
@@ -50,6 +55,8 @@ public class AsignarPerfil extends javax.swing.JFrame {
         JComboPerfil.addItem("Almacen");
         JComboPerfil.addItem("Veterinario");
         this.desactivarCampos();
+        this.listaPerfi = listaPerfi;
+        this.validarCampos();
 
         nombreVentana = "Asignar Perfil - G.A.P.";
     }
@@ -140,6 +147,11 @@ public class AsignarPerfil extends javax.swing.JFrame {
         jPassRepeContra.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jPassRepeContraFocusLost(evt);
+            }
+        });
+        jPassRepeContra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPassRepeContraActionPerformed(evt);
             }
         });
 
@@ -242,7 +254,8 @@ public class AsignarPerfil extends javax.swing.JFrame {
             }
         });
 
-        JButtonCrearPerfil.setText("Guardar");
+        JButtonCrearPerfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/1_Guardar.png"))); // NOI18N
+        JButtonCrearPerfil.setEnabled(false);
         JButtonCrearPerfil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JButtonCrearPerfilActionPerformed(evt);
@@ -306,7 +319,6 @@ public class AsignarPerfil extends javax.swing.JFrame {
 
         JBVolver.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         JBVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/1_Atras.png"))); // NOI18N
-        JBVolver.setText("Volver");
         JBVolver.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         JBVolver.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         JBVolver.addActionListener(new java.awt.event.ActionListener() {
@@ -369,24 +381,56 @@ public class AsignarPerfil extends javax.swing.JFrame {
 
     private void JButtonCrearPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JButtonCrearPerfilActionPerformed
 
+        this.guardarCamposPerfil();
         this.inicializarCont(conta);
-        for (int i = 0; i < Usuarios.length; i++) {
-            if (Usuarios[i][0] != null) {
-                topeU = topeU + 1;
-            }
-        }
+        if (!validar.validarContraseñ(jPassContra.getText(), conta)) {
 
-        if (jPassContra.getPassword().toString().equals(jPassRepeContra.getPassword().toString())) {
-            String pass = jPassRepeContra.getPassword().toString();
-            Usuarios[topeU][0] = jtxtNombre.getText();
-            Usuarios[topeU][1] = jtxtNombrePerf.getText();
-            Usuarios[topeU][2] = pass;
-            Usuarios[topeU][3] = JComboPerfil.getSelectedItem().toString();
-            JOptionPane.showMessageDialog(this, "Se asigno el perfil de administrador a este usuario", "Asignar Perfil - G.A.P", JOptionPane.YES_NO_OPTION,
-                    icoMensajeInfor);
+            JOptionPane.showMessageDialog(null, "La contraseña debe contener al menos un:" + "\n" + "caracter especial, letra mayuscula,"
+                    + "\n" + "letra minuscula, número y un tamnaño como minimo de 8 caracteres", "Gestionar Perfil - S.G.P",
+                    JOptionPane.OK_OPTION, icoMensajeInfor);
+            jPassContra.requestFocus();
+            jPassContra.setText("");
         } else {
-            JOptionPane.showMessageDialog(this, "Las contraseñas no coinciden.", "Asignar Perfil - G.A.P", JOptionPane.YES_NO_OPTION,
-                    icoMensajeInfor);
+
+            if (swModif == 0) {
+
+                if (listaPerfi.existePerfil(perfil.getNumCedula())) {
+
+                    JOptionPane.showMessageDialog(null, "El número ya tiene un perfil asignado", "Gestionar Perfil - S.G.P",
+                            JOptionPane.OK_OPTION, icoMensajeInfor);
+                } else {
+                    if (listaPerfi.guardarPerfil(perfil)) {
+
+                        JOptionPane.showMessageDialog(null, "El registro se guardo correctamente", "Gestionar Perfil - S.G.P",
+                                JOptionPane.OK_OPTION, icoMensajeInfor);
+                        this.limpiarCampos();
+                        this.desactivarCampos();
+                    } else {
+
+                        JOptionPane.showMessageDialog(null, "El registro no fue guardado", "Gestionar Perfil - S.G.P",
+                                JOptionPane.OK_OPTION, icoMensajeInfor);
+                    }
+                }
+
+            } else {
+
+                int n = JOptionPane.showConfirmDialog(this, "Esta seguro que desea modificar este registro");
+                if (n == 0) {
+                    if (listaPerfi.modificarPerfil(perfil)) {
+
+                        JOptionPane.showMessageDialog(null, "El registro se modifico correctamente", "Gestionar Perfil - S.G.P",
+                                JOptionPane.OK_OPTION, icoMensajeInfor);
+                        this.limpiarCampos();
+                        this.desactivarCampos();
+                    } else {
+
+                        JOptionPane.showMessageDialog(null, "El registro no fue modificado", "Gestionar Perfil - S.G.P",
+                                JOptionPane.OK_OPTION, icoMensajeInfor);
+                    }
+                }
+            }
+
+            JButtonCrearPerfil.setEnabled(false);
         }
 
 // TODO add your handling code here:
@@ -404,6 +448,7 @@ public class AsignarPerfil extends javax.swing.JFrame {
         this.activarCampos();
         this.limpiarCampos();
         jtxtDocumento.setEnabled(true);
+        this.desactivarBotones();
         swModif = 0;
     }//GEN-LAST:event_JBNuevoActionPerformed
 
@@ -427,33 +472,34 @@ public class AsignarPerfil extends javax.swing.JFrame {
     }//GEN-LAST:event_JBModificarUActionPerformed
 
     private void JBEliminarUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBEliminarUActionPerformed
-        String s = JOptionPane.showInputDialog(this, "Ingrese el documento del perfil a eliminar");
 
-        if (u.existe(s)) {
-            JOptionPane.showMessageDialog(this, "Esta seguro que desea eliminar este usuario", "Asignar Perfil - G.A.P - G.A.P", JOptionPane.YES_NO_OPTION,
-                    icoMensajeInfor);
-            for (int i = 0; i < 8; i++) {
+        String s = JOptionPane.showInputDialog(null, "Ingrese el número de documento del perfil que desea eliminar", "Gestionar Perfil - G.A.P.",
+                JOptionPane.QUESTION_MESSAGE);
+        if (listaPerfi.existePerfil(s)) {
 
-            }
-            if (u.eliminarUsuario(s)) {
-                JOptionPane.showMessageDialog(this, "Se ha eliminado correctamente", "Asignar Perfil - G.A.P", JOptionPane.YES_OPTION,
-                        icoMensajeInfor);
+            if (listaPerfi.eliminarPerfil(s)) {
+
+                JOptionPane.showMessageDialog(null, "El perfil ha sido eliminado", "Gestionar Perfil - G.A.P.",
+                        JOptionPane.OK_OPTION, icoMensajeInfor);
                 this.limpiarCampos();
+
             } else {
-                JOptionPane.showMessageDialog(this, "No se pudo eliminar el usuario", "Asignar Perfil - G.A.P", JOptionPane.YES_OPTION,
-                        icoMensajeInfor);
+
+                JOptionPane.showMessageDialog(null, "El perfil no se pudo eliminar", "Gestionar Perfil - G.A.P.",
+                        JOptionPane.OK_OPTION, icoMensajeInfor);
             }
         } else {
-            JOptionPane.showMessageDialog(this, "El usuario no existe", "Asignar Perfil - G.A.P", JOptionPane.YES_OPTION,
-                    icoMensajeInfor);
+
+            JOptionPane.showMessageDialog(null, "El número de documento no existe", "Gestionar Perfil - G.A.P.",
+                    JOptionPane.OK_OPTION, icoMensajeInfor);
         }
 
         // TODO add your handling code here:
     }//GEN-LAST:event_JBEliminarUActionPerformed
 
     private void JBListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBListarActionPerformed
-      //  new ReporteUsu(Lu.getPrimero());
 
+        ReportePerfil rp = new ReportePerfil(listaPerfi.getCabeza());
         // TODO add your handling code here:
     }//GEN-LAST:event_JBListarActionPerformed
 
@@ -490,18 +536,19 @@ public class AsignarPerfil extends javax.swing.JFrame {
             jtxtDocumento.requestFocusInWindow();
         } else {
             buscarUsuario = u.cargarUsuario(jtxtDocumento.getText());
-            if (buscarUsuario != null) {
+            if (buscarUsuario != null) { 
 
-                for (int i = 0; i < 8; i++) {
-
-                    if (buscarUsuario.getNombre() == Usuarios[i][0]) {
+                    if (listaPerfi.existePerfil(buscarUsuario.getDocumento())) {
 
                         JOptionPane.showMessageDialog(null, "El usuario " + buscarUsuario.getNombre() + "\n" + "ya tiene un perfil asignado",
                                 "Asignar Perfil - G.A.P", JOptionPane.YES_OPTION, icoMensajeInfor);
                         jtxtDocumento.setText("");
                         jtxtDocumento.requestFocusInWindow();
-                    }
-                }
+                    }else{
+                        
+                        jtxtNombre.setText(buscarUsuario.getNombre());
+                        jtxtDocumento.transferFocus();
+                    } 
             } else {
 
                 JOptionPane.showMessageDialog(null, "Este número de documento no ha sido registrado", "Asignar Perfil - G.A.P", JOptionPane.YES_OPTION,
@@ -590,10 +637,26 @@ public class AsignarPerfil extends javax.swing.JFrame {
                         icoMensajeInfor);
                 jPassRepeContra.requestFocusInWindow();
                 jPassRepeContra.setText("");
+            } else {
+
+                if (jtxtDocumento.getText().equals("") || jtxtNombre.getText().equals("") || jtxtNombrePerf.getText().equals("")
+                        || jPassContra.getText().equals("") || jPassRepeContra.getText().equals("")){
+
+                    JOptionPane.showMessageDialog(null, "Digite todos los campos obligatorios", "Gestionar Perfil - S.G.P",
+                            JOptionPane.OK_OPTION, icoMensajeInfor);
+                    jPassRepeContra.requestFocusInWindow();
+                } else {
+                    this.desactivarCampos();
+                    JButtonCrearPerfil.setEnabled(true);
+                }
             }
         }
 // TODO add your handling code here:
     }//GEN-LAST:event_jPassRepeContraFocusLost
+
+    private void jPassRepeContraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPassRepeContraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPassRepeContraActionPerformed
 
     /**
      * @param args the command line arguments
@@ -662,6 +725,17 @@ public class AsignarPerfil extends javax.swing.JFrame {
         }
     }
 
+    public void guardarCamposPerfil() {
+
+        perfil = new DatosPerfil();
+        perfil.setNumCedula(jtxtDocumento.getText());
+        perfil.setNombre(jtxtNombre.getText());
+        perfil.setPerfil((String) JComboPerfil.getSelectedItem());
+        perfil.setUsuario(jtxtNombrePerf.getText());
+        perfil.setContraIngreso(jPassContra.getText());
+        perfil.setRepetirContraIngreso(jPassRepeContra.getText());
+    }
+
     public void desactivarCampos() {
 
         jtxtDocumento.setEnabled(false);
@@ -692,12 +766,11 @@ public class AsignarPerfil extends javax.swing.JFrame {
 
     public void desactivarBotones() {
 
-        //JBGuardarU.setEnabled(false);
         JBNuevo.setEnabled(false);
         JBModificarU.setEnabled(false);
         JBConsultaru.setEnabled(false);
         JBEliminarU.setEnabled(false);
-        JBVolver.setEnabled(false);
+        JBListar.setEnabled(false);
     }
 
     public void activarBotones() {
@@ -715,7 +788,7 @@ public class AsignarPerfil extends javax.swing.JFrame {
         String[] opciones = {"Número de Documento", "Nombre", "Correo"};
         if (swModif == 1) {
 
-            buscarUsuario = u.cargarUsuario(JOptionPane.showInputDialog("Ingrese el número de documento del registro a modificar"));
+            buscarPerfil = listaPerfi.BuscarPerfil(JOptionPane.showInputDialog("Ingrese el número de documento del registro a modificar"));
             this.activarCampos();
             this.desactivarBotones();
         } else {
@@ -726,30 +799,26 @@ public class AsignarPerfil extends javax.swing.JFrame {
             switch (opc) {
 
                 case 0:
-                    buscarUsuario = u.cargarUsuario(JOptionPane.showInputDialog("Ingrese el número de documento del personal a consultar"));
+                    buscarPerfil = listaPerfi.BuscarPerfil(JOptionPane.showInputDialog("Ingrese el número de documento del personal a consultar"));
                     break;
                 case 1:
-                    buscarUsuario = u.cargarUsuario(JOptionPane.showInputDialog("Ingrese el nombre del personal a consultar"));
+                    buscarPerfil = listaPerfi.BuscarPerfilNomUsuario(JOptionPane.showInputDialog("Ingrese el nombre del personal a consultar"));
                     break;
                 case 2:
-                    buscarUsuario = u.cargarUsuario(JOptionPane.showInputDialog("Ingrese el correo del personal a consultar"));
+                    buscarPerfil = listaPerfi.BuscarPerfil(JOptionPane.showInputDialog("Ingrese el correo del personal a consultar"));
                     break;
             }
         }
         if (opc != -1) {
 
-            if (buscarUsuario != null) {
-                for (int i = 0; i < 8; i++) {
-                    if (Usuarios[i][0].equals(buscarUsuario.getNombre())) {
+            if (buscarPerfil != null) {
 
-                        jtxtDocumento.setText(buscarUsuario.getDocumento());
-                        jtxtNombre.setText(buscarUsuario.getNombre());
-                        JComboPerfil.setSelectedItem(Usuarios[i][3]);
-                        jtxtNombrePerf.setText(Usuarios[i][1]);
-                        jPassContra.setText(Usuarios[i][2]);
-                        jPassRepeContra.setText(Usuarios[i][2]);
-                    }
-                }
+                jtxtDocumento.setText(buscarPerfil.getNumCedula());
+                jtxtNombre.setText(buscarPerfil.getNombre());
+                JComboPerfil.setSelectedItem(buscarPerfil.getPerfil());
+                jtxtNombrePerf.setText(buscarPerfil.getUsuario());
+                jPassContra.setText(buscarPerfil.getContraIngreso());
+                jPassRepeContra.setText(buscarPerfil.getRepetirContraIngreso());
             } else {
 
                 JOptionPane.showMessageDialog(null, "El registro no existe", "Gestionar Personal - G.A.P",
@@ -762,5 +831,30 @@ public class AsignarPerfil extends javax.swing.JFrame {
                     JOptionPane.OK_OPTION, icoMensajeInfor);
         }
         buscarUsuario = null;
+    }
+
+    public void validarCampos() {
+        jtxtDocumento.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent e) {
+                validar.validarLongitud(10, jtxtDocumento, e);
+                validar.soloNumeros(jtxtDocumento, e);
+            }
+        });
+        this.jtxtNombrePerf.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent e) {
+                validar.validarLongitud(10, jtxtNombrePerf, e);
+            }
+        });
+        this.jPassContra.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent e) {
+                validar.validarLongitudPas(12, jPassContra, e);
+            }
+        });
+        this.jPassRepeContra.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent e) {
+                validar.validarLongitudPas(12, jPassRepeContra, e);
+            }
+        });
+
     }
 }
