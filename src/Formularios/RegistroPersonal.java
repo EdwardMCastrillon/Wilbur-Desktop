@@ -19,6 +19,7 @@ import Utilidades.*;
 import Identidades.*;
 import java.awt.event.ItemEvent;
 import java.util.Date;
+import javax.swing.ButtonGroup;
 
 public class RegistroPersonal extends javax.swing.JFrame {
 
@@ -26,7 +27,7 @@ public class RegistroPersonal extends javax.swing.JFrame {
      * Creates new form RegistroPersonal
      */
     private FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivo de Imagen", ".jpg");
-    String rutaimagen;
+    String rutaimagen, estado, obtenido;
     DatosPersonal buscarPersonal, persona;
     Validaciones Va = new Validaciones();
     ListaUsuario Lu;
@@ -36,6 +37,7 @@ public class RegistroPersonal extends javax.swing.JFrame {
     Date fecha;
     int año, mes, dia;
     String nombreVentana;
+    ButtonGroup grupoEstado, grupoObtenido;
 
     public RegistroPersonal() {
     }
@@ -67,12 +69,20 @@ public class RegistroPersonal extends javax.swing.JFrame {
         icoMensajePre = new ImageIcon("C:\\Users\\Ivan\\Desktop\\Proyecto Git\\src\\Imagenes\\IconoPregunta.jpg");
 
         rutaimagen = "";
-        jCbxDepartamento = deparMuni.cargarDepartamentos();
+        deparMuni.cargarDepartamentos(jCbxDepartamento);
         this.cargarComboBox();
         persona = new DatosPersonal();
         buscarPersonal = new DatosPersonal();
         this.DesactivarCampos();
         nombreVentana = "Gestionar Personal - G.A.P.";
+
+        grupoEstado = new ButtonGroup();
+        grupoEstado.add(JrbnActivo);
+        grupoEstado.add(JrbnInactivo);
+
+        grupoObtenido = new ButtonGroup();
+        grupoObtenido.add(JrbnNo);
+        grupoObtenido.add(JrbnSi);
     }
 
     /**
@@ -158,7 +168,6 @@ public class RegistroPersonal extends javax.swing.JFrame {
 
         JBVolver.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         JBVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/1_Atras.png"))); // NOI18N
-        JBVolver.setText("Volver");
         JBVolver.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         JBVolver.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         JBVolver.addActionListener(new java.awt.event.ActionListener() {
@@ -277,41 +286,41 @@ public class RegistroPersonal extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(4, 4, 4)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6)
-                        .addComponent(jtCargo, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel23)
-                        .addGap(6, 6, 6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jtCargo, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jcmbTipoContrato, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jbContrato)
+                        .addGap(44, 44, 44)
+                        .addComponent(jLabel22)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jbContrato)))
-                .addGap(40, 40, 40)
-                .addComponent(jLabel22)
-                .addGap(3, 3, 3)
-                .addComponent(jdFechaContrato, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jdFechaContrato, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(41, 41, 41))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(3, 3, 3)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtCargo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jdFechaContrato, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jdFechaContrato, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(5, 5, 5)
+                        .addGap(3, 3, 3)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jcmbTipoContrato, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jbContrato, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jbContrato, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jcmbTipoContrato, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(10, 10, 10)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtCargo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(1, 1, 1))
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED), "Formación Académica", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
@@ -444,7 +453,7 @@ public class RegistroPersonal extends javax.swing.JFrame {
                         .addGap(4, 4, 4)
                         .addComponent(jdFechaTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -670,8 +679,12 @@ public class RegistroPersonal extends javax.swing.JFrame {
         jLabel8.setText("Departamento:");
 
         jCbxDepartamento.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jCbxDepartamento.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "..." }));
         jCbxDepartamento.setEnabled(false);
+        jCbxDepartamento.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jCbxDepartamentoItemStateChanged(evt);
+            }
+        });
         jCbxDepartamento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCbxDepartamentoActionPerformed(evt);
@@ -860,33 +873,37 @@ public class RegistroPersonal extends javax.swing.JFrame {
                                 .addComponent(jLabel24))
                             .addGroup(jPanel6Layout.createSequentialGroup()
                                 .addGap(10, 10, 10)
-                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addGap(36, 36, 36)
-                                .addComponent(JBNuevo)
-                                .addGap(18, 18, 18)
-                                .addComponent(JBGuardarU)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(JBConsultaru)
-                                .addGap(10, 10, 10)
-                                .addComponent(JBModificarU)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(JBEliminarU)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(JBListar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(JBLimpiarU)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(JBVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(JBNuevo)
+                        .addGap(28, 28, 28)
+                        .addComponent(JBGuardarU)
+                        .addGap(30, 30, 30)
+                        .addComponent(JBConsultaru)
+                        .addGap(29, 29, 29)
+                        .addComponent(JBModificarU)
+                        .addGap(30, 30, 30)
+                        .addComponent(JBEliminarU)
+                        .addGap(27, 27, 27)
+                        .addComponent(JBListar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(JBLimpiarU)
+                        .addGap(26, 26, 26)
+                        .addComponent(JBVolver)
+                        .addGap(8, 8, 8)))
                 .addContainerGap())
         );
+
+        jPanel6Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {JBConsultaru, JBEliminarU, JBGuardarU, JBLimpiarU, JBListar, JBModificarU, JBNuevo, JBVolver});
+
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
@@ -911,6 +928,8 @@ public class RegistroPersonal extends javax.swing.JFrame {
                     .addComponent(JBEliminarU, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(52, Short.MAX_VALUE))
         );
+
+        jPanel6Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {JBConsultaru, JBEliminarU, JBGuardarU, JBLimpiarU, JBListar, JBModificarU, JBNuevo, JBVolver});
 
         jScrollPane1.setViewportView(jPanel6);
 
@@ -947,50 +966,44 @@ public class RegistroPersonal extends javax.swing.JFrame {
 
     private void JBGuardarUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBGuardarUActionPerformed
 
-        Validaciones V = new Validaciones();
         persona = this.GuardarCamposU();
-        String s = V.Validacion(persona);
+        String s = Va.Validacion(persona);
         if (this.validacionObligatorios().equals("")) {
-            if (s.equals("")) {
-                if (swModifi == 0) {
-                    if (!Lu.existe(persona.getDocumento())) {
-                        DatosPersonal u2 = persona;
+            if (swModifi == 0) {
+                if (!Lu.existe(persona.getDocumento())) {
+                    DatosPersonal u2 = persona;
 
-                        if (Lu.guardarUsuario(u2)) {
-                            JOptionPane.showMessageDialog(this, "Se guardó Correctamente", "Registro Personal - G.A.P", JOptionPane.YES_NO_OPTION,
-                                    icoMensajePre);
-                            this.LimpiarCamposU();
+                    if (Lu.guardarUsuario(u2)) {
+                        JOptionPane.showMessageDialog(this, "Se guardó Correctamente", "Registro Personal - G.A.P", JOptionPane.YES_NO_OPTION,
+                                icoMensajePre);
+                        this.LimpiarCamposU();
 
-                        } else {
-                            JOptionPane.showMessageDialog(this, "No se guardó correctamente", "Registro Personal - G.A.P", JOptionPane.YES_NO_OPTION,
-                                    icoMensajePre);
-                        }
                     } else {
-                        JOptionPane.showMessageDialog(this, "Este usuario ya existe", "Registro Personal - G.A.P", JOptionPane.YES_NO_OPTION,
+                        JOptionPane.showMessageDialog(this, "No se guardó correctamente", "Registro Personal - G.A.P", JOptionPane.YES_NO_OPTION,
                                 icoMensajePre);
                     }
                 } else {
-                    int opc;
-                    opc = JOptionPane.showConfirmDialog(null, "Esta seguro que desea modificar este registro",
-                            "Datos Animal - G.A.P", JOptionPane.YES_NO_OPTION,
-                            JOptionPane.QUESTION_MESSAGE, icoMensajePre);
-                    if (opc == 0) {
-                        if (Lu.modificarUsuario(persona)) {
-
-                            JOptionPane.showMessageDialog(null, "El registro se modifico correctamente", "Registro Personal - G.A.P",
-                                    JOptionPane.OK_OPTION, icoMensajeInfor);
-                            this.LimpiarCamposU();
-                            this.DesactivarCampos();
-                        } else {
-
-                            JOptionPane.showMessageDialog(null, "El registro no fue modificado", "Registro Personal - G.A.P",
-                                    JOptionPane.OK_OPTION, icoMensajeInfor);
-                        }
-                    }
+                    JOptionPane.showMessageDialog(this, "Este usuario ya existe", "Registro Personal - G.A.P", JOptionPane.YES_NO_OPTION,
+                            icoMensajePre);
                 }
             } else {
-                JOptionPane.showMessageDialog(this, "¡Correo electrónico no valido!", "Registro Personal - G.A.P", JOptionPane.YES_NO_OPTION,
-                        icoMensajePre);
+                int opc;
+                opc = JOptionPane.showConfirmDialog(null, "Esta seguro que desea modificar este registro",
+                        "Datos Animal - G.A.P", JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE, icoMensajePre);
+                if (opc == 0) {
+                    if (Lu.modificarUsuario(persona)) {
+
+                        JOptionPane.showMessageDialog(null, "El registro se modifico correctamente", "Registro Personal - G.A.P",
+                                JOptionPane.OK_OPTION, icoMensajeInfor);
+                        this.LimpiarCamposU();
+                        this.DesactivarCampos();
+                    } else {
+
+                        JOptionPane.showMessageDialog(null, "El registro no fue modificado", "Registro Personal - G.A.P",
+                                JOptionPane.OK_OPTION, icoMensajeInfor);
+                    }
+                }
             }
         } else {
             JOptionPane.showMessageDialog(this, "¡Complete los campos obligatorios(*)!", "Registro Personal - G.A.P", JOptionPane.YES_NO_OPTION,
@@ -1027,6 +1040,7 @@ public class RegistroPersonal extends javax.swing.JFrame {
     }//GEN-LAST:event_JBLimpiarUActionPerformed
 
     private void JBEliminarUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBEliminarUActionPerformed
+
         String s = JOptionPane.showInputDialog(this, "Ingrese el documento del usuario a eliminar");
 
         if (Lu.existe(s)) {
@@ -1049,11 +1063,21 @@ public class RegistroPersonal extends javax.swing.JFrame {
     }//GEN-LAST:event_JBEliminarUActionPerformed
 
     private void JrbnInactivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JrbnInactivoActionPerformed
-        // TODO add your handling code here:
+
+        if (JrbnInactivo.isSelected()) {
+
+            estado = "Inactivo";
+        }
+// TODO add your handling code here:
     }//GEN-LAST:event_JrbnInactivoActionPerformed
 
     private void JrbnActivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JrbnActivoActionPerformed
-        // TODO add your handling code here:
+
+        if (JrbnActivo.isSelected()) {
+
+            estado = "Activo";
+        }
+// TODO add your handling code here:
     }//GEN-LAST:event_JrbnActivoActionPerformed
 
     private void jCbxDepartamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCbxDepartamentoActionPerformed
@@ -1061,7 +1085,8 @@ public class RegistroPersonal extends javax.swing.JFrame {
         int sw = 0;
 
         index = jCbxDepartamento.getSelectedIndex();
-        jCbxCiudad = deparMuni.cargarMunicipios(index);
+        deparMuni.cargarMunicipios(index, jCbxCiudad);
+        jCbxCiudad.setEnabled(true);
 
     }//GEN-LAST:event_jCbxDepartamentoActionPerformed
 
@@ -1078,11 +1103,21 @@ public class RegistroPersonal extends javax.swing.JFrame {
     }//GEN-LAST:event_jtEstudiosActionPerformed
 
     private void JrbnSiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JrbnSiActionPerformed
-        // TODO add your handling code here:
+
+        if (JrbnSi.isSelected()) {
+
+            obtenido = "Si";
+        }
+// TODO add your handling code here:
     }//GEN-LAST:event_JrbnSiActionPerformed
 
     private void JrbnNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JrbnNoActionPerformed
-        // TODO add your handling code here:
+
+        if (JrbnNo.isSelected()) {
+
+            obtenido = "No";
+        }
+// TODO add your handling code here:
     }//GEN-LAST:event_JrbnNoActionPerformed
 
     private void JBNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBNuevoActionPerformed
@@ -1293,22 +1328,19 @@ public class RegistroPersonal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Campo obligatorio", "Gestionar Personal - G.A.P", JOptionPane.YES_OPTION,
                     icoMensajeInfor);
             JTDocumento.requestFocusInWindow();
-        }else{
-            
-            if ( Lu.existe(JTDocumento.getText())){
-                
+        } else {
+
+            if (Lu.existe(JTDocumento.getText())) {
+
                 JOptionPane.showMessageDialog(null, "Este número de documento ya esta registrado", "Gestionar Personal - G.A.P", JOptionPane.YES_OPTION,
-                    icoMensajeInfor);
+                        icoMensajeInfor);
                 JTDocumento.setText("");
                 JTDocumento.requestFocusInWindow();
-            }else{
-                
+            } else {
+
                 JTDocumento.transferFocus();
             }
-            
-            
-            
-            
+
         }
 // TODO add your handling code here:
     }//GEN-LAST:event_JTDocumentoFocusLost
@@ -1339,6 +1371,23 @@ public class RegistroPersonal extends javax.swing.JFrame {
 
     private void JTCorreoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_JTCorreoFocusLost
 
+        if (JTDocumento.getText().toString().equals("")) {
+
+            JOptionPane.showMessageDialog(null, "Campo obligatorio", "Gestionar Personal - G.A.P", JOptionPane.YES_OPTION,
+                    icoMensajeInfor);
+            JTDocumento.requestFocusInWindow();
+        } else {
+
+            if (!Va.validarEmail(JTCorreo.getText())) {  //Validamos si el correo electronico si corresponde al formato
+
+                JOptionPane.showMessageDialog(null, "Este formato no es el de un email", "Gestionar Personal - S.G.P",
+                        JOptionPane.OK_OPTION, icoMensajeInfor);
+                JTCorreo.requestFocus();
+            } else {
+
+                JTCorreo.transferFocus();
+            }
+        }
 // TODO add your handling code here:
     }//GEN-LAST:event_JTCorreoFocusLost
 
@@ -1347,6 +1396,28 @@ public class RegistroPersonal extends javax.swing.JFrame {
         Va.validarObligatorios(jtCargo, nombreVentana);
 // TODO add your handling code here:
     }//GEN-LAST:event_jtCargoFocusLost
+
+    private void jCbxDepartamentoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCbxDepartamentoItemStateChanged
+
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+
+            if (ComboDoc.getSelectedIndex() == 0) {
+
+                jCbxCiudad.removeAllItems();
+                jCbxCiudad.setEnabled(false);
+                jCbxDepartamento.requestFocusInWindow();
+            } else {
+
+                int index;
+                int sw = 0;
+
+                index = jCbxDepartamento.getSelectedIndex();
+                deparMuni.cargarMunicipios(index, jCbxCiudad);
+                jCbxCiudad.setEnabled(true);
+            }
+        }
+// TODO add your handling code here:
+    }//GEN-LAST:event_jCbxDepartamentoItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -1567,6 +1638,8 @@ public class RegistroPersonal extends javax.swing.JFrame {
         u2.setMovil(JTMovil.getText());
         u2.setCorreo(JTCorreo.getText());
         u2.setNombre(JTNombre.getText());
+        u2.setEstado(estado);
+        u2.setObtenidoEstudio(obtenido);
         u2.setCargo(jtCargo.getText());
         u2.setOtroEst(jtEstudios.getText());
         u2.setFechaContrato(jdFechaContrato.getDate());
@@ -1623,11 +1696,21 @@ public class RegistroPersonal extends javax.swing.JFrame {
                 JTNombre.setText(buscarPersonal.getNombre());
                 jtCargo.setText(buscarPersonal.getCargo());
                 jtEstudios.setText(buscarPersonal.getOtroEst());
+                if (buscarPersonal.getEstado().equals("Activo")) {
+                    JrbnActivo.setSelected(true);
+                } else {
+                    JrbnInactivo.setSelected(true);
+                }
                 jdFechaContrato.setDate(buscarPersonal.getFechaContrato());
                 jdFechaFinal.setDate(buscarPersonal.getFechaOtroEst());
                 jdFechaNacimiento.setDate(buscarPersonal.getFechaNacimiento());
                 jdFechaTitulo.setDate(buscarPersonal.getFechaTitulo());
                 ComboDoc.setSelectedItem(buscarPersonal.getTipoDoc());
+                if (buscarPersonal.getObtenidoEstudio().equals("Si")) {
+                    JrbnSi.setSelected(true);
+                } else {
+                    JrbnNo.setSelected(true);
+                }
                 jCbxCiudad.setSelectedItem(buscarPersonal.getCiudad());
                 jCbxDepartamento.setSelectedItem(buscarPersonal.getDepart());
                 jCprofesion.setSelectedItem(buscarPersonal.getProfesion());
@@ -1730,7 +1813,7 @@ public class RegistroPersonal extends javax.swing.JFrame {
                 jCbxCiudad.addItem("...");
                 jCbxCiudad.setEnabled(false);
             } else {
-                jCbxCiudad = deparMuni.cargarMunicipios(i);
+                deparMuni.cargarMunicipios(i, jCbxCiudad);
             }
         } else {
             jCtiporh.removeAllItems();

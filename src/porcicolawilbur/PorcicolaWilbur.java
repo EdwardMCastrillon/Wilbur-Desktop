@@ -103,7 +103,7 @@ public class PorcicolaWilbur {
     	persona.setMovil("3213658421");
     	persona.setProfesion("VETERINARIO");
     	persona.setOtroEst("ADMINISTRACION DE EMPRESAS");
-    	//persona.set("Si");
+    	persona.setObtenidoEstudio("Si");
     	persona.setCargo("Administrador");
         persona.setPerfil("Administrador");
     	persona.setTipoContrato("TERMINO FIJO"); 

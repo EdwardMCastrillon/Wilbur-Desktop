@@ -7,14 +7,13 @@ package Utilidades;
 
 import javax.swing.JComboBox;
 
-
 public class DepartamentosMunicipios {
-	
-	public String [][] departamentos;
-	
-	public DepartamentosMunicipios(){
-		
-		departamentos = new String [33][126]; 
+
+    public String[][] departamentos;
+
+    public DepartamentosMunicipios() {
+
+        departamentos = new String[33][126];
 
         departamentos[0][0] = "Amazonas";
         departamentos[0][1] = "Leticia";
@@ -1203,41 +1202,36 @@ public class DepartamentosMunicipios {
         departamentos[32][2] = "La Primavera";
         departamentos[32][3] = "Santa Rosalía";
         departamentos[32][4] = "Cumaribo";
-	}
-	
-	public String [][] getDeparMuni(){
-		
-		return departamentos;
-	} 
-	
-	public JComboBox cargarDepartamentos(){
-		
-		JComboBox depar = new JComboBox();
-		depar.addItem("........");
-		for (int j = 0 ; j < 33; j++){
-			
-			depar.addItem(departamentos[j][0]);
-		}
-		
-		return depar;
-	}
-	
-	public JComboBox cargarMunicipios(int indice){
-		
-		JComboBox muni = new JComboBox(); 
-		if ((indice)>0){
-		 
-			for (int j = 1; j < 125; j++){
-				
-				if (departamentos[indice-1][j] == null){
-					
-					break;
-				}else{
-					
-					muni.addItem(departamentos[indice-1][j]);
-				} 
-			}
-		}
-		return muni;
-	}
+    }
+
+    public String[][] getDeparMuni() {
+
+        return departamentos;
+    }
+
+    public void cargarDepartamentos(JComboBox depar) {
+
+        depar.addItem("........");
+        for (int j = 0; j < 33; j++) {
+
+            depar.addItem(departamentos[j][0]);
+        }
+    }
+
+    public void cargarMunicipios(int indice, JComboBox muni) {
+
+        if ((indice) > 0) {
+
+            for (int j = 1; j < 125; j++) {
+
+                if (departamentos[indice - 1][j] == null) {
+
+                    break;
+                } else {
+
+                    muni.addItem(departamentos[indice - 1][j]);
+                }
+            }
+        }
+    }
 }

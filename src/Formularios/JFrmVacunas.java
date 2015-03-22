@@ -7,6 +7,7 @@ package Formularios;
 import javax.swing.ImageIcon;
 import Atxy2k.CustomTextField.RestrictedTextField;
 import Utilidades.DepartamentosMunicipios;
+import java.awt.event.ItemEvent;
 
 /**
  *
@@ -23,7 +24,7 @@ public class JFrmVacunas extends javax.swing.JFrame {
 
         setVisible(true);
         setLocationRelativeTo(null);
-        this.jCbxDepartamento = deparMuni.cargarDepartamentos();
+        deparMuni.cargarDepartamentos(this.jCbxDepartamento);
     }
 
    /* public JFrmVacunas(String departamentos[][]) {
@@ -118,7 +119,11 @@ public class JFrmVacunas extends javax.swing.JFrame {
 
         jCbxDepartamento.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jCbxDepartamento.setMaximumRowCount(15);
-        jCbxDepartamento.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "..." }));
+        jCbxDepartamento.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jCbxDepartamentoItemStateChanged(evt);
+            }
+        });
         jCbxDepartamento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCbxDepartamentoActionPerformed(evt);
@@ -671,11 +676,6 @@ public class JFrmVacunas extends javax.swing.JFrame {
 
     private void jCbxDepartamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCbxDepartamentoActionPerformed
 
-        int index;
-
-        index = jCbxDepartamento.getSelectedIndex();
-        jCbxCiudad = deparMuni.cargarMunicipios(index);
-        //prueba de git en ramas
 
     }//GEN-LAST:event_jCbxDepartamentoActionPerformed
 
@@ -710,6 +710,28 @@ public class JFrmVacunas extends javax.swing.JFrame {
     private void jBtnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCrearActionPerformed
         this.activarComponentes();
     }//GEN-LAST:event_jBtnCrearActionPerformed
+
+    private void jCbxDepartamentoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCbxDepartamentoItemStateChanged
+
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+
+            if (jCbxDepartamento.getSelectedIndex() == 0) {
+
+                jCbxCiudad.removeAllItems();
+                jCbxCiudad.setEnabled(false);
+                jCbxDepartamento.requestFocusInWindow();
+            } else {
+
+                int index;
+                int sw = 0;
+
+                index = jCbxDepartamento.getSelectedIndex();
+                deparMuni.cargarMunicipios(index, jCbxCiudad);
+                jCbxCiudad.setEnabled(true);
+            }
+        }
+// TODO add your handling code here:
+    }//GEN-LAST:event_jCbxDepartamentoItemStateChanged
 
     /**
      * @param args the command line arguments

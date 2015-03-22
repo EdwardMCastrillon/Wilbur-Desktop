@@ -90,20 +90,22 @@
                       <Component id="JlCodigoParto" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="12" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="JBGuardar" linkSize="2" max="32767" attributes="0"/>
-                  <Component id="JBModificar" linkSize="2" max="32767" attributes="0"/>
-                  <Component id="JBConsultar" linkSize="2" max="32767" attributes="0"/>
-                  <Component id="jButton1" linkSize="2" min="-2" max="-2" attributes="0"/>
-                  <Component id="JBNuevo" linkSize="2" alignment="0" max="32767" attributes="0"/>
-                  <Component id="JBEliminar" linkSize="2" min="-2" max="-2" attributes="0"/>
-                  <Component id="JBLimpiar" linkSize="2" min="-2" max="-2" attributes="0"/>
-                  <Component id="JBVolver" linkSize="2" min="-2" max="-2" attributes="0"/>
+                  <Component id="JBVolver" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                      <Component id="jButton1" alignment="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="JBLimpiar" alignment="0" max="32767" attributes="0"/>
+                      <Component id="JBEliminar" alignment="0" max="32767" attributes="0"/>
+                      <Component id="JBConsultar" alignment="0" max="32767" attributes="0"/>
+                      <Component id="JBModificar" alignment="0" max="32767" attributes="0"/>
+                      <Component id="JBGuardar" alignment="0" max="32767" attributes="0"/>
+                      <Component id="JBNuevo" alignment="0" max="32767" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -541,7 +543,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButton1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="LISTAR"/>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Imagenes/List.png"/>
+        </Property>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>

@@ -14,9 +14,8 @@ import Utilidades.Validaciones;
  *
  * @author Edward
  */
-public class Ingreso extends javax.swing.JFrame {
- 
-    String[][] departamentos = new String[33][126];
+public class Ingreso extends javax.swing.JFrame { 
+    
     String perfil;
     ListaAnimal A;
     ListaUsuario U;
@@ -25,8 +24,7 @@ public class Ingreso extends javax.swing.JFrame {
     ListaPerfil listaPerfi;
     ImageIcon icoMensajeInfor, icoMensajePre;
     Validaciones validar;
-    String nombreVentana;
-    int posUsuario = 0;
+    String nombreVentana; 
 
     public Ingreso() {
         initComponents();
@@ -48,8 +46,8 @@ public class Ingreso extends javax.swing.JFrame {
         setResizable(false);
         setTitle("Ingreso al Sistema");
         setIconImage(new ImageIcon(getClass().getResource("..\\Imagenes\\1_Icono_Form.JPG")).getImage());
-        icoMensajeInfor = new ImageIcon("..\\Imagenes\\IconoInformacion.jpg");
-        icoMensajePre = new ImageIcon("..\\Imagenes\\IconoPregunta.jpg");
+        icoMensajeInfor = new ImageIcon("..\\Imagenes\\IconoInformacion.JPG");
+        icoMensajePre = new ImageIcon("..//Imagenes//IconoPregunta.JPG");
         validar = new Validaciones();
         nombreVentana = "Ingraso al Sistema - G.A.P.";
 
@@ -270,7 +268,7 @@ public class Ingreso extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Debe cambiar su contraseña." + "\n" + "Se recomienda cambiar cada 30 días,"
                             + "\n" + "después del primer registro", "Inicio de Sesion - S.G.P", JOptionPane.OK_OPTION, icoMensajeInfor);
                 }*/
-                MenuPrincipal MeP = new MenuPrincipal( nombre, posUsuario, A, U, P, R, listaPerfi);
+                MenuPrincipal MeP = new MenuPrincipal( nombre, A, U, P, R, listaPerfi);
                 this.dispose();
             }
         } else {
@@ -351,20 +349,5 @@ public class Ingreso extends javax.swing.JFrame {
     private javax.swing.JLabel lblUsuario;
     // End of variables declaration//GEN-END:variables
 
-    public boolean ValidarUsuario(String Usuario, String Password, String Usuarios[][]) throws UnknownHostException {
-        boolean sw = false;
-        for (int i = 0; i < Usuarios.length; i++) {
-            if (Usuarios[i][0] != null) {
-                if (Usuarios[i][1].equalsIgnoreCase(Usuario) && Usuarios[i][2].equals(Password)) {
-                    JOptionPane.showMessageDialog(this, "*" + Usuario + "* Bienvenido a G.A.P.", "Bienvenido!", JOptionPane.INFORMATION_MESSAGE, icoMensajeInfor);
-                    perfil = Usuarios[i][3];
-                    posUsuario = i;
-                    return true;
-                }
-            } else {
-                return false;
-            }
-        }
-        return sw;
-    }
+    
 }

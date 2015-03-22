@@ -243,12 +243,12 @@ public class ListaPerfil {
      *@param perfil contiene los datos del perfil ya modificado 
      *@return retorna todos los datos del perfil ya modificado y almacenado
      */
-    public DatosPerfil modificarContraseñaIngrse(DatosPerfil perfil){
+    public DatosPerfil modificarContraseñaIngrse(DatosPerfil perfil, String contra){
     	
     	NodoPerfil auxi = cabeza;
     	while ( auxi != null ){
     		
-    		if (auxi.getPerfil().getUsuario().equals(perfil.getUsuario()) && auxi.getPerfil().getContraIngreso().equals(perfil.getContraIngreso())){
+    		if (auxi.getPerfil().getUsuario().equals(perfil.getUsuario()) && auxi.getPerfil().getContraIngreso().equals(contra)){
     				
     				auxi.getPerfil().setContraIngreso(perfil.getContraIngreso());
     				auxi.getPerfil().setRepetirContraIngreso(perfil.getRepetirContraIngreso());

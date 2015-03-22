@@ -10,7 +10,24 @@ import java.util.Date;
  */
 public class DatosAnimal {
     
-    private String Cod_animal, Peso_nacer, Peso_destete, Cod_parto, Cod_madre, Edad_sem,Raza,Sexo,RazaMadre,RazaPadre,Procedencia;
+    private String Cod_animal, Peso_nacer, Peso_destete, Cod_parto, Cod_madre, Edad_sem,Raza,Sexo,RazaMadre,
+                   RazaPadre,Procedencia, estado, tipoCerdo;
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public String getTipoCerdo() {
+        return tipoCerdo;
+    }
+
+    public void setTipoCerdo(String tipoCerdo) {
+        this.tipoCerdo = tipoCerdo;
+    }
     private String Fecha_dest, Fecha_consumo, Fecha_parto;
     
     public String getRaza() {

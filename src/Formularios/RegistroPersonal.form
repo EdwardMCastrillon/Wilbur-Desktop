@@ -76,24 +76,6 @@
                                       <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
                                       <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                                      <Component id="JBNuevo" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="JBGuardarU" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="JBConsultaru" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                                      <Component id="JBModificarU" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="JBEliminarU" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="JBListar" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="JBLimpiarU" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="JBVolver" min="-2" pref="105" max="-2" attributes="0"/>
-                                  </Group>
                               </Group>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
@@ -101,9 +83,28 @@
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="jPanel5" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="jPanel3" alignment="1" pref="0" max="32767" attributes="0"/>
+                                  <Component id="jPanel3" alignment="1" max="32767" attributes="0"/>
                                   <Component id="jPanel2" alignment="1" max="32767" attributes="0"/>
                               </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                              <Component id="JBNuevo" linkSize="1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                              <Component id="JBGuardarU" linkSize="1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                              <Component id="JBConsultaru" linkSize="1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                              <Component id="JBModificarU" linkSize="1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                              <Component id="JBEliminarU" linkSize="1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                              <Component id="JBListar" linkSize="1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="JBLimpiarU" linkSize="1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                              <Component id="JBVolver" linkSize="1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -124,14 +125,14 @@
                       <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="11" pref="11" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="JBVolver" max="32767" attributes="0"/>
-                          <Component id="JBLimpiarU" alignment="0" max="32767" attributes="0"/>
-                          <Component id="JBListar" alignment="0" min="-2" pref="35" max="-2" attributes="0"/>
-                          <Component id="JBModificarU" alignment="0" max="32767" attributes="0"/>
-                          <Component id="JBConsultaru" alignment="0" max="32767" attributes="0"/>
-                          <Component id="JBGuardarU" alignment="0" max="32767" attributes="0"/>
-                          <Component id="JBNuevo" alignment="0" max="32767" attributes="0"/>
-                          <Component id="JBEliminarU" alignment="0" max="32767" attributes="0"/>
+                          <Component id="JBVolver" linkSize="2" max="32767" attributes="0"/>
+                          <Component id="JBLimpiarU" linkSize="2" alignment="0" max="32767" attributes="0"/>
+                          <Component id="JBListar" linkSize="2" alignment="0" min="-2" pref="35" max="-2" attributes="0"/>
+                          <Component id="JBModificarU" linkSize="2" alignment="0" max="32767" attributes="0"/>
+                          <Component id="JBConsultaru" linkSize="2" alignment="0" max="32767" attributes="0"/>
+                          <Component id="JBGuardarU" linkSize="2" alignment="0" max="32767" attributes="0"/>
+                          <Component id="JBNuevo" linkSize="2" alignment="0" max="32767" attributes="0"/>
+                          <Component id="JBEliminarU" linkSize="2" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace pref="52" max="32767" attributes="0"/>
                   </Group>
@@ -147,7 +148,6 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/Imagenes/1_Atras.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Volver"/>
                 <Property name="horizontalAlignment" type="int" value="2"/>
                 <Property name="horizontalTextPosition" type="int" value="2"/>
               </Properties>
@@ -270,51 +270,51 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <EmptySpace min="4" pref="4" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="jLabel21" min="-2" pref="94" max="-2" attributes="0"/>
-                                  <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jLabel23" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jtCargo" min="-2" pref="280" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="102" attributes="0">
-                                  <Component id="jLabel23" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jLabel21" min="-2" pref="94" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jcmbTipoContrato" min="-2" pref="187" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="jbContrato" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                                  <Component id="jLabel22" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="jdFechaContrato" min="-2" pref="108" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-                          <Component id="jLabel22" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
-                          <Component id="jdFechaContrato" min="-2" pref="108" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace min="3" pref="3" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel21" min="-2" pref="25" max="-2" attributes="0"/>
-                              <Component id="jtCargo" min="-2" pref="25" max="-2" attributes="0"/>
-                              <Component id="jLabel22" min="-2" pref="25" max="-2" attributes="0"/>
+                              <Component id="jLabel22" alignment="0" min="-2" pref="25" max="-2" attributes="0"/>
                               <Component id="jdFechaContrato" min="-2" pref="25" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <EmptySpace min="5" pref="5" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="3" pref="3" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jLabel23" min="-2" pref="25" max="-2" attributes="0"/>
-                                      <Component id="jcmbTipoContrato" min="-2" pref="25" max="-2" attributes="0"/>
+                                      <Component id="jbContrato" min="-2" pref="25" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="jLabel21" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                                          <Component id="jcmbTipoContrato" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
                               </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jbContrato" min="-2" pref="25" max="-2" attributes="0"/>
-                              </Group>
                           </Group>
+                          <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabel23" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                              <Component id="jtCargo" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -425,7 +425,7 @@
                               </Group>
                               <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace pref="40" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1013,13 +1013,12 @@
                       <Font name="Arial" size="12" style="0"/>
                     </Property>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="1">
-                        <StringItem index="0" value="..."/>
-                      </StringArray>
+                      <StringArray count="0"/>
                     </Property>
                     <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                   <Events>
+                    <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jCbxDepartamentoItemStateChanged"/>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCbxDepartamentoActionPerformed"/>
                   </Events>
                 </Component>

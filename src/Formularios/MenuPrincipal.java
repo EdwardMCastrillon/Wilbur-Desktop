@@ -44,7 +44,7 @@ public class MenuPrincipal implements ActionListener {
     String perfil1;
     String[][] usuarios;
 
-    public MenuPrincipal( String perfil, int posUsuario, ListaAnimal listaAnima, ListaUsuario listaPersona, ListaPartos listaPart, ListaRazas R, ListaPerfil listaPerfi) {
+    public MenuPrincipal( String perfil, ListaAnimal listaAnima, ListaUsuario listaPersona, ListaPartos listaPart, ListaRazas R, ListaPerfil listaPerfi) {
 
         FraMenuPri = new JFrame("Menú Principal - PERFIL ");
         FraMenuPri.setBounds(10, 10, 1350, 710);

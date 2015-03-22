@@ -15,7 +15,8 @@ public class DatosPersonal {
     
     private String TipoDoc, Documento, Nombre, Depart, Ciudad, Rh, Sangre, Estado, RutaImagen, nombreimg;
     private String Direccion, Telefono, Movil, Correo;
-    private String Profesion, OtroEst, perfil;
+    private String Profesion, OtroEst, perfil, obtenidoEstudio;
+
 
     private String Cargo, TipoContrato;
     private Date FechaNacimiento, FechaTitulo, FechaOtroEst, FechaContrato;
@@ -162,6 +163,13 @@ public class DatosPersonal {
 
     public void setCargo(String Cargo) {
         this.Cargo = Cargo;
+    }
+    public String getObtenidoEstudio() {
+        return obtenidoEstudio;
+    }
+
+    public void setObtenidoEstudio(String obtenidoEstudio) {
+        this.obtenidoEstudio = obtenidoEstudio;
     }
 
     public String getTipoContrato() {

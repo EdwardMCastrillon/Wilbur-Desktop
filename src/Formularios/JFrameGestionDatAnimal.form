@@ -74,11 +74,13 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jbtn_crear" linkSize="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jbtn_guardar" linkSize="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jbtn_modificar" linkSize="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jbtn_consultar" linkSize="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jbtn_eliminar" linkSize="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButton1" linkSize="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jbtn_volver" linkSize="3" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                      <Component id="jButton1" alignment="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="jbtn_eliminar" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jbtn_modificar" alignment="0" max="32767" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -94,7 +96,7 @@
               <Group type="102" attributes="0">
                   <EmptySpace min="-2" pref="193" max="-2" attributes="0"/>
                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="188" max="-2" attributes="0"/>
+                  <EmptySpace pref="136" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -194,9 +196,9 @@
                           <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="jd_fechadest" min="-2" pref="130" max="-2" attributes="0"/>
-                          <EmptySpace pref="30" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                           <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="jd_fechaconsumo" min="-2" pref="130" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -474,7 +476,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="12" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Fecha Consumo de Alimento:"/>
+            <Property name="text" type="java.lang.String" value="Fecha Consumo  Alimento:"/>
           </Properties>
         </Component>
         <Component class="com.toedter.calendar.JDateChooser" name="jd_fechaconsumo">
@@ -528,7 +530,7 @@
                               <Component id="jtxt_codmadre" min="-2" pref="100" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="100" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel16" min="-2" pref="96" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
@@ -540,15 +542,19 @@
                           </Group>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-                              <Component id="jd_fechaparto" min="-2" pref="130" max="-2" attributes="0"/>
-                          </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="jcbx_razapadre" min="-2" pref="120" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jcbx_razapadre" min="-2" pref="120" max="-2" attributes="0"/>
-                                  <Component id="jtxt_edadsem" min="-2" pref="72" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Component id="jtxt_edadsem" min="-2" pref="50" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="jLabel21" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="jd_fechaparto" min="-2" pref="130" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -571,10 +577,21 @@
                                       <Component id="jd_fechaparto" linkSize="1" min="-2" pref="20" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel15" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
-                                  <Component id="jtxt_codmadre" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="jLabel15" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                                          <Component id="jtxt_codmadre" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="jtxt_edadsem" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabel21" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
@@ -595,10 +612,7 @@
                               <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                               <Component id="jLabel16" min="-2" pref="28" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel17" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
-                                  <Component id="jtxt_edadsem" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="jLabel17" min="-2" pref="28" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -636,7 +650,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="12" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Edad en Semanas:"/>
+                <Property name="text" type="java.lang.String" value="Edad"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jtxt_codparto">
@@ -718,6 +732,14 @@
                   </StringArray>
                 </Property>
                 <Property name="enabled" type="boolean" value="false"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel21">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Arial" size="12" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Semanas"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -852,7 +874,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButton1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Listar"/>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Imagenes/List.png"/>
+        </Property>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
