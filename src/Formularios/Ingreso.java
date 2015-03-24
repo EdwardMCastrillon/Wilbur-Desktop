@@ -46,8 +46,8 @@ public class Ingreso extends javax.swing.JFrame {
         setResizable(false);
         setTitle("Ingreso al Sistema");
         setIconImage(new ImageIcon(getClass().getResource("..\\Imagenes\\1_Icono_Form.JPG")).getImage());
-        icoMensajeInfor = new ImageIcon("C:\\OriginalPorcicolaWilburg\\src\\Imagenes\\IconoInformacion.JPG");
-        icoMensajePre = new ImageIcon("C:\\OriginalPorcicolaWilburg\\src\\Imagenes\\IconoPregunta.JPG");
+        icoMensajeInfor = new ImageIcon("C:\\OriginalPorcicolaWilbur\\src\\Imagenes\\IconoInformacion.JPG");
+        icoMensajePre = new ImageIcon("C:\\OriginalPorcicolaWilbur\\src\\Imagenes\\IconoPregunta.JPG");
         validar = new Validaciones();
         nombreVentana = "Ingraso al Sistema - G.A.P.";
 

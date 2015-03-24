@@ -44,8 +44,8 @@ public class JFrameCambiarContraseña extends javax.swing.JFrame {
         setResizable(false);
         setTitle("Cambiar Contraseña");
         setIconImage(new ImageIcon(getClass().getResource("/Imagenes/1_Icono_Form.JPG")).getImage());
-        icoMensajeInfor = new ImageIcon("C:\\OriginalPorcicolaWilburg\\src\\Imagenes\\IconoInformacion.jpg");
-        icoMensajePre = new ImageIcon("C:\\OriginalPorcicolaWilburg\\src\\Imagenes\\IconoPregunta.jpg");
+        icoMensajeInfor = new ImageIcon("C:\\OriginalPorcicolaWilbur\\src\\Imagenes\\IconoInformacion.jpg");
+        icoMensajePre = new ImageIcon("C:\\OriginalPorcicolaWilbur\\src\\Imagenes\\IconoPregunta.jpg");
 
         jPactPass.requestFocus();
 

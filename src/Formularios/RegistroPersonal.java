@@ -66,9 +66,9 @@ public class RegistroPersonal extends javax.swing.JFrame {
         setResizable(false);
         setTitle("Gestionar Personal");
         setIconImage(new ImageIcon(getClass().getResource("/Imagenes/1_Icono_Form.JPG")).getImage());
-        icoMensajeInfor = new ImageIcon("C:\\OriginalPorcicolaWilburg\\src\\Imagenes\\IconoInformacion.jpg");
-        icoMensajePre = new ImageIcon("C:\\OriginalPorcicolaWilburg\\src\\Imagenes\\IconoPregunta.jpg");
-        icoCalendario = new ImageIcon("C:\\OriginalPorcicolaWilburg\\src\\Imagenes\\iconoCalendario.jpg");
+        icoMensajeInfor = new ImageIcon("C:\\OriginalPorcicolaWilbur\\src\\Imagenes\\IconoInformacion.jpg");
+        icoMensajePre = new ImageIcon("C:\\OriginalPorcicolaWilbur\\src\\Imagenes\\IconoPregunta.jpg");
+        icoCalendario = new ImageIcon("C:\\OriginalPorcicolaWilbur\\src\\Imagenes\\iconoCalendario.jpg");
 
         rutaimagen = "";
         deparMuni.cargarDepartamentos(jCbxDepartamento);
@@ -1698,10 +1698,10 @@ public class RegistroPersonal extends javax.swing.JFrame {
                     buscarPersonal = Lu.cargarUsuario(JOptionPane.showInputDialog("Ingrese el número de documento del personal a consultar"));
                     break;
                 case 1:
-                    buscarPersonal = Lu.cargarUsuario(JOptionPane.showInputDialog("Ingrese el nombre del personal a consultar"));
+                    buscarPersonal = Lu.cargarUsuarioNombre(JOptionPane.showInputDialog("Ingrese el nombre del personal a consultar"));
                     break;
                 case 2:
-                    buscarPersonal = Lu.cargarUsuario(JOptionPane.showInputDialog("Ingrese el correo del personal a consultar"));
+                    buscarPersonal = Lu.cargarUsuarioCorreo(JOptionPane.showInputDialog("Ingrese el correo del personal a consultar"));
                     break;
             }
         }

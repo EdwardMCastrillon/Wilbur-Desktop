@@ -52,9 +52,9 @@ public class JFrameGestionDatAnimal extends javax.swing.JFrame {
         setResizable(false);
         setTitle("Gestionar Datos del Animal");
         setIconImage(new ImageIcon(getClass().getResource("/Imagenes/1_Icono_Form.JPG")).getImage());
-        icoMensajeInfor = new ImageIcon("C:\\OriginalPorcicolaWilburg\\src\\Imagenes\\IconoInformacion.jpg");
-        icoMensajePre = new ImageIcon("C:\\OriginalPorcicolaWilburg\\src\\Imagenes\\IconoPregunta.jpg");
-        icoCalendario = new ImageIcon("C:\\OriginalPorcicolaWilburg\\src\\Imagenes\\iconoCalendario.jpg");
+        icoMensajeInfor = new ImageIcon("C:\\OriginalPorcicolaWilbur\\src\\Imagenes\\IconoInformacion.jpg");
+        icoMensajePre = new ImageIcon("C:\\OriginalPorcicolaWilbur\\src\\Imagenes\\IconoPregunta.jpg");
+        icoCalendario = new ImageIcon("C:\\OriginalPorcicolaWilbur\\src\\Imagenes\\iconoCalendario.jpg");
         this.jcbx_sexo.addItem("Hembra");
         this.jcbx_sexo.addItem("Macho");
         datos = new DatosAnimal();
@@ -148,6 +148,7 @@ public class JFrameGestionDatAnimal extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jbtn_volver = new javax.swing.JButton();
+        JBLimpiar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -596,6 +597,7 @@ public class JFrameGestionDatAnimal extends javax.swing.JFrame {
 
         jbtn_guardar.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jbtn_guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/1_Guardar.png"))); // NOI18N
+        jbtn_guardar.setEnabled(false);
         jbtn_guardar.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jbtn_guardar.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         jbtn_guardar.addActionListener(new java.awt.event.ActionListener() {
@@ -654,6 +656,14 @@ public class JFrameGestionDatAnimal extends javax.swing.JFrame {
             }
         });
 
+        JBLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/1_Clear_Limpiar.png"))); // NOI18N
+        JBLimpiar.setToolTipText("Limpiar Campos");
+        JBLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBLimpiarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -666,7 +676,10 @@ public class JFrameGestionDatAnimal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(55, 55, 55)
+                        .addContainerGap()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
                         .addComponent(jbtn_crear, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jbtn_guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -679,10 +692,9 @@ public class JFrameGestionDatAnimal extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jButton1)
                         .addGap(18, 18, 18)
-                        .addComponent(jbtn_volver, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(JBLimpiar)
+                        .addGap(18, 18, 18)
+                        .addComponent(jbtn_volver, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -706,7 +718,8 @@ public class JFrameGestionDatAnimal extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                         .addComponent(jbtn_eliminar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jbtn_modificar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jbtn_modificar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(JBLimpiar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
@@ -791,6 +804,7 @@ public class JFrameGestionDatAnimal extends javax.swing.JFrame {
                 }
             }
         }
+        this.activarBotones();
     }//GEN-LAST:event_jbtn_guardarActionPerformed
 
     private void jcbx_sexoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbx_sexoActionPerformed
@@ -806,6 +820,7 @@ public class JFrameGestionDatAnimal extends javax.swing.JFrame {
         int Cod = listaAni.NuevoCod();
         jtxt_codanimal.setText(this.codigoAnimales(Cod));
         this.ActivarCampos();
+        this.desactivarBotones();
 // TODO add your handling code here:
     }//GEN-LAST:event_jbtn_crearActionPerformed
 
@@ -819,6 +834,9 @@ public class JFrameGestionDatAnimal extends javax.swing.JFrame {
 
         swModDatosAnimal = 1;
         this.LlenarDatos();
+        this.ActivarCampos();
+        this.desactivarBotones();
+        jcbx_procedencia.requestFocusInWindow();
 
 // TODO add your handling code here:
     }//GEN-LAST:event_jbtn_modificarActionPerformed
@@ -826,9 +844,10 @@ public class JFrameGestionDatAnimal extends javax.swing.JFrame {
     private void jbtn_consultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_consultarActionPerformed
 
         swModDatosAnimal = 0;
+        this.desactivarBotones();
         this.LlenarDatos();
-        this.DesactivarCampos();
-
+        this.DesactivarCampos(); 
+        
 // TODO add your handling code here:
     }//GEN-LAST:event_jbtn_consultarActionPerformed
 
@@ -934,6 +953,14 @@ public class JFrameGestionDatAnimal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jcbx_procedenciaActionPerformed
 
+    private void JBLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBLimpiarActionPerformed
+
+        this.Limpiar_Campos();
+        this.DesactivarCampos();
+        this.activarBotones();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JBLimpiarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -969,6 +996,7 @@ public class JFrameGestionDatAnimal extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton JBLimpiar;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
@@ -1166,6 +1194,27 @@ public class JFrameGestionDatAnimal extends javax.swing.JFrame {
         jcbx_razamadre.setEnabled(false);
         jcbx_razapadre.setEnabled(false);
         jcbx_sexo.setEnabled(false);
+    }
+    
+    public void desactivarBotones() {
+
+        //JBGuardarU.setEnabled(false);
+        jbtn_crear.setEnabled(false);
+        jbtn_modificar.setEnabled(false);
+        jbtn_consultar.setEnabled(false);
+        jbtn_eliminar.setEnabled(false);
+        jbtn_volver.setEnabled(false);
+        jButton1.setEnabled(false);
+    }
+    
+    public void activarBotones() {
+
+        jbtn_crear.setEnabled(true);
+        jbtn_modificar.setEnabled(true);
+        jbtn_consultar.setEnabled(true);
+        jbtn_eliminar.setEnabled(true);
+        jbtn_volver.setEnabled(true);
+        jButton1.setEnabled(true);
     }
 
     public void validarCampos() {

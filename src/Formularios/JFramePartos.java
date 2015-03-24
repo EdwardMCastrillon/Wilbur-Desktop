@@ -48,9 +48,9 @@ public class JFramePartos extends javax.swing.JFrame {
         setResizable(false);
         setTitle("Gestionar Partos");
         setIconImage(new ImageIcon(getClass().getResource("/Imagenes/1_Icono_Form.JPG")).getImage());
-        icoMensajeInfor = new ImageIcon("C:\\OriginalPorcicolaWilburg\\src\\Imagenes\\IconoInformacion.jpg");
-        icoMensajePre = new ImageIcon("C:\\OriginalPorcicolaWilburg\\src\\Imagenes\\IconoPregunta.jpg");
-        icoCalendario = new ImageIcon("C:\\OriginalPorcicolaWilburg\\src\\Imagenes\\iconoCalendario.jpg");
+        icoMensajeInfor = new ImageIcon("C:\\OriginalPorcicolaWilbur\\src\\Imagenes\\IconoInformacion.jpg");
+        icoMensajePre = new ImageIcon("C:\\OriginalPorcicolaWilbur\\src\\Imagenes\\IconoPregunta.jpg");
+        icoCalendario = new ImageIcon("C:\\OriginalPorcicolaWilbur\\src\\Imagenes\\iconoCalendario.jpg");
 
         this.ComboRaza.addItem("Hampshire");
         this.ComboRaza.addItem("Duroc");
@@ -165,7 +165,7 @@ public class JFramePartos extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED), "Identificación de la Madre", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
 
         JlCodigo.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        JlCodigo.setText("*Código");
+        JlCodigo.setText("*Código Madre");
 
         JtCodigo.setEnabled(false);
         JtCodigo.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -214,14 +214,11 @@ public class JFramePartos extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(JlCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(JlEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(53, 53, 53)
+                    .addComponent(JlEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JlCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(JTEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -745,7 +742,7 @@ public void LimpiarCampos() {
     public void LlenarDatos() {
 
         int opc = -2;
-        String[] opciones = {"Número de Documento", "Nombre", "Correo"};
+        String[] opciones = {"Código Parto", "Código Madre", "Correo"};
         if (swModDatosParto == 1) {
 
             buscarParto = listaParto.cargarParto(JOptionPane.showInputDialog("Ingrese el número de documento del registro a modificar"));
@@ -762,7 +759,7 @@ public void LimpiarCampos() {
                     buscarParto = listaParto.cargarParto(JOptionPane.showInputDialog("Ingrese el número de documento del personal a consultar"));
                     break;
                 case 1:
-                    buscarParto = listaParto.cargarParto(JOptionPane.showInputDialog("Ingrese el nombre del personal a consultar"));
+                    buscarParto = listaParto.cargarPartoCodigoMadre(JOptionPane.showInputDialog("Ingrese el nombre del personal a consultar"));
                     break;
                 case 2:
                     buscarParto = listaParto.cargarParto(JOptionPane.showInputDialog("Ingrese el correo del personal a consultar"));

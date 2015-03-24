@@ -51,11 +51,11 @@ public class MenuPrincipal implements ActionListener {
         FraMenuPri.setLayout(null);
         FraMenuPri.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//DETENER LA EJECUCIÓN CUANDO CIERRE
         FraMenuPri.setResizable(false);
-        icoCabecera = Toolkit.getDefaultToolkit().getImage("C:\\OriginalPorcicolaWilburg\\src\\Imagenes\\1_Icono_Form.jpg");
+        icoCabecera = Toolkit.getDefaultToolkit().getImage("C:\\OriginalPorcicolaWilbur\\src\\Imagenes\\1_Icono_Form.jpg");
         FraMenuPri.setIconImage(icoCabecera);
         FraMenuPri.setVisible(true);
 
-        iconFondo = new ImageIcon("C:\\OriginalPorcicolaWilburg\\src\\Imagenes\\granjaHome.jpg");
+        iconFondo = new ImageIcon("C:\\OriginalPorcicolaWilbur\\src\\Imagenes\\granjaHome.jpg");
         labelFondo = new JLabel(iconFondo);
         labelFondo.setBounds(0, 0, 1550, 750);
         FraMenuPri.add(labelFondo);
@@ -235,7 +235,7 @@ public class MenuPrincipal implements ActionListener {
 
         }
 
-        icoMensajePre = new ImageIcon("C:\\OriginalPorcicolaWilburg\\src\\Imagenes\\IconoPregunta.jpg");
+        icoMensajePre = new ImageIcon("C:\\OriginalPorcicolaWilbur\\src\\Imagenes\\IconoPregunta.jpg");
         this.listaAnima = listaAnima;
         this.listaPart = listaPart;
         this.listaRazas = R;

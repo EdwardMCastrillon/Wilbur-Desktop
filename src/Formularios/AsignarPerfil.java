@@ -17,8 +17,7 @@ import javax.swing.ImageIcon;
  */
 public class AsignarPerfil extends javax.swing.JFrame {
 
-    int topeU = 0;
-    String Usuarios[][] = new String[8][4];
+    int topeU = 0; 
     ListaUsuario u;
     Validaciones validar;
     int[] conta;
@@ -33,18 +32,17 @@ public class AsignarPerfil extends javax.swing.JFrame {
         initComponents();
     }
 
-    public AsignarPerfil(String usuarios[][], ListaUsuario Lu, ListaPerfil listaPerfi) {
+    public AsignarPerfil(ListaUsuario Lu, ListaPerfil listaPerfi) {
         initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-        this.setTitle("Asignar Perfiles");
-        Usuarios = usuarios;
+        this.setTitle("Asignar Perfiles"); 
         u = Lu;
         validar = new Validaciones();
         conta = new int[4];
-        icoMensajeInfor = new ImageIcon("C:\\OriginalPorcicolaWilburg\\src\\Imagenes\\IconoInformacion.jpg");
-        icoMensajePre = new ImageIcon("C:\\Users\\OriginalPorcicolaWilburg\\src\\Imagenes\\IconoPregunta.jpg");
+        icoMensajeInfor = new ImageIcon("C:\\OriginalPorcicolaWilbur\\src\\Imagenes\\IconoInformacion.jpg");
+        icoMensajePre = new ImageIcon("C:\\OriginalPorcicolaWilbur\\src\\Imagenes\\IconoPregunta.jpg");
         jtxtNombrePerf.setEnabled(true);
         //jtxtPass.setEnabled(true);
         //jtxtConfirm.setEnabled(true);
@@ -785,7 +783,7 @@ public class AsignarPerfil extends javax.swing.JFrame {
     public void llenarDatos() {
 
         int opc = -2;
-        String[] opciones = {"Número de Documento", "Nombre", "Correo"};
+        String[] opciones = {"Número de Documento", "Nombre Usuario", "Nombre"};
         if (swModif == 1) {
 
             buscarPerfil = listaPerfi.BuscarPerfil(JOptionPane.showInputDialog("Ingrese el número de documento del registro a modificar"));
@@ -805,7 +803,7 @@ public class AsignarPerfil extends javax.swing.JFrame {
                     buscarPerfil = listaPerfi.BuscarPerfilNomUsuario(JOptionPane.showInputDialog("Ingrese el nombre del personal a consultar"));
                     break;
                 case 2:
-                    buscarPerfil = listaPerfi.BuscarPerfil(JOptionPane.showInputDialog("Ingrese el correo del personal a consultar"));
+                    buscarPerfil = listaPerfi.BuscarPerfilUsuario(JOptionPane.showInputDialog("Ingrese el correo del personal a consultar"));
                     break;
             }
         }

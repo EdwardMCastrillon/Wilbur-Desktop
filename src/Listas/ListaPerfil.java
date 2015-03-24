@@ -136,6 +136,22 @@ public class ListaPerfil {
     	return perfil;
     }
     
+    public DatosPerfil BuscarPerfilUsuario(String nombre){
+    	
+    	NodoPerfil auxi=cabeza;
+    	DatosPerfil perfil=null;
+    	while (auxi !=null){
+    		
+    		if (auxi.getPerfil().getNombre().equals(nombre)){
+    			
+    			perfil = auxi.getPerfil();
+    			return perfil;
+    		}
+    		auxi=auxi.getLiga();
+    	}
+    	return perfil;
+    }
+    
     public DatosPerfil BuscarPerfilNomUsuario(String usuario){
     	
     	NodoPerfil auxi=cabeza;

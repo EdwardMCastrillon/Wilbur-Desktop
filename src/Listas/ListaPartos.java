@@ -72,6 +72,19 @@ public class ListaPartos {
 
         return result;
     }
+    
+    public Granja cargarPartoCodigoMadre(String codigo) {
+        NodoParto p = primero;
+        Granja result = null;
+        while (p != null) {
+            if (p.getParto().getCodigo().equals(codigo)) {
+                result = p.getParto();
+            }
+            p = p.getLiga();
+        }
+
+        return result;
+    }
 
     public boolean eliminarParto(String codigo) {
         boolean sw = false;

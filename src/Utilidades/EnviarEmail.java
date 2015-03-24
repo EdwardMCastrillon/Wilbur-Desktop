@@ -12,6 +12,7 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,17 +20,18 @@ import javax.swing.JOptionPane;
  * @author Edward
  */
 public class EnviarEmail {
+    
+    ImageIcon icoMensajeInfor = new ImageIcon("C:\\OriginalPorcicolaWilbur\\src\\Imagenes\\IconoInformacion.jpg");
 
     public EnviarEmail(String correo, String nombre, String usuario, String clave, String tipoMensaje) {
 
         if (enviarEmail(correo, nombre, usuario, clave, tipoMensaje)) {
-            int sel1 = JOptionPane.showOptionDialog(null, "Se Envio un Mesaje al Correo que tiene Registrado",
-                    tipoMensaje, JOptionPane.YES_NO_CANCEL_OPTION,
-                    JOptionPane.INFORMATION_MESSAGE, null, new Object[]{"Aceptar",}, "");
+            JOptionPane.showMessageDialog(null, "Se envio un correo a la dirección registrada," + "\n" + "con el nombre de usuario y la contraseña de ingreso", 
+                    tipoMensaje, JOptionPane.OK_OPTION, icoMensajeInfor);
         } else {
-            int seleccion = JOptionPane.showOptionDialog(null, "Error al  Enviar el Mensaje",
-                    "Informaci\u00f3n de Busqueda", JOptionPane.YES_NO_CANCEL_OPTION,
-                    JOptionPane.ERROR_MESSAGE, null, new Object[]{"Aceptar",}, "");
+
+            JOptionPane.showMessageDialog(null, "Error al  Enviar el Mensaje", "Informaci\u00f3n de Envio",
+                    JOptionPane.OK_OPTION, icoMensajeInfor);
         }
     }
 

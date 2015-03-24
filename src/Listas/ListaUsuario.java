@@ -66,6 +66,32 @@ public class ListaUsuario {
 
         return result;
     }
+    
+    public DatosPersonal cargarUsuarioCorreo(String correo) {
+        NodoUsuario p = primero;
+        DatosPersonal result = null;
+        while (p != null) {
+            if (p.getUsuario().getCorreo().equals(correo)) {
+                result = p.getUsuario();
+            }
+            p = p.getLiga();
+        }
+
+        return result;
+    }
+    
+    public DatosPersonal cargarUsuarioNombre(String nombre) {
+        NodoUsuario p = primero;
+        DatosPersonal result = null;
+        while (p != null) {
+            if (p.getUsuario().getNombre().equals(nombre)) {
+                result = p.getUsuario();
+            }
+            p = p.getLiga();
+        }
+
+        return result;
+    }
 
     public boolean eliminarUsuario(String documento) {
         boolean sw = false;
