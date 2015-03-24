@@ -228,6 +228,7 @@
                   <Image iconType="3" name="/Imagenes/1_Guardar.png"/>
                 </Property>
                 <Property name="toolTipText" type="java.lang.String" value="GUARDAR"/>
+                <Property name="enabled" type="boolean" value="false"/>
                 <Property name="horizontalAlignment" type="int" value="2"/>
                 <Property name="horizontalTextPosition" type="int" value="2"/>
               </Properties>

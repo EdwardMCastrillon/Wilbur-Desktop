@@ -121,22 +121,7 @@ public class ListaPartos {
             p = p.getLiga();
         }
         return sw;
-    }
-    
-    public Granja cargarDatosPartoAnimal(String cod){
-    	
-        NodoParto auxi = primero;
-    	Granja parto=null;
-    	while (auxi!=null){
-    		if (auxi.getParto().getCodPart().equals(cod)){
-    			
-    			parto=auxi.getParto();
-    			return parto;
-    		}
-    		auxi=auxi.getLiga();
-    	}
-    	return parto;
-    }
+    } 
 
     public int NuevoCod() {
         return counter + 1;

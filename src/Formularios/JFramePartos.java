@@ -609,7 +609,7 @@ public class JFramePartos extends javax.swing.JFrame {
                 JtCodigo.transferFocus();
             } else {
 
-                JOptionPane.showMessageDialog(null, "El codigo de la madre no existe", "Datos Partos - G.A.P", JOptionPane.YES_OPTION,
+                JOptionPane.showMessageDialog(null, "El código no es de una reproductora", "Datos Partos - G.A.P", JOptionPane.YES_OPTION,
                         icoMensajeInfor);
                 JtCodigo.requestFocusInWindow();
             }

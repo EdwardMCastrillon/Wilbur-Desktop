@@ -901,7 +901,7 @@ public class JFrameGestionDatAnimal extends javax.swing.JFrame {
                 jtxt_codparto.requestFocus();
             } else {
 
-                Granja datosParto = listaPar.cargarDatosPartoAnimal(jtxt_codparto.getText());
+                Granja datosParto = listaPar.cargarParto(jtxt_codparto.getText());
                 if (datosParto != null) {
 
                     this.llenarDatosPartoAnimal(datosParto);

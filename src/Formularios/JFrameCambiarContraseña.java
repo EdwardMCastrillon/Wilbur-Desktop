@@ -10,7 +10,7 @@ import Listas.ListaPerfil;
 import Listas.ListaUsuario;
 import javax.swing.ImageIcon; //Se importa la clase para poner el icono en los formularios.
 import javax.swing.JOptionPane;
-import Utilidades.CambiarContraseña;
+import Utilidades.*;
 import Utilidades.EnviarEmail;
 import javax.swing.JPasswordField;
 
@@ -20,8 +20,7 @@ import javax.swing.JPasswordField;
  */
 public class JFrameCambiarContraseña extends javax.swing.JFrame {
 
-    private String userName, actPass, newPass, confPass;
-    private String Logins[][] = new String[8][3];
+    private String userName, actPass, newPass, confPass; 
     int nickName;
     ImageIcon icoMensajeInfor, icoMensajePre;
     DatosPerfil perfilModifiContra, datosPerfilEmail;
@@ -31,6 +30,8 @@ public class JFrameCambiarContraseña extends javax.swing.JFrame {
     ListaUsuario listaPerso;
     EnviarEmail mail;
     String tipoMensaje = "Modificar Contraseña - G.A.P.";
+    Validaciones vali;
+    int[] conta;
     
 
     public JFrameCambiarContraseña() {
@@ -51,10 +52,11 @@ public class JFrameCambiarContraseña extends javax.swing.JFrame {
 
         this.listaPerfi = listaPerfi;
         this.listaPerso = listaPerso;
-
-        jTuserName.setText(Logins[nickName][1]);
+ 
         jTuserName.setEnabled(true);
         perfilModifiContra = new DatosPerfil();
+        vali = new Validaciones();
+        conta = new int[4]; 
     }
 
     /**
@@ -113,6 +115,11 @@ public class JFrameCambiarContraseña extends javax.swing.JFrame {
         jLabel6.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
 
         jTuserName.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jTuserName.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTuserNameFocusLost(evt);
+            }
+        });
 
         jBtnGuardar.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jBtnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/1_Guardar.png"))); // NOI18N
@@ -129,6 +136,24 @@ public class JFrameCambiarContraseña extends javax.swing.JFrame {
         jBtnLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtnLimpiarActionPerformed(evt);
+            }
+        });
+
+        jPactPass.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jPactPassFocusLost(evt);
+            }
+        });
+
+        jPnewPass.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jPnewPassFocusLost(evt);
+            }
+        });
+
+        jPconfPass.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jPconfPassFocusLost(evt);
             }
         });
 
@@ -245,6 +270,65 @@ public class JFrameCambiarContraseña extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jBtnVolverActionPerformed
 
+    private void jPnewPassFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPnewPassFocusLost
+
+        this.inicializarCont(conta);
+        if (!jPnewPass.getPassword().toString().equals("")) {
+
+            if (!vali.validarContraseñ(vali.convertirPassword(jPnewPass.getPassword()), conta)) {
+
+                JOptionPane.showMessageDialog(null, "La contraseña debe contener al menos:" + "\n" + "1 caracter especial" + "\n" + "1 letra mayúscula, minúscula"
+                        + "\n" + "1 número y un tamnaño como mínimo de 8 caracteres", "Asignar Perfil - S.A.P",
+                        JOptionPane.OK_OPTION, icoMensajeInfor);
+                jPnewPass.requestFocus();
+                jPnewPass.setText("");
+            } else {
+
+                jPconfPass.requestFocusInWindow();
+            }
+        } else {
+
+            JOptionPane.showMessageDialog(null, "Campo obligatorio", "Asignar Perfil - G.A.P", JOptionPane.YES_OPTION,
+                    icoMensajeInfor);
+            jPnewPass.requestFocusInWindow();
+        }
+// TODO add your handling code here:
+    }//GEN-LAST:event_jPnewPassFocusLost
+
+    private void jPconfPassFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPconfPassFocusLost
+
+        if (jPconfPass.getPassword().toString().equals("")) {
+
+            JOptionPane.showMessageDialog(null, "Campo obligatorio", "Asignar Perfil - G.A.P", JOptionPane.YES_OPTION,
+                    icoMensajeInfor);
+            jPconfPass.requestFocusInWindow();
+        } else {
+
+            if (!vali.convertirPassword(jPconfPass.getPassword()).equals(vali.convertirPassword(jPconfPass.getPassword()))) {
+
+                JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden", "Asignar Perfil - G.A.P", JOptionPane.YES_OPTION,
+                        icoMensajeInfor);
+                jPconfPass.requestFocusInWindow();
+                jPconfPass.setText("");
+            } else { 
+                jPconfPass.transferFocus();
+            }
+        }
+// TODO add your handling code here:
+    }//GEN-LAST:event_jPconfPassFocusLost
+
+    private void jTuserNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTuserNameFocusLost
+
+        vali.validarObligatorios(jTuserName, tipoMensaje);
+// TODO add your handling code here:
+    }//GEN-LAST:event_jTuserNameFocusLost
+
+    private void jPactPassFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPactPassFocusLost
+
+        vali.validarObligatoriosPas(jPactPass, tipoMensaje);
+// TODO add your handling code here:
+    }//GEN-LAST:event_jPactPassFocusLost
+
     /**
      * @param args the command line arguments
      */
@@ -295,6 +379,14 @@ public class JFrameCambiarContraseña extends javax.swing.JFrame {
     private javax.swing.JTextField jTuserName;
     // End of variables declaration//GEN-END:variables
 
+    
+    public void inicializarCont(int cont[]) {
+
+        for (int j = 0; j < 3; j++) {
+
+            cont[j] = 0;
+        }
+    }
     public void LimpiarCampos() {
         //jTuserName.setText(null);
         jPactPass.setText(null);

@@ -190,6 +190,9 @@
           <Font name="Arial" size="12" style="0"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTuserNameFocusLost"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jBtnGuardar">
       <Properties>
@@ -220,10 +223,19 @@
       </Events>
     </Component>
     <Component class="javax.swing.JPasswordField" name="jPactPass">
+      <Events>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jPactPassFocusLost"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JPasswordField" name="jPnewPass">
+      <Events>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jPnewPassFocusLost"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JPasswordField" name="jPconfPass">
+      <Events>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jPconfPassFocusLost"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

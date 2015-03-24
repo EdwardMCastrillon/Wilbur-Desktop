@@ -230,6 +230,7 @@ public class RegistroPersonal extends javax.swing.JFrame {
         JBGuardarU.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         JBGuardarU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/1_Guardar.png"))); // NOI18N
         JBGuardarU.setToolTipText("GUARDAR");
+        JBGuardarU.setEnabled(false);
         JBGuardarU.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         JBGuardarU.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         JBGuardarU.addActionListener(new java.awt.event.ActionListener() {
@@ -1137,7 +1138,7 @@ public class RegistroPersonal extends javax.swing.JFrame {
         this.ActivarCampos();
         swModifi = 0;
         this.LimpiarCamposU();
-        this.desactivarBotones();
+        this.desactivarBotones(); 
     }//GEN-LAST:event_JBNuevoActionPerformed
 
     private void JBVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBVolverActionPerformed
@@ -1623,6 +1624,24 @@ public class RegistroPersonal extends javax.swing.JFrame {
         JrbnInactivo.setSelected(false);
  
     }
+    
+    public void desactivarBotones() {
+
+        JBNuevo.setEnabled(false);
+        JBModificarU.setEnabled(false);
+        JBConsultaru.setEnabled(false);
+        JBEliminarU.setEnabled(false);
+        JBListar.setEnabled(false);
+    }
+
+    public void activarBotones() {
+
+        JBNuevo.setEnabled(true);
+        JBModificarU.setEnabled(true);
+        JBConsultaru.setEnabled(true);
+        JBEliminarU.setEnabled(true);
+        JBListar.setEnabled(true);
+    }
 
     public void LimpiarCamposU() {
         JTDocumento.setText("");
@@ -1847,26 +1866,7 @@ public class RegistroPersonal extends javax.swing.JFrame {
                 jCtiporh.addItem("-");
             }
         }
-    }*/
-
-    public void desactivarBotones() {
-
-        //JBGuardarU.setEnabled(false);
-        JBNuevo.setEnabled(false);
-        JBModificarU.setEnabled(false);
-        JBConsultaru.setEnabled(false);
-        JBEliminarU.setEnabled(false);
-        JBVolver.setEnabled(false);
-    }
-
-    public void activarBotones() {
-
-        JBNuevo.setEnabled(true);
-        JBModificarU.setEnabled(true);
-        JBConsultaru.setEnabled(true);
-        JBEliminarU.setEnabled(true);
-        JBListar.setEnabled(true);
-    }
+    }*/ 
 
     private void habilitarBotonGuardar() {
 

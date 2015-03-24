@@ -34,15 +34,12 @@ public class MenuPrincipal implements ActionListener {
     ImageIcon iconFondo, icoMensajePre;
     Image icoCabecera;
     JLabel labelFondo;
-    int control, posUsuario;
+    int control;
     ListaAnimal listaAnima;
     ListaPartos listaPart;
     ListaRazas listaRazas;
     ListaUsuario listaPersona;
-    ListaPerfil listaPerfi;
-    //ReportePerfiles reporte;
-    String perfil1;
-    String[][] usuarios;
+    ListaPerfil listaPerfi; 
 
     public MenuPrincipal( String perfil, ListaAnimal listaAnima, ListaUsuario listaPersona, ListaPartos listaPart, ListaRazas R, ListaPerfil listaPerfi) {
 
@@ -239,9 +236,7 @@ public class MenuPrincipal implements ActionListener {
         this.listaAnima = listaAnima;
         this.listaPart = listaPart;
         this.listaRazas = R;
-        this.listaPersona = listaPersona;
-        this.usuarios = usuarios;
-        this.posUsuario=posUsuario;
+        this.listaPersona = listaPersona; 
         this.listaPerfi=listaPerfi;
         //reporte = new ReportePerfiles();
 
@@ -257,7 +252,7 @@ public class MenuPrincipal implements ActionListener {
 
         if (e.getSource() == menItemPerfil) {
 
-            AsignarPerfil gPer = new AsignarPerfil(usuarios, listaPersona, listaPerfi);
+            AsignarPerfil gPer = new AsignarPerfil(listaPersona, listaPerfi);
 
         }
 

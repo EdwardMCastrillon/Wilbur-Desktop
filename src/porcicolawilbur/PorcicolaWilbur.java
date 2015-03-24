@@ -20,7 +20,7 @@ import java.util.Date;
 public class PorcicolaWilbur {
 
     
-    public static File ruta = new File("C:\\Users\\Ivan\\Desktop\\OriginalPorcicolaWilbur\\src\\Imagenes\\Admin");
+    public static File ruta = new File("C:\\OriginalPorcicolaWilbur\\src\\Imagenes\\Admin.jpg");
     /**
      * @param args the command line arguments
      */

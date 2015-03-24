@@ -127,7 +127,7 @@ public class RecuperarPass extends javax.swing.JFrame {
                     if (auxi.getPerfil().getNumCedula().equals(U.getUsuario().getDocumento())) {
 
                         contraseña = auxi.getPerfil().getContraIngreso();
-                        perfil = auxi.getPerfil().getPerfil();
+                        usuario = auxi.getPerfil().getUsuario();
                         sw1 = true;
                     }
                     auxi = auxi.getLiga();

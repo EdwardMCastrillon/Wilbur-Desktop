@@ -16,8 +16,7 @@ import javax.swing.ImageIcon;
  * @author Edward
  */
 public class AsignarPerfil extends javax.swing.JFrame {
-
-    int topeU = 0; 
+ 
     ListaUsuario u;
     Validaciones validar;
     int[] conta;
@@ -572,7 +571,7 @@ public class AsignarPerfil extends javax.swing.JFrame {
 
     private void jPassContraFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPassContraFocusLost
 
-        String contra;
+        this.inicializarCont(conta);
         if (!jPassContra.getPassword().toString().equals("")) {
 
             if (!validar.validarContraseñ(validar.convertirPassword(jPassContra.getPassword()), conta)) {
