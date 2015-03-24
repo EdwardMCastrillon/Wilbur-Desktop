@@ -20,7 +20,7 @@ import java.util.Date;
 public class PorcicolaWilbur {
 
     
-    public static File ruta = new File("C:\\Users\\Ivan\\Desktop\\Proyecto Git\\src\\Imagenes\\Admin");
+    public static File ruta = new File("C:\\Users\\Ivan\\Desktop\\OriginalPorcicolaWilbur\\src\\Imagenes\\Admin");
     /**
      * @param args the command line arguments
      */
@@ -101,12 +101,11 @@ public class PorcicolaWilbur {
     	persona.setTelefono("2154879");
     	persona.setCorreo("trezeguet55@gmail.com");
     	persona.setMovil("3213658421");
-    	persona.setProfesion("VETERINARIO");
-    	persona.setOtroEst("ADMINISTRACION DE EMPRESAS");
+    	persona.setProfesion("Veterinario");
+    	persona.setOtroEst("Bacteriologo");
     	persona.setObtenidoEstudio("Si");
-    	persona.setCargo("Administrador");
-        persona.setPerfil("Administrador");
-    	persona.setTipoContrato("TERMINO FIJO"); 
+    	persona.setCargo("Administrador"); 
+    	persona.setTipoContrato("Termino Fijo"); 
     	persona.setFechaContrato(new Date(110,8,3));
     	persona.setFechaTitulo(new Date(112,8,10));
     	persona.setFechaOtroEst(new Date(109,06,15));

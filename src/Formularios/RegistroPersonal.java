@@ -32,7 +32,7 @@ public class RegistroPersonal extends javax.swing.JFrame {
     Validaciones Va = new Validaciones();
     ListaUsuario Lu;
     DepartamentosMunicipios deparMuni;
-    ImageIcon icoMensajeInfor, icoMensajePre;
+    ImageIcon icoMensajeInfor, icoMensajePre,icoCalendario;
     int swModifi = 0;
     Date fecha;
     int año, mes, dia;
@@ -40,6 +40,7 @@ public class RegistroPersonal extends javax.swing.JFrame {
     ButtonGroup grupoEstado, grupoObtenido;
 
     public RegistroPersonal() {
+        initComponents();
     }
 
     public RegistroPersonal(ListaUsuario L) {
@@ -57,7 +58,7 @@ public class RegistroPersonal extends javax.swing.JFrame {
         mes = fecha.getMonth();
         dia = fecha.getDay();
         jdFechaNacimiento.setMaxSelectableDate(new Date(año, mes, dia));
-        jdFechaContrato.setMinSelectableDate(new Date());
+        jdFechaContrato.setMaxSelectableDate(new Date());
         jdFechaFinal.setMaxSelectableDate(new Date());
         jdFechaTitulo.setMaxSelectableDate(new Date());
         this.setVisible(true);
@@ -65,8 +66,9 @@ public class RegistroPersonal extends javax.swing.JFrame {
         setResizable(false);
         setTitle("Gestionar Personal");
         setIconImage(new ImageIcon(getClass().getResource("/Imagenes/1_Icono_Form.JPG")).getImage());
-        icoMensajeInfor = new ImageIcon("C:\\Users\\Ivan\\Desktop\\Proyecto Git\\src\\Imagenes\\IconoInformacion.jpg");
-        icoMensajePre = new ImageIcon("C:\\Users\\Ivan\\Desktop\\Proyecto Git\\src\\Imagenes\\IconoPregunta.jpg");
+        icoMensajeInfor = new ImageIcon("C:\\OriginalPorcicolaWilburg\\src\\Imagenes\\IconoInformacion.jpg");
+        icoMensajePre = new ImageIcon("C:\\OriginalPorcicolaWilburg\\src\\Imagenes\\IconoPregunta.jpg");
+        icoCalendario = new ImageIcon("C:\\OriginalPorcicolaWilburg\\src\\Imagenes\\iconoCalendario.jpg");
 
         rutaimagen = "";
         deparMuni.cargarDepartamentos(jCbxDepartamento);
@@ -83,6 +85,11 @@ public class RegistroPersonal extends javax.swing.JFrame {
         grupoObtenido = new ButtonGroup();
         grupoObtenido.add(JrbnNo);
         grupoObtenido.add(JrbnSi);
+        
+        jdFechaContrato.setIcon(icoCalendario);
+        jdFechaFinal.setIcon(icoCalendario);
+        jdFechaNacimiento.setIcon(icoCalendario);
+        jdFechaTitulo.setIcon(icoCalendario);
     }
 
     /**
@@ -260,6 +267,11 @@ public class RegistroPersonal extends javax.swing.JFrame {
                 jtCargoFocusLost(evt);
             }
         });
+        jtCargo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtCargoActionPerformed(evt);
+            }
+        });
 
         jdFechaContrato.setEnabled(false);
 
@@ -288,16 +300,17 @@ public class RegistroPersonal extends javax.swing.JFrame {
                 .addGap(4, 4, 4)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jLabel23)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtCargo, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jtCargo, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jcmbTipoContrato, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel23)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jcmbTipoContrato, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jbContrato)
-                        .addGap(44, 44, 44)
+                        .addGap(42, 42, 42)
                         .addComponent(jLabel22)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jdFechaContrato, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -311,16 +324,16 @@ public class RegistroPersonal extends javax.swing.JFrame {
                     .addComponent(jdFechaContrato, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(3, 3, 3)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jbContrato, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jcmbTipoContrato, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(10, 10, 10)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jcmbTipoContrato, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jbContrato, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jtCargo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(1, 1, 1))
+                .addContainerGap())
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED), "Formación Académica", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
@@ -1124,6 +1137,7 @@ public class RegistroPersonal extends javax.swing.JFrame {
         this.ActivarCampos();
         swModifi = 0;
         this.LimpiarCamposU();
+        this.desactivarBotones();
     }//GEN-LAST:event_JBNuevoActionPerformed
 
     private void JBVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBVolverActionPerformed
@@ -1247,7 +1261,7 @@ public class RegistroPersonal extends javax.swing.JFrame {
         int sw = 1;
 
         index = jCtiposangre.getSelectedIndex();
-        this.cargarComboBoxCiudad(index, sw);
+       // this.cargarComboBoxCiudad(index, sw);
     }//GEN-LAST:event_jCtiposangreActionPerformed
 
     private void JTDocumentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTDocumentoActionPerformed
@@ -1393,7 +1407,15 @@ public class RegistroPersonal extends javax.swing.JFrame {
 
     private void jtCargoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtCargoFocusLost
 
-        Va.validarObligatorios(jtCargo, nombreVentana);
+        if (JTDocumento.getText().toString().equals("")) {
+
+            JOptionPane.showMessageDialog(null, "Campo obligatorio", "Gestionar Personal - G.A.P", JOptionPane.YES_OPTION,
+                    icoMensajeInfor);
+            JTDocumento.requestFocusInWindow();
+        } else {
+            
+            this.habilitarBotonGuardar();
+        }
 // TODO add your handling code here:
     }//GEN-LAST:event_jtCargoFocusLost
 
@@ -1414,10 +1436,17 @@ public class RegistroPersonal extends javax.swing.JFrame {
                 index = jCbxDepartamento.getSelectedIndex();
                 deparMuni.cargarMunicipios(index, jCbxCiudad);
                 jCbxCiudad.setEnabled(true);
+                jCbxDepartamento.transferFocus();
             }
         }
 // TODO add your handling code here:
     }//GEN-LAST:event_jCbxDepartamentoItemStateChanged
+
+    private void jtCargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtCargoActionPerformed
+
+        
+// TODO add your handling code here:
+    }//GEN-LAST:event_jtCargoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1555,11 +1584,7 @@ public class RegistroPersonal extends javax.swing.JFrame {
         JrbnNo.setEnabled(false);
         jdFechaFinal.setEnabled(false);
         jdFechaContrato.setEnabled(false);
-        jbContrato.setEnabled(false);
-
-        //Descativar los botones Guardar, y Eliminar
-        JBGuardarU.setEnabled(false);
-        JBEliminarU.setEnabled(false);
+        jbContrato.setEnabled(false); 
     }
 
     public void ActivarCampos() {
@@ -1596,13 +1621,7 @@ public class RegistroPersonal extends javax.swing.JFrame {
         //Activar la opción Activo
         JrbnActivo.setSelected(true);
         JrbnInactivo.setSelected(false);
-
-        //Desactivar los botones Guardar, Consultar, Modificar, Eliminar y Listar
-        JBGuardarU.setEnabled(false);
-        JBConsultaru.setEnabled(false);
-        JBModificarU.setEnabled(false);
-        JBEliminarU.setEnabled(false);
-        JBListar.setEnabled(false);
+ 
     }
 
     public void LimpiarCamposU() {
@@ -1641,6 +1660,7 @@ public class RegistroPersonal extends javax.swing.JFrame {
         u2.setEstado(estado);
         u2.setObtenidoEstudio(obtenido);
         u2.setCargo(jtCargo.getText());
+        u2.setTipoContrato((String) jcmbTipoContrato.getSelectedItem());
         u2.setOtroEst(jtEstudios.getText());
         u2.setFechaContrato(jdFechaContrato.getDate());
         u2.setFechaOtroEst(jdFechaFinal.getDate());
@@ -1687,7 +1707,7 @@ public class RegistroPersonal extends javax.swing.JFrame {
         }
         if (opc != -1) {
 
-            if (buscarPersonal != null) {
+            if (buscarPersonal != null) { 
                 JTDocumento.setText(buscarPersonal.getDocumento());
                 JTDireccion.setText(buscarPersonal.getDireccion());
                 JTelefono.setText(buscarPersonal.getTelefono());
@@ -1801,7 +1821,7 @@ public class RegistroPersonal extends javax.swing.JFrame {
 
     }
 
-    private void cargarComboBoxCiudad(int newIndex, int newSw) {
+  /*  private void cargarComboBoxCiudad(int newIndex, int newSw) {
         int i = newIndex - 1;
         int sw = newSw;
 
@@ -1827,7 +1847,7 @@ public class RegistroPersonal extends javax.swing.JFrame {
                 jCtiporh.addItem("-");
             }
         }
-    }
+    }*/
 
     public void desactivarBotones() {
 

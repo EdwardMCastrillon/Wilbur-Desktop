@@ -43,8 +43,8 @@ public class AsignarPerfil extends javax.swing.JFrame {
         u = Lu;
         validar = new Validaciones();
         conta = new int[4];
-        icoMensajeInfor = new ImageIcon("C:\\Users\\Ivan\\Desktop\\Proyecto Git\\src\\Imagenes\\IconoInformacion.jpg");
-        icoMensajePre = new ImageIcon("C:\\Users\\Ivan\\Desktop\\Proyecto Git\\src\\Imagenes\\IconoPregunta.jpg");
+        icoMensajeInfor = new ImageIcon("C:\\OriginalPorcicolaWilburg\\src\\Imagenes\\IconoInformacion.jpg");
+        icoMensajePre = new ImageIcon("C:\\Users\\OriginalPorcicolaWilburg\\src\\Imagenes\\IconoPregunta.jpg");
         jtxtNombrePerf.setEnabled(true);
         //jtxtPass.setEnabled(true);
         //jtxtConfirm.setEnabled(true);

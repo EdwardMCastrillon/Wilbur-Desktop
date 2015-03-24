@@ -27,7 +27,7 @@ public class JFramePartos extends javax.swing.JFrame {
 
     Granja parto, buscarParto;
     ListaPartos listaParto;
-    ImageIcon icoMensajeInfor, icoMensajePre;
+    ImageIcon icoMensajeInfor, icoMensajePre, icoCalendario;
     Validaciones va;
     int swModDatosParto = 0;
     String nombreVentana;
@@ -48,8 +48,9 @@ public class JFramePartos extends javax.swing.JFrame {
         setResizable(false);
         setTitle("Gestionar Partos");
         setIconImage(new ImageIcon(getClass().getResource("/Imagenes/1_Icono_Form.JPG")).getImage());
-        icoMensajeInfor = new ImageIcon("C:\\Users\\Ivan\\Desktop\\Proyecto Git\\src\\Imagenes\\IconoInformacion.jpg");
-        icoMensajePre = new ImageIcon("C:\\Users\\Ivan\\Desktop\\Proyecto Git\\src\\Imagenes\\IconoPregunta.jpg");
+        icoMensajeInfor = new ImageIcon("C:\\OriginalPorcicolaWilburg\\src\\Imagenes\\IconoInformacion.jpg");
+        icoMensajePre = new ImageIcon("C:\\OriginalPorcicolaWilburg\\src\\Imagenes\\IconoPregunta.jpg");
+        icoCalendario = new ImageIcon("C:\\OriginalPorcicolaWilburg\\src\\Imagenes\\iconoCalendario.jpg");
 
         this.ComboRaza.addItem("Hampshire");
         this.ComboRaza.addItem("Duroc");
@@ -57,13 +58,13 @@ public class JFramePartos extends javax.swing.JFrame {
         this.ComboRaza.addItem("Landrace");
         this.ComboRaza.addItem("Yorkshire (Large White)");
 
-        jdFechaParto.setDate(new Date());
-
         va = new Validaciones();
         parto = new Granja();
         buscarParto = new Granja();
         nombreVentana = "Datos Partos - G.A.P";
         this.listaAnimal = listaAnimal;
+
+        jdFechaParto.setIcon(icoCalendario);
 
     }
 
@@ -120,6 +121,7 @@ public class JFramePartos extends javax.swing.JFrame {
 
         JBGuardar.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         JBGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/1_Guardar.png"))); // NOI18N
+        JBGuardar.setEnabled(false);
         JBGuardar.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         JBGuardar.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         JBGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -223,9 +225,9 @@ public class JFramePartos extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(JTEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel8)
-                        .addGap(49, 49, 49)
+                        .addGap(63, 63, 63)
                         .addComponent(JlRaza1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(10, 10, 10)
                         .addComponent(ComboRazaPadre, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -296,7 +298,7 @@ public class JFramePartos extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED), "Lechones", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
 
         JlNumeroVivos.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        JlNumeroVivos.setText("*Numero de Vivos");
+        JlNumeroVivos.setText("*Número de Vivos");
 
         JTNroVivos.setEnabled(false);
         JTNroVivos.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -311,7 +313,7 @@ public class JFramePartos extends javax.swing.JFrame {
         });
 
         JlNumeroMuertos.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        JlNumeroMuertos.setText("*Numero de Muertos");
+        JlNumeroMuertos.setText("*Número de Muertos");
 
         JTNroMuertos.setEnabled(false);
         JTNroMuertos.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -341,19 +343,19 @@ public class JFramePartos extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(JlNumeroVivos)
                         .addGap(10, 10, 10)
-                        .addComponent(JTNroVivos, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(57, 57, 57)
-                        .addComponent(JlNumeroMuertos)
-                        .addGap(10, 10, 10)
-                        .addComponent(JTNroMuertos, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(JTNroVivos, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(10, 10, 10)
-                        .addComponent(JTCamada, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(JTCamada)))
+                .addGap(122, 122, 122)
+                .addComponent(JlNumeroMuertos)
+                .addGap(10, 10, 10)
+                .addComponent(JTNroMuertos, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -480,47 +482,42 @@ public class JFramePartos extends javax.swing.JFrame {
     private void JBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBGuardarActionPerformed
 
         parto = this.GuardarCampos();
-        if (this.validacionObligatorios().equals("")) {
-            if (swModDatosParto == 0) {
-                if (!listaParto.existe(parto.getCodPart())) {
+        if (swModDatosParto == 0) {
+            if (!listaParto.existe(parto.getCodPart())) {
 
-                    if (listaParto.guardarParto(parto)) {
-                        JOptionPane.showMessageDialog(this, "Se Guardo Correctamente", "Gestionar Partos - G.A.P", JOptionPane.YES_NO_OPTION,
-                                icoMensajePre);
-                        this.LimpiarCampos();
-                        this.DesactivarCampos();
-                        this.activarBotones();
+                if (listaParto.guardarParto(parto)) {
+                    JOptionPane.showMessageDialog(this, "Se Guardo Correctamente", "Gestionar Partos - G.A.P", JOptionPane.YES_NO_OPTION,
+                            icoMensajePre);
+                    this.LimpiarCampos();
+                    this.DesactivarCampos();
+                    this.activarBotones();
 
-                    } else {
-                        JOptionPane.showMessageDialog(this, "No Se pudo guardar correctamete", "Gestionar Partos - G.A.P", JOptionPane.YES_NO_OPTION,
-                                icoMensajePre);
-                    }
                 } else {
-                    JOptionPane.showMessageDialog(this, "Este Parto ya existe", "Gestionar Partos - G.A.P", JOptionPane.YES_NO_OPTION,
+                    JOptionPane.showMessageDialog(this, "No Se pudo guardar correctamete", "Gestionar Partos - G.A.P", JOptionPane.YES_NO_OPTION,
                             icoMensajePre);
                 }
             } else {
-                int opc;
-                opc = JOptionPane.showConfirmDialog(null, "Esta seguro que desea modificar este registro",
-                        "Gestionar Partos - G.A.P", JOptionPane.YES_NO_OPTION,
-                        JOptionPane.QUESTION_MESSAGE, icoMensajePre);
-                if (opc == 0) {
-                    if (listaParto.modificarParto(parto)) {
-
-                        JOptionPane.showMessageDialog(null, "El registro se modifico correctamente", "Gestionar Partos - G.A.P",
-                                JOptionPane.OK_OPTION, icoMensajeInfor);
-                        this.LimpiarCampos();
-                        this.DesactivarCampos();
-                    } else {
-
-                        JOptionPane.showMessageDialog(null, "El registro no fue modificado", "Gestionar Partos - G.A.P",
-                                JOptionPane.OK_OPTION, icoMensajeInfor);
-                    }
-                }
+                JOptionPane.showMessageDialog(this, "Este Parto ya existe", "Gestionar Partos - G.A.P", JOptionPane.YES_NO_OPTION,
+                        icoMensajePre);
             }
         } else {
-            JOptionPane.showMessageDialog(this, "Ingrese los campos obligatorios", "Gestionar Partos - G.A.P", JOptionPane.YES_NO_OPTION,
-                    icoMensajePre);
+            int opc;
+            opc = JOptionPane.showConfirmDialog(null, "Esta seguro que desea modificar este registro",
+                    "Gestionar Partos - G.A.P", JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE, icoMensajePre);
+            if (opc == 0) {
+                if (listaParto.modificarParto(parto)) {
+
+                    JOptionPane.showMessageDialog(null, "El registro se modifico correctamente", "Gestionar Partos - G.A.P",
+                            JOptionPane.OK_OPTION, icoMensajeInfor);
+                    this.LimpiarCampos();
+                    this.DesactivarCampos();
+                } else {
+
+                    JOptionPane.showMessageDialog(null, "El registro no fue modificado", "Gestionar Partos - G.A.P",
+                            JOptionPane.OK_OPTION, icoMensajeInfor);
+                }
+            }
         }
 // TODO add your handling code here:
     }//GEN-LAST:event_JBGuardarActionPerformed
@@ -582,6 +579,7 @@ public class JFramePartos extends javax.swing.JFrame {
         this.ActivarCampos();
         JtCodigo.requestFocusInWindow();
         this.desactivarBotones();
+        jdFechaParto.setDate(new Date());
 // TODO add your handling code here:
     }//GEN-LAST:event_JBNuevoActionPerformed
 
@@ -599,7 +597,7 @@ public class JFramePartos extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void JtCodigoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_JtCodigoFocusLost
-        
+
         if (JtCodigo.getText().equals("")) {
 
             JOptionPane.showMessageDialog(null, "Campo obligatorio", "Datos Partos - G.A.P", JOptionPane.YES_OPTION,
@@ -607,14 +605,19 @@ public class JFramePartos extends javax.swing.JFrame {
             JTNroMuertos.requestFocusInWindow();
         } else {
             buscarAnimal = listaAnimal.verificarReproductora(JtCodigo.getText());
-            if ( buscarAnimal != null){
-                
+            if (buscarAnimal != null) {
+
                 ComboRaza.setSelectedItem(buscarAnimal.getRazaMadre());
                 JTEdad.setText(buscarAnimal.getEdad_sem());
                 JtCodigo.transferFocus();
+            } else {
+
+                JOptionPane.showMessageDialog(null, "El codigo de la madre no existe", "Datos Partos - G.A.P", JOptionPane.YES_OPTION,
+                        icoMensajeInfor);
+                JtCodigo.requestFocusInWindow();
             }
         }
-            
+
 // TODO add your handling code here:
     }//GEN-LAST:event_JtCodigoFocusLost
 
@@ -635,7 +638,7 @@ public class JFramePartos extends javax.swing.JFrame {
 
             JTCamada.setText(Integer.toString(Sumatoria(JTNroVivos, JTNroMuertos)));
             this.DesactivarCampos();
-            JBGuardar.setEnabled(true);
+            this.validarObligatorios();
         }
 // TODO add your handling code here:
     }//GEN-LAST:event_JTNroMuertosFocusLost
@@ -808,10 +811,10 @@ public void LimpiarCampos() {
         JtCodigo.setEnabled(true);
         JTEdad.setEnabled(true);
         JTNroVivos.setEnabled(true);
-        JTNroMuertos.setEnabled(true); 
+        JTNroMuertos.setEnabled(true);
         ComboRaza.setEnabled(true);
     }
-    
+
     public void desactivarBotones() {
 
         //JBGuardarU.setEnabled(false);
@@ -820,6 +823,7 @@ public void LimpiarCampos() {
         JBConsultar.setEnabled(false);
         JBEliminar.setEnabled(false);
         JBVolver.setEnabled(false);
+        jButton1.setEnabled(false);
     }
 
     public void activarBotones() {
@@ -828,6 +832,7 @@ public void LimpiarCampos() {
         JBModificar.setEnabled(true);
         JBConsultar.setEnabled(true);
         JBEliminar.setEnabled(true);
+        JBVolver.setEnabled(true);
         jButton1.setEnabled(true);
     }
 
@@ -894,15 +899,6 @@ public void LimpiarCampos() {
         return codigo;
     }
 
-    private String validacionObligatorios() {
-        String s = "";
-        if (parto.getCodPart().equals("") || parto.getCodigo().equals("") || parto.getFechaParto().equals("")
-                || parto.getNroMuertos().equals("") || parto.getNroVivos().equals("")) {
-            s = "Complete todos los campos obligatorios";
-        }
-        return s;
-    }
-
     public int Sumatoria(JTextField V, JTextField M) {
 
         String Vivos, Muertos;
@@ -919,6 +915,20 @@ public void LimpiarCampos() {
         return Camada;
 
         //  String Cam=Double.toString(Camada);
+    }
+
+    public void validarObligatorios() {
+
+        if (Jtcodigoparto.getText().equals("") || JtCodigo.getText().equals("") || JTNroVivos.getText().equals("")
+                || JTNroMuertos.getText().equals("")) {
+
+            JOptionPane.showMessageDialog(null, "Ingrese todos los campos obligatorios", "Gestionar Partos - G.A.P",
+                    JOptionPane.OK_OPTION, icoMensajeInfor);
+            JTNroMuertos.requestFocusInWindow();
+        }else{
+            
+            JBGuardar.setEnabled(true);
+        }
     }
 
 }
