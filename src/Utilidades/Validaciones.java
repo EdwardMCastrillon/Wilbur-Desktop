@@ -15,7 +15,7 @@ import javax.swing.JPasswordField;
  */
 public class Validaciones {
 
-    ImageIcon icoMensajeInfor = new ImageIcon("C:\\Users\\Ivan\\Desktop\\Proyecto Git\\src\\Imagenes\\IconoInformacion.jpg");
+    ImageIcon icoMensajeInfor = new ImageIcon("C:\\OriginalPorcicolaWilburg\\src\\Imagenes\\IconoInformacion.jpg");
 
     ;
     
