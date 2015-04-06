@@ -161,6 +161,11 @@ public class JFramePartos extends javax.swing.JFrame {
         });
 
         jdFechaParto.setEnabled(false);
+        jdFechaParto.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jdFechaPartoPropertyChange(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED), "Identificación de la Madre", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
 
@@ -487,6 +492,7 @@ public class JFramePartos extends javax.swing.JFrame {
                     this.LimpiarCampos();
                     this.DesactivarCampos();
                     this.activarBotones();
+                    JBGuardar.setEnabled(false);
 
                 } else {
                     JOptionPane.showMessageDialog(this, "No Se pudo guardar correctamete", "Gestionar Partos - G.A.P", JOptionPane.YES_NO_OPTION,
@@ -508,6 +514,8 @@ public class JFramePartos extends javax.swing.JFrame {
                             JOptionPane.OK_OPTION, icoMensajeInfor);
                     this.LimpiarCampos();
                     this.DesactivarCampos();
+                    this.activarBotones();
+                    JBGuardar.setEnabled(false);
                 } else {
 
                     JOptionPane.showMessageDialog(null, "El registro no fue modificado", "Gestionar Partos - G.A.P",
@@ -605,6 +613,7 @@ public class JFramePartos extends javax.swing.JFrame {
 
                 ComboRaza.setSelectedItem(buscarAnimal.getRazaMadre());
                 JTEdad.setText(buscarAnimal.getEdad_sem());
+                ComboRazaPadre.setSelectedItem(buscarAnimal.getRazaPadre());
                 JtCodigo.transferFocus();
             } else {
 
@@ -642,6 +651,10 @@ public class JFramePartos extends javax.swing.JFrame {
     private void ComboRazaPadreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboRazaPadreActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ComboRazaPadreActionPerformed
+
+    private void jdFechaPartoPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jdFechaPartoPropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jdFechaPartoPropertyChange
 
     /**
      * @param args the command line arguments
@@ -733,7 +746,7 @@ public void LimpiarCampos() {
         p2.setTotcamada(JTCamada.getText());
         p2.setFechaParto(jdFechaParto.getDate());
         p2.setRaza((String) ComboRaza.getSelectedItem());
-
+        p2.setRazaPadre((String) ComboRazaPadre.getSelectedItem());
         return p2;
 
     }
@@ -776,6 +789,8 @@ public void LimpiarCampos() {
                 JTCamada.setText(buscarParto.getTotcamada());
                 jdFechaParto.setDate(buscarParto.getFechaParto());
                 ComboRaza.setSelectedItem(buscarParto.getRaza());
+                ComboRazaPadre.setSelectedItem(buscarParto.getRazaPadre());
+                this.desactivarBotones();
             } else {
 
                 JOptionPane.showMessageDialog(null, "El registro no existe", "Gestionar Personal - G.A.P",
@@ -804,11 +819,9 @@ public void LimpiarCampos() {
 
     public void ActivarCampos() {
 
-        JtCodigo.setEnabled(true);
-        JTEdad.setEnabled(true);
+        JtCodigo.setEnabled(true); 
         JTNroVivos.setEnabled(true);
-        JTNroMuertos.setEnabled(true);
-        ComboRaza.setEnabled(true);
+        JTNroMuertos.setEnabled(true); 
     }
 
     public void desactivarBotones() {
@@ -835,14 +848,14 @@ public void LimpiarCampos() {
     public void validarCampos() {
         JtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent e) {
-                va.validarLongitud(2, JtCodigo, e);
+                va.validarLongitud(4, JtCodigo, e);
                 va.soloNumeros(JtCodigo, e);
             }
         });
 
         this.Jtcodigoparto.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent e) {
-                va.validarLongitud(2, Jtcodigoparto, e);
+                va.validarLongitud(4, Jtcodigoparto, e);
                 va.soloNumeros(Jtcodigoparto, e);
             }
         });

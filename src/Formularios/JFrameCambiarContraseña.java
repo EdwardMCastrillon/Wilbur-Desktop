@@ -12,6 +12,7 @@ import javax.swing.ImageIcon; //Se importa la clase para poner el icono en los f
 import javax.swing.JOptionPane;
 import Utilidades.*;
 import Utilidades.EnviarEmail;
+import java.util.Date;
 import javax.swing.JPasswordField;
 
 /**
@@ -20,7 +21,7 @@ import javax.swing.JPasswordField;
  */
 public class JFrameCambiarContraseña extends javax.swing.JFrame {
 
-    private String userName, actPass, newPass, confPass; 
+    private String userName, actPass, newPass, confPass;
     int nickName;
     ImageIcon icoMensajeInfor, icoMensajePre;
     DatosPerfil perfilModifiContra, datosPerfilEmail;
@@ -29,10 +30,10 @@ public class JFrameCambiarContraseña extends javax.swing.JFrame {
     ListaPerfil listaPerfi;
     ListaUsuario listaPerso;
     EnviarEmail mail;
+    String mensaje = "Se envio un correo a la dirección registrada," + "\n" + "con los datos de la nueva contraseña de ingreso";
     String tipoMensaje = "Modificar Contraseña - G.A.P.";
     Validaciones vali;
     int[] conta;
-    
 
     public JFrameCambiarContraseña() {
     }
@@ -47,16 +48,12 @@ public class JFrameCambiarContraseña extends javax.swing.JFrame {
         setIconImage(new ImageIcon(getClass().getResource("/Imagenes/1_Icono_Form.JPG")).getImage());
         icoMensajeInfor = new ImageIcon("C:\\OriginalPorcicolaWilbur\\src\\Imagenes\\IconoInformacion.jpg");
         icoMensajePre = new ImageIcon("C:\\OriginalPorcicolaWilbur\\src\\Imagenes\\IconoPregunta.jpg");
-
-        jPactPass.requestFocus();
-
         this.listaPerfi = listaPerfi;
         this.listaPerso = listaPerso;
- 
-        jTuserName.setEnabled(true);
+        this.desactivarCampos(); 
         perfilModifiContra = new DatosPerfil();
         vali = new Validaciones();
-        conta = new int[4]; 
+        conta = new int[4];
     }
 
     /**
@@ -81,6 +78,7 @@ public class JFrameCambiarContraseña extends javax.swing.JFrame {
         jPactPass = new javax.swing.JPasswordField();
         jPnewPass = new javax.swing.JPasswordField();
         jPconfPass = new javax.swing.JPasswordField();
+        JBModificar = new javax.swing.JButton();
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/1_Icono_Form.JPG"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -123,6 +121,7 @@ public class JFrameCambiarContraseña extends javax.swing.JFrame {
 
         jBtnGuardar.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jBtnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/1_Guardar.png"))); // NOI18N
+        jBtnGuardar.setEnabled(false);
         jBtnGuardar.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         jBtnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -157,6 +156,16 @@ public class JFrameCambiarContraseña extends javax.swing.JFrame {
             }
         });
 
+        JBModificar.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        JBModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/1_Editar.png"))); // NOI18N
+        JBModificar.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        JBModificar.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        JBModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBModificarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -172,25 +181,15 @@ public class JFrameCambiarContraseña extends javax.swing.JFrame {
                                         .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jPactPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTuserName, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jPnewPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(19, 19, 19)
-                                        .addComponent(jBtnGuardar)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jPconfPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jBtnLimpiar)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jBtnVolver)
-                                        .addGap(28, 28, 28)))))
+                                .addGap(16, 16, 16))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPconfPass, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPnewPass)
+                            .addComponent(jPactPass)
+                            .addComponent(jTuserName))
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addGap(31, 31, 31)
@@ -198,9 +197,17 @@ public class JFrameCambiarContraseña extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel2)
                         .addGap(41, 41, 41))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(JBModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jBtnGuardar)
+                .addGap(18, 18, 18)
+                .addComponent(jBtnLimpiar)
+                .addGap(18, 18, 18)
+                .addComponent(jBtnVolver)
+                .addGap(26, 26, 26))
         );
-
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jPactPass, jPconfPass, jPnewPass, jTuserName});
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jBtnGuardar, jBtnLimpiar, jBtnVolver});
 
@@ -211,28 +218,28 @@ public class JFrameCambiarContraseña extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel1))
-                .addGap(30, 30, 30)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTuserName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTuserName, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jPactPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPactPass, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jPnewPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPnewPass, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jPconfPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jBtnGuardar, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jBtnLimpiar, javax.swing.GroupLayout.Alignment.TRAILING))
-                    .addComponent(jBtnVolver))
+                    .addComponent(jPconfPass, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jBtnGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jBtnLimpiar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jBtnVolver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(JBModificar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -253,7 +260,9 @@ public class JFrameCambiarContraseña extends javax.swing.JFrame {
             this.nombre = usuario.getNombre();
             this.usuari = datosPerfilEmail.getUsuario();
             this.contraseña = datosPerfilEmail.getContraIngreso();
-            mail = new EnviarEmail(correo, nombre, usuari, contraseña, tipoMensaje);
+            mail = new EnviarEmail(correo, nombre, usuari, contraseña, tipoMensaje,mensaje);
+            jBtnVolver.setEnabled(true);
+            JBModificar.setEnabled(true);
         } else {
 
             JOptionPane.showMessageDialog(null, "Datos incorrectos", "Modificar Contraseña - S.G.P.", JOptionPane.OK_OPTION, icoMensajeInfor);
@@ -264,6 +273,9 @@ public class JFrameCambiarContraseña extends javax.swing.JFrame {
     private void jBtnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnLimpiarActionPerformed
         // Limpiar los campos del formulario.
         this.LimpiarCampos();
+        this.desactivarCampos();
+        jBtnVolver.setEnabled(true);
+        JBModificar.setEnabled(true);
     }//GEN-LAST:event_jBtnLimpiarActionPerformed
 
     private void jBtnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnVolverActionPerformed
@@ -310,8 +322,15 @@ public class JFrameCambiarContraseña extends javax.swing.JFrame {
                         icoMensajeInfor);
                 jPconfPass.requestFocusInWindow();
                 jPconfPass.setText("");
-            } else { 
-                jPconfPass.transferFocus();
+            } else {
+                if (this.validarObligatorios()) {
+                    jBtnGuardar.setEnabled(true);
+                    this.desactivarCampos();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Digite todos los campos obligatorios", "Asignar Perfil - G.A.P", JOptionPane.YES_OPTION,
+                            icoMensajeInfor);
+                    jPconfPass.transferFocus();
+                }
             }
         }
 // TODO add your handling code here:
@@ -328,6 +347,16 @@ public class JFrameCambiarContraseña extends javax.swing.JFrame {
         vali.validarObligatoriosPas(jPactPass, tipoMensaje);
 // TODO add your handling code here:
     }//GEN-LAST:event_jPactPassFocusLost
+
+    private void JBModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBModificarActionPerformed
+
+        this.LimpiarCampos();
+        this.activarCampos();
+        jTuserName.requestFocusInWindow();
+        jBtnVolver.setEnabled(false);
+        JBModificar.setEnabled(false);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JBModificarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -364,6 +393,7 @@ public class JFrameCambiarContraseña extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton JBModificar;
     private javax.swing.JButton jBtnGuardar;
     private javax.swing.JButton jBtnLimpiar;
     private javax.swing.JButton jBtnVolver;
@@ -379,7 +409,6 @@ public class JFrameCambiarContraseña extends javax.swing.JFrame {
     private javax.swing.JTextField jTuserName;
     // End of variables declaration//GEN-END:variables
 
-    
     public void inicializarCont(int cont[]) {
 
         for (int j = 0; j < 3; j++) {
@@ -387,19 +416,37 @@ public class JFrameCambiarContraseña extends javax.swing.JFrame {
             cont[j] = 0;
         }
     }
+
     public void LimpiarCampos() {
-        //jTuserName.setText(null);
-        jPactPass.setText(null);
-        jPnewPass.setText(null);
-        jPconfPass.setText(null);
+        jTuserName.setText("");
+        jPactPass.setText("");
+        jPnewPass.setText("");
+        jPconfPass.setText("");
     }
-    
-    public void guardarModificacion(){
-        
+
+    public void activarCampos() {
+
+        jTuserName.setEnabled(true);
+        jPactPass.setEnabled(true);
+        jPconfPass.setEnabled(true);
+        jPnewPass.setEnabled(true);
+    }
+
+    public void desactivarCampos() {
+
+        jTuserName.setEnabled(false);
+        jPactPass.setEnabled(false);
+        jPconfPass.setEnabled(false);
+        jPnewPass.setEnabled(false);
+    }
+
+    public void guardarModificacion() {
+
         perfilModifiContra.setUsuario(jTuserName.getText());
         pasActual = jPactPass.getText();
         perfilModifiContra.setContraIngreso(jPnewPass.getText());
         perfilModifiContra.setRepetirContraIngreso(jPconfPass.getText());
+        perfilModifiContra.setFecha(new Date());
     }
 
     public void ValidarEspacios() {
@@ -424,5 +471,14 @@ public class JFrameCambiarContraseña extends javax.swing.JFrame {
         if (numero == 32) {
             e.consume();  // ignorar el evento de teclado
         }
+    }
+
+    public boolean validarObligatorios() {
+
+        if (jTuserName.getText().equals("") || jPactPass.getText().equals("") || jPconfPass.getText().equals("")
+                || jPnewPass.getText().equals("")) {
+            return false;
+        }
+        return true;
     }
 }

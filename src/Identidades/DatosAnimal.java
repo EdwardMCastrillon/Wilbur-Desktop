@@ -11,7 +11,15 @@ import java.util.Date;
 public class DatosAnimal {
     
     private String Cod_animal, Peso_nacer, Peso_destete, Cod_parto, Cod_madre, Edad_sem,Raza,Sexo,RazaMadre,
-                   RazaPadre,Procedencia, estado, tipoCerdo;
+                   RazaPadre,Procedencia, estado, tipoCerdo, edad1;
+
+    public String getEdad1() {
+        return edad1;
+    }
+
+    public void setEdad1(String edad1) {
+        this.edad1 = edad1;
+    }
 
     public String getEstado() {
         return estado;
@@ -28,7 +36,7 @@ public class DatosAnimal {
     public void setTipoCerdo(String tipoCerdo) {
         this.tipoCerdo = tipoCerdo;
     }
-    private String Fecha_dest, Fecha_consumo, Fecha_parto;
+    private String Fecha_dest, Fecha_consumo, Fecha_parto, fecha_Part;
     
     public String getRaza() {
         return Raza;
@@ -141,6 +149,14 @@ public class DatosAnimal {
 
     public void setFecha_parto(String Fecha_parto) {
         this.Fecha_parto = Fecha_parto;
+    }
+
+    public String getFecha_Part() {
+        return fecha_Part;
+    }
+
+    public void setFecha_Part(String fecha_Part) {
+        this.fecha_Part = fecha_Part;
     }
             
  }

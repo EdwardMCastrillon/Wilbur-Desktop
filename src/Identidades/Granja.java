@@ -14,7 +14,8 @@ import java.util.Date;
 public class Granja {
 
     //Variables para JFramePartos
-    private String CodPart, Codigo, NroVivos, NroMuertos, Totcamada, Edad, Raza;
+    private String CodPart, Codigo, NroVivos, NroMuertos, Totcamada, Edad, Raza,razaPadre;
+
     private Date fechaParto;
 
     //Variables para RegistroPersonal
@@ -30,7 +31,13 @@ public class Granja {
         this.Raza = Raza;
     }
 
+    public String getRazaPadre() {
+        return razaPadre;
+    }
 
+    public void setRazaPadre(String razaPadre) {
+        this.razaPadre = razaPadre;
+    }
     
 
     public Date getFechaParto() {

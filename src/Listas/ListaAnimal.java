@@ -117,7 +117,7 @@ public class ListaAnimal {
     	NodoAnimal auxiliar = primero;
     	while ( auxiliar !=null ){
     		
-    		if ( auxiliar.getAnimal().getCod_animal().equals(codigo) && auxiliar.getAnimal().equals("Reemplazo")
+    		if ( auxiliar.getAnimal().getCod_animal().equals(codigo) && auxiliar.getAnimal().getTipoCerdo().equals("Reemplazo")
                     && auxiliar.getAnimal().getSexo().equals("Hembra")){
     			
     			return auxiliar.getAnimal();

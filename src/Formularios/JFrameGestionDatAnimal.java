@@ -33,7 +33,7 @@ public class JFrameGestionDatAnimal extends javax.swing.JFrame {
     ImageIcon icoMensajeInfor, icoMensajePre;
     int swModDatosAnimal = 0;
     Validaciones va;
-    String nombreVentana;
+    String nombreVentana, estado, tipoAnimal;
     ListaPartos listaPar;
     ButtonGroup grupoEstado, grupoTpo;
     ImageIcon icoCalendario;
@@ -110,6 +110,9 @@ public class JFrameGestionDatAnimal extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jrbn_vivo = new javax.swing.JRadioButton();
         jrbn_muerto = new javax.swing.JRadioButton();
+        jtxt_codanimal = new javax.swing.JTextField();
+        jcbx_procedencia = new javax.swing.JComboBox();
+        jLabel20 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -117,10 +120,10 @@ public class JFrameGestionDatAnimal extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jtxt_pesonacer = new javax.swing.JTextField();
         jtxt_pesodest = new javax.swing.JTextField();
+        jd_fechadest = new com.toedter.calendar.JDateChooser();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jd_fechaconsumo = new com.toedter.calendar.JDateChooser();
-        jd_fechadest = new com.toedter.calendar.JDateChooser();
         jPanel4 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
@@ -137,41 +140,20 @@ public class JFrameGestionDatAnimal extends javax.swing.JFrame {
         jLabel21 = new javax.swing.JLabel();
         jrbn_reemplazo = new javax.swing.JRadioButton();
         jrbn_engorde = new javax.swing.JRadioButton();
-        jtxt_codanimal = new javax.swing.JTextField();
-        jcbx_procedencia = new javax.swing.JComboBox();
-        jLabel20 = new javax.swing.JLabel();
         jbtn_crear = new javax.swing.JButton();
         jbtn_guardar = new javax.swing.JButton();
-        jbtn_modificar = new javax.swing.JButton();
         jbtn_consultar = new javax.swing.JButton();
+        jbtn_modificar = new javax.swing.JButton();
         jbtn_eliminar = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jbtn_volver = new javax.swing.JButton();
         JBLimpiar = new javax.swing.JButton();
+        jbtn_volver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 0, 0));
         jLabel2.setText("(*) Campos Obligatorios");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(193, 193, 193)
-                .addComponent(jLabel2)
-                .addContainerGap(136, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jLabel2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED), "Identificación del Animal", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
         jPanel2.setToolTipText("");
@@ -218,6 +200,30 @@ public class JFrameGestionDatAnimal extends javax.swing.JFrame {
 
         jrbn_muerto.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jrbn_muerto.setText("Muerto");
+
+        jtxt_codanimal.setEnabled(false);
+        jtxt_codanimal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtxt_codanimalActionPerformed(evt);
+            }
+        });
+
+        jcbx_procedencia.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jcbx_procedencia.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "...", "Comprado", "GranjaWilbur" }));
+        jcbx_procedencia.setEnabled(false);
+        jcbx_procedencia.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jcbx_procedenciaItemStateChanged(evt);
+            }
+        });
+        jcbx_procedencia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbx_procedenciaActionPerformed(evt);
+            }
+        });
+
+        jLabel20.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel20.setText("Procedencia:");
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED), "Peso", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
 
@@ -294,6 +300,9 @@ public class JFrameGestionDatAnimal extends javax.swing.JFrame {
                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        jd_fechadest.setEnabled(false);
+        jd_fechadest.setIcon(null);
+
         jLabel12.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel12.setText("Fecha del Destete:");
 
@@ -301,9 +310,6 @@ public class JFrameGestionDatAnimal extends javax.swing.JFrame {
         jLabel13.setText("Fecha Consumo  Alimento:");
 
         jd_fechaconsumo.setEnabled(false);
-
-        jd_fechadest.setEnabled(false);
-        jd_fechadest.setIcon(null);
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED), "Datos del Parto", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 3, 12))); // NOI18N
 
@@ -341,6 +347,11 @@ public class JFrameGestionDatAnimal extends javax.swing.JFrame {
         });
 
         jd_fechaparto.setEnabled(false);
+        jd_fechaparto.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jd_fechapartoPropertyChange(evt);
+            }
+        });
         jd_fechaparto.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jd_fechapartoKeyPressed(evt);
@@ -461,33 +472,19 @@ public class JFrameGestionDatAnimal extends javax.swing.JFrame {
 
         jrbn_reemplazo.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jrbn_reemplazo.setText("Animal de Reemplazo");
+        jrbn_reemplazo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jrbn_reemplazoMouseClicked(evt);
+            }
+        });
 
         jrbn_engorde.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jrbn_engorde.setText("Animal de Engorde");
-
-        jtxt_codanimal.setEnabled(false);
-        jtxt_codanimal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtxt_codanimalActionPerformed(evt);
+        jrbn_engorde.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jrbn_engordeMouseClicked(evt);
             }
         });
-
-        jcbx_procedencia.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jcbx_procedencia.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "...", "Comprado", "GranjaWilbur" }));
-        jcbx_procedencia.setEnabled(false);
-        jcbx_procedencia.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jcbx_procedenciaItemStateChanged(evt);
-            }
-        });
-        jcbx_procedencia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcbx_procedenciaActionPerformed(evt);
-            }
-        });
-
-        jLabel20.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel20.setText("Procedencia:");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -513,19 +510,18 @@ public class JFrameGestionDatAnimal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jcbx_raza, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(4, 4, 4)
                                 .addComponent(jrbn_vivo, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jrbn_muerto))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jcbx_raza, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(jrbn_muerto))))
                     .addComponent(jcbx_procedencia, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(38, 38, 38))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(8, 8, 8)
@@ -535,12 +531,12 @@ public class JFrameGestionDatAnimal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel13)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jd_fechaconsumo, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
+                        .addComponent(jd_fechaconsumo, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(123, 123, 123)
+                .addGap(124, 124, 124)
                 .addComponent(jrbn_reemplazo)
                 .addGap(58, 58, 58)
                 .addComponent(jrbn_engorde)
@@ -549,7 +545,7 @@ public class JFrameGestionDatAnimal extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(18, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jcbx_procedencia, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -569,21 +565,24 @@ public class JFrameGestionDatAnimal extends javax.swing.JFrame {
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jrbn_vivo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jrbn_muerto, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
-                    .addComponent(jd_fechaconsumo, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
-                    .addComponent(jd_fechadest, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jd_fechaconsumo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jd_fechadest, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(23, 23, 23)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jrbn_reemplazo, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jrbn_engorde, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jrbn_reemplazo)
+                    .addComponent(jrbn_engorde))
+                .addGap(57, 57, 57))
         );
+
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jcbx_procedencia, jcbx_raza, jcbx_sexo, jtxt_codanimal});
 
         jbtn_crear.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jbtn_crear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/1_Crear.png"))); // NOI18N
@@ -606,16 +605,6 @@ public class JFrameGestionDatAnimal extends javax.swing.JFrame {
             }
         });
 
-        jbtn_modificar.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jbtn_modificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/1_Editar.png"))); // NOI18N
-        jbtn_modificar.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jbtn_modificar.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        jbtn_modificar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtn_modificarActionPerformed(evt);
-            }
-        });
-
         jbtn_consultar.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jbtn_consultar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/1_Buscar.png"))); // NOI18N
         jbtn_consultar.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -623,6 +612,16 @@ public class JFrameGestionDatAnimal extends javax.swing.JFrame {
         jbtn_consultar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtn_consultarActionPerformed(evt);
+            }
+        });
+
+        jbtn_modificar.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jbtn_modificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/1_Editar.png"))); // NOI18N
+        jbtn_modificar.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jbtn_modificar.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        jbtn_modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtn_modificarActionPerformed(evt);
             }
         });
 
@@ -643,7 +642,13 @@ public class JFrameGestionDatAnimal extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/1_Icono_Form.JPG"))); // NOI18N
+        JBLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/1_Clear_Limpiar.png"))); // NOI18N
+        JBLimpiar.setToolTipText("Limpiar Campos");
+        JBLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBLimpiarActionPerformed(evt);
+            }
+        });
 
         jbtn_volver.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jbtn_volver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/1_Atras.png"))); // NOI18N
@@ -656,76 +661,78 @@ public class JFrameGestionDatAnimal extends javax.swing.JFrame {
             }
         });
 
-        JBLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/1_Clear_Limpiar.png"))); // NOI18N
-        JBLimpiar.setToolTipText("Limpiar Campos");
-        JBLimpiar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JBLimpiarActionPerformed(evt);
-            }
-        });
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(235, 235, 235))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jbtn_crear, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jbtn_guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jbtn_consultar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jbtn_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jbtn_eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addGap(18, 18, 18)
+                .addComponent(JBLimpiar)
+                .addGap(18, 18, 18)
+                .addComponent(jbtn_volver, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton1, jbtn_consultar, jbtn_crear, jbtn_eliminar, jbtn_guardar, jbtn_modificar, jbtn_volver});
+
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jbtn_crear)
+                    .addComponent(jbtn_guardar)
+                    .addComponent(jbtn_consultar)
+                    .addComponent(jbtn_volver)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addComponent(jbtn_eliminar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jbtn_modificar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(JBLimpiar, javax.swing.GroupLayout.Alignment.LEADING)))
+                .addContainerGap())
+        );
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jbtn_consultar, jbtn_crear, jbtn_guardar, jbtn_volver});
+
+        jPanel2.getAccessibleContext().setAccessibleName("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jbtn_crear, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jbtn_guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jbtn_consultar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jbtn_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jbtn_eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1)
-                        .addGap(18, 18, 18)
-                        .addComponent(JBLimpiar)
-                        .addGap(18, 18, 18)
-                        .addComponent(jbtn_volver, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton1, jbtn_consultar, jbtn_crear, jbtn_eliminar, jbtn_guardar, jbtn_modificar, jbtn_volver});
-
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jbtn_crear)
-                    .addComponent(jbtn_guardar)
-                    .addComponent(jbtn_consultar)
-                    .addComponent(jbtn_volver)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addComponent(jbtn_eliminar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jbtn_modificar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(JBLimpiar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
-
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jbtn_consultar, jbtn_crear, jbtn_guardar, jbtn_volver});
-
-        jPanel2.getAccessibleContext().setAccessibleName("");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -765,13 +772,15 @@ public class JFrameGestionDatAnimal extends javax.swing.JFrame {
 
         datos = this.Guardar_Campos();
         if (swModDatosAnimal == 0) {
-            if (validacionObligatorios(datos)) {
+            if (validacionObligatorios()) {
                 if (!listaAni.existe(datos.getCod_animal())) {
                     if (listaAni.guardarCerdo(datos)) {
                         JOptionPane.showMessageDialog(this, "Se Guardo Correctamente", "Datos Animal - G.A.P", JOptionPane.YES_NO_OPTION,
                                 icoMensajePre);
                         this.Limpiar_Campos();
                         this.DesactivarCampos();
+                        this.activarBotones();
+                        jbtn_guardar.setEnabled(false);
 
                     } else {
                         JOptionPane.showMessageDialog(this, "No Se pudo guardar correctamete", "Datos Animal - G.A.P", JOptionPane.YES_NO_OPTION,
@@ -797,6 +806,8 @@ public class JFrameGestionDatAnimal extends javax.swing.JFrame {
                             JOptionPane.OK_OPTION, icoMensajeInfor);
                     this.Limpiar_Campos();
                     this.DesactivarCampos();
+                    this.activarBotones();
+                    jbtn_guardar.setEnabled(false);
                 } else {
 
                     JOptionPane.showMessageDialog(null, "El registro no fue modificado", "Datos Animal - G.A.P",
@@ -846,8 +857,8 @@ public class JFrameGestionDatAnimal extends javax.swing.JFrame {
         swModDatosAnimal = 0;
         this.desactivarBotones();
         this.LlenarDatos();
-        this.DesactivarCampos(); 
-        
+        this.DesactivarCampos();
+
 // TODO add your handling code here:
     }//GEN-LAST:event_jbtn_consultarActionPerformed
 
@@ -925,7 +936,6 @@ public class JFrameGestionDatAnimal extends javax.swing.JFrame {
 
     private void jtxt_codpartoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxt_codpartoActionPerformed
 
-        
 // TODO add your handling code here:
     }//GEN-LAST:event_jtxt_codpartoActionPerformed
 
@@ -935,13 +945,11 @@ public class JFrameGestionDatAnimal extends javax.swing.JFrame {
             if (jcbx_procedencia.getSelectedIndex() == 2) {
                 jd_fechaparto.setEnabled(false);
                 jtxt_codmadre.setEnabled(false);
-                jtxt_edadsem.setEnabled(false);
                 jcbx_razamadre.setEnabled(false);
                 jcbx_razapadre.setEnabled(false);
             } else {
                 jd_fechaparto.setEnabled(true);
                 jtxt_codmadre.setEnabled(true);
-                jtxt_edadsem.setEnabled(true);
                 jcbx_razamadre.setEnabled(true);
                 jcbx_razapadre.setEnabled(true);
             }
@@ -960,6 +968,49 @@ public class JFrameGestionDatAnimal extends javax.swing.JFrame {
         this.activarBotones();
         // TODO add your handling code here:
     }//GEN-LAST:event_JBLimpiarActionPerformed
+
+    private void jrbn_reemplazoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jrbn_reemplazoMouseClicked
+
+        if (evt.getSource() == jrbn_reemplazo) {
+
+            if (validacionObligatorios()) {
+                jbtn_guardar.setEnabled(true);
+                this.DesactivarCampos();
+            } else {
+
+                JOptionPane.showMessageDialog(null, "Digite todos los campos obligatorios", "Gestionar Animal - S.G.P",
+                        JOptionPane.OK_OPTION, icoMensajeInfor);
+                jrbn_reemplazo.requestFocusInWindow();
+            }
+        }
+// TODO add your handling code here:
+    }//GEN-LAST:event_jrbn_reemplazoMouseClicked
+
+    private void jrbn_engordeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jrbn_engordeMouseClicked
+
+        if (evt.getSource() == jrbn_engorde) {
+
+            if (validacionObligatorios()) {
+                jbtn_guardar.setEnabled(true);
+                this.DesactivarCampos();
+            } else {
+
+                JOptionPane.showMessageDialog(null, "Digite todos los campos obligatorios", "Gestionar Animal - S.G.P",
+                        JOptionPane.OK_OPTION, icoMensajeInfor);
+                jrbn_engorde.requestFocusInWindow();
+            }
+        }
+// TODO add your handling code here:
+    }//GEN-LAST:event_jrbn_engordeMouseClicked
+
+    private void jd_fechapartoPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jd_fechapartoPropertyChange
+
+        if ("date".equals(evt.getPropertyName())) {
+            long edad = va.calcularDias(jd_fechaparto);
+            jtxt_edadsem.setText(String.valueOf(edad));
+        }
+// TODO add your handling code here:
+    }//GEN-LAST:event_jd_fechapartoPropertyChange
 
     /**
      * @param args the command line arguments
@@ -999,7 +1050,6 @@ public class JFrameGestionDatAnimal extends javax.swing.JFrame {
     private javax.swing.JButton JBLimpiar;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -1064,11 +1114,25 @@ public class JFrameGestionDatAnimal extends javax.swing.JFrame {
         jcbx_razamadre.setSelectedItem(null);
         jcbx_razapadre.setSelectedItem(null);
         jcbx_sexo.setSelectedItem(null);
+        grupoEstado.clearSelection();
+        grupoTpo.clearSelection();
     }
 
     public DatosAnimal Guardar_Campos() {
 
         DatosAnimal d2 = new DatosAnimal();
+        if (jrbn_engorde.isSelected()) {
+            d2.setTipoCerdo("Engorde");
+        }
+        if (jrbn_reemplazo.isSelected()) {
+            d2.setTipoCerdo("Reemplazo");
+        }
+        if (jrbn_vivo.isSelected()) {
+            d2.setEstado("Vivo");
+        }
+        if (jrbn_muerto.isSelected()) {
+            d2.setEstado("Muerto");
+        }
         d2.setCod_animal(jtxt_codanimal.getText());
         d2.setCod_madre(jtxt_codmadre.getText());
         d2.setCod_parto(jtxt_codparto.getText());
@@ -1081,7 +1145,6 @@ public class JFrameGestionDatAnimal extends javax.swing.JFrame {
         d2.setFecha_parto(formateador.format(jd_fechaparto.getDate()));
         d2.setFecha_dest(formateador.format(jd_fechadest.getDate()));
         d2.setFecha_consumo(formateador.format(jd_fechaconsumo.getDate()));
-
         d2.setRaza((String) jcbx_raza.getSelectedItem());
         d2.setSexo((String) jcbx_sexo.getSelectedItem());
         d2.setRazaMadre((String) jcbx_razamadre.getSelectedItem());
@@ -1129,16 +1192,16 @@ public class JFrameGestionDatAnimal extends javax.swing.JFrame {
                 } else {
                     jrbn_muerto.setSelected(true);
                 }
-                jtxt_pesodest.setText(datos.getPeso_destete());
-                jtxt_pesonacer.setText(datos.getPeso_nacer());
-                jd_fechaconsumo.setDate(this.deStringToDate(datos.getFecha_consumo()));
-                jd_fechadest.setDate(this.deStringToDate(datos.getFecha_dest()));
-                jd_fechaparto.setDate(this.deStringToDate(datos.getFecha_parto()));
-                jcbx_procedencia.setSelectedItem(datos.getProcedencia());
-                jcbx_raza.setSelectedItem(datos.getRaza());
-                jcbx_razamadre.setSelectedItem(datos.getRazaMadre());
-                jcbx_razapadre.setSelectedItem(datos.getRazaPadre());
-                jcbx_sexo.setSelectedItem(datos.getSexo());
+                jtxt_pesodest.setText(buscarAnimal.getPeso_destete());
+                jtxt_pesonacer.setText(buscarAnimal.getPeso_nacer());
+                jd_fechaconsumo.setDate(this.deStringToDate(buscarAnimal.getFecha_consumo()));
+                jd_fechadest.setDate(this.deStringToDate(buscarAnimal.getFecha_dest()));
+                jd_fechaparto.setDate(this.deStringToDate(buscarAnimal.getFecha_parto()));
+                jcbx_procedencia.setSelectedItem(buscarAnimal.getProcedencia());
+                jcbx_raza.setSelectedItem(buscarAnimal.getRaza());
+                jcbx_razamadre.setSelectedItem(buscarAnimal.getRazaMadre());
+                jcbx_razapadre.setSelectedItem(buscarAnimal.getRazaPadre());
+                jcbx_sexo.setSelectedItem(buscarAnimal.getSexo());
                 if (buscarAnimal.getTipoCerdo().equals("Engorde")) {
                     jrbn_engorde.setSelected(true);
                 } else {
@@ -1178,6 +1241,10 @@ public class JFrameGestionDatAnimal extends javax.swing.JFrame {
         jcbx_razamadre.setEnabled(true);
         jcbx_razapadre.setEnabled(true);
         jcbx_sexo.setEnabled(true);
+        jrbn_engorde.setEnabled(true);
+        jrbn_muerto.setEnabled(true);
+        jrbn_reemplazo.setEnabled(true);
+        jrbn_vivo.setEnabled(true);
     }
 
     public void DesactivarCampos() {
@@ -1194,8 +1261,12 @@ public class JFrameGestionDatAnimal extends javax.swing.JFrame {
         jcbx_razamadre.setEnabled(false);
         jcbx_razapadre.setEnabled(false);
         jcbx_sexo.setEnabled(false);
+        jrbn_engorde.setEnabled(false);
+        jrbn_muerto.setEnabled(false);
+        jrbn_reemplazo.setEnabled(false);
+        jrbn_vivo.setEnabled(false);
     }
-    
+
     public void desactivarBotones() {
 
         //JBGuardarU.setEnabled(false);
@@ -1206,7 +1277,7 @@ public class JFrameGestionDatAnimal extends javax.swing.JFrame {
         jbtn_volver.setEnabled(false);
         jButton1.setEnabled(false);
     }
-    
+
     public void activarBotones() {
 
         jbtn_crear.setEnabled(true);
@@ -1232,21 +1303,22 @@ public class JFrameGestionDatAnimal extends javax.swing.JFrame {
         });
         this.jtxt_codparto.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent e) {
-                va.validarLongitud(2, jtxt_codparto, e);
+                va.validarLongitud(4, jtxt_codparto, e);
                 va.soloNumeros(jtxt_codparto, e);
             }
         });
         this.jtxt_codmadre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent e) {
-                va.validarLongitud(2, jtxt_codmadre, e);
+                va.validarLongitud(4, jtxt_codmadre, e);
                 va.soloNumeros(jtxt_codmadre, e);
             }
         });
     }
 
-    private boolean validacionObligatorios(DatosAnimal Datos) {
+    private boolean validacionObligatorios() {
+        DatosAnimal Datos = Guardar_Campos();
         boolean sw = true;
-        if (datos.getCod_animal().equals("") || Datos.getCod_parto().equals("") || Datos.getRaza().equals("") || Datos.getPeso_nacer().equals("") || Datos.getPeso_destete().equals("")) {
+        if (Datos.getCod_animal().equals("") || Datos.getCod_parto().equals("") || Datos.getRaza().equals("") || Datos.getPeso_nacer().equals("") || Datos.getPeso_destete().equals("")) {
             sw = false;
         }
         return sw;

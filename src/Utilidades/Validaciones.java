@@ -5,6 +5,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JTextField;
 import Identidades.*;
+import com.toedter.calendar.JDateChooser;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
@@ -139,6 +144,31 @@ public class Validaciones {
             return false;
         }
     }
+    
+    public long  calcularDias(JDateChooser fecha){
+		
+		final long  MILI_SEGU_SEMANA = 24 * 60 * 60 * 1000 * 7;
+		DateFormat formato = new SimpleDateFormat("yyyy/MM/dd");
+		Date fechaActual;
+		Date fechaNaci=null;
+		long  diferencia=0;
+		String fe = formato.format(fecha.getDate()); 
+		
+		try {
+
+    		fechaNaci = formato.parse(fe);
+
+		} catch (ParseException ex) {
+
+   			ex.printStackTrace();
+
+		} 
+		fechaActual = new Date();
+		
+		diferencia=(fechaActual.getTime()-fechaNaci.getTime())/MILI_SEGU_SEMANA;
+		
+		return diferencia;
+	}
 
     public static String convertirPassword(char[] cPassword) {
         // Declare variables

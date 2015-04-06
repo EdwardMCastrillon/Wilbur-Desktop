@@ -16,7 +16,7 @@ import javax.swing.ImageIcon;
  * @author Edward
  */
 public class AsignarPerfil extends javax.swing.JFrame {
- 
+
     ListaUsuario u;
     Validaciones validar;
     int[] conta;
@@ -36,7 +36,7 @@ public class AsignarPerfil extends javax.swing.JFrame {
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-        this.setTitle("Asignar Perfiles"); 
+        this.setTitle("Asignar Perfiles");
         u = Lu;
         validar = new Validaciones();
         conta = new int[4];
@@ -533,19 +533,19 @@ public class AsignarPerfil extends javax.swing.JFrame {
             jtxtDocumento.requestFocusInWindow();
         } else {
             buscarUsuario = u.cargarUsuario(jtxtDocumento.getText());
-            if (buscarUsuario != null) { 
+            if (buscarUsuario != null) {
 
-                    if (listaPerfi.existePerfil(buscarUsuario.getDocumento())) {
+                if (listaPerfi.existePerfil(buscarUsuario.getDocumento())) {
 
-                        JOptionPane.showMessageDialog(null, "El usuario " + buscarUsuario.getNombre() + "\n" + "ya tiene un perfil asignado",
-                                "Asignar Perfil - G.A.P", JOptionPane.YES_OPTION, icoMensajeInfor);
-                        jtxtDocumento.setText("");
-                        jtxtDocumento.requestFocusInWindow();
-                    }else{
-                        
-                        jtxtNombre.setText(buscarUsuario.getNombre());
-                        jtxtDocumento.transferFocus();
-                    } 
+                    JOptionPane.showMessageDialog(null, "El usuario " + buscarUsuario.getNombre() + "\n" + "ya tiene un perfil asignado",
+                            "Asignar Perfil - G.A.P", JOptionPane.YES_OPTION, icoMensajeInfor);
+                    jtxtDocumento.setText("");
+                    jtxtDocumento.requestFocusInWindow();
+                } else {
+
+                    jtxtNombre.setText(buscarUsuario.getNombre());
+                    jtxtDocumento.transferFocus();
+                }
             } else {
 
                 JOptionPane.showMessageDialog(null, "Este número de documento no ha sido registrado", "Asignar Perfil - G.A.P", JOptionPane.YES_OPTION,
@@ -565,7 +565,21 @@ public class AsignarPerfil extends javax.swing.JFrame {
 
     private void jtxtNombrePerfFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtxtNombrePerfFocusLost
 
-        validar.validarObligatorios(jtxtNombrePerf, nombreVentana);
+        if (jtxtNombrePerf.getText().equals("")) {
+
+            JOptionPane.showMessageDialog(null, "Campo obligatorio", "Asignar Perfil - G.A.P", JOptionPane.YES_OPTION,
+                    icoMensajeInfor);
+            jtxtNombrePerf.requestFocusInWindow();
+        } else {
+            if (listaPerfi.existeUsuario(jtxtNombrePerf.getText())) {
+
+                JOptionPane.showMessageDialog(null, "Este nombre de usuario ya esta registrado", "Asignar Perfil - G.A.P", JOptionPane.YES_OPTION,
+                        icoMensajeInfor);
+                jtxtNombrePerf.requestFocusInWindow();
+            } else {
+                jtxtNombrePerf.transferFocus();
+            }
+        }
 // TODO add your handling code here:
     }//GEN-LAST:event_jtxtNombrePerfFocusLost
 
@@ -582,8 +596,14 @@ public class AsignarPerfil extends javax.swing.JFrame {
                 jPassContra.requestFocus();
                 jPassContra.setText("");
             } else {
+                if (listaPerfi.existeContraseña(jPassContra.getText())) {
 
-                jPassRepeContra.requestFocusInWindow();
+                    JOptionPane.showMessageDialog(null, "Este nombre de usuario ya esta registrado", "Asignar Perfil - G.A.P", JOptionPane.YES_OPTION,
+                            icoMensajeInfor);
+                    jPassContra.requestFocusInWindow();
+                } else {
+                    jPassRepeContra.requestFocusInWindow();
+                }
             }
         } else {
 
@@ -637,7 +657,7 @@ public class AsignarPerfil extends javax.swing.JFrame {
             } else {
 
                 if (jtxtDocumento.getText().equals("") || jtxtNombre.getText().equals("") || jtxtNombrePerf.getText().equals("")
-                        || jPassContra.getText().equals("") || jPassRepeContra.getText().equals("")){
+                        || jPassContra.getText().equals("") || jPassRepeContra.getText().equals("")) {
 
                     JOptionPane.showMessageDialog(null, "Digite todos los campos obligatorios", "Gestionar Perfil - S.G.P",
                             JOptionPane.OK_OPTION, icoMensajeInfor);
