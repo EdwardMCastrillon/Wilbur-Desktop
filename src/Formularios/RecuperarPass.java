@@ -18,6 +18,7 @@ public class RecuperarPass extends javax.swing.JFrame {
     boolean sw1 = false;
     String correo, nombre, usuario, contraseña, perfil;
     int numUsuario;
+    String mensaje = "Se envio un correo a la dirección registrada," + "\n" + "con el nombre de usuario y la contraseña de ingreso";
     String tipoMensaje = "Recuperar Contraseña - G.A.P.";
 
     public RecuperarPass() {
@@ -132,7 +133,7 @@ public class RecuperarPass extends javax.swing.JFrame {
                     }
                     auxi = auxi.getLiga();
                 }
-                new EnviarEmail(correo, nombre, usuario, contraseña, tipoMensaje);
+                new EnviarEmail(correo, nombre, usuario, contraseña, tipoMensaje, mensaje);
                 this.dispose();
 
             } else {

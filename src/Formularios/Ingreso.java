@@ -238,7 +238,7 @@ public class Ingreso extends javax.swing.JFrame {
         long dif;
         if (perfi != null) {
             if (perfi.getUsuario().equals(JTUsuario.getText()) && perfi.getContraIngreso().equals(JTClave.getText())) {
-                nombre = perfi.getPerfil();
+                nombre = perfi.getNombre();
                 dif = listaPerfi.fechaCambioContra(perfi.getFecha());
                 if (dif >= 25 && dif < 30) {
                     ///if (listaPerfi.fechaCambioContra(perfi.getFecha())) {
@@ -247,7 +247,7 @@ public class Ingreso extends javax.swing.JFrame {
                     MenuPrincipal MeP = new MenuPrincipal(nombre, A, U, P, R, listaPerfi);
                     this.dispose();
                 } else {
-                    if (dif == 30) {
+                    if (dif >= 30) {
                         JFrameCambiarContraseña jc = new JFrameCambiarContraseña(listaPerfi, U);
                     } else {
                         MenuPrincipal MeP = new MenuPrincipal(nombre, A, U, P, R, listaPerfi);

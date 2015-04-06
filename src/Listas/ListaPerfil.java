@@ -16,12 +16,12 @@ import java.util.Date;
 public class ListaPerfil {
 
     /**
-     * primer nodo dela lista
+     * primer nodo de la lista
      */
     private NodoPerfil cabeza;
 
     /**
-     * ultimo nodo dela lista
+     * ultimo nodo de la lista
      */
     private NodoPerfil ultimo;
 
@@ -198,7 +198,7 @@ public class ListaPerfil {
     	return false;
     }
     
-    /** Confirmar los datos del usuario para recuperar la contraseña en la lista de perfiles
+    /** Metodo en el cual se confirman los datos del usuario para recuperar la contraseña en la lista de perfiles
      *
      *@param usuario nombre de usuario de ingreso al sistema
      *@param pregunta  pregunta secreta
@@ -221,11 +221,11 @@ public class ListaPerfil {
     	return perfil;
     }
     
-    /** Confirmar los datos del usuario al ingreso al sistema en la lista de perfiles
+    /** Metodo que confirmar los datos del usuario al ingreso al sistema en la lista de perfiles
      *
      *@param usuario nombre de usuario de ingreso al sistema
      *@param contra  contraseña de ingreso al sistema
-     *@return retorna todos los datos del usuario y la contraseña dada
+     *@return retorna todos los datos del usuario de la contraseña dada
      */
     public DatosPerfil confirmarUsuario(String usuario, String contra){
     	
@@ -245,21 +245,14 @@ public class ListaPerfil {
     public long fechaCambioContra(Date fecha){
     	
     	Date fechaActual = new Date();
-        long  dif = (fechaActual.getTime() - fecha.getTime())/MILI_SEGU_DIA;
-    	/*if (((fechaActual.getTime() - fecha.getTime())/MILI_SEGU_DIA) >= 25){
-    		
-    		return true;
-    	}else{
-    		
-    		return false;
-    	}*/
+        long  dif = (fechaActual.getTime() - fecha.getTime())/MILI_SEGU_DIA; 
         return dif;
     }
     
-    /** Modificar la contraseña de ingreso en la lista de perfiles
+    /** Metodo el cual modifica la contraseña de ingreso en la lista de perfiles
      *
      *@param perfil contiene los datos del perfil ya modificado 
-     *@return retorna todos los datos del perfil ya modificado y almacenado
+     *@return retorna todos los datos del perfil modificado luego de guardarlo en la lista
      */
     public DatosPerfil modificarContraseñaIngrse(DatosPerfil perfil, String contra){
     	
@@ -270,6 +263,7 @@ public class ListaPerfil {
     				
     				auxi.getPerfil().setContraIngreso(perfil.getContraIngreso());
     				auxi.getPerfil().setRepetirContraIngreso(perfil.getRepetirContraIngreso());
+                                auxi.getPerfil().setFecha(perfil.getFecha());
     				return auxi.getPerfil();
     		}else{
     			

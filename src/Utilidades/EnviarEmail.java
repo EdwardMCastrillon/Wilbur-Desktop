@@ -23,11 +23,10 @@ public class EnviarEmail {
     
     ImageIcon icoMensajeInfor = new ImageIcon("C:\\OriginalPorcicolaWilbur\\src\\Imagenes\\IconoInformacion.jpg");
 
-    public EnviarEmail(String correo, String nombre, String usuario, String clave, String tipoMensaje) {
+    public EnviarEmail(String correo, String nombre, String usuario, String clave, String tipoMensaje, String mensaje) {
 
         if (enviarEmail(correo, nombre, usuario, clave, tipoMensaje)) {
-            JOptionPane.showMessageDialog(null, "Se envio un correo a la dirección registrada," + "\n" + "con el nombre de usuario y la contraseña de ingreso", 
-                    tipoMensaje, JOptionPane.OK_OPTION, icoMensajeInfor);
+            JOptionPane.showMessageDialog(null, mensaje,tipoMensaje, JOptionPane.OK_OPTION, icoMensajeInfor);
         } else {
 
             JOptionPane.showMessageDialog(null, "Error al  Enviar el Mensaje", "Informaci\u00f3n de Envio",

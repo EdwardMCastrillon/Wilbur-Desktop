@@ -48,7 +48,7 @@ public class MenuPrincipal implements ActionListener {
 
     public MenuPrincipal( String perfil, ListaAnimal listaAnima, ListaUsuario listaPersona, ListaPartos listaPart, ListaRazas R, ListaPerfil listaPerfi) {
 
-        FraMenuPri = new JFrame("Menú Principal - PERFIL ");
+        FraMenuPri = new JFrame("Menú Principal - " + perfil);
         FraMenuPri.setBounds(10, 10, 1350, 710);
         FraMenuPri.setLayout(null);
         FraMenuPri.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//DETENER LA EJECUCIÓN CUANDO CIERRE
@@ -198,19 +198,7 @@ public class MenuPrincipal implements ActionListener {
                 menuPersonal.add(menItemModContra);
                 menItemSalir = new JMenuItem("Salir");
                 menuPersonal.add(menItemSalir);
-                menItemSalir.addActionListener(this);
-
-                menuAnimal = new JMenu("Gestionar Animal");
-                MenuBarPPal.add(menuAnimal);
-                menItemAnimal = new JMenuItem("Datos Animales");
-                menuAnimal.add(menItemAnimal);
-                menItemAnimal.addActionListener(this);
-                menItemPartos = new JMenuItem("Datos Partos");
-                menuAnimal.add(menItemPartos);
-                menItemPartos.addActionListener(this);
-                menItemHojaVida = new JMenuItem("Trazabilidad del Animal");
-                menuAnimal.add(menItemHojaVida);
-                menuAnimal.addActionListener(this);
+                menItemSalir.addActionListener(this); 
 
                 menuJaulas = new JMenu("Gestionar Jaulas");
                 MenuBarPPal.add(menuJaulas);
