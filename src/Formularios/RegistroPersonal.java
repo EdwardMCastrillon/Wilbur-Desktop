@@ -32,7 +32,7 @@ public class RegistroPersonal extends javax.swing.JFrame {
     Validaciones Va = new Validaciones();
     ListaUsuario Lu;
     DepartamentosMunicipios deparMuni;
-    ImageIcon icoMensajeInfor, icoMensajePre,icoCalendario;
+    ImageIcon icoMensajeInfor, icoMensajePre, icoCalendario;
     int swModifi = 0;
     Date fecha;
     int año, mes, dia;
@@ -85,7 +85,7 @@ public class RegistroPersonal extends javax.swing.JFrame {
         grupoObtenido = new ButtonGroup();
         grupoObtenido.add(JrbnNo);
         grupoObtenido.add(JrbnSi);
-        
+
         jdFechaContrato.setIcon(icoCalendario);
         jdFechaFinal.setIcon(icoCalendario);
         jdFechaNacimiento.setIcon(icoCalendario);
@@ -102,15 +102,16 @@ public class RegistroPersonal extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel7 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jPanel6 = new javax.swing.JPanel();
-        JBVolver = new javax.swing.JButton();
-        JBLimpiarU = new javax.swing.JButton();
-        JBEliminarU = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
+        JBNuevo = new javax.swing.JButton();
+        JBGuardarU = new javax.swing.JButton();
         JBConsultaru = new javax.swing.JButton();
         JBModificarU = new javax.swing.JButton();
-        JBGuardarU = new javax.swing.JButton();
-        JBNuevo = new javax.swing.JButton();
+        JBEliminarU = new javax.swing.JButton();
+        JBListar = new javax.swing.JButton();
+        JBLimpiarU = new javax.swing.JButton();
+        JBVolver = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
@@ -165,43 +166,34 @@ public class RegistroPersonal extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jBCargarImagen = new javax.swing.JButton();
         jLabel24 = new javax.swing.JLabel();
-        JBListar = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 5)); // NOI18N
+        jTextField1.setFocusable(false);
 
-        JBVolver.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        JBVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/1_Atras.png"))); // NOI18N
-        JBVolver.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        JBVolver.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        JBVolver.addActionListener(new java.awt.event.ActionListener() {
+        jTextField2.setFont(new java.awt.Font("Tahoma", 0, 5)); // NOI18N
+
+        JBNuevo.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        JBNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/1_Crear.png"))); // NOI18N
+        JBNuevo.setToolTipText("CREAR");
+        JBNuevo.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        JBNuevo.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        JBNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JBVolverActionPerformed(evt);
+                JBNuevoActionPerformed(evt);
             }
         });
 
-        JBLimpiarU.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        JBLimpiarU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/1_Clear_Limpiar.png"))); // NOI18N
-        JBLimpiarU.setToolTipText("LIMPIAR");
-        JBLimpiarU.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        JBLimpiarU.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        JBLimpiarU.addActionListener(new java.awt.event.ActionListener() {
+        JBGuardarU.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        JBGuardarU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/1_Guardar.png"))); // NOI18N
+        JBGuardarU.setToolTipText("GUARDAR");
+        JBGuardarU.setEnabled(false);
+        JBGuardarU.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        JBGuardarU.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        JBGuardarU.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JBLimpiarUActionPerformed(evt);
-            }
-        });
-
-        JBEliminarU.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        JBEliminarU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/1_Eliminar.png"))); // NOI18N
-        JBEliminarU.setToolTipText("ELIMINAR");
-        JBEliminarU.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        JBEliminarU.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        JBEliminarU.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JBEliminarUActionPerformed(evt);
+                JBGuardarUActionPerformed(evt);
             }
         });
 
@@ -227,26 +219,47 @@ public class RegistroPersonal extends javax.swing.JFrame {
             }
         });
 
-        JBGuardarU.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        JBGuardarU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/1_Guardar.png"))); // NOI18N
-        JBGuardarU.setToolTipText("GUARDAR");
-        JBGuardarU.setEnabled(false);
-        JBGuardarU.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        JBGuardarU.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        JBGuardarU.addActionListener(new java.awt.event.ActionListener() {
+        JBEliminarU.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        JBEliminarU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/1_Eliminar.png"))); // NOI18N
+        JBEliminarU.setToolTipText("ELIMINAR");
+        JBEliminarU.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        JBEliminarU.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        JBEliminarU.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JBGuardarUActionPerformed(evt);
+                JBEliminarUActionPerformed(evt);
             }
         });
 
-        JBNuevo.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        JBNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/1_Crear.png"))); // NOI18N
-        JBNuevo.setToolTipText("CREAR");
-        JBNuevo.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        JBNuevo.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        JBNuevo.addActionListener(new java.awt.event.ActionListener() {
+        JBListar.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        JBListar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/List.png"))); // NOI18N
+        JBListar.setToolTipText("LISTAR");
+        JBListar.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        JBListar.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        JBListar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JBNuevoActionPerformed(evt);
+                JBListarActionPerformed(evt);
+            }
+        });
+
+        JBLimpiarU.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        JBLimpiarU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/1_Clear_Limpiar.png"))); // NOI18N
+        JBLimpiarU.setToolTipText("LIMPIAR");
+        JBLimpiarU.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        JBLimpiarU.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        JBLimpiarU.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBLimpiarUActionPerformed(evt);
+            }
+        });
+
+        JBVolver.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        JBVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/1_Atras.png"))); // NOI18N
+        JBVolver.setToolTipText("SALIR");
+        JBVolver.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        JBVolver.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        JBVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBVolverActionPerformed(evt);
             }
         });
 
@@ -315,7 +328,7 @@ public class RegistroPersonal extends javax.swing.JFrame {
                         .addComponent(jLabel22)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jdFechaContrato, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(41, 41, 41))
+                .addGap(31, 31, 31))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -467,7 +480,7 @@ public class RegistroPersonal extends javax.swing.JFrame {
                         .addGap(4, 4, 4)
                         .addComponent(jdFechaTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -775,7 +788,7 @@ public class RegistroPersonal extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -815,7 +828,8 @@ public class RegistroPersonal extends javax.swing.JFrame {
                         .addGap(3, 3, 3)
                         .addComponent(JrbnInactivo)
                         .addGap(273, 273, 273)
-                        .addComponent(jBCargarImagen))))
+                        .addComponent(jBCargarImagen)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -863,64 +877,55 @@ public class RegistroPersonal extends javax.swing.JFrame {
         jLabel24.setForeground(new java.awt.Color(255, 0, 0));
         jLabel24.setText("(*) Campos Obligatorios");
 
-        JBListar.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        JBListar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/List.png"))); // NOI18N
-        JBListar.setToolTipText("LISTAR");
-        JBListar.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        JBListar.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        JBListar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JBListarActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addGap(296, 296, 296)
-                                .addComponent(jLabel24))
-                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(296, 296, 296)
+                        .addComponent(jLabel24)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(JBNuevo)
-                        .addGap(28, 28, 28)
-                        .addComponent(JBGuardarU)
-                        .addGap(30, 30, 30)
-                        .addComponent(JBConsultaru)
-                        .addGap(29, 29, 29)
-                        .addComponent(JBModificarU)
-                        .addGap(30, 30, 30)
-                        .addComponent(JBEliminarU)
-                        .addGap(27, 27, 27)
-                        .addComponent(JBListar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(JBLimpiarU)
-                        .addGap(26, 26, 26)
-                        .addComponent(JBVolver)
-                        .addGap(8, 8, 8)))
-                .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 6, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(43, 43, 43)
+                                .addComponent(JBNuevo)
+                                .addGap(18, 18, 18)
+                                .addComponent(JBGuardarU)
+                                .addGap(18, 18, 18)
+                                .addComponent(JBConsultaru)
+                                .addGap(18, 18, 18)
+                                .addComponent(JBModificarU)
+                                .addGap(18, 18, 18)
+                                .addComponent(JBEliminarU)
+                                .addGap(18, 18, 18)
+                                .addComponent(JBListar)
+                                .addGap(18, 18, 18)
+                                .addComponent(JBLimpiarU)
+                                .addGap(26, 26, 26)
+                                .addComponent(JBVolver)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap())))
         );
 
-        jPanel6Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {JBConsultaru, JBEliminarU, JBGuardarU, JBLimpiarU, JBListar, JBModificarU, JBNuevo, JBVolver});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {JBConsultaru, JBEliminarU, JBGuardarU, JBLimpiarU, JBListar, JBModificarU, JBNuevo, JBVolver});
 
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel24)
                 .addGap(6, 6, 6)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -930,8 +935,8 @@ public class RegistroPersonal extends javax.swing.JFrame {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(2, 2, 2)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(11, 11, 11)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(JBVolver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(JBLimpiarU, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(JBListar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -939,142 +944,57 @@ public class RegistroPersonal extends javax.swing.JFrame {
                     .addComponent(JBConsultaru, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(JBGuardarU, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(JBNuevo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(JBEliminarU, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(52, Short.MAX_VALUE))
+                    .addComponent(JBEliminarU, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
 
-        jPanel6Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {JBConsultaru, JBEliminarU, JBGuardarU, JBLimpiarU, JBListar, JBModificarU, JBNuevo, JBVolver});
-
-        jScrollPane1.setViewportView(jPanel6);
-
-        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 5)); // NOI18N
-        jTextField1.setFocusable(false);
-
-        jTextField2.setFont(new java.awt.Font("Tahoma", 0, 5)); // NOI18N
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(66, 66, 66)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 720, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(2, 2, 2))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 645, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-        );
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {JBConsultaru, JBEliminarU, JBGuardarU, JBLimpiarU, JBListar, JBModificarU, JBNuevo, JBVolver});
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void JBGuardarUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBGuardarUActionPerformed
+    private void JBListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBListarActionPerformed
+        new ReporteUsu(Lu.getPrimero());
 
-        persona = this.GuardarCamposU();
-        String s = Va.Validacion(persona);
-        if (this.validacionObligatorios().equals("")) {
-            if (swModifi == 0) {
-                if (!Lu.existe(persona.getDocumento())) {
-                    DatosPersonal u2 = persona;
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JBListarActionPerformed
 
-                    if (Lu.guardarUsuario(u2)) {
-                        JOptionPane.showMessageDialog(this, "Se guardó Correctamente", "Registro Personal - G.A.P", JOptionPane.YES_NO_OPTION,
-                                icoMensajePre);
-                        this.LimpiarCamposU();
-
-                    } else {
-                        JOptionPane.showMessageDialog(this, "No se guardó correctamente", "Registro Personal - G.A.P", JOptionPane.YES_NO_OPTION,
-                                icoMensajePre);
-                    }
-                } else {
-                    JOptionPane.showMessageDialog(this, "Este usuario ya existe", "Registro Personal - G.A.P", JOptionPane.YES_NO_OPTION,
-                            icoMensajePre);
-                }
-            } else {
-                int opc;
-                opc = JOptionPane.showConfirmDialog(null, "Esta seguro que desea modificar este registro",
-                        "Datos Animal - G.A.P", JOptionPane.YES_NO_OPTION,
-                        JOptionPane.QUESTION_MESSAGE, icoMensajePre);
-                if (opc == 0) {
-                    if (Lu.modificarUsuario(persona)) {
-
-                        JOptionPane.showMessageDialog(null, "El registro se modifico correctamente", "Registro Personal - G.A.P",
-                                JOptionPane.OK_OPTION, icoMensajeInfor);
-                        this.LimpiarCamposU();
-                        this.DesactivarCampos();
-                    } else {
-
-                        JOptionPane.showMessageDialog(null, "El registro no fue modificado", "Registro Personal - G.A.P",
-                                JOptionPane.OK_OPTION, icoMensajeInfor);
-                    }
-                }
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "¡Complete los campos obligatorios(*)!", "Registro Personal - G.A.P", JOptionPane.YES_NO_OPTION,
-                    icoMensajePre);
+    private void jBCargarImagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCargarImagenActionPerformed
+        //Crear un objeto JFileChooser
+        JFileChooser dlg = new JFileChooser();
+        //Del objeto creado llamamos el metodo setFileFilter
+        dlg.setFileFilter(filter);
+        //Abrir la ventana de dialogo para escojer las imagenes
+        int option = dlg.showOpenDialog(this);
+        //Si hacemos clic en el boton abrir
+        if (option == JFileChooser.APPROVE_OPTION) {
+            //Obtener el nombre del archivo seleccionado
+            String fil = dlg.getSelectedFile().getPath();
+            //Obtener la direccion donde se guarda la imagen
+            String file = dlg.getSelectedFile().toString();
+            jLabel1.setIcon(new ImageIcon(fil));
+            //Modificar la imagen
+            ImageIcon icon = new ImageIcon(fil);
+            //Extraer la imagen del icono
+            Image img = icon.getImage();
+            //Cambiar tamaño a la imagen
+            Image newimg = img.getScaledInstance(153, 160, java.awt.Image.SCALE_SMOOTH);
+            //Se genera el ImageIcon con la nueva imagen
+            ImageIcon newIcon = new ImageIcon(newimg);
+            jLabel1.setIcon(newIcon);
+            //jLimagen.setSize(153,160);
+            //pone la ruta de la imagen en el textbox 1
+            jTextField1.setText(file);
+            //pone el nombre de la imagen en el textbox 2
+            jTextField2.setText(fil);
+            rutaimagen = "";
         }
 
-// TODO add your handling code here:
-    }//GEN-LAST:event_JBGuardarUActionPerformed
-
-    private void JBConsultaruActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBConsultaruActionPerformed
-
-        swModifi = 0;
-        this.LlenarDatosU();
-        this.DesactivarCampos();
-
-// TODO add your handling code here:
-    }//GEN-LAST:event_JBConsultaruActionPerformed
-
-    private void JBModificarUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBModificarUActionPerformed
-
-        swModifi = 1;
-        this.LlenarDatosU();
-        this.ActivarCampos();
-        this.desactivarBotones();
-
-// TODO add your handling code here:
-    }//GEN-LAST:event_JBModificarUActionPerformed
-
-    private void JBLimpiarUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBLimpiarUActionPerformed
-        this.LimpiarCamposU();
-        this.DesactivarCampos();
-        this.activarBotones();
-// TODO add your handling code here:
-    }//GEN-LAST:event_JBLimpiarUActionPerformed
-
-    private void JBEliminarUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBEliminarUActionPerformed
-
-        String s = JOptionPane.showInputDialog(this, "Ingrese el documento del usuario a eliminar");
-
-        if (Lu.existe(s)) {
-            JOptionPane.showMessageDialog(this, "Esta seguro que desea eliminar este usuario", "Registro Personal - G.A.P", JOptionPane.YES_NO_OPTION,
-                    icoMensajePre);
-            if (Lu.eliminarUsuario(s)) {
-                JOptionPane.showMessageDialog(this, "Se ha eliminado correctamente", "Registro Personal - G.A.P", JOptionPane.YES_NO_OPTION,
-                        icoMensajePre);
-                this.LimpiarCamposU();
-            } else {
-                JOptionPane.showMessageDialog(this, "No se pudo eliminar el usuario", "Registro Personal - G.A.P", JOptionPane.YES_NO_OPTION,
-                        icoMensajePre);
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "El usuario no existe", "Registro Personal - G.A.P", JOptionPane.YES_NO_OPTION,
-                    icoMensajePre);
-        }
-
-// TODO add your handling code here:
-    }//GEN-LAST:event_JBEliminarUActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBCargarImagenActionPerformed
 
     private void JrbnInactivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JrbnInactivoActionPerformed
 
@@ -1082,7 +1002,7 @@ public class RegistroPersonal extends javax.swing.JFrame {
 
             estado = "Inactivo";
         }
-// TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_JrbnInactivoActionPerformed
 
     private void JrbnActivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JrbnActivoActionPerformed
@@ -1091,8 +1011,20 @@ public class RegistroPersonal extends javax.swing.JFrame {
 
             estado = "Activo";
         }
-// TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_JrbnActivoActionPerformed
+
+    private void jCtiposangreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCtiposangreActionPerformed
+        int index;
+        int sw = 1;
+
+        index = jCtiposangre.getSelectedIndex();
+        // this.cargarComboBoxCiudad(index, sw);
+    }//GEN-LAST:event_jCtiposangreActionPerformed
+
+    private void jCbxCiudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCbxCiudadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCbxCiudadActionPerformed
 
     private void jCbxDepartamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCbxDepartamentoActionPerformed
         int index;
@@ -1101,20 +1033,181 @@ public class RegistroPersonal extends javax.swing.JFrame {
         index = jCbxDepartamento.getSelectedIndex();
         deparMuni.cargarMunicipios(index, jCbxCiudad);
         jCbxCiudad.setEnabled(true);
-
     }//GEN-LAST:event_jCbxDepartamentoActionPerformed
+
+    private void jCbxDepartamentoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCbxDepartamentoItemStateChanged
+
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+
+            if (ComboDoc.getSelectedIndex() == 0) {
+
+                jCbxCiudad.removeAllItems();
+                jCbxCiudad.setEnabled(false);
+                jCbxDepartamento.requestFocusInWindow();
+            } else {
+
+                int index;
+                int sw = 0;
+
+                index = jCbxDepartamento.getSelectedIndex();
+                deparMuni.cargarMunicipios(index, jCbxCiudad);
+                jCbxCiudad.setEnabled(true);
+                jCbxDepartamento.transferFocus();
+            }
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCbxDepartamentoItemStateChanged
+
+    private void JTNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTNombreKeyTyped
+        this.habilitarBotonGuardar();
+    }//GEN-LAST:event_JTNombreKeyTyped
 
     private void JTNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTNombreActionPerformed
         this.habilitarBotonGuardar();
     }//GEN-LAST:event_JTNombreActionPerformed
 
+    private void JTNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_JTNombreFocusLost
+
+        Va.validarObligatorios(JTNombre, nombreVentana);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JTNombreFocusLost
+
+    private void JTDocumentoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTDocumentoKeyTyped
+        this.habilitarBotonGuardar();
+    }//GEN-LAST:event_JTDocumentoKeyTyped
+
+    private void JTDocumentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTDocumentoActionPerformed
+        this.habilitarBotonGuardar();
+    }//GEN-LAST:event_JTDocumentoActionPerformed
+
+    private void JTDocumentoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_JTDocumentoFocusLost
+
+        if (JTDocumento.getText().toString().equals("")) {
+
+            JOptionPane.showMessageDialog(null, "Campo obligatorio", "Gestionar Personal - G.A.P", JOptionPane.YES_OPTION,
+                icoMensajeInfor);
+            JTDocumento.requestFocusInWindow();
+        } else {
+
+            if (Lu.existe(JTDocumento.getText())) {
+
+                JOptionPane.showMessageDialog(null, "Este número de documento ya esta registrado", "Gestionar Personal - G.A.P", JOptionPane.YES_OPTION,
+                    icoMensajeInfor);
+                JTDocumento.setText("");
+                JTDocumento.requestFocusInWindow();
+            } else {
+
+                JTDocumento.transferFocus();
+            }
+
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JTDocumentoFocusLost
+
     private void ComboDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboDocActionPerformed
         this.habilitarBotonGuardar();
     }//GEN-LAST:event_ComboDocActionPerformed
 
-    private void jtEstudiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtEstudiosActionPerformed
+    private void ComboDocFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ComboDocFocusLost
+
         // TODO add your handling code here:
-    }//GEN-LAST:event_jtEstudiosActionPerformed
+    }//GEN-LAST:event_ComboDocFocusLost
+
+    private void ComboDocItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ComboDocItemStateChanged
+
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+
+            if (ComboDoc.getSelectedIndex() == 0) {
+
+                JOptionPane.showMessageDialog(null, "Debe seleccionar un tipo de documento", "Registrar Personal - G.A.P", JOptionPane.YES_OPTION,
+                    icoMensajeInfor);
+                ComboDoc.requestFocusInWindow();
+            } else {
+
+                ComboDoc.transferFocus();
+            }
+        }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ComboDocItemStateChanged
+
+    private void JTCorreoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTCorreoKeyTyped
+        this.habilitarBotonGuardar();
+    }//GEN-LAST:event_JTCorreoKeyTyped
+
+    private void JTCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTCorreoActionPerformed
+        this.habilitarBotonGuardar();
+    }//GEN-LAST:event_JTCorreoActionPerformed
+
+    private void JTCorreoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_JTCorreoFocusLost
+
+        if (JTDocumento.getText().toString().equals("")) {
+
+            JOptionPane.showMessageDialog(null, "Campo obligatorio", "Gestionar Personal - G.A.P", JOptionPane.YES_OPTION,
+                icoMensajeInfor);
+            JTDocumento.requestFocusInWindow();
+        } else {
+
+            if (!Va.validarEmail(JTCorreo.getText())) {  //Validamos si el correo electronico si corresponde al formato
+
+                JOptionPane.showMessageDialog(null, "Este formato no es el de un email", "Gestionar Personal - S.G.P",
+                    JOptionPane.OK_OPTION, icoMensajeInfor);
+                JTCorreo.requestFocus();
+            } else {
+                if (Lu.existe(JTCorreo.getText())) {
+
+                    JOptionPane.showMessageDialog(null, "Este correo ya esta registrado", "Gestionar Personal - S.G.P",
+                        JOptionPane.OK_OPTION, icoMensajeInfor);
+                    JTCorreo.requestFocusInWindow();
+                } else {
+                    JTCorreo.transferFocus();
+                }
+            }
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JTCorreoFocusLost
+
+    private void JTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTelefonoKeyTyped
+        this.habilitarBotonGuardar();
+    }//GEN-LAST:event_JTelefonoKeyTyped
+
+    private void JTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTelefonoActionPerformed
+        this.habilitarBotonGuardar();
+    }//GEN-LAST:event_JTelefonoActionPerformed
+
+    private void JTelefonoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_JTelefonoFocusLost
+
+        Va.validarObligatorios(JTelefono, nombreVentana);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JTelefonoFocusLost
+
+    private void JTMovilKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTMovilKeyTyped
+        this.habilitarBotonGuardar();
+    }//GEN-LAST:event_JTMovilKeyTyped
+
+    private void JTMovilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTMovilActionPerformed
+        this.habilitarBotonGuardar();
+    }//GEN-LAST:event_JTMovilActionPerformed
+
+    private void JTMovilFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_JTMovilFocusLost
+
+        Va.validarObligatorios(JTMovil, nombreVentana);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JTMovilFocusLost
+
+    private void JTDireccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTDireccionKeyTyped
+        this.habilitarBotonGuardar();
+    }//GEN-LAST:event_JTDireccionKeyTyped
+
+    private void JTDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTDireccionActionPerformed
+        this.habilitarBotonGuardar();
+    }//GEN-LAST:event_JTDireccionActionPerformed
+
+    private void JTDireccionFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_JTDireccionFocusLost
+
+        Va.validarObligatorios(JTDireccion, nombreVentana);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JTDireccionFocusLost
 
     private void JrbnSiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JrbnSiActionPerformed
 
@@ -1122,7 +1215,7 @@ public class RegistroPersonal extends javax.swing.JFrame {
 
             obtenido = "Si";
         }
-// TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_JrbnSiActionPerformed
 
     private void JrbnNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JrbnNoActionPerformed
@@ -1131,28 +1224,12 @@ public class RegistroPersonal extends javax.swing.JFrame {
 
             obtenido = "No";
         }
-// TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_JrbnNoActionPerformed
 
-    private void JBNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBNuevoActionPerformed
-        this.ActivarCampos();
-        swModifi = 0;
-        this.LimpiarCamposU();
-        this.desactivarBotones(); 
-    }//GEN-LAST:event_JBNuevoActionPerformed
-
-    private void JBVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBVolverActionPerformed
-        int opc;
-        opc = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea salir de Registro Personal?",
-                "Salir.  Gestión Administrativa Porcícola - G.A.P.", JOptionPane.YES_NO_OPTION,
-                JOptionPane.QUESTION_MESSAGE, icoMensajePre);
-        if (opc == 0) {
-            this.dispose();
-
-        }
-
-// TODO add your handling code here:
-    }//GEN-LAST:event_JBVolverActionPerformed
+    private void jtEstudiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtEstudiosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtEstudiosActionPerformed
 
     private void jbProfesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbProfesionActionPerformed
 
@@ -1184,11 +1261,8 @@ public class RegistroPersonal extends javax.swing.JFrame {
     }//GEN-LAST:event_jbProfesionActionPerformed
 
     private void jCprofesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCprofesionActionPerformed
-    }//GEN-LAST:event_jCprofesionActionPerformed
 
-    private void jcmbTipoContratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcmbTipoContratoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jcmbTipoContratoActionPerformed
+    }//GEN-LAST:event_jCprofesionActionPerformed
 
     private void jbContratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbContratoActionPerformed
         String[] contratos = new String[20];
@@ -1217,237 +1291,146 @@ public class RegistroPersonal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jbContratoActionPerformed
 
-    private void jBCargarImagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCargarImagenActionPerformed
-        //Crear un objeto JFileChooser
-        JFileChooser dlg = new JFileChooser();
-        //Del objeto creado llamamos el metodo setFileFilter
-        dlg.setFileFilter(filter);
-        //Abrir la ventana de dialogo para escojer las imagenes
-        int option = dlg.showOpenDialog(this);
-        //Si hacemos clic en el boton abrir
-        if (option == JFileChooser.APPROVE_OPTION) {
-            //Obtener el nombre del archivo seleccionado
-            String fil = dlg.getSelectedFile().getPath();
-            //Obtener la direccion donde se guarda la imagen
-            String file = dlg.getSelectedFile().toString();
-            jLabel1.setIcon(new ImageIcon(fil));
-            //Modificar la imagen
-            ImageIcon icon = new ImageIcon(fil);
-            //Extraer la imagen del icono
-            Image img = icon.getImage();
-            //Cambiar tamaño a la imagen       
-            Image newimg = img.getScaledInstance(153, 160, java.awt.Image.SCALE_SMOOTH);
-            //Se genera el ImageIcon con la nueva imagen
-            ImageIcon newIcon = new ImageIcon(newimg);
-            jLabel1.setIcon(newIcon);
-            //jLimagen.setSize(153,160);
-            //pone la ruta de la imagen en el textbox 1
-            jTextField1.setText(file);
-            //pone el nombre de la imagen en el textbox 2
-            jTextField2.setText(fil);
-            rutaimagen = "";
-        }
-
-// TODO add your handling code here:
-    }//GEN-LAST:event_jBCargarImagenActionPerformed
-
-    private void JBListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBListarActionPerformed
-        new ReporteUsu(Lu.getPrimero());
-
-// TODO add your handling code here:
-    }//GEN-LAST:event_JBListarActionPerformed
-
-    private void jCtiposangreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCtiposangreActionPerformed
-        int index;
-        int sw = 1;
-
-        index = jCtiposangre.getSelectedIndex();
-       // this.cargarComboBoxCiudad(index, sw);
-    }//GEN-LAST:event_jCtiposangreActionPerformed
-
-    private void JTDocumentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTDocumentoActionPerformed
-        this.habilitarBotonGuardar();
-    }//GEN-LAST:event_JTDocumentoActionPerformed
-
-    private void JTDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTDireccionActionPerformed
-        this.habilitarBotonGuardar();
-    }//GEN-LAST:event_JTDireccionActionPerformed
-
-    private void JTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTelefonoActionPerformed
-        this.habilitarBotonGuardar();
-    }//GEN-LAST:event_JTelefonoActionPerformed
-
-    private void JTMovilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTMovilActionPerformed
-        this.habilitarBotonGuardar();
-    }//GEN-LAST:event_JTMovilActionPerformed
-
-    private void JTCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTCorreoActionPerformed
-        this.habilitarBotonGuardar();
-    }//GEN-LAST:event_JTCorreoActionPerformed
-
-    private void JTDocumentoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTDocumentoKeyTyped
-        this.habilitarBotonGuardar();
-    }//GEN-LAST:event_JTDocumentoKeyTyped
-
-    private void JTNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTNombreKeyTyped
-        this.habilitarBotonGuardar();
-    }//GEN-LAST:event_JTNombreKeyTyped
-
-    private void JTDireccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTDireccionKeyTyped
-        this.habilitarBotonGuardar();
-    }//GEN-LAST:event_JTDireccionKeyTyped
-
-    private void JTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTelefonoKeyTyped
-        this.habilitarBotonGuardar();
-    }//GEN-LAST:event_JTelefonoKeyTyped
-
-    private void JTMovilKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTMovilKeyTyped
-        this.habilitarBotonGuardar();
-    }//GEN-LAST:event_JTMovilKeyTyped
-
-    private void JTCorreoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTCorreoKeyTyped
-        this.habilitarBotonGuardar();
-    }//GEN-LAST:event_JTCorreoKeyTyped
-
-    private void jCbxCiudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCbxCiudadActionPerformed
+    private void jcmbTipoContratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcmbTipoContratoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCbxCiudadActionPerformed
+    }//GEN-LAST:event_jcmbTipoContratoActionPerformed
 
-    private void ComboDocItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ComboDocItemStateChanged
+    private void jtCargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtCargoActionPerformed
 
-        if (evt.getStateChange() == ItemEvent.SELECTED) {
-
-            if (ComboDoc.getSelectedIndex() == 0) {
-
-                JOptionPane.showMessageDialog(null, "Debe seleccionar un tipo de documento", "Registrar Personal - G.A.P", JOptionPane.YES_OPTION,
-                        icoMensajeInfor);
-                ComboDoc.requestFocusInWindow();
-            } else {
-
-                ComboDoc.transferFocus();
-            }
-        }
-
-// TODO add your handling code here:
-    }//GEN-LAST:event_ComboDocItemStateChanged
-
-    private void ComboDocFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ComboDocFocusLost
-
-// TODO add your handling code here:
-    }//GEN-LAST:event_ComboDocFocusLost
-
-    private void JTDocumentoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_JTDocumentoFocusLost
-
-        if (JTDocumento.getText().toString().equals("")) {
-
-            JOptionPane.showMessageDialog(null, "Campo obligatorio", "Gestionar Personal - G.A.P", JOptionPane.YES_OPTION,
-                    icoMensajeInfor);
-            JTDocumento.requestFocusInWindow();
-        } else {
-
-            if (Lu.existe(JTDocumento.getText())) {
-
-                JOptionPane.showMessageDialog(null, "Este número de documento ya esta registrado", "Gestionar Personal - G.A.P", JOptionPane.YES_OPTION,
-                        icoMensajeInfor);
-                JTDocumento.setText("");
-                JTDocumento.requestFocusInWindow();
-            } else {
-
-                JTDocumento.transferFocus();
-            }
-
-        }
-// TODO add your handling code here:
-    }//GEN-LAST:event_JTDocumentoFocusLost
-
-    private void JTNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_JTNombreFocusLost
-
-        Va.validarObligatorios(JTNombre, nombreVentana);
-// TODO add your handling code here:
-    }//GEN-LAST:event_JTNombreFocusLost
-
-    private void JTDireccionFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_JTDireccionFocusLost
-
-        Va.validarObligatorios(JTDireccion, nombreVentana);
-// TODO add your handling code here:
-    }//GEN-LAST:event_JTDireccionFocusLost
-
-    private void JTelefonoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_JTelefonoFocusLost
-
-        Va.validarObligatorios(JTelefono, nombreVentana);
-// TODO add your handling code here:
-    }//GEN-LAST:event_JTelefonoFocusLost
-
-    private void JTMovilFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_JTMovilFocusLost
-
-        Va.validarObligatorios(JTMovil, nombreVentana);
-// TODO add your handling code here:
-    }//GEN-LAST:event_JTMovilFocusLost
-
-    private void JTCorreoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_JTCorreoFocusLost
-
-        if (JTDocumento.getText().toString().equals("")) {
-
-            JOptionPane.showMessageDialog(null, "Campo obligatorio", "Gestionar Personal - G.A.P", JOptionPane.YES_OPTION,
-                    icoMensajeInfor);
-            JTDocumento.requestFocusInWindow();
-        } else {
-
-            if (!Va.validarEmail(JTCorreo.getText())) {  //Validamos si el correo electronico si corresponde al formato
-
-                JOptionPane.showMessageDialog(null, "Este formato no es el de un email", "Gestionar Personal - S.G.P",
-                        JOptionPane.OK_OPTION, icoMensajeInfor);
-                JTCorreo.requestFocus();
-            } else {
-
-                JTCorreo.transferFocus();
-            }
-        }
-// TODO add your handling code here:
-    }//GEN-LAST:event_JTCorreoFocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtCargoActionPerformed
 
     private void jtCargoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtCargoFocusLost
 
         if (JTDocumento.getText().toString().equals("")) {
 
             JOptionPane.showMessageDialog(null, "Campo obligatorio", "Gestionar Personal - G.A.P", JOptionPane.YES_OPTION,
-                    icoMensajeInfor);
+                icoMensajeInfor);
             JTDocumento.requestFocusInWindow();
         } else {
-            
+
             this.habilitarBotonGuardar();
         }
-// TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_jtCargoFocusLost
 
-    private void jCbxDepartamentoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCbxDepartamentoItemStateChanged
+    private void JBNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBNuevoActionPerformed
+        this.ActivarCampos();
+        swModifi = 0;
+        this.LimpiarCamposU();
+        this.desactivarBotones();
+    }//GEN-LAST:event_JBNuevoActionPerformed
 
-        if (evt.getStateChange() == ItemEvent.SELECTED) {
+    private void JBGuardarUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBGuardarUActionPerformed
 
-            if (ComboDoc.getSelectedIndex() == 0) {
+        persona = this.GuardarCamposU();
+        String s = Va.Validacion(persona);
+        if (this.validacionObligatorios().equals("")) {
+            if (swModifi == 0) {
+                if (!Lu.existe(persona.getDocumento())) {
+                    DatosPersonal u2 = persona;
 
-                jCbxCiudad.removeAllItems();
-                jCbxCiudad.setEnabled(false);
-                jCbxDepartamento.requestFocusInWindow();
+                    if (Lu.guardarUsuario(u2)) {
+                        JOptionPane.showMessageDialog(this, "Se guardó Correctamente", "Registro Personal - G.A.P", JOptionPane.YES_NO_OPTION,
+                            icoMensajePre);
+                        this.LimpiarCamposU();
+
+                    } else {
+                        JOptionPane.showMessageDialog(this, "No se guardó correctamente", "Registro Personal - G.A.P", JOptionPane.YES_NO_OPTION,
+                            icoMensajePre);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "Este usuario ya existe", "Registro Personal - G.A.P", JOptionPane.YES_NO_OPTION,
+                        icoMensajePre);
+                }
             } else {
+                int opc;
+                opc = JOptionPane.showConfirmDialog(null, "Esta seguro que desea modificar este registro",
+                    "Datos Animal - G.A.P", JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE, icoMensajePre);
+                if (opc == 0) {
+                    if (Lu.modificarUsuario(persona)) {
 
-                int index;
-                int sw = 0;
+                        JOptionPane.showMessageDialog(null, "El registro se modifico correctamente", "Registro Personal - G.A.P",
+                            JOptionPane.OK_OPTION, icoMensajeInfor);
+                        this.LimpiarCamposU();
+                        this.DesactivarCampos();
+                    } else {
 
-                index = jCbxDepartamento.getSelectedIndex();
-                deparMuni.cargarMunicipios(index, jCbxCiudad);
-                jCbxCiudad.setEnabled(true);
-                jCbxDepartamento.transferFocus();
+                        JOptionPane.showMessageDialog(null, "El registro no fue modificado", "Registro Personal - G.A.P",
+                            JOptionPane.OK_OPTION, icoMensajeInfor);
+                    }
+                }
             }
+        } else {
+            JOptionPane.showMessageDialog(this, "¡Complete los campos obligatorios(*)!", "Registro Personal - G.A.P", JOptionPane.YES_NO_OPTION,
+                icoMensajePre);
         }
-// TODO add your handling code here:
-    }//GEN-LAST:event_jCbxDepartamentoItemStateChanged
 
-    private void jtCargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtCargoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JBGuardarUActionPerformed
 
-        
-// TODO add your handling code here:
-    }//GEN-LAST:event_jtCargoActionPerformed
+    private void JBModificarUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBModificarUActionPerformed
+
+        swModifi = 1;
+        this.LlenarDatosU();
+        this.ActivarCampos();
+        this.desactivarBotones();
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JBModificarUActionPerformed
+
+    private void JBConsultaruActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBConsultaruActionPerformed
+
+        swModifi = 0;
+        this.LlenarDatosU();
+        this.DesactivarCampos();
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JBConsultaruActionPerformed
+
+    private void JBEliminarUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBEliminarUActionPerformed
+
+        String s = JOptionPane.showInputDialog(this, "Ingrese el documento del usuario a eliminar");
+
+        if (Lu.existe(s)) {
+            JOptionPane.showMessageDialog(this, "Esta seguro que desea eliminar este usuario", "Registro Personal - G.A.P", JOptionPane.YES_NO_OPTION,
+                icoMensajePre);
+            if (Lu.eliminarUsuario(s)) {
+                JOptionPane.showMessageDialog(this, "Se ha eliminado correctamente", "Registro Personal - G.A.P", JOptionPane.YES_NO_OPTION,
+                    icoMensajePre);
+                this.LimpiarCamposU();
+            } else {
+                JOptionPane.showMessageDialog(this, "No se pudo eliminar el usuario", "Registro Personal - G.A.P", JOptionPane.YES_NO_OPTION,
+                    icoMensajePre);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "El usuario no existe", "Registro Personal - G.A.P", JOptionPane.YES_NO_OPTION,
+                icoMensajePre);
+        }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JBEliminarUActionPerformed
+
+    private void JBLimpiarUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBLimpiarUActionPerformed
+        this.LimpiarCamposU();
+        this.DesactivarCampos();
+        this.activarBotones();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JBLimpiarUActionPerformed
+
+    private void JBVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBVolverActionPerformed
+        int opc;
+        opc = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea salir de Registro Personal?",
+            "Salir.  Gestión Administrativa Porcícola - G.A.P.", JOptionPane.YES_NO_OPTION,
+            JOptionPane.QUESTION_MESSAGE, icoMensajePre);
+        if (opc == 0) {
+            this.dispose();
+
+        }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JBVolverActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1539,8 +1522,6 @@ public class RegistroPersonal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JButton jbContrato;
@@ -1573,8 +1554,7 @@ public class RegistroPersonal extends javax.swing.JFrame {
         jCprofesion.setEnabled(false);
         jCtiporh.setEnabled(false);
         jCtiposangre.setEnabled(false);
-        jcmbTipoContrato.setEnabled(false);
-        jPanel6.setEnabled(false);
+        jcmbTipoContrato.setEnabled(false); 
         jdFechaNacimiento.setEnabled(false);
         JrbnActivo.setEnabled(false);
         JrbnInactivo.setEnabled(false);
@@ -1585,7 +1565,7 @@ public class RegistroPersonal extends javax.swing.JFrame {
         JrbnNo.setEnabled(false);
         jdFechaFinal.setEnabled(false);
         jdFechaContrato.setEnabled(false);
-        jbContrato.setEnabled(false); 
+        jbContrato.setEnabled(false);
     }
 
     public void ActivarCampos() {
@@ -1605,8 +1585,7 @@ public class RegistroPersonal extends javax.swing.JFrame {
         jCbxDepartamento.setEnabled(true);
         jCprofesion.setEnabled(true);
         jCtiposangre.setEnabled(true);
-        jcmbTipoContrato.setEnabled(true);
-        jPanel6.setEnabled(true);
+        jcmbTipoContrato.setEnabled(true); 
         jdFechaNacimiento.setEnabled(true);
         JrbnActivo.setEnabled(true);
         JrbnInactivo.setEnabled(true);
@@ -1622,9 +1601,9 @@ public class RegistroPersonal extends javax.swing.JFrame {
         //Activar la opción Activo
         JrbnActivo.setSelected(true);
         JrbnInactivo.setSelected(false);
- 
+
     }
-    
+
     public void desactivarBotones() {
 
         JBNuevo.setEnabled(false);
@@ -1726,7 +1705,7 @@ public class RegistroPersonal extends javax.swing.JFrame {
         }
         if (opc != -1) {
 
-            if (buscarPersonal != null) { 
+            if (buscarPersonal != null) {
                 JTDocumento.setText(buscarPersonal.getDocumento());
                 JTDireccion.setText(buscarPersonal.getDireccion());
                 JTelefono.setText(buscarPersonal.getTelefono());
@@ -1840,34 +1819,33 @@ public class RegistroPersonal extends javax.swing.JFrame {
 
     }
 
-  /*  private void cargarComboBoxCiudad(int newIndex, int newSw) {
-        int i = newIndex - 1;
-        int sw = newSw;
+    /*  private void cargarComboBoxCiudad(int newIndex, int newSw) {
+     int i = newIndex - 1;
+     int sw = newSw;
 
-        if (sw == 0) {
-            jCbxCiudad.removeAllItems();
-            jCbxCiudad.setEnabled(true);
+     if (sw == 0) {
+     jCbxCiudad.removeAllItems();
+     jCbxCiudad.setEnabled(true);
 
-            if (i == -1) {
-                jCbxCiudad.addItem("...");
-                jCbxCiudad.setEnabled(false);
-            } else {
-                deparMuni.cargarMunicipios(i, jCbxCiudad);
-            }
-        } else {
-            jCtiporh.removeAllItems();
-            jCtiporh.setEnabled(true);
+     if (i == -1) {
+     jCbxCiudad.addItem("...");
+     jCbxCiudad.setEnabled(false);
+     } else {
+     deparMuni.cargarMunicipios(i, jCbxCiudad);
+     }
+     } else {
+     jCtiporh.removeAllItems();
+     jCtiporh.setEnabled(true);
 
-            if (i == -1) {
-                jCtiporh.addItem("...");
-                jCtiporh.setEnabled(false);
-            } else {
-                jCtiporh.addItem("+");
-                jCtiporh.addItem("-");
-            }
-        }
-    }*/ 
-
+     if (i == -1) {
+     jCtiporh.addItem("...");
+     jCtiporh.setEnabled(false);
+     } else {
+     jCtiporh.addItem("+");
+     jCtiporh.addItem("-");
+     }
+     }
+     }*/
     private void habilitarBotonGuardar() {
 
         String n = JTDocumento.getText();

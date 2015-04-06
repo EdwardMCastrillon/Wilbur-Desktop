@@ -121,8 +121,20 @@ public class ListaUsuario {
     public boolean existe(String documento) {
         boolean sw = false;
         NodoUsuario p = primero;
-        while (p != null) {
+        while (p != null && sw == false) {
             if (p.getUsuario().getDocumento().equals(documento)) {
+                sw = true;
+            }
+            p = p.getLiga();
+        }
+        return sw;
+    }
+    
+    public boolean existeCorreo(String correo) {
+        boolean sw = false;
+        NodoUsuario p = primero;
+        while (p != null && sw == false) {
+            if (p.getUsuario().getCorreo().equals(correo)) {
                 sw = true;
             }
             p = p.getLiga();

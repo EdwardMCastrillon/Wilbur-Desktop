@@ -198,6 +198,34 @@ public class ListaPerfil {
     	return false;
     }
     
+    public boolean existeUsuario(String usuario){
+    	
+    	NodoPerfil auxi=cabeza;
+    	while (auxi !=null){
+    		
+    		if (auxi.getPerfil().getUsuario().equals(usuario)){
+    			
+    			return true;
+    		}
+    		auxi=auxi.getLiga();
+    	}
+    	return false;
+    }
+    
+    public boolean existeContraseña(String contra){
+    	
+    	NodoPerfil auxi=cabeza;
+    	while (auxi !=null){
+    		
+    		if (auxi.getPerfil().getContraIngreso().equals(contra)){
+    			
+    			return true;
+    		}
+    		auxi=auxi.getLiga();
+    	}
+    	return false;
+    }
+    
     /** Metodo en el cual se confirman los datos del usuario para recuperar la contraseña en la lista de perfiles
      *
      *@param usuario nombre de usuario de ingreso al sistema

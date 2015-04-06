@@ -46,9 +46,9 @@ public class MenuPrincipal implements ActionListener {
     ReportePartos reportePartos;
     ReportePersonal reportePersonal;
 
-    public MenuPrincipal( String perfil, ListaAnimal listaAnima, ListaUsuario listaPersona, ListaPartos listaPart, ListaRazas R, ListaPerfil listaPerfi) {
+    public MenuPrincipal( String perfil, String nombre, ListaAnimal listaAnima, ListaUsuario listaPersona, ListaPartos listaPart, ListaRazas R, ListaPerfil listaPerfi) {
 
-        FraMenuPri = new JFrame("Menú Principal - " + perfil);
+        FraMenuPri = new JFrame("Menú Principal - " + nombre);
         FraMenuPri.setBounds(10, 10, 1350, 710);
         FraMenuPri.setLayout(null);
         FraMenuPri.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//DETENER LA EJECUCIÓN CUANDO CIERRE

@@ -239,18 +239,19 @@ public class Ingreso extends javax.swing.JFrame {
         if (perfi != null) {
             if (perfi.getUsuario().equals(JTUsuario.getText()) && perfi.getContraIngreso().equals(JTClave.getText())) {
                 nombre = perfi.getNombre();
+                perfil = perfi.getPerfil();
                 dif = listaPerfi.fechaCambioContra(perfi.getFecha());
                 if (dif >= 25 && dif < 30) {
                     ///if (listaPerfi.fechaCambioContra(perfi.getFecha())) {
                     JOptionPane.showMessageDialog(null, "Debe cambiar su contraseña." + "\n" + "Se recomienda cambiar cada 30 días,"
                             + "\n" + "después del primer registro", "Inicio de Sesion - S.G.P", JOptionPane.OK_OPTION, icoMensajeInfor);
-                    MenuPrincipal MeP = new MenuPrincipal(nombre, A, U, P, R, listaPerfi);
+                    MenuPrincipal MeP = new MenuPrincipal(perfil,nombre, A, U, P, R, listaPerfi);
                     this.dispose();
                 } else {
                     if (dif >= 30) {
                         JFrameCambiarContraseña jc = new JFrameCambiarContraseña(listaPerfi, U);
                     } else {
-                        MenuPrincipal MeP = new MenuPrincipal(nombre, A, U, P, R, listaPerfi);
+                        MenuPrincipal MeP = new MenuPrincipal(perfil,nombre, A, U, P, R, listaPerfi);
                         this.dispose();
                     }
                 }
