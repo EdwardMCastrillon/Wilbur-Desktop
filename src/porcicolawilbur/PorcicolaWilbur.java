@@ -58,12 +58,12 @@ public class PorcicolaWilbur {
         String[][] usuarios = new String[8][4];
         
         DatosPerfil perfil = new DatosPerfil();
-    	perfil.setNumCedula("8359450");
+    	perfil.setNumCedula("1000443942");
         perfil.setNombre("Edward Monsalve Cantrillon");
     	perfil.setPerfil("Administrador");
     	perfil.setUsuario("Edward");
-    	perfil.setContraIngreso("1478");
-    	perfil.setRepetirContraIngreso("1478"); 
+    	perfil.setContraIngreso("Edward6628");
+    	perfil.setRepetirContraIngreso("Edward6628"); 
     	perfil.setFecha(new Date(115,02,06));
     	Pe.guardarPerfil(perfil);
     	
@@ -111,6 +111,31 @@ public class PorcicolaWilbur {
     	persona.setFechaOtroEst(new Date(109,06,15));
     	persona.setFechaNacimiento(new Date(85,10,01));	
     	U.guardarUsuario(persona);
+        
+        DatosPersonal persona2 = new DatosPersonal();
+    	persona.setTipoDoc("Cedula de Ciudadania");
+    	persona.setDocumento("1000443942");
+    	persona.setNombre("Edward Monsalve Castrillon");
+    	persona.setDepart("Antioquia");
+    	persona.setCiudad("Medellin");
+    	persona.setSangre("O");
+    	persona.setRh("+");
+    	persona.setEstado("Activo");
+    	persona.setRutaImagen(ruta.toString());
+    	persona.setDireccion("CALLE 61 # 42-54");
+    	persona.setTelefono("2921766");
+    	persona.setCorreo("edwardm0213@gmail.com");
+    	persona.setMovil("3006550592");
+    	persona.setProfesion("Criador");
+    	persona.setOtroEst("Crianza de Cerdos");
+    	persona.setObtenidoEstudio("Si");
+    	persona.setCargo("Administrador"); 
+    	persona.setTipoContrato("Termino Fijo"); 
+    	persona.setFechaContrato(new Date(110,8,3));
+    	persona.setFechaTitulo(new Date(112,8,10));
+    	persona.setFechaOtroEst(new Date(109,06,15));
+    	persona.setFechaNacimiento(new Date(85,10,01));	
+    	U.guardarUsuario(persona2);
    
 
         new Ingreso(U,P,A,R,Pe);
