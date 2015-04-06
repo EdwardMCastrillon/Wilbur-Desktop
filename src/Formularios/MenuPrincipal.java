@@ -18,6 +18,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import Reportes.*;
 
 /**
  *
@@ -29,8 +30,9 @@ public class MenuPrincipal implements ActionListener {
     JMenuBar MenuBarPPal;
     JMenu menuPersonal, menuAnimal, menuJaulas, menuMaestros, menuAlmacen, menuPublicidad, menuAyuda, menuInformes;
     JMenuItem menItemPersonal, menItemPerfil, menItemModContra, menItemSalir, menItemAnimal, menItemHojaVida, menItemAsigJaula, menItemAliJaula;
-    JMenuItem menItemAlimentos, menItemMedica, menItemPublicidad, menItemWeb, menItemReportes, menItemBackup, menItemManual, menItemAcerca, menItemPartos;
-    JMenuItem menItemDepar, menItemMuni, menItemRazas, menItemJaulas, menItemVacunas, menItemPermisos, menItemEtapa, menItemAgentes, menItemRecuperar;
+    JMenuItem menItemAlimentos, menItemMedica, menItemPublicidad, menItemWeb, menItemBackup, menItemManual, menItemAcerca, menItemPartos;
+    JMenuItem menItemDepar, menItemMuni, menItemRazas, menItemJaulas, menItemVacunas, menItemPermisos, menItemEtapa, menItemAgentes, menItemRecuperar,
+              menItemReportesPersonal,menItemReportesPartos,menItemReportesAnimal;
     ImageIcon iconFondo, icoMensajePre;
     Image icoCabecera;
     JLabel labelFondo;
@@ -39,7 +41,10 @@ public class MenuPrincipal implements ActionListener {
     ListaPartos listaPart;
     ListaRazas listaRazas;
     ListaUsuario listaPersona;
-    ListaPerfil listaPerfi; 
+    ListaPerfil listaPerfi;
+    ReporteAnimal reporteAnimal;
+    ReportePartos reportePartos;
+    ReportePersonal reportePersonal;
 
     public MenuPrincipal( String perfil, ListaAnimal listaAnima, ListaUsuario listaPersona, ListaPartos listaPart, ListaRazas R, ListaPerfil listaPerfi) {
 
@@ -85,10 +90,7 @@ public class MenuPrincipal implements ActionListener {
                 menItemPersonal.addActionListener(this);
                 menItemPerfil = new JMenuItem("Asignar Perfil");
                 menuPersonal.add(menItemPerfil);
-                menItemPerfil.addActionListener(this);
-                menItemRecuperar = new JMenuItem("Recuperar Contraseña");
-                menuPersonal.add(menItemRecuperar);
-                menItemRecuperar.addActionListener(this);
+                menItemPerfil.addActionListener(this); 
                 menItemModContra = new JMenuItem("Modificar Contraseña");
                 menuPersonal.add(menItemModContra);
                 menItemModContra.addActionListener(this);
@@ -124,9 +126,15 @@ public class MenuPrincipal implements ActionListener {
 
                 menuInformes = new JMenu("Gestionar Informes");
                 MenuBarPPal.add(menuInformes);
-                menItemReportes = new JMenuItem("Reportes");
-                menuInformes.add(menItemReportes);
-                menItemReportes.addActionListener(this);
+                menItemReportesPartos = new JMenuItem("Reportes Partos");
+                menuInformes.add(menItemReportesPartos);
+                menItemReportesPartos.addActionListener(this);
+                menItemReportesPersonal = new JMenuItem("Reportes Personal");
+                menuInformes.add(menItemReportesPersonal);
+                menItemReportesPersonal.addActionListener(this);
+                menItemReportesAnimal = new JMenuItem("Reportes Animales");
+                menuInformes.add(menItemReportesAnimal);
+                menItemReportesAnimal.addActionListener(this);
                 menItemBackup = new JMenuItem("Copia de Seguridad");
                 menuInformes.add(menItemBackup);
 
@@ -170,12 +178,7 @@ public class MenuPrincipal implements ActionListener {
                 menuAlmacen = new JMenu("Gestionar Almacén");
                 MenuBarPPal.add(menuAlmacen);
                 menItemMedica = new JMenuItem("Bodega Medicamentos");
-                menuAlmacen.add(menItemMedica);
-
-                menuInformes = new JMenu("Gestionar Informes");
-                MenuBarPPal.add(menuInformes);
-                menItemReportes = new JMenuItem("Reportes");
-                menuInformes.add(menItemReportes);
+                menuAlmacen.add(menItemMedica); 
 
                 menuPublicidad = new JMenu("Publicidad");
                 MenuBarPPal.add(menuPublicidad);
@@ -238,7 +241,9 @@ public class MenuPrincipal implements ActionListener {
         this.listaRazas = R;
         this.listaPersona = listaPersona; 
         this.listaPerfi=listaPerfi;
-        //reporte = new ReportePerfiles();
+        this.reporteAnimal = new ReporteAnimal();
+        this.reportePartos = new ReportePartos();
+        this.reportePersonal = new ReportePersonal();
 
     }
 
@@ -267,10 +272,24 @@ public class MenuPrincipal implements ActionListener {
             JFrameCambiarContraseña cc = new JFrameCambiarContraseña(listaPerfi, listaPersona);
         }
 
-        if (e.getSource() == menItemReportes) {
-            String Tabla = "Perfiles";
+        if (e.getSource() == menItemReportesPartos) {
+            String Tabla = "Partos";
             String Campo = "Registros";
-            //reporte.crearInformeTabla(Tabla,Campo,listaPerfi);
+            reportePartos.crearInformeTabla(Tabla,Campo,listaPart);
+
+        }
+        
+        if (e.getSource() == menItemReportesPersonal) {
+            String Tabla = "Personal";
+            String Campo = "Registros";
+            reportePersonal.crearInformeTabla(Tabla,Campo,listaPersona);
+
+        }
+        
+        if (e.getSource() == menItemReportesAnimal) {
+            String Tabla = "Animales";
+            String Campo = "Registros";
+            reporteAnimal.crearInformeTabla(Tabla,Campo,listaAnima);
 
         }
 

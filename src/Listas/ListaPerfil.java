@@ -242,16 +242,18 @@ public class ListaPerfil {
     	return null;
     }
     
-    public boolean fechaCambioContra(Date fecha){
+    public long fechaCambioContra(Date fecha){
     	
     	Date fechaActual = new Date();
-    	if (((fechaActual.getTime() - fecha.getTime())/MILI_SEGU_DIA) >= 25){
+        long  dif = (fechaActual.getTime() - fecha.getTime())/MILI_SEGU_DIA;
+    	/*if (((fechaActual.getTime() - fecha.getTime())/MILI_SEGU_DIA) >= 25){
     		
     		return true;
     	}else{
     		
     		return false;
-    	}
+    	}*/
+        return dif;
     }
     
     /** Modificar la contraseña de ingreso en la lista de perfiles

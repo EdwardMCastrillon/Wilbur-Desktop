@@ -14,8 +14,8 @@ import Utilidades.Validaciones;
  *
  * @author Edward
  */
-public class Ingreso extends javax.swing.JFrame { 
-    
+public class Ingreso extends javax.swing.JFrame {
+
     String perfil;
     ListaAnimal A;
     ListaUsuario U;
@@ -24,7 +24,7 @@ public class Ingreso extends javax.swing.JFrame {
     ListaPerfil listaPerfi;
     ImageIcon icoMensajeInfor, icoMensajePre;
     Validaciones validar;
-    String nombreVentana; 
+    String nombreVentana;
 
     public Ingreso() {
         initComponents();
@@ -41,7 +41,7 @@ public class Ingreso extends javax.swing.JFrame {
         P = Lp;
         A = La;
         R = Lr;
-        this.listaPerfi = listaPerfi; 
+        this.listaPerfi = listaPerfi;
         setLocationRelativeTo(null);
         setResizable(false);
         setTitle("Ingreso al Sistema");
@@ -49,7 +49,7 @@ public class Ingreso extends javax.swing.JFrame {
         icoMensajeInfor = new ImageIcon("C:\\OriginalPorcicolaWilbur\\src\\Imagenes\\IconoInformacion.JPG");
         icoMensajePre = new ImageIcon("C:\\OriginalPorcicolaWilbur\\src\\Imagenes\\IconoPregunta.JPG");
         validar = new Validaciones();
-        nombreVentana = "Ingraso al Sistema - G.A.P.";
+        nombreVentana = "Ingreso al Sistema - G.A.P.";
 
     }
 
@@ -233,43 +233,28 @@ public class Ingreso extends javax.swing.JFrame {
 
     private void JBIngresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBIngresoActionPerformed
 
-        /*   String usuario = JTUsuario.getText();
-         String password = new String(JTClave.getPassword());
-
-         if (usuario.equalsIgnoreCase("") || password.equals("")) {
-
-         JOptionPane.showMessageDialog(this, "¡Debe diligenciar todos los campos!", "Información Incompleta", JOptionPane.YES_NO_OPTION,
-         icoMensajePre);
-
-         } else {
-
-         try {
-         if (ValidarUsuario(usuario, password, Usuarios)) {
-         System.out.println(perfil);
-         MenuPrincipal mn = new MenuPrincipal(Usuarios, perfil, posUsuario, A, U, P, R, listaPerfi);
-         this.dispose();
-         } else {
-         JOptionPane.showMessageDialog(this, "Este usuario no está registrado.", "Gestión Administrativa Pórcicola", JOptionPane.YES_NO_OPTION,
-         icoMensajePre);
-         JTUsuario.setText("");
-         JTClave.setText("");
-         }
-         } catch (UnknownHostException ex) {
-         Logger.getLogger(Ingreso.class.getName()).log(Level.SEVERE, null, ex);
-         }
-         }*/
         String nombre;
         DatosPerfil perfi = listaPerfi.confirmarUsuario(JTUsuario.getText(), JTClave.getText());
-
+        long dif;
         if (perfi != null) {
             if (perfi.getUsuario().equals(JTUsuario.getText()) && perfi.getContraIngreso().equals(JTClave.getText())) {
                 nombre = perfi.getPerfil();
-              /*  if (listaPerfi.fechaCambioContra(perfi.getFecha())) {
+                dif = listaPerfi.fechaCambioContra(perfi.getFecha());
+                if (dif >= 25 && dif < 30) {
+                    ///if (listaPerfi.fechaCambioContra(perfi.getFecha())) {
                     JOptionPane.showMessageDialog(null, "Debe cambiar su contraseña." + "\n" + "Se recomienda cambiar cada 30 días,"
                             + "\n" + "después del primer registro", "Inicio de Sesion - S.G.P", JOptionPane.OK_OPTION, icoMensajeInfor);
-                }*/
-                MenuPrincipal MeP = new MenuPrincipal( nombre, A, U, P, R, listaPerfi);
-                this.dispose();
+                    MenuPrincipal MeP = new MenuPrincipal(nombre, A, U, P, R, listaPerfi);
+                    this.dispose();
+                } else {
+                    if (dif == 30) {
+                        JFrameCambiarContraseña jc = new JFrameCambiarContraseña(listaPerfi, U);
+                    } else {
+                        MenuPrincipal MeP = new MenuPrincipal(nombre, A, U, P, R, listaPerfi);
+                        this.dispose();
+                    }
+                }
+
             }
         } else {
 
@@ -288,20 +273,26 @@ public class Ingreso extends javax.swing.JFrame {
 
     private void JBOlvidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBOlvidoActionPerformed
 
-        new RecuperarPass(U.getPrimero(), listaPerfi.getCabeza() );
+        new RecuperarPass(U.getPrimero(), listaPerfi.getCabeza());
 
         // TODO add your handling code here:
     }//GEN-LAST:event_JBOlvidoActionPerformed
 
     private void JTUsuarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_JTUsuarioFocusLost
 
-        validar.validarObligatorios(JTUsuario, nombreVentana);
+        if (evt.getSource() == JTUsuario) {
+
+            validar.validarObligatorios(JTUsuario, nombreVentana);
+        }
 // TODO add your handling code here:
     }//GEN-LAST:event_JTUsuarioFocusLost
 
     private void JTClaveFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_JTClaveFocusLost
 
-        validar.validarObligatoriosPas(JTClave, nombreVentana);
+        if (evt.getSource() == JTClave){
+            validar.validarObligatoriosPas(JTClave, nombreVentana);
+        }
+        
 // TODO add your handling code here:
     }//GEN-LAST:event_JTClaveFocusLost
 
@@ -349,5 +340,4 @@ public class Ingreso extends javax.swing.JFrame {
     private javax.swing.JLabel lblUsuario;
     // End of variables declaration//GEN-END:variables
 
-    
 }

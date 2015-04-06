@@ -64,27 +64,27 @@ public class PorcicolaWilbur {
     	perfil.setUsuario("Edward");
     	perfil.setContraIngreso("1478");
     	perfil.setRepetirContraIngreso("1478"); 
-    	perfil.setFecha(new Date(114,10,11));
+    	perfil.setFecha(new Date(115,02,02));
     	Pe.guardarPerfil(perfil);
     	
     	DatosPerfil perfil1 = new DatosPerfil();
     	perfil1.setNumCedula("8359459");
-        perfil.setNombre("Ivan Dario Villa Ramirez"); 
+        perfil1.setNombre("Ivan Dario Villa Ramirez"); 
     	perfil1.setPerfil("Veterinario");
     	perfil1.setUsuario("Ivan");
     	perfil1.setContraIngreso("Ivan.1585");
     	perfil1.setRepetirContraIngreso("Ivan.1585"); 
-    	perfil.setFecha(new Date(114,10,11));
+    	perfil1.setFecha(new Date(115,02,04));
     	Pe.guardarPerfil(perfil1);
         
         DatosPerfil perfil12= new DatosPerfil();
     	perfil12.setNumCedula("8359452");
-        perfil.setNombre("Juan Esteban Acevedo"); 
+        perfil12.setNombre("Juan Esteban Acevedo"); 
     	perfil12.setPerfil("Administrador");
     	perfil12.setUsuario("Juan");
     	perfil12.setContraIngreso("Ju@N1984");
     	perfil12.setRepetirContraIngreso("Ju@N1984");
-    	perfil.setFecha(new Date(114,10,11)); 
+    	perfil12.setFecha(new Date(115,03,01)); 
     	Pe.guardarPerfil(perfil12); 
         
         DatosPersonal persona = new DatosPersonal();
