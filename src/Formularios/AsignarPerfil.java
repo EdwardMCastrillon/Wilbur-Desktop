@@ -9,6 +9,7 @@ import Utilidades.ReportePerfil;
 import javax.swing.JOptionPane;
 import Utilidades.Validaciones;
 import java.awt.event.ItemEvent;
+import java.util.Date;
 import javax.swing.ImageIcon;
 
 /**
@@ -751,6 +752,7 @@ public class AsignarPerfil extends javax.swing.JFrame {
         perfil.setUsuario(jtxtNombrePerf.getText());
         perfil.setContraIngreso(jPassContra.getText());
         perfil.setRepetirContraIngreso(jPassRepeContra.getText());
+        perfil.setFecha(new Date());
     }
 
     public void desactivarCampos() {

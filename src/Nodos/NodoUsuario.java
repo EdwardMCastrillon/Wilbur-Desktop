@@ -13,6 +13,7 @@ import Identidades.*;
  */
 public class NodoUsuario {
     private DatosPersonal Usuario;
+    private NodoUsuario Liga;
 
     public DatosPersonal getUsuario() {
         return Usuario;
@@ -31,6 +32,5 @@ public class NodoUsuario {
     public void setLiga(NodoUsuario Liga) {
         this.Liga = Liga;
     }
-    private NodoUsuario Liga;
             
 }

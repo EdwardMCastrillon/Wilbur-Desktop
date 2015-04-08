@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 public class RecuperarPass extends javax.swing.JFrame {
 
     NodoPerfil auxi;
-    NodoUsuario U;
+    NodoUsuario auxiliarUsuaro;
     boolean sw = false;
     boolean sw1 = false;
     String correo, nombre, usuario, contraseña, perfil;
@@ -33,7 +33,7 @@ public class RecuperarPass extends javax.swing.JFrame {
         this.setTitle("Recuperar password");
 
         initComponents();
-        U = N;
+        auxiliarUsuaro = N;
         this.auxi = auxi;
 
         //Ensayando actualizaciones en GitHub
@@ -118,14 +118,14 @@ public class RecuperarPass extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String documento = jtxtDocumento.getText();
-        while (U != null && sw == false) {
-            if (U.getUsuario().getDocumento().equals(documento)) {
-                nombre = U.getUsuario().getNombre();
-                correo = U.getUsuario().getCorreo();
+        while (auxiliarUsuaro != null && sw == false) {
+            if (auxiliarUsuaro.getUsuario().getDocumento().equals(documento)) {
+                nombre = auxiliarUsuaro.getUsuario().getNombre();
+                correo = auxiliarUsuaro.getUsuario().getCorreo();
                 sw = true;
                 while (auxi != null && sw1 == false) {
 
-                    if (auxi.getPerfil().getNumCedula().equals(U.getUsuario().getDocumento())) {
+                    if (auxi.getPerfil().getNumCedula().equals(auxiliarUsuaro.getUsuario().getDocumento())) {
 
                         contraseña = auxi.getPerfil().getContraIngreso();
                         usuario = auxi.getPerfil().getUsuario();
@@ -137,7 +137,7 @@ public class RecuperarPass extends javax.swing.JFrame {
                 this.dispose();
 
             } else {
-                U = U.getLiga();
+                auxiliarUsuaro = auxiliarUsuaro.getLiga();
             }
         }
         if (sw == false) {

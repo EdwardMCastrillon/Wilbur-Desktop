@@ -51,21 +51,20 @@ public class PorcicolaWilbur {
         Y.setNombreRaza("Yorkshire (Large White)");
         R.guardarRaza(Y);
         
-        ListaAnimal A = new ListaAnimal();
-        ListaUsuario U = new ListaUsuario();
-        ListaPartos P = new ListaPartos();
-        ListaPerfil Pe = new ListaPerfil();
-        String[][] usuarios = new String[8][4];
+        ListaAnimal listaAnimal = new ListaAnimal();
+        ListaUsuario listaPersonal = new ListaUsuario();
+        ListaPartos listaParto = new ListaPartos();
+        ListaPerfil listaPerfil = new ListaPerfil(); 
         
         DatosPerfil perfil = new DatosPerfil();
     	perfil.setNumCedula("1000443942");
         perfil.setNombre("Edward Monsalve Cantrillon");
     	perfil.setPerfil("Administrador");
     	perfil.setUsuario("Edward");
-    	perfil.setContraIngreso("Edward6628");
-    	perfil.setRepetirContraIngreso("Edward6628"); 
-    	perfil.setFecha(new Date(115,02,06));
-    	Pe.guardarPerfil(perfil);
+    	perfil.setContraIngreso("Edward.6628");
+    	perfil.setRepetirContraIngreso("Edward.6628"); 
+    	perfil.setFecha(new Date(115,03,06));
+    	listaPerfil.guardarPerfil(perfil);
     	
     	DatosPerfil perfil1 = new DatosPerfil();
     	perfil1.setNumCedula("8359459");
@@ -75,7 +74,7 @@ public class PorcicolaWilbur {
     	perfil1.setContraIngreso("Ivan.1585");
     	perfil1.setRepetirContraIngreso("Ivan.1585"); 
     	perfil1.setFecha(new Date(115,04,04));
-    	Pe.guardarPerfil(perfil1);
+    	listaPerfil.guardarPerfil(perfil1);
         
         DatosPerfil perfil12= new DatosPerfil();
     	perfil12.setNumCedula("8359452");
@@ -85,7 +84,7 @@ public class PorcicolaWilbur {
     	perfil12.setContraIngreso("Ju@N1984");
     	perfil12.setRepetirContraIngreso("Ju@N1984");
     	perfil12.setFecha(new Date(115,03,01)); 
-    	Pe.guardarPerfil(perfil12); 
+    	listaPerfil.guardarPerfil(perfil12); 
         
         DatosPersonal persona = new DatosPersonal();
     	persona.setTipoDoc("Cedula de Ciudadania");
@@ -110,35 +109,35 @@ public class PorcicolaWilbur {
     	persona.setFechaTitulo(new Date(112,8,10));
     	persona.setFechaOtroEst(new Date(109,06,15));
     	persona.setFechaNacimiento(new Date(85,10,01));	
-    	U.guardarUsuario(persona);
+    	listaPersonal.guardarUsuario(persona);
         
         DatosPersonal persona2 = new DatosPersonal();
-    	persona.setTipoDoc("Cedula de Ciudadania");
-    	persona.setDocumento("1000443942");
-    	persona.setNombre("Edward Monsalve Castrillon");
-    	persona.setDepart("Antioquia");
-    	persona.setCiudad("Medellin");
-    	persona.setSangre("O");
-    	persona.setRh("+");
-    	persona.setEstado("Activo");
-    	persona.setRutaImagen(ruta.toString());
-    	persona.setDireccion("CALLE 61 # 42-54");
-    	persona.setTelefono("2921766");
-    	persona.setCorreo("edwardm0213@gmail.com");
-    	persona.setMovil("3006550592");
-    	persona.setProfesion("Criador");
-    	persona.setOtroEst("Crianza de Cerdos");
-    	persona.setObtenidoEstudio("Si");
-    	persona.setCargo("Administrador"); 
-    	persona.setTipoContrato("Termino Fijo"); 
-    	persona.setFechaContrato(new Date(110,8,3));
-    	persona.setFechaTitulo(new Date(112,8,10));
-    	persona.setFechaOtroEst(new Date(109,06,15));
-    	persona.setFechaNacimiento(new Date(85,10,01));	
-    	U.guardarUsuario(persona2);
+    	persona2.setTipoDoc("Cedula de Ciudadania");
+    	persona2.setDocumento("1000443942");
+    	persona2.setNombre("Edward Monsalve Castrillon");
+    	persona2.setDepart("Antioquia");
+    	persona2.setCiudad("Medellin");
+    	persona2.setSangre("O");
+    	persona2.setRh("+");
+    	persona2.setEstado("Activo");
+    	persona2.setRutaImagen(ruta.toString());
+    	persona2.setDireccion("CALLE 61 # 42-54");
+    	persona2.setTelefono("2921766");
+    	persona2.setCorreo("edwardm0213@gmail.com");
+    	persona2.setMovil("3006550592");
+    	persona2.setProfesion("Criador");
+    	persona2.setOtroEst("Crianza de Cerdos");
+    	persona2.setObtenidoEstudio("Si");
+    	persona2.setCargo("Administrador"); 
+    	persona2.setTipoContrato("Termino Fijo"); 
+    	persona2.setFechaContrato(new Date(110,8,3));
+    	persona2.setFechaTitulo(new Date(112,8,10));
+    	persona2.setFechaOtroEst(new Date(109,06,15));
+    	persona2.setFechaNacimiento(new Date(85,10,01));	
+    	listaPersonal.guardarUsuario(persona2);
    
 
-        new Ingreso(U,P,A,R,Pe);
+        new Ingreso(listaPersonal,listaParto,listaAnimal,R,listaPerfil);
 
         // TODO code application logic here
     }

@@ -17,10 +17,10 @@ import Utilidades.Validaciones;
 public class Ingreso extends javax.swing.JFrame {
 
     String perfil;
-    ListaAnimal A;
-    ListaUsuario U;
-    ListaPartos P;
-    ListaRazas R;
+    ListaAnimal listaAnimal;
+    ListaUsuario listaPersonal;
+    ListaPartos listaParto;
+    ListaRazas listaRaza;
     ListaPerfil listaPerfi;
     ImageIcon icoMensajeInfor, icoMensajePre;
     Validaciones validar;
@@ -37,10 +37,10 @@ public class Ingreso extends javax.swing.JFrame {
     public Ingreso(ListaUsuario Lu, ListaPartos Lp, ListaAnimal La, ListaRazas Lr, ListaPerfil listaPerfi) {
         initComponents();
         setVisible(true);
-        U = Lu;
-        P = Lp;
-        A = La;
-        R = Lr;
+        listaPersonal = Lu;
+        listaParto = Lp;
+        listaAnimal = La;
+        listaRaza = Lr;
         this.listaPerfi = listaPerfi;
         setLocationRelativeTo(null);
         setResizable(false);
@@ -245,13 +245,13 @@ public class Ingreso extends javax.swing.JFrame {
                     ///if (listaPerfi.fechaCambioContra(perfi.getFecha())) {
                     JOptionPane.showMessageDialog(null, "Debe cambiar su contraseña." + "\n" + "Se recomienda cambiar cada 30 días,"
                             + "\n" + "después del primer registro", "Inicio de Sesion - S.G.P", JOptionPane.OK_OPTION, icoMensajeInfor);
-                    MenuPrincipal MeP = new MenuPrincipal(perfil,nombre, A, U, P, R, listaPerfi);
+                    MenuPrincipal MeP = new MenuPrincipal(perfil,nombre, listaAnimal, listaPersonal, listaParto, listaRaza, listaPerfi);
                     this.dispose();
                 } else {
                     if (dif >= 30) {
-                        JFrameCambiarContraseña jc = new JFrameCambiarContraseña(listaPerfi, U);
+                        JFrameCambiarContraseña jc = new JFrameCambiarContraseña(listaPerfi, listaPersonal);
                     } else {
-                        MenuPrincipal MeP = new MenuPrincipal(perfil,nombre, A, U, P, R, listaPerfi);
+                        MenuPrincipal MeP = new MenuPrincipal(perfil,nombre, listaAnimal, listaPersonal, listaParto, listaRaza, listaPerfi);
                         this.dispose();
                     }
                 }
@@ -274,7 +274,7 @@ public class Ingreso extends javax.swing.JFrame {
 
     private void JBOlvidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBOlvidoActionPerformed
 
-        new RecuperarPass(U.getPrimero(), listaPerfi.getCabeza());
+        new RecuperarPass(listaPersonal.getPrimero(), listaPerfi.getCabeza());
 
         // TODO add your handling code here:
     }//GEN-LAST:event_JBOlvidoActionPerformed

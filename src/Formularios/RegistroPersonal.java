@@ -30,7 +30,7 @@ public class RegistroPersonal extends javax.swing.JFrame {
     String rutaimagen, estado, obtenido;
     DatosPersonal buscarPersonal, persona;
     Validaciones Va = new Validaciones();
-    ListaUsuario Lu;
+    ListaUsuario listaPersonal;
     DepartamentosMunicipios deparMuni;
     ImageIcon icoMensajeInfor, icoMensajePre, icoCalendario;
     int swModifi = 0;
@@ -39,15 +39,14 @@ public class RegistroPersonal extends javax.swing.JFrame {
     String nombreVentana;
     ButtonGroup grupoEstado, grupoObtenido;
 
-    public RegistroPersonal() {
-        initComponents();
+    public RegistroPersonal() { 
     }
 
     public RegistroPersonal(ListaUsuario L) {
         initComponents();
         this.validarCampos();
         deparMuni = new DepartamentosMunicipios();
-        Lu = L;
+        listaPersonal = L;
         //JTextField1 para guardar la ruta de la imagen
         this.jTextField1.setVisible(false);
 
@@ -957,7 +956,7 @@ public class RegistroPersonal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JBListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBListarActionPerformed
-        new ReporteUsu(Lu.getPrimero());
+        new ReporteUsu(listaPersonal.getPrimero());
 
         // TODO add your handling code here:
     }//GEN-LAST:event_JBListarActionPerformed
@@ -1059,11 +1058,11 @@ public class RegistroPersonal extends javax.swing.JFrame {
     }//GEN-LAST:event_jCbxDepartamentoItemStateChanged
 
     private void JTNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTNombreKeyTyped
-        this.habilitarBotonGuardar();
+        
     }//GEN-LAST:event_JTNombreKeyTyped
 
     private void JTNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTNombreActionPerformed
-        this.habilitarBotonGuardar();
+        
     }//GEN-LAST:event_JTNombreActionPerformed
 
     private void JTNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_JTNombreFocusLost
@@ -1073,11 +1072,11 @@ public class RegistroPersonal extends javax.swing.JFrame {
     }//GEN-LAST:event_JTNombreFocusLost
 
     private void JTDocumentoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTDocumentoKeyTyped
-        this.habilitarBotonGuardar();
+        
     }//GEN-LAST:event_JTDocumentoKeyTyped
 
     private void JTDocumentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTDocumentoActionPerformed
-        this.habilitarBotonGuardar();
+        
     }//GEN-LAST:event_JTDocumentoActionPerformed
 
     private void JTDocumentoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_JTDocumentoFocusLost
@@ -1089,7 +1088,7 @@ public class RegistroPersonal extends javax.swing.JFrame {
             JTDocumento.requestFocusInWindow();
         } else {
 
-            if (Lu.existe(JTDocumento.getText())) {
+            if (listaPersonal.existe(JTDocumento.getText())) {
 
                 JOptionPane.showMessageDialog(null, "Este número de documento ya esta registrado", "Gestionar Personal - G.A.P", JOptionPane.YES_OPTION,
                     icoMensajeInfor);
@@ -1105,7 +1104,7 @@ public class RegistroPersonal extends javax.swing.JFrame {
     }//GEN-LAST:event_JTDocumentoFocusLost
 
     private void ComboDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboDocActionPerformed
-        this.habilitarBotonGuardar();
+         
     }//GEN-LAST:event_ComboDocActionPerformed
 
     private void ComboDocFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ComboDocFocusLost
@@ -1132,11 +1131,11 @@ public class RegistroPersonal extends javax.swing.JFrame {
     }//GEN-LAST:event_ComboDocItemStateChanged
 
     private void JTCorreoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTCorreoKeyTyped
-        this.habilitarBotonGuardar();
+        
     }//GEN-LAST:event_JTCorreoKeyTyped
 
     private void JTCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTCorreoActionPerformed
-        this.habilitarBotonGuardar();
+         
     }//GEN-LAST:event_JTCorreoActionPerformed
 
     private void JTCorreoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_JTCorreoFocusLost
@@ -1154,7 +1153,7 @@ public class RegistroPersonal extends javax.swing.JFrame {
                     JOptionPane.OK_OPTION, icoMensajeInfor);
                 JTCorreo.requestFocus();
             } else {
-                if (Lu.existe(JTCorreo.getText())) {
+                if (listaPersonal.existe(JTCorreo.getText())) {
 
                     JOptionPane.showMessageDialog(null, "Este correo ya esta registrado", "Gestionar Personal - S.G.P",
                         JOptionPane.OK_OPTION, icoMensajeInfor);
@@ -1168,11 +1167,11 @@ public class RegistroPersonal extends javax.swing.JFrame {
     }//GEN-LAST:event_JTCorreoFocusLost
 
     private void JTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTelefonoKeyTyped
-        this.habilitarBotonGuardar();
+         
     }//GEN-LAST:event_JTelefonoKeyTyped
 
     private void JTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTelefonoActionPerformed
-        this.habilitarBotonGuardar();
+         
     }//GEN-LAST:event_JTelefonoActionPerformed
 
     private void JTelefonoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_JTelefonoFocusLost
@@ -1182,11 +1181,11 @@ public class RegistroPersonal extends javax.swing.JFrame {
     }//GEN-LAST:event_JTelefonoFocusLost
 
     private void JTMovilKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTMovilKeyTyped
-        this.habilitarBotonGuardar();
+         
     }//GEN-LAST:event_JTMovilKeyTyped
 
     private void JTMovilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTMovilActionPerformed
-        this.habilitarBotonGuardar();
+         
     }//GEN-LAST:event_JTMovilActionPerformed
 
     private void JTMovilFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_JTMovilFocusLost
@@ -1196,11 +1195,11 @@ public class RegistroPersonal extends javax.swing.JFrame {
     }//GEN-LAST:event_JTMovilFocusLost
 
     private void JTDireccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTDireccionKeyTyped
-        this.habilitarBotonGuardar();
+         
     }//GEN-LAST:event_JTDireccionKeyTyped
 
     private void JTDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTDireccionActionPerformed
-        this.habilitarBotonGuardar();
+         
     }//GEN-LAST:event_JTDireccionActionPerformed
 
     private void JTDireccionFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_JTDireccionFocusLost
@@ -1310,6 +1309,8 @@ public class RegistroPersonal extends javax.swing.JFrame {
         } else {
 
             this.habilitarBotonGuardar();
+            this.DesactivarCampos();
+            JBGuardarU.requestFocusInWindow();
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_jtCargoFocusLost
@@ -1327,13 +1328,15 @@ public class RegistroPersonal extends javax.swing.JFrame {
         String s = Va.Validacion(persona);
         if (this.validacionObligatorios().equals("")) {
             if (swModifi == 0) {
-                if (!Lu.existe(persona.getDocumento())) {
+                if (!listaPersonal.existe(persona.getDocumento())) {
                     DatosPersonal u2 = persona;
 
-                    if (Lu.guardarUsuario(u2)) {
+                    if (listaPersonal.guardarUsuario(u2)) {
                         JOptionPane.showMessageDialog(this, "Se guardó Correctamente", "Registro Personal - G.A.P", JOptionPane.YES_NO_OPTION,
                             icoMensajePre);
                         this.LimpiarCamposU();
+                        this.activarBotones();
+                        JBGuardarU.setEnabled(false);
 
                     } else {
                         JOptionPane.showMessageDialog(this, "No se guardó correctamente", "Registro Personal - G.A.P", JOptionPane.YES_NO_OPTION,
@@ -1349,17 +1352,26 @@ public class RegistroPersonal extends javax.swing.JFrame {
                     "Datos Animal - G.A.P", JOptionPane.YES_NO_OPTION,
                     JOptionPane.QUESTION_MESSAGE, icoMensajePre);
                 if (opc == 0) {
-                    if (Lu.modificarUsuario(persona)) {
+                    if (listaPersonal.modificarUsuario(persona)) {
 
                         JOptionPane.showMessageDialog(null, "El registro se modifico correctamente", "Registro Personal - G.A.P",
                             JOptionPane.OK_OPTION, icoMensajeInfor);
                         this.LimpiarCamposU();
                         this.DesactivarCampos();
+                        this.activarBotones();
+                        JBGuardarU.setEnabled(false);
+                        JBNuevo.requestFocusInWindow();
                     } else {
 
                         JOptionPane.showMessageDialog(null, "El registro no fue modificado", "Registro Personal - G.A.P",
                             JOptionPane.OK_OPTION, icoMensajeInfor);
                     }
+                }else{
+                    JOptionPane.showMessageDialog(null, "Se cancelo la modificación", "Registro Personal - G.A.P",
+                            JOptionPane.OK_OPTION, icoMensajeInfor);
+                    JBGuardarU.setEnabled(false);
+                    this.LimpiarCamposU();
+                    this.activarBotones();
                 }
             }
         } else {
@@ -1385,6 +1397,7 @@ public class RegistroPersonal extends javax.swing.JFrame {
         swModifi = 0;
         this.LlenarDatosU();
         this.DesactivarCampos();
+        this.desactivarBotones();
 
         // TODO add your handling code here:
     }//GEN-LAST:event_JBConsultaruActionPerformed
@@ -1393,10 +1406,10 @@ public class RegistroPersonal extends javax.swing.JFrame {
 
         String s = JOptionPane.showInputDialog(this, "Ingrese el documento del usuario a eliminar");
 
-        if (Lu.existe(s)) {
+        if (listaPersonal.existe(s)) {
             JOptionPane.showMessageDialog(this, "Esta seguro que desea eliminar este usuario", "Registro Personal - G.A.P", JOptionPane.YES_NO_OPTION,
                 icoMensajePre);
-            if (Lu.eliminarUsuario(s)) {
+            if (listaPersonal.eliminarUsuario(s)) {
                 JOptionPane.showMessageDialog(this, "Se ha eliminado correctamente", "Registro Personal - G.A.P", JOptionPane.YES_NO_OPTION,
                     icoMensajePre);
                 this.LimpiarCamposU();
@@ -1682,7 +1695,7 @@ public class RegistroPersonal extends javax.swing.JFrame {
         String[] opciones = {"Número de Documento", "Nombre", "Correo"};
         if (swModifi == 1) {
 
-            buscarPersonal = Lu.cargarUsuario(JOptionPane.showInputDialog("Ingrese el número de documento del registro a modificar"));
+            buscarPersonal = listaPersonal.cargarUsuario(JOptionPane.showInputDialog("Ingrese el número de documento del registro a modificar"));
             this.ActivarCampos();
             this.desactivarBotones();
         } else {
@@ -1693,13 +1706,13 @@ public class RegistroPersonal extends javax.swing.JFrame {
             switch (opc) {
 
                 case 0:
-                    buscarPersonal = Lu.cargarUsuario(JOptionPane.showInputDialog("Ingrese el número de documento del personal a consultar"));
+                    buscarPersonal = listaPersonal.cargarUsuario(JOptionPane.showInputDialog("Ingrese el número de documento del personal a consultar"));
                     break;
                 case 1:
-                    buscarPersonal = Lu.cargarUsuarioNombre(JOptionPane.showInputDialog("Ingrese el nombre del personal a consultar"));
+                    buscarPersonal = listaPersonal.cargarUsuarioNombre(JOptionPane.showInputDialog("Ingrese el nombre del personal a consultar"));
                     break;
                 case 2:
-                    buscarPersonal = Lu.cargarUsuarioCorreo(JOptionPane.showInputDialog("Ingrese el correo del personal a consultar"));
+                    buscarPersonal = listaPersonal.cargarUsuarioCorreo(JOptionPane.showInputDialog("Ingrese el correo del personal a consultar"));
                     break;
             }
         }

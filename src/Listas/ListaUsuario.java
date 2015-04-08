@@ -22,7 +22,7 @@ public class ListaUsuario {
     public boolean guardarUsuario(DatosPersonal U) {
         boolean sw = false;
         NodoUsuario p = new NodoUsuario();
-        p.setUsuario(U);
+        p.setUsuario(U); 
 
         if (primero == null) {
             primero = p;

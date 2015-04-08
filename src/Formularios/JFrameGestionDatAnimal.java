@@ -28,8 +28,8 @@ import javax.swing.ButtonGroup;
 public class JFrameGestionDatAnimal extends javax.swing.JFrame {
 
     DatosAnimal datos, buscarAnimal;
-    ListaAnimal listaAni;
-    ListaRazas lr;
+    ListaAnimal listaAnimal;
+    ListaRazas listaRaza;
     ImageIcon icoMensajeInfor, icoMensajePre;
     int swModDatosAnimal = 0;
     Validaciones va;
@@ -44,8 +44,8 @@ public class JFrameGestionDatAnimal extends javax.swing.JFrame {
 
     public JFrameGestionDatAnimal(ListaAnimal L, ListaRazas R, ListaPartos listaPar) {
         initComponents();
-        this.listaAni = L;
-        lr = R;
+        this.listaAnimal = L;
+        listaRaza = R;
         this.validarCampos();
         setVisible(true);
         setLocationRelativeTo(null);
@@ -68,7 +68,7 @@ public class JFrameGestionDatAnimal extends javax.swing.JFrame {
         jd_fechadest.setMaxSelectableDate(new Date());
         jd_fechaparto.setMaxSelectableDate(new Date());
 
-        llenarComboRaza(lr);
+        llenarComboRaza(listaRaza);
 
         this.jcbx_razamadre.addItem("Hampshire");
         this.jcbx_razamadre.addItem("Duroc");
@@ -773,8 +773,8 @@ public class JFrameGestionDatAnimal extends javax.swing.JFrame {
         datos = this.Guardar_Campos();
         if (swModDatosAnimal == 0) {
             if (validacionObligatorios()) {
-                if (!listaAni.existe(datos.getCod_animal())) {
-                    if (listaAni.guardarCerdo(datos)) {
+                if (!listaAnimal.existe(datos.getCod_animal())) {
+                    if (listaAnimal.guardarCerdo(datos)) {
                         JOptionPane.showMessageDialog(this, "Se Guardo Correctamente", "Datos Animal - G.A.P", JOptionPane.YES_NO_OPTION,
                                 icoMensajePre);
                         this.Limpiar_Campos();
@@ -800,7 +800,7 @@ public class JFrameGestionDatAnimal extends javax.swing.JFrame {
                     "Datos Animal - G.A.P", JOptionPane.YES_NO_OPTION,
                     JOptionPane.QUESTION_MESSAGE, icoMensajePre);
             if (opc == 0) {
-                if (listaAni.modificarCerdo(datos)) {
+                if (listaAnimal.modificarCerdo(datos)) {
 
                     JOptionPane.showMessageDialog(null, "El registro se modifico correctamente", "Datos Animal - G.A.P",
                             JOptionPane.OK_OPTION, icoMensajeInfor);
@@ -828,7 +828,7 @@ public class JFrameGestionDatAnimal extends javax.swing.JFrame {
 
     private void jbtn_crearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_crearActionPerformed
         swModDatosAnimal = 0;
-        int Cod = listaAni.NuevoCod();
+        int Cod = listaAnimal.NuevoCod();
         jtxt_codanimal.setText(this.codigoAnimales(Cod));
         this.ActivarCampos();
         this.desactivarBotones();
@@ -836,7 +836,7 @@ public class JFrameGestionDatAnimal extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtn_crearActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        new ReporteAnimal(listaAni.getPrimero());
+        new ReporteAnimal(listaAnimal.getPrimero());
 
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -865,10 +865,10 @@ public class JFrameGestionDatAnimal extends javax.swing.JFrame {
     private void jbtn_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_eliminarActionPerformed
         String s = JOptionPane.showInputDialog(this, "Ingrese el codigo del cerdo a eliminar");
 
-        if (listaAni.existe(s)) {
+        if (listaAnimal.existe(s)) {
             JOptionPane.showMessageDialog(this, "Esta seguro que desea eliminar este cerdo", "Datos Animal - G.A.P", JOptionPane.YES_NO_OPTION,
                     icoMensajePre);
-            if (listaAni.EliminarCerdo(s)) {
+            if (listaAnimal.EliminarCerdo(s)) {
                 JOptionPane.showMessageDialog(this, "Se a eliminado correctamente", "Datos Animal - G.A.P", JOptionPane.YES_NO_OPTION,
                         icoMensajePre);
                 this.Limpiar_Campos();
@@ -1160,7 +1160,7 @@ public class JFrameGestionDatAnimal extends javax.swing.JFrame {
         String[] opciones = {"Código Animal", "Código Parto", "Código Madre"};
         if (swModDatosAnimal == 1) {
 
-            buscarAnimal = listaAni.cargarCerdo(JOptionPane.showInputDialog("Ingrese el código del cerdo a modificar"));
+            buscarAnimal = listaAnimal.cargarCerdo(JOptionPane.showInputDialog("Ingrese el código del cerdo a modificar"));
             this.ActivarCampos();
 
         } else {
@@ -1171,13 +1171,13 @@ public class JFrameGestionDatAnimal extends javax.swing.JFrame {
             switch (opc) {
 
                 case 0:
-                    buscarAnimal = listaAni.cargarCerdo(JOptionPane.showInputDialog("Ingrese el código del animal a consultar"));
+                    buscarAnimal = listaAnimal.cargarCerdo(JOptionPane.showInputDialog("Ingrese el código del animal a consultar"));
                     break;
                 case 1:
-                    buscarAnimal = listaAni.cargarCerdo(JOptionPane.showInputDialog("Ingrese el código del parto a consultar"));
+                    buscarAnimal = listaAnimal.cargarCerdo(JOptionPane.showInputDialog("Ingrese el código del parto a consultar"));
                     break;
                 case 2:
-                    buscarAnimal = listaAni.cargarCerdo(JOptionPane.showInputDialog("Ingrese el código de la madre a consultar"));
+                    buscarAnimal = listaAnimal.cargarCerdo(JOptionPane.showInputDialog("Ingrese el código de la madre a consultar"));
                     break;
             }
         }

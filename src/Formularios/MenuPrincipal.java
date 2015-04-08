@@ -37,13 +37,13 @@ public class MenuPrincipal implements ActionListener {
     Image icoCabecera;
     JLabel labelFondo;
     int control;
-    ListaAnimal listaAnima;
-    ListaPartos listaPart;
-    ListaRazas listaRazas;
+    ListaAnimal listaAnimal;
+    ListaPartos listaParto;
+    ListaRazas listaRaza;
     ListaUsuario listaPersona;
     ListaPerfil listaPerfi;
     ReporteAnimal reporteAnimal;
-    ReportePartos reportePartos;
+    ReportePartos reporteParto;
     ReportePersonal reportePersonal;
 
     public MenuPrincipal( String perfil, String nombre, ListaAnimal listaAnima, ListaUsuario listaPersona, ListaPartos listaPart, ListaRazas R, ListaPerfil listaPerfi) {
@@ -224,13 +224,13 @@ public class MenuPrincipal implements ActionListener {
         }
 
         icoMensajePre = new ImageIcon("C:\\OriginalPorcicolaWilbur\\src\\Imagenes\\IconoPregunta.jpg");
-        this.listaAnima = listaAnima;
-        this.listaPart = listaPart;
-        this.listaRazas = R;
+        this.listaAnimal = listaAnima;
+        this.listaParto = listaPart;
+        this.listaRaza = R;
         this.listaPersona = listaPersona; 
         this.listaPerfi=listaPerfi;
         this.reporteAnimal = new ReporteAnimal();
-        this.reportePartos = new ReportePartos();
+        this.reporteParto = new ReportePartos();
         this.reportePersonal = new ReportePersonal();
 
     }
@@ -263,7 +263,7 @@ public class MenuPrincipal implements ActionListener {
         if (e.getSource() == menItemReportesPartos) {
             String Tabla = "Partos";
             String Campo = "Registros";
-            reportePartos.crearInformeTabla(Tabla,Campo,listaPart);
+            reporteParto.crearInformeTabla(Tabla,Campo,listaParto);
 
         }
         
@@ -277,16 +277,16 @@ public class MenuPrincipal implements ActionListener {
         if (e.getSource() == menItemReportesAnimal) {
             String Tabla = "Animales";
             String Campo = "Registros";
-            reporteAnimal.crearInformeTabla(Tabla,Campo,listaAnima);
+            reporteAnimal.crearInformeTabla(Tabla,Campo,listaAnimal);
 
         }
 
         if (e.getSource() == menItemAnimal) {
-            JFrameGestionDatAnimal da = new JFrameGestionDatAnimal(listaAnima, listaRazas, listaPart);
+            JFrameGestionDatAnimal da = new JFrameGestionDatAnimal(listaAnimal, listaRaza, listaParto);
         }
         
         if (e.getSource() == menItemPartos) {
-            JFramePartos da = new JFramePartos(listaPart, listaAnima);
+            JFramePartos da = new JFramePartos(listaParto, listaAnimal);
         }
 
         if (e.getSource() == menItemManual) {
@@ -306,7 +306,7 @@ public class MenuPrincipal implements ActionListener {
                     JOptionPane.QUESTION_MESSAGE, icoMensajePre);
             if (opc == 0) {
                 FraMenuPri.dispose();
-                Ingreso i = new Ingreso( listaPersona, listaPart, listaAnima, listaRazas, listaPerfi);
+                Ingreso i = new Ingreso( listaPersona, listaParto, listaAnimal, listaRaza, listaPerfi);
 
             }
         }
