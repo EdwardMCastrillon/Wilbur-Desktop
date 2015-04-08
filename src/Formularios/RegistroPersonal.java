@@ -745,7 +745,7 @@ public class RegistroPersonal extends javax.swing.JFrame {
         jLabel11.setText("Tipo RH:");
 
         jCtiporh.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jCtiporh.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "..." }));
+        jCtiporh.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "...", "+ ", "-" }));
         jCtiporh.setEnabled(false);
 
         jLabel16.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -1109,12 +1109,21 @@ public class RegistroPersonal extends javax.swing.JFrame {
 
     private void ComboDocFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ComboDocFocusLost
 
+        if (ComboDoc.getSelectedIndex() == 0) {
+
+                JOptionPane.showMessageDialog(null, "Debe seleccionar un tipo de documento", "Registrar Personal - G.A.P", JOptionPane.YES_OPTION,
+                    icoMensajeInfor);
+                ComboDoc.requestFocusInWindow();
+            } else {
+
+                ComboDoc.transferFocus();
+            }
         // TODO add your handling code here:
     }//GEN-LAST:event_ComboDocFocusLost
 
     private void ComboDocItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ComboDocItemStateChanged
 
-        if (evt.getStateChange() == ItemEvent.SELECTED) {
+     /*   if (evt.getStateChange() == ItemEvent.SELECTED) {
 
             if (ComboDoc.getSelectedIndex() == 0) {
 
@@ -1125,7 +1134,7 @@ public class RegistroPersonal extends javax.swing.JFrame {
 
                 ComboDoc.transferFocus();
             }
-        }
+        }*/
 
         // TODO add your handling code here:
     }//GEN-LAST:event_ComboDocItemStateChanged
@@ -1598,6 +1607,7 @@ public class RegistroPersonal extends javax.swing.JFrame {
         jCbxDepartamento.setEnabled(true);
         jCprofesion.setEnabled(true);
         jCtiposangre.setEnabled(true);
+        jCtiporh.setEnabled(true);
         jcmbTipoContrato.setEnabled(true); 
         jdFechaNacimiento.setEnabled(true);
         JrbnActivo.setEnabled(true);
@@ -1657,6 +1667,8 @@ public class RegistroPersonal extends javax.swing.JFrame {
         jcmbTipoContrato.setSelectedIndex(0);
         //Extraer la imagen del icono
         jLabel1.setIcon(null);
+        grupoEstado.clearSelection();
+        grupoObtenido.clearSelection();
 
     }
 

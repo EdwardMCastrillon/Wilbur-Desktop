@@ -25,31 +25,31 @@ public class PorcicolaWilbur {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        ListaRazas R = new ListaRazas();
+        ListaRazas listaRaza = new ListaRazas();
         Razas H = new Razas();
         H.setCodigoRaza("1");
         H.setNombreRaza("Hampshire");
-        R.guardarRaza(H);
+        listaRaza.guardarRaza(H);
         
         Razas d = new Razas();
         d.setCodigoRaza("1");
         d.setNombreRaza("Duroc");
-        R.guardarRaza(d);
+        listaRaza.guardarRaza(d);
         
         Razas p = new Razas();
         p.setCodigoRaza("1");
         p.setNombreRaza("Pietrain");
-        R.guardarRaza(p);
+        listaRaza.guardarRaza(p);
         
         Razas L = new Razas();
         L.setCodigoRaza("1");
         L.setNombreRaza("Landrace");
-        R.guardarRaza(L);
+        listaRaza.guardarRaza(L);
         
         Razas Y = new Razas();
         Y.setCodigoRaza("1");
         Y.setNombreRaza("Yorkshire (Large White)");
-        R.guardarRaza(Y);
+        listaRaza.guardarRaza(Y);
         
         ListaAnimal listaAnimal = new ListaAnimal();
         ListaUsuario listaPersonal = new ListaUsuario();
@@ -137,7 +137,7 @@ public class PorcicolaWilbur {
     	listaPersonal.guardarUsuario(persona2);
    
 
-        new Ingreso(listaPersonal,listaParto,listaAnimal,R,listaPerfil);
+        new Ingreso(listaPersonal,listaParto,listaAnimal,listaRaza,listaPerfil);
 
         // TODO code application logic here
     }

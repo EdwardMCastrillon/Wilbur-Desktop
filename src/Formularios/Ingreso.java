@@ -245,13 +245,15 @@ public class Ingreso extends javax.swing.JFrame {
                     ///if (listaPerfi.fechaCambioContra(perfi.getFecha())) {
                     JOptionPane.showMessageDialog(null, "Debe cambiar su contraseña." + "\n" + "Se recomienda cambiar cada 30 días,"
                             + "\n" + "después del primer registro", "Inicio de Sesion - S.G.P", JOptionPane.OK_OPTION, icoMensajeInfor);
-                    MenuPrincipal MeP = new MenuPrincipal(perfil,nombre, listaAnimal, listaPersonal, listaParto, listaRaza, listaPerfi);
+                    MenuPrincipal MeP = new MenuPrincipal(perfil, nombre, listaAnimal, listaPersonal, listaParto, listaRaza, listaPerfi);
                     this.dispose();
                 } else {
                     if (dif >= 30) {
                         JFrameCambiarContraseña jc = new JFrameCambiarContraseña(listaPerfi, listaPersonal);
                     } else {
-                        MenuPrincipal MeP = new MenuPrincipal(perfil,nombre, listaAnimal, listaPersonal, listaParto, listaRaza, listaPerfi);
+                        JOptionPane.showMessageDialog(null, "Bienvenido al sistema G.A.P", "Inicio de Sesion - S.G.P",
+                                JOptionPane.OK_OPTION, icoMensajeInfor);
+                        MenuPrincipal MeP = new MenuPrincipal(perfil, nombre, listaAnimal, listaPersonal, listaParto, listaRaza, listaPerfi);
                         this.dispose();
                     }
                 }
@@ -290,10 +292,10 @@ public class Ingreso extends javax.swing.JFrame {
 
     private void JTClaveFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_JTClaveFocusLost
 
-        if (evt.getSource() == JTClave){
+        if (evt.getSource() == JTClave) {
             validar.validarObligatoriosPas(JTClave, nombreVentana);
         }
-        
+
 // TODO add your handling code here:
     }//GEN-LAST:event_JTClaveFocusLost
 
