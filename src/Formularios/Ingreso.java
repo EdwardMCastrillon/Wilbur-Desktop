@@ -25,6 +25,7 @@ public class Ingreso extends javax.swing.JFrame {
     ImageIcon icoMensajeInfor, icoMensajePre;
     Validaciones validar;
     String nombreVentana;
+    int boton =1;
 
     public Ingreso() {
         initComponents();
@@ -221,6 +222,7 @@ public class Ingreso extends javax.swing.JFrame {
 
     private void JBSalidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBSalidaActionPerformed
         int opc;
+        boton = 0;
         opc = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea salir de Gestionar Perfil?",
                 "Salir.  Gestión Administrativa Porcícola - G.A.P.", JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE, icoMensajePre);
@@ -283,7 +285,7 @@ public class Ingreso extends javax.swing.JFrame {
 
     private void JTUsuarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_JTUsuarioFocusLost
 
-        if (evt.getSource() == JTUsuario) {
+        if (boton == 1) {
 
             validar.validarObligatorios(JTUsuario, nombreVentana);
         }
@@ -292,7 +294,7 @@ public class Ingreso extends javax.swing.JFrame {
 
     private void JTClaveFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_JTClaveFocusLost
 
-        if (evt.getSource() == JTClave) {
+        if (boton != 0) {
             validar.validarObligatoriosPas(JTClave, nombreVentana);
         }
 

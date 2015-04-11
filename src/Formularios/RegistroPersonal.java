@@ -33,7 +33,7 @@ public class RegistroPersonal extends javax.swing.JFrame {
     ListaUsuario listaPersonal;
     DepartamentosMunicipios deparMuni;
     ImageIcon icoMensajeInfor, icoMensajePre, icoCalendario;
-    int swModifi = 0;
+    int swModifi = 0, boton =0;
     Date fecha;
     int año, mes, dia;
     String nombreVentana;
