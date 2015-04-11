@@ -302,7 +302,7 @@ public class MenuPrincipal implements ActionListener {
         if (e.getSource() == menItemSalir) {
             int opc;
             opc = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea salir del menú principal?",
-                    "Salir.  Sistematización Grajas Porcícolas - S.G.P.", JOptionPane.YES_NO_OPTION,
+                    "Salir.  Gestión Administrativa Porcícola - G.A.P.", JOptionPane.YES_NO_OPTION,
                     JOptionPane.QUESTION_MESSAGE, icoMensajePre);
             if (opc == 0) {
                 FraMenuPri.dispose();
@@ -313,7 +313,7 @@ public class MenuPrincipal implements ActionListener {
 
         if (e.getSource() == menItemAcerca) {
 
-            //AcercaDe Ad=new AcercaDe();
+            AcercaDe Ad = new AcercaDe();
         }
 
     }
