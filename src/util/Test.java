@@ -70,12 +70,6 @@ public class Test {
             System.out.println("\n");
             co.cerrarConexion(cone);
         }*/
-        java.util.Date utilDate = new java.util.Date();
-
-java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
-
-System.out.println("java.util.Date: " + utilDate);
-System.out.println("java.sql.Date.: " + sqlDate);
         CrudPersonal base = new CrudPersonal();
       /*  DatosPersonal persona = new DatosPersonal();
     	persona.setTipoDoc(1);
