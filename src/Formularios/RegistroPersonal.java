@@ -1337,7 +1337,7 @@ public class RegistroPersonal extends javax.swing.JFrame {
         String s = Va.Validacion(persona);
         if (this.validacionObligatorios().equals("")) {
             if (swModifi == 0) {
-                if (!listaPersonal.existe(persona.getDocumento())) {
+                if (!listaPersonal.existe(Integer.parseInt(persona.getDocumento()))) {
                     DatosPersonal u2 = persona;
 
                     if (listaPersonal.guardarUsuario(u2)) {
@@ -1674,30 +1674,30 @@ public class RegistroPersonal extends javax.swing.JFrame {
 
     public DatosPersonal GuardarCamposU() {
         DatosPersonal u2 = new DatosPersonal();
-        u2.setDocumento(JTDocumento.getText());
+        u2.setDocumento(Integer.parseInt(JTDocumento.getText()));
         u2.setDireccion(JTDireccion.getText());
-        u2.setTelefono(JTelefono.getText());
-        u2.setMovil(JTMovil.getText());
+        u2.setTelefono(Integer.parseInt(JTelefono.getText()));
+        u2.setMovil(Integer.parseInt(JTMovil.getText()));
         u2.setCorreo(JTCorreo.getText());
         u2.setNombre(JTNombre.getText());
-        u2.setEstado(estado);
+        u2.setEstado(Integer.parseInt(estado));
         u2.setObtenidoEstudio(obtenido);
-        u2.setCargo(jtCargo.getText());
-        u2.setTipoContrato((String) jcmbTipoContrato.getSelectedItem());
+        u2.setCargo(Integer.parseInt(jtCargo.getText()));
+        u2.setTipoContrato(jcmbTipoContrato.getSelectedIndex());
         u2.setOtroEst(jtEstudios.getText());
         u2.setFechaContrato(jdFechaContrato.getDate());
         u2.setFechaOtroEst(jdFechaFinal.getDate());
         u2.setFechaNacimiento(jdFechaNacimiento.getDate());
         u2.setFechaTitulo(jdFechaTitulo.getDate());
-        u2.setTipoDoc((String) ComboDoc.getSelectedItem());
-        u2.setCiudad((String) jCbxCiudad.getSelectedItem());
-        u2.setDepart((String) jCbxDepartamento.getSelectedItem());
-        u2.setProfesion((String) jCprofesion.getSelectedItem());
-        u2.setRh((String) jCtiporh.getSelectedItem());
-        u2.setSangre((String) jCtiposangre.getSelectedItem());
-        u2.setTipoContrato((String) jcmbTipoContrato.getSelectedItem());
+        u2.setTipoDoc(ComboDoc.getSelectedIndex());
+        u2.setCiudad( jCbxCiudad.getSelectedIndex());
+        u2.setDepart( jCbxDepartamento.getSelectedIndex());
+        u2.setProfesion( jCprofesion.getSelectedIndex());
+        u2.setRh( jCtiporh.getSelectedIndex());
+        u2.setSangre( jCtiposangre.getSelectedIndex());
+        u2.setTipoContrato( jcmbTipoContrato.getSelectedIndex());
         u2.setRutaImagen(jTextField1.getText());
-        u2.setNombreimg(jTextField2.getText());
+        
         return u2;
     }
 
@@ -1731,29 +1731,19 @@ public class RegistroPersonal extends javax.swing.JFrame {
         if (opc != -1) {
 
             if (buscarPersonal != null) {
-                JTDocumento.setText(buscarPersonal.getDocumento());
+                JTDocumento.setText(String.valueOf(buscarPersonal.getDocumento()));
                 JTDireccion.setText(buscarPersonal.getDireccion());
-                JTelefono.setText(buscarPersonal.getTelefono());
-                JTMovil.setText(buscarPersonal.getMovil());
+                JTelefono.setText(String.valueOf(buscarPersonal.getTelefono()));
+                JTMovil.setText(String.valueOf(buscarPersonal.getMovil()));
                 JTCorreo.setText(buscarPersonal.getCorreo());
                 JTNombre.setText(buscarPersonal.getNombre());
-                jtCargo.setText(buscarPersonal.getCargo());
+                jtCargo.setText(String.valueOf(buscarPersonal.getCargo()));
                 jtEstudios.setText(buscarPersonal.getOtroEst());
-                if (buscarPersonal.getEstado().equals("Activo")) {
-                    JrbnActivo.setSelected(true);
-                } else {
-                    JrbnInactivo.setSelected(true);
-                }
                 jdFechaContrato.setDate(buscarPersonal.getFechaContrato());
                 jdFechaFinal.setDate(buscarPersonal.getFechaOtroEst());
                 jdFechaNacimiento.setDate(buscarPersonal.getFechaNacimiento());
                 jdFechaTitulo.setDate(buscarPersonal.getFechaTitulo());
                 ComboDoc.setSelectedItem(buscarPersonal.getTipoDoc());
-                if (buscarPersonal.getObtenidoEstudio().equals("Si")) {
-                    JrbnSi.setSelected(true);
-                } else {
-                    JrbnNo.setSelected(true);
-                }
                 jCbxCiudad.setSelectedItem(buscarPersonal.getCiudad());
                 jCbxDepartamento.setSelectedItem(buscarPersonal.getDepart());
                 jCprofesion.setSelectedItem(buscarPersonal.getProfesion());
@@ -1761,7 +1751,6 @@ public class RegistroPersonal extends javax.swing.JFrame {
                 jCtiposangre.setSelectedItem(buscarPersonal.getSangre());
                 jcmbTipoContrato.setSelectedItem(buscarPersonal.getTipoContrato());
                 jTextField1.setText(buscarPersonal.getRutaImagen());
-                jTextField2.setText(buscarPersonal.getNombreimg());
 
                 //Obtener el nombre la imagen
                 String fil = jTextField2.getText();
@@ -1794,7 +1783,7 @@ public class RegistroPersonal extends javax.swing.JFrame {
     private String validacionObligatorios() {
         String s = "";
         persona = this.GuardarCamposU();
-        if (persona.getDocumento().equals("") || persona.getNombre().equals("") || persona.getCorreo().equals("")) {
+        if (persona.getDocumento() == 0 || persona.getNombre().equals("") || persona.getCorreo().equals("")) {
             s = "Complete todos los campos obligatorios";
         }
 

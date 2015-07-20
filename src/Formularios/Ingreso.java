@@ -222,12 +222,8 @@ public class Ingreso extends javax.swing.JFrame {
 
     private void JBSalidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBSalidaActionPerformed
         int opc;
-<<<<<<< HEAD
         boton = 0;
         opc = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea salir de Gestionar Perfil?",
-=======
-        opc = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea salir?",
->>>>>>> origin/master
                 "Salir.  Gestión Administrativa Porcícola - G.A.P.", JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE, icoMensajePre);
         if (opc == 0) {
@@ -250,13 +246,8 @@ public class Ingreso extends javax.swing.JFrame {
                 if (dif >= 25 && dif < 30) {
                     ///if (listaPerfi.fechaCambioContra(perfi.getFecha())) {
                     JOptionPane.showMessageDialog(null, "Debe cambiar su contraseña." + "\n" + "Se recomienda cambiar cada 30 días,"
-<<<<<<< HEAD
                             + "\n" + "después del primer registro", "Inicio de Sesion - S.G.P", JOptionPane.OK_OPTION, icoMensajeInfor);
                     MenuPrincipal MeP = new MenuPrincipal(perfil, nombre, listaAnimal, listaPersonal, listaParto, listaRaza, listaPerfi);
-=======
-                            + "\n" + "después del primer registro", "Inicio de Sesion - G.A.P", JOptionPane.OK_OPTION, icoMensajeInfor);
-                    MenuPrincipal MeP = new MenuPrincipal(perfil,nombre, A, U, P, R, listaPerfi);
->>>>>>> origin/master
                     this.dispose();
                 } else {
                     if (dif >= 30) {

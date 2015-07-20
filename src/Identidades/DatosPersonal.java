@@ -13,157 +13,197 @@ import java.util.Date;
  */
 public class DatosPersonal {
     
-    private String TipoDoc, Documento, Nombre, Depart, Ciudad, Rh, Sangre, Estado, RutaImagen, nombreimg;
-    private String Direccion, Telefono, Movil, Correo;
-    private String Profesion, OtroEst, perfil, obtenidoEstudio;
+    private int tipoDoc,profesion, documento, telefono, movil, depart, ciudad, rh, sangre, estado,cargo, tipoContrato;
+    private String direccion, nombre, correo,rutaImagen, primerApellido, segundoApellido;
+    private String  otroEst, obtenidoEstudio;
+    private Date fechaNacimiento, fechaTitulo, fechaOtroEst, fechaContrato;
+    
+    public  DatosPersonal(){}
 
+    public DatosPersonal(int documento, int tipoDoc, String nombre, String primerApellido, String segundoApellido,
+           Date fechaNacimiento, int depart, int ciudad, int sangre, int rh, int estado, String direccion, 
+           int telefono, int movil, String correo, int profesion, Date fechaTitulo, int cargo, Date fechaContrato, 
+           int tipoContrato, String rutaImagen, String otroEst, String obtenidoEstudio, Date fechaOtroEst) {
+        this.tipoDoc = tipoDoc;
+        this.profesion = profesion;
+        this.documento = documento;
+        this.telefono = telefono;
+        this.movil = movil;
+        this.depart = depart;
+        this.ciudad = ciudad;
+        this.rh = rh;
+        this.sangre = sangre;
+        this.estado = estado;
+        this.cargo = cargo;
+        this.tipoContrato = tipoContrato;
+        this.direccion = direccion;
+        this.nombre = nombre;
+        this.correo = correo;
+        this.rutaImagen = rutaImagen;
+        this.primerApellido = primerApellido;
+        this.segundoApellido = segundoApellido;
+        this.otroEst = otroEst;
+        this.obtenidoEstudio = obtenidoEstudio;
+        this.fechaNacimiento = fechaNacimiento;
+        this.fechaTitulo = fechaTitulo;
+        this.fechaOtroEst = fechaOtroEst;
+        this.fechaContrato = fechaContrato;
+    }
+    
+    
 
-    private String Cargo, TipoContrato;
-    private Date FechaNacimiento, FechaTitulo, FechaOtroEst, FechaContrato;
-
-    public String getTipoDoc() {
-        return TipoDoc;
+    public int getTipoDoc() {
+        return tipoDoc;
     }
 
-    public void setTipoDoc(String TipoDoc) {
-        this.TipoDoc = TipoDoc;
+    public void setTipoDoc(int tipoDoc) {
+        this.tipoDoc = tipoDoc;
     }
 
-    public String getDocumento() {
-        return Documento;
+    public int getProfesion() {
+        return profesion;
     }
 
-    public void setDocumento(String Documento) {
-        this.Documento = Documento;
+    public void setProfesion(int profesion) {
+        this.profesion = profesion;
     }
 
-    public String getNombre() {
-        return Nombre;
+    public int getDocumento() {
+        return documento;
     }
 
-    public void setNombre(String Nombre) {
-        this.Nombre = Nombre;
+    public void setDocumento(int documento) {
+        this.documento = documento;
     }
 
-    public String getDepart() {
-        return Depart;
+    public int getTelefono() {
+        return telefono;
     }
 
-    public void setDepart(String Depart) {
-        this.Depart = Depart;
+    public void setTelefono(int telefono) {
+        this.telefono = telefono;
     }
 
-    public String getCiudad() {
-        return Ciudad;
+    public int getMovil() {
+        return movil;
     }
 
-    public void setCiudad(String Ciudad) {
-        this.Ciudad = Ciudad;
+    public void setMovil(int movil) {
+        this.movil = movil;
     }
 
-    public String getRh() {
-        return Rh;
+    public int getDepart() {
+        return depart;
     }
 
-    public void setRh(String Rh) {
-        this.Rh = Rh;
+    public void setDepart(int depart) {
+        this.depart = depart;
     }
 
-    public String getSangre() {
-        return Sangre;
+    public int getCiudad() {
+        return ciudad;
     }
 
-    public void setSangre(String Sangre) {
-        this.Sangre = Sangre;
+    public void setCiudad(int ciudad) {
+        this.ciudad = ciudad;
     }
 
-    public String getEstado() {
-        return Estado;
+    public int getRh() {
+        return rh;
     }
 
-    public void setEstado(String Estado) {
-        this.Estado = Estado;
+    public void setRh(int rh) {
+        this.rh = rh;
     }
 
-    public String getRutaImagen() {
-        return RutaImagen;
+    public int getSangre() {
+        return sangre;
     }
 
-    public void setRutaImagen(String RutaImagen) {
-        this.RutaImagen = RutaImagen;
+    public void setSangre(int sangre) {
+        this.sangre = sangre;
     }
 
-    public String getNombreimg() {
-        return nombreimg;
+    public int getEstado() {
+        return estado;
     }
 
-    public void setNombreimg(String nombreimg) {
-        this.nombreimg = nombreimg;
+    public void setEstado(int estado) {
+        this.estado = estado;
+    }
+
+    public int getCargo() {
+        return cargo;
+    }
+
+    public void setCargo(int cargo) {
+        this.cargo = cargo;
+    }
+
+    public int getTipoContrato() {
+        return tipoContrato;
+    }
+
+    public void setTipoContrato(int tipoContrato) {
+        this.tipoContrato = tipoContrato;
     }
 
     public String getDireccion() {
-        return Direccion;
+        return direccion;
     }
 
-    public void setDireccion(String Direccion) {
-        this.Direccion = Direccion;
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
     }
 
-    public String getTelefono() {
-        return Telefono;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setTelefono(String Telefono) {
-        this.Telefono = Telefono;
-    }
-
-    public String getMovil() {
-        return Movil;
-    }
-
-    public void setMovil(String Movil) {
-        this.Movil = Movil;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getCorreo() {
-        return Correo;
+        return correo;
     }
 
-    public void setCorreo(String Correo) {
-        this.Correo = Correo;
+    public void setCorreo(String correo) {
+        this.correo = correo;
     }
 
-    public String getProfesion() {
-        return Profesion;
+    public String getRutaImagen() {
+        return rutaImagen;
     }
 
-    public void setProfesion(String Profesion) {
-        this.Profesion = Profesion;
+    public void setRutaImagen(String rutaImagen) {
+        this.rutaImagen = rutaImagen;
+    }
+
+    public String getPrimerApellido() {
+        return primerApellido;
+    }
+
+    public void setPrimerApellido(String primerApellido) {
+        this.primerApellido = primerApellido;
+    }
+
+    public String getSegundoApellido() {
+        return segundoApellido;
+    }
+
+    public void setSegundoApellido(String segundoApellido) {
+        this.segundoApellido = segundoApellido;
     }
 
     public String getOtroEst() {
-        return OtroEst;
+        return otroEst;
     }
 
-    public void setOtroEst(String OtroEst) {
-        this.OtroEst = OtroEst;
+    public void setOtroEst(String otroEst) {
+        this.otroEst = otroEst;
     }
 
-    public String getPerfil() {
-        return perfil;
-    }
-
-    public void setPerfil(String perfil) {
-        this.perfil = perfil;
-    }
-
-    public String getCargo() {
-        return Cargo;
-    }
-
-    public void setCargo(String Cargo) {
-        this.Cargo = Cargo;
-    }
     public String getObtenidoEstudio() {
         return obtenidoEstudio;
     }
@@ -172,44 +212,37 @@ public class DatosPersonal {
         this.obtenidoEstudio = obtenidoEstudio;
     }
 
-    public String getTipoContrato() {
-        return TipoContrato;
-    }
-
-    public void setTipoContrato(String TipoContrato) {
-        this.TipoContrato = TipoContrato;
-    }
-
     public Date getFechaNacimiento() {
-        return FechaNacimiento;
+        return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(Date FechaNacimiento) {
-        this.FechaNacimiento = FechaNacimiento;
+    public void setFechaNacimiento(Date fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
     }
 
     public Date getFechaTitulo() {
-        return FechaTitulo;
+        return fechaTitulo;
     }
 
-    public void setFechaTitulo(Date FechaTitulo) {
-        this.FechaTitulo = FechaTitulo;
+    public void setFechaTitulo(Date fechaTitulo) {
+        this.fechaTitulo = fechaTitulo;
     }
 
     public Date getFechaOtroEst() {
-        return FechaOtroEst;
+        return fechaOtroEst;
     }
 
-    public void setFechaOtroEst(Date FechaOtroEst) {
-        this.FechaOtroEst = FechaOtroEst;
+    public void setFechaOtroEst(Date fechaOtroEst) {
+        this.fechaOtroEst = fechaOtroEst;
     }
 
     public Date getFechaContrato() {
-        return FechaContrato;
+        return fechaContrato;
     }
 
-    public void setFechaContrato(Date FechaContrato) {
-        this.FechaContrato = FechaContrato;
+    public void setFechaContrato(Date fechaContrato) {
+        this.fechaContrato = fechaContrato;
     }
+    
     
 }
