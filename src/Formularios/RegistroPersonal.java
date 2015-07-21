@@ -5,7 +5,6 @@
  */
 package Formularios;
 
-import Listas.ListaUsuario;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
@@ -17,8 +16,10 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import porcicolawilbur.*;
 import Utilidades.*;
 import Identidades.*;
+import crudBaseDatos.CrudPersonal;
 import java.awt.event.ItemEvent;
 import java.util.Date;
+import java.util.List;
 import javax.swing.ButtonGroup;
 
 public class RegistroPersonal extends javax.swing.JFrame {
@@ -30,23 +31,25 @@ public class RegistroPersonal extends javax.swing.JFrame {
     String rutaimagen, estado, obtenido;
     DatosPersonal buscarPersonal, persona;
     Validaciones Va = new Validaciones();
-    ListaUsuario listaPersonal;
     DepartamentosMunicipios deparMuni;
     ImageIcon icoMensajeInfor, icoMensajePre, icoCalendario;
-    int swModifi = 0, boton =0;
+    int swModifi = 0, boton = 0;
     Date fecha;
     int año, mes, dia;
     String nombreVentana;
     ButtonGroup grupoEstado, grupoObtenido;
+    List<DatosDependencias> listaTipoDoc;
+    List<DatosDependencias> listaTipoRh;
+    List<DatosDependencias> listaTipoSangre;
+    List<DatosDependencias> listaTipoCargo;
+    List<DatosDependencias> listaTipoContrato;
+    List<DatosDependencias> listaTipoProfesion;
+    CrudPersonal basePersonal;
 
-    public RegistroPersonal() { 
-    }
-
-    public RegistroPersonal(ListaUsuario L) {
+    public RegistroPersonal() {
         initComponents();
         this.validarCampos();
         deparMuni = new DepartamentosMunicipios();
-        listaPersonal = L;
         //JTextField1 para guardar la ruta de la imagen
         this.jTextField1.setVisible(false);
 
@@ -64,14 +67,12 @@ public class RegistroPersonal extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
         setTitle("Gestionar Personal");
-        setIconImage(new ImageIcon(getClass().getResource("/Imagenes/1_Icono_Form.JPG")).getImage());
         icoMensajeInfor = new ImageIcon("C:\\OriginalPorcicolaWilbur\\src\\Imagenes\\IconoInformacion.jpg");
         icoMensajePre = new ImageIcon("C:\\OriginalPorcicolaWilbur\\src\\Imagenes\\IconoPregunta.jpg");
         icoCalendario = new ImageIcon("C:\\OriginalPorcicolaWilbur\\src\\Imagenes\\iconoCalendario.jpg");
 
         rutaimagen = "";
         deparMuni.cargarDepartamentos(jCbxDepartamento);
-        this.cargarComboBox();
         persona = new DatosPersonal();
         buscarPersonal = new DatosPersonal();
         this.DesactivarCampos();
@@ -89,6 +90,10 @@ public class RegistroPersonal extends javax.swing.JFrame {
         jdFechaFinal.setIcon(icoCalendario);
         jdFechaNacimiento.setIcon(icoCalendario);
         jdFechaTitulo.setIcon(icoCalendario);
+
+        basePersonal = new CrudPersonal();
+        
+        this.cargarComboBoxs();
     }
 
     /**
@@ -115,10 +120,10 @@ public class RegistroPersonal extends javax.swing.JFrame {
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
-        jtCargo = new javax.swing.JTextField();
         jdFechaContrato = new com.toedter.calendar.JDateChooser();
         jcmbTipoContrato = new javax.swing.JComboBox();
         jbContrato = new javax.swing.JButton();
+        jComboCargo = new javax.swing.JComboBox();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
@@ -273,19 +278,6 @@ public class RegistroPersonal extends javax.swing.JFrame {
         jLabel23.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel23.setText("Tipo de Contrato:");
 
-        jtCargo.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jtCargo.setEnabled(false);
-        jtCargo.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jtCargoFocusLost(evt);
-            }
-        });
-        jtCargo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtCargoActionPerformed(evt);
-            }
-        });
-
         jdFechaContrato.setEnabled(false);
 
         jcmbTipoContrato.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -305,6 +297,8 @@ public class RegistroPersonal extends javax.swing.JFrame {
             }
         });
 
+        jComboCargo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "...." }));
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -312,21 +306,18 @@ public class RegistroPersonal extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(4, 4, 4)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jtCargo, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jLabel23)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jcmbTipoContrato, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jbContrato)
-                        .addGap(42, 42, 42)
-                        .addComponent(jLabel22)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jdFechaContrato, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel23)
+                    .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jComboCargo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jcmbTipoContrato, 0, 187, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jbContrato)
+                .addGap(42, 42, 42)
+                .addComponent(jLabel22)
+                .addGap(39, 39, 39)
+                .addComponent(jdFechaContrato, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31))
         );
         jPanel5Layout.setVerticalGroup(
@@ -342,10 +333,10 @@ public class RegistroPersonal extends javax.swing.JFrame {
                                 .addComponent(jcmbTipoContrato, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jbContrato, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtCargo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboCargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -479,7 +470,7 @@ public class RegistroPersonal extends javax.swing.JFrame {
                         .addGap(4, 4, 4)
                         .addComponent(jdFechaTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -602,7 +593,7 @@ public class RegistroPersonal extends javax.swing.JFrame {
                         .addComponent(jLabel17)
                         .addGap(4, 4, 4)
                         .addComponent(JTCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 539, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -956,7 +947,7 @@ public class RegistroPersonal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JBListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBListarActionPerformed
-        new ReporteUsu(listaPersonal.getPrimero());
+      //  new ReporteUsu(listaPersonal.getPrimero());
 
         // TODO add your handling code here:
     }//GEN-LAST:event_JBListarActionPerformed
@@ -1058,11 +1049,11 @@ public class RegistroPersonal extends javax.swing.JFrame {
     }//GEN-LAST:event_jCbxDepartamentoItemStateChanged
 
     private void JTNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTNombreKeyTyped
-        
+
     }//GEN-LAST:event_JTNombreKeyTyped
 
     private void JTNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTNombreActionPerformed
-        
+
     }//GEN-LAST:event_JTNombreActionPerformed
 
     private void JTNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_JTNombreFocusLost
@@ -1072,115 +1063,114 @@ public class RegistroPersonal extends javax.swing.JFrame {
     }//GEN-LAST:event_JTNombreFocusLost
 
     private void JTDocumentoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTDocumentoKeyTyped
-        
+
     }//GEN-LAST:event_JTDocumentoKeyTyped
 
     private void JTDocumentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTDocumentoActionPerformed
-        
+
     }//GEN-LAST:event_JTDocumentoActionPerformed
 
     private void JTDocumentoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_JTDocumentoFocusLost
 
-        if (JTDocumento.getText().toString().equals("")) {
+        /*     if (JTDocumento.getText().toString().equals("")) {
 
-            JOptionPane.showMessageDialog(null, "Campo obligatorio", "Gestionar Personal - G.A.P", JOptionPane.YES_OPTION,
-                icoMensajeInfor);
-            JTDocumento.requestFocusInWindow();
-        } else {
+         JOptionPane.showMessageDialog(null, "Campo obligatorio", "Gestionar Personal - G.A.P", JOptionPane.YES_OPTION,
+         icoMensajeInfor);
+         JTDocumento.requestFocusInWindow();
+         } else {
 
-            if (listaPersonal.existe(JTDocumento.getText())) {
+         if (listaPersonal.existe(JTDocumento.getText())) {
 
-                JOptionPane.showMessageDialog(null, "Este número de documento ya esta registrado", "Gestionar Personal - G.A.P", JOptionPane.YES_OPTION,
-                    icoMensajeInfor);
-                JTDocumento.setText("");
-                JTDocumento.requestFocusInWindow();
-            } else {
+         JOptionPane.showMessageDialog(null, "Este número de documento ya esta registrado", "Gestionar Personal - G.A.P", JOptionPane.YES_OPTION,
+         icoMensajeInfor);
+         JTDocumento.setText("");
+         JTDocumento.requestFocusInWindow();
+         } else {
 
-                JTDocumento.transferFocus();
-            }
+         JTDocumento.transferFocus();
+         }
 
-        }
+         }*/
         // TODO add your handling code here:
     }//GEN-LAST:event_JTDocumentoFocusLost
 
     private void ComboDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboDocActionPerformed
-         
+
     }//GEN-LAST:event_ComboDocActionPerformed
 
     private void ComboDocFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ComboDocFocusLost
 
         if (ComboDoc.getSelectedIndex() == 0) {
 
-                JOptionPane.showMessageDialog(null, "Debe seleccionar un tipo de documento", "Registrar Personal - G.A.P", JOptionPane.YES_OPTION,
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un tipo de documento", "Registrar Personal - G.A.P", JOptionPane.YES_OPTION,
                     icoMensajeInfor);
-                ComboDoc.requestFocusInWindow();
-            } else {
+            ComboDoc.requestFocusInWindow();
+        } else {
 
-                ComboDoc.transferFocus();
-            }
+            ComboDoc.transferFocus();
+        }
         // TODO add your handling code here:
     }//GEN-LAST:event_ComboDocFocusLost
 
     private void ComboDocItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ComboDocItemStateChanged
 
-     /*   if (evt.getStateChange() == ItemEvent.SELECTED) {
+        /*   if (evt.getStateChange() == ItemEvent.SELECTED) {
 
-            if (ComboDoc.getSelectedIndex() == 0) {
+         if (ComboDoc.getSelectedIndex() == 0) {
 
-                JOptionPane.showMessageDialog(null, "Debe seleccionar un tipo de documento", "Registrar Personal - G.A.P", JOptionPane.YES_OPTION,
-                    icoMensajeInfor);
-                ComboDoc.requestFocusInWindow();
-            } else {
+         JOptionPane.showMessageDialog(null, "Debe seleccionar un tipo de documento", "Registrar Personal - G.A.P", JOptionPane.YES_OPTION,
+         icoMensajeInfor);
+         ComboDoc.requestFocusInWindow();
+         } else {
 
-                ComboDoc.transferFocus();
-            }
-        }*/
-
+         ComboDoc.transferFocus();
+         }
+         }*/
         // TODO add your handling code here:
     }//GEN-LAST:event_ComboDocItemStateChanged
 
     private void JTCorreoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTCorreoKeyTyped
-        
+
     }//GEN-LAST:event_JTCorreoKeyTyped
 
     private void JTCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTCorreoActionPerformed
-         
+
     }//GEN-LAST:event_JTCorreoActionPerformed
 
     private void JTCorreoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_JTCorreoFocusLost
 
-        if (JTDocumento.getText().toString().equals("")) {
+        /*     if (JTDocumento.getText().toString().equals("")) {
 
-            JOptionPane.showMessageDialog(null, "Campo obligatorio", "Gestionar Personal - G.A.P", JOptionPane.YES_OPTION,
-                icoMensajeInfor);
-            JTDocumento.requestFocusInWindow();
-        } else {
+         JOptionPane.showMessageDialog(null, "Campo obligatorio", "Gestionar Personal - G.A.P", JOptionPane.YES_OPTION,
+         icoMensajeInfor);
+         JTDocumento.requestFocusInWindow();
+         } else {
 
-            if (!Va.validarEmail(JTCorreo.getText())) {  //Validamos si el correo electronico si corresponde al formato
+         if (!Va.validarEmail(JTCorreo.getText())) {  //Validamos si el correo electronico si corresponde al formato
 
-                JOptionPane.showMessageDialog(null, "Este formato no es el de un email", "Gestionar Personal - S.G.P",
-                    JOptionPane.OK_OPTION, icoMensajeInfor);
-                JTCorreo.requestFocus();
-            } else {
-                if (listaPersonal.existe(JTCorreo.getText())) {
+         JOptionPane.showMessageDialog(null, "Este formato no es el de un email", "Gestionar Personal - S.G.P",
+         JOptionPane.OK_OPTION, icoMensajeInfor);
+         JTCorreo.requestFocus();
+         } else {
+         if (listaPersonal.existe(JTCorreo.getText())) {
 
-                    JOptionPane.showMessageDialog(null, "Este correo ya esta registrado", "Gestionar Personal - S.G.P",
-                        JOptionPane.OK_OPTION, icoMensajeInfor);
-                    JTCorreo.requestFocusInWindow();
-                } else {
-                    JTCorreo.transferFocus();
-                }
-            }
-        }
+         JOptionPane.showMessageDialog(null, "Este correo ya esta registrado", "Gestionar Personal - S.G.P",
+         JOptionPane.OK_OPTION, icoMensajeInfor);
+         JTCorreo.requestFocusInWindow();
+         } else {
+         JTCorreo.transferFocus();
+         }
+         }
+         }*/
         // TODO add your handling code here:
     }//GEN-LAST:event_JTCorreoFocusLost
 
     private void JTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTelefonoKeyTyped
-         
+
     }//GEN-LAST:event_JTelefonoKeyTyped
 
     private void JTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTelefonoActionPerformed
-         
+
     }//GEN-LAST:event_JTelefonoActionPerformed
 
     private void JTelefonoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_JTelefonoFocusLost
@@ -1190,11 +1180,11 @@ public class RegistroPersonal extends javax.swing.JFrame {
     }//GEN-LAST:event_JTelefonoFocusLost
 
     private void JTMovilKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTMovilKeyTyped
-         
+
     }//GEN-LAST:event_JTMovilKeyTyped
 
     private void JTMovilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTMovilActionPerformed
-         
+
     }//GEN-LAST:event_JTMovilActionPerformed
 
     private void JTMovilFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_JTMovilFocusLost
@@ -1204,11 +1194,11 @@ public class RegistroPersonal extends javax.swing.JFrame {
     }//GEN-LAST:event_JTMovilFocusLost
 
     private void JTDireccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTDireccionKeyTyped
-         
+
     }//GEN-LAST:event_JTDireccionKeyTyped
 
     private void JTDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTDireccionActionPerformed
-         
+
     }//GEN-LAST:event_JTDireccionActionPerformed
 
     private void JTDireccionFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_JTDireccionFocusLost
@@ -1303,27 +1293,6 @@ public class RegistroPersonal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jcmbTipoContratoActionPerformed
 
-    private void jtCargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtCargoActionPerformed
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtCargoActionPerformed
-
-    private void jtCargoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtCargoFocusLost
-
-        if (JTDocumento.getText().toString().equals("")) {
-
-            JOptionPane.showMessageDialog(null, "Campo obligatorio", "Gestionar Personal - G.A.P", JOptionPane.YES_OPTION,
-                icoMensajeInfor);
-            JTDocumento.requestFocusInWindow();
-        } else {
-
-            this.habilitarBotonGuardar();
-            this.DesactivarCampos();
-            JBGuardarU.requestFocusInWindow();
-        }
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtCargoFocusLost
-
     private void JBNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBNuevoActionPerformed
         this.ActivarCampos();
         swModifi = 0;
@@ -1333,61 +1302,61 @@ public class RegistroPersonal extends javax.swing.JFrame {
 
     private void JBGuardarUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBGuardarUActionPerformed
 
-        persona = this.GuardarCamposU();
-        String s = Va.Validacion(persona);
-        if (this.validacionObligatorios().equals("")) {
-            if (swModifi == 0) {
-                if (!listaPersonal.existe(Integer.parseInt(persona.getDocumento()))) {
-                    DatosPersonal u2 = persona;
+        /*    persona = this.GuardarCamposU();
+         String s = Va.Validacion(persona);
+         if (this.validacionObligatorios().equals("")) {
+         if (swModifi == 0) {
+         if (!listaPersonal.existe(Integer.parseInt(persona.getDocumento()))) {
+         DatosPersonal u2 = persona;
 
-                    if (listaPersonal.guardarUsuario(u2)) {
-                        JOptionPane.showMessageDialog(this, "Se guardó Correctamente", "Registro Personal - G.A.P", JOptionPane.YES_NO_OPTION,
-                            icoMensajePre);
-                        this.LimpiarCamposU();
-                        this.activarBotones();
-                        JBGuardarU.setEnabled(false);
+         if (listaPersonal.guardarUsuario(u2)) {
+         JOptionPane.showMessageDialog(this, "Se guardó Correctamente", "Registro Personal - G.A.P", JOptionPane.YES_NO_OPTION,
+         icoMensajePre);
+         this.LimpiarCamposU();
+         this.activarBotones();
+         JBGuardarU.setEnabled(false);
 
-                    } else {
-                        JOptionPane.showMessageDialog(this, "No se guardó correctamente", "Registro Personal - G.A.P", JOptionPane.YES_NO_OPTION,
-                            icoMensajePre);
-                    }
-                } else {
-                    JOptionPane.showMessageDialog(this, "Este usuario ya existe", "Registro Personal - G.A.P", JOptionPane.YES_NO_OPTION,
-                        icoMensajePre);
-                }
-            } else {
-                int opc;
-                opc = JOptionPane.showConfirmDialog(null, "Esta seguro que desea modificar este registro",
-                    "Datos Animal - G.A.P", JOptionPane.YES_NO_OPTION,
-                    JOptionPane.QUESTION_MESSAGE, icoMensajePre);
-                if (opc == 0) {
-                    if (listaPersonal.modificarUsuario(persona)) {
+         } else {
+         JOptionPane.showMessageDialog(this, "No se guardó correctamente", "Registro Personal - G.A.P", JOptionPane.YES_NO_OPTION,
+         icoMensajePre);
+         }
+         } else {
+         JOptionPane.showMessageDialog(this, "Este usuario ya existe", "Registro Personal - G.A.P", JOptionPane.YES_NO_OPTION,
+         icoMensajePre);
+         }
+         } else {
+         int opc;
+         opc = JOptionPane.showConfirmDialog(null, "Esta seguro que desea modificar este registro",
+         "Datos Animal - G.A.P", JOptionPane.YES_NO_OPTION,
+         JOptionPane.QUESTION_MESSAGE, icoMensajePre);
+         if (opc == 0) {
+         if (listaPersonal.modificarUsuario(persona)) {
 
-                        JOptionPane.showMessageDialog(null, "El registro se modifico correctamente", "Registro Personal - G.A.P",
-                            JOptionPane.OK_OPTION, icoMensajeInfor);
-                        this.LimpiarCamposU();
-                        this.DesactivarCampos();
-                        this.activarBotones();
-                        JBGuardarU.setEnabled(false);
-                        JBNuevo.requestFocusInWindow();
-                    } else {
+         JOptionPane.showMessageDialog(null, "El registro se modifico correctamente", "Registro Personal - G.A.P",
+         JOptionPane.OK_OPTION, icoMensajeInfor);
+         this.LimpiarCamposU();
+         this.DesactivarCampos();
+         this.activarBotones();
+         JBGuardarU.setEnabled(false);
+         JBNuevo.requestFocusInWindow();
+         } else {
 
-                        JOptionPane.showMessageDialog(null, "El registro no fue modificado", "Registro Personal - G.A.P",
-                            JOptionPane.OK_OPTION, icoMensajeInfor);
-                    }
-                }else{
-                    JOptionPane.showMessageDialog(null, "Se cancelo la modificación", "Registro Personal - G.A.P",
-                            JOptionPane.OK_OPTION, icoMensajeInfor);
-                    JBGuardarU.setEnabled(false);
-                    this.LimpiarCamposU();
-                    this.activarBotones();
-                }
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "¡Complete los campos obligatorios(*)!", "Registro Personal - G.A.P", JOptionPane.YES_NO_OPTION,
-                icoMensajePre);
-        }
-
+         JOptionPane.showMessageDialog(null, "El registro no fue modificado", "Registro Personal - G.A.P",
+         JOptionPane.OK_OPTION, icoMensajeInfor);
+         }
+         }else{
+         JOptionPane.showMessageDialog(null, "Se cancelo la modificación", "Registro Personal - G.A.P",
+         JOptionPane.OK_OPTION, icoMensajeInfor);
+         JBGuardarU.setEnabled(false);
+         this.LimpiarCamposU();
+         this.activarBotones();
+         }
+         }
+         } else {
+         JOptionPane.showMessageDialog(this, "¡Complete los campos obligatorios(*)!", "Registro Personal - G.A.P", JOptionPane.YES_NO_OPTION,
+         icoMensajePre);
+         }
+         */
         // TODO add your handling code here:
     }//GEN-LAST:event_JBGuardarUActionPerformed
 
@@ -1413,24 +1382,24 @@ public class RegistroPersonal extends javax.swing.JFrame {
 
     private void JBEliminarUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBEliminarUActionPerformed
 
-        String s = JOptionPane.showInputDialog(this, "Ingrese el documento del usuario a eliminar");
+        /*      String s = JOptionPane.showInputDialog(this, "Ingrese el documento del usuario a eliminar");
 
-        if (listaPersonal.existe(s)) {
-            JOptionPane.showMessageDialog(this, "Esta seguro que desea eliminar este usuario", "Registro Personal - G.A.P", JOptionPane.YES_NO_OPTION,
-                icoMensajePre);
-            if (listaPersonal.eliminarUsuario(s)) {
-                JOptionPane.showMessageDialog(this, "Se ha eliminado correctamente", "Registro Personal - G.A.P", JOptionPane.YES_NO_OPTION,
-                    icoMensajePre);
-                this.LimpiarCamposU();
-            } else {
-                JOptionPane.showMessageDialog(this, "No se pudo eliminar el usuario", "Registro Personal - G.A.P", JOptionPane.YES_NO_OPTION,
-                    icoMensajePre);
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "El usuario no existe", "Registro Personal - G.A.P", JOptionPane.YES_NO_OPTION,
-                icoMensajePre);
-        }
-
+         if (listaPersonal.existe(s)) {
+         JOptionPane.showMessageDialog(this, "Esta seguro que desea eliminar este usuario", "Registro Personal - G.A.P", JOptionPane.YES_NO_OPTION,
+         icoMensajePre);
+         if (listaPersonal.eliminarUsuario(s)) {
+         JOptionPane.showMessageDialog(this, "Se ha eliminado correctamente", "Registro Personal - G.A.P", JOptionPane.YES_NO_OPTION,
+         icoMensajePre);
+         this.LimpiarCamposU();
+         } else {
+         JOptionPane.showMessageDialog(this, "No se pudo eliminar el usuario", "Registro Personal - G.A.P", JOptionPane.YES_NO_OPTION,
+         icoMensajePre);
+         }
+         } else {
+         JOptionPane.showMessageDialog(this, "El usuario no existe", "Registro Personal - G.A.P", JOptionPane.YES_NO_OPTION,
+         icoMensajePre);
+         }
+         */
         // TODO add your handling code here:
     }//GEN-LAST:event_JBEliminarUActionPerformed
 
@@ -1444,8 +1413,8 @@ public class RegistroPersonal extends javax.swing.JFrame {
     private void JBVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBVolverActionPerformed
         int opc;
         opc = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea salir de Registro Personal?",
-            "Salir.  Gestión Administrativa Porcícola - G.A.P.", JOptionPane.YES_NO_OPTION,
-            JOptionPane.QUESTION_MESSAGE, icoMensajePre);
+                "Salir.  Gestión Administrativa Porcícola - G.A.P.", JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE, icoMensajePre);
         if (opc == 0) {
             this.dispose();
 
@@ -1512,6 +1481,7 @@ public class RegistroPersonal extends javax.swing.JFrame {
     private javax.swing.JButton jBCargarImagen;
     private javax.swing.JComboBox jCbxCiudad;
     private javax.swing.JComboBox jCbxDepartamento;
+    private javax.swing.JComboBox jComboCargo;
     private javax.swing.JComboBox jCprofesion;
     private javax.swing.JComboBox jCtiporh;
     private javax.swing.JComboBox jCtiposangre;
@@ -1553,7 +1523,6 @@ public class RegistroPersonal extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser jdFechaFinal;
     private com.toedter.calendar.JDateChooser jdFechaNacimiento;
     private com.toedter.calendar.JDateChooser jdFechaTitulo;
-    private javax.swing.JTextField jtCargo;
     private javax.swing.JTextField jtEstudios;
     // End of variables declaration//GEN-END:variables
 
@@ -1564,7 +1533,7 @@ public class RegistroPersonal extends javax.swing.JFrame {
         JTMovil.setEnabled(false);
         JTCorreo.setEnabled(false);
         JTNombre.setEnabled(false);
-        jtCargo.setEnabled(false);
+        jComboCargo.setEnabled(false);
         jtEstudios.setEnabled(false);
         jdFechaContrato.setEnabled(false);
         jdFechaFinal.setEnabled(false);
@@ -1576,7 +1545,7 @@ public class RegistroPersonal extends javax.swing.JFrame {
         jCprofesion.setEnabled(false);
         jCtiporh.setEnabled(false);
         jCtiposangre.setEnabled(false);
-        jcmbTipoContrato.setEnabled(false); 
+        jcmbTipoContrato.setEnabled(false);
         jdFechaNacimiento.setEnabled(false);
         JrbnActivo.setEnabled(false);
         JrbnInactivo.setEnabled(false);
@@ -1597,7 +1566,7 @@ public class RegistroPersonal extends javax.swing.JFrame {
         JTMovil.setEnabled(true);
         JTCorreo.setEnabled(true);
         JTNombre.setEnabled(true);
-        jtCargo.setEnabled(true);
+        jComboCargo.setEnabled(true);
         jtEstudios.setEnabled(true);
         jdFechaContrato.setEnabled(true);
         jdFechaFinal.setEnabled(true);
@@ -1608,7 +1577,7 @@ public class RegistroPersonal extends javax.swing.JFrame {
         jCprofesion.setEnabled(true);
         jCtiposangre.setEnabled(true);
         jCtiporh.setEnabled(true);
-        jcmbTipoContrato.setEnabled(true); 
+        jcmbTipoContrato.setEnabled(true);
         jdFechaNacimiento.setEnabled(true);
         JrbnActivo.setEnabled(true);
         JrbnInactivo.setEnabled(true);
@@ -1652,7 +1621,7 @@ public class RegistroPersonal extends javax.swing.JFrame {
         JTMovil.setText("");
         JTCorreo.setText("");
         JTNombre.setText("");
-        jtCargo.setText("");
+        jComboCargo.setSelectedIndex(0);
         jtEstudios.setText("");
         jdFechaContrato.setDate(null);
         jdFechaFinal.setDate(null);
@@ -1682,7 +1651,7 @@ public class RegistroPersonal extends javax.swing.JFrame {
         u2.setNombre(JTNombre.getText());
         u2.setEstado(Integer.parseInt(estado));
         u2.setObtenidoEstudio(obtenido);
-        u2.setCargo(Integer.parseInt(jtCargo.getText()));
+        u2.setCargo(jComboCargo.getSelectedIndex());
         u2.setTipoContrato(jcmbTipoContrato.getSelectedIndex());
         u2.setOtroEst(jtEstudios.getText());
         u2.setFechaContrato(jdFechaContrato.getDate());
@@ -1690,94 +1659,94 @@ public class RegistroPersonal extends javax.swing.JFrame {
         u2.setFechaNacimiento(jdFechaNacimiento.getDate());
         u2.setFechaTitulo(jdFechaTitulo.getDate());
         u2.setTipoDoc(ComboDoc.getSelectedIndex());
-        u2.setCiudad( jCbxCiudad.getSelectedIndex());
-        u2.setDepart( jCbxDepartamento.getSelectedIndex());
-        u2.setProfesion( jCprofesion.getSelectedIndex());
-        u2.setRh( jCtiporh.getSelectedIndex());
-        u2.setSangre( jCtiposangre.getSelectedIndex());
-        u2.setTipoContrato( jcmbTipoContrato.getSelectedIndex());
+        u2.setCiudad(jCbxCiudad.getSelectedIndex());
+        u2.setDepart(jCbxDepartamento.getSelectedIndex());
+        u2.setProfesion(jCprofesion.getSelectedIndex());
+        u2.setRh(jCtiporh.getSelectedIndex());
+        u2.setSangre(jCtiposangre.getSelectedIndex());
+        u2.setTipoContrato(jcmbTipoContrato.getSelectedIndex());
         u2.setRutaImagen(jTextField1.getText());
-        
+
         return u2;
     }
 
     public void LlenarDatosU() {
 
-        int opc = -2;
-        String[] opciones = {"Número de Documento", "Nombre", "Correo"};
-        if (swModifi == 1) {
+        /*    int opc = -2;
+         String[] opciones = {"Número de Documento", "Nombre", "Correo"};
+         if (swModifi == 1) {
 
-            buscarPersonal = listaPersonal.cargarUsuario(JOptionPane.showInputDialog("Ingrese el número de documento del registro a modificar"));
-            this.ActivarCampos();
-            this.desactivarBotones();
-        } else {
+         buscarPersonal = listaPersonal.cargarUsuario(JOptionPane.showInputDialog("Ingrese el número de documento del registro a modificar"));
+         this.ActivarCampos();
+         this.desactivarBotones();
+         } else {
 
-            opc = JOptionPane.showOptionDialog(null, "Seleccione la forma en que desea realizar la consulta",
-                    "Consulta de Personal. Sistematización Granjas Porcícola - S.G.P.", JOptionPane.YES_NO_CANCEL_OPTION,
-                    JOptionPane.QUESTION_MESSAGE, icoMensajePre, opciones, true);
-            switch (opc) {
+         opc = JOptionPane.showOptionDialog(null, "Seleccione la forma en que desea realizar la consulta",
+         "Consulta de Personal. Sistematización Granjas Porcícola - S.G.P.", JOptionPane.YES_NO_CANCEL_OPTION,
+         JOptionPane.QUESTION_MESSAGE, icoMensajePre, opciones, true);
+         switch (opc) {
 
-                case 0:
-                    buscarPersonal = listaPersonal.cargarUsuario(JOptionPane.showInputDialog("Ingrese el número de documento del personal a consultar"));
-                    break;
-                case 1:
-                    buscarPersonal = listaPersonal.cargarUsuarioNombre(JOptionPane.showInputDialog("Ingrese el nombre del personal a consultar"));
-                    break;
-                case 2:
-                    buscarPersonal = listaPersonal.cargarUsuarioCorreo(JOptionPane.showInputDialog("Ingrese el correo del personal a consultar"));
-                    break;
-            }
-        }
-        if (opc != -1) {
+         case 0:
+         buscarPersonal = listaPersonal.cargarUsuario(JOptionPane.showInputDialog("Ingrese el número de documento del personal a consultar"));
+         break;
+         case 1:
+         buscarPersonal = listaPersonal.cargarUsuarioNombre(JOptionPane.showInputDialog("Ingrese el nombre del personal a consultar"));
+         break;
+         case 2:
+         buscarPersonal = listaPersonal.cargarUsuarioCorreo(JOptionPane.showInputDialog("Ingrese el correo del personal a consultar"));
+         break;
+         }
+         }
+         if (opc != -1) {
 
-            if (buscarPersonal != null) {
-                JTDocumento.setText(String.valueOf(buscarPersonal.getDocumento()));
-                JTDireccion.setText(buscarPersonal.getDireccion());
-                JTelefono.setText(String.valueOf(buscarPersonal.getTelefono()));
-                JTMovil.setText(String.valueOf(buscarPersonal.getMovil()));
-                JTCorreo.setText(buscarPersonal.getCorreo());
-                JTNombre.setText(buscarPersonal.getNombre());
-                jtCargo.setText(String.valueOf(buscarPersonal.getCargo()));
-                jtEstudios.setText(buscarPersonal.getOtroEst());
-                jdFechaContrato.setDate(buscarPersonal.getFechaContrato());
-                jdFechaFinal.setDate(buscarPersonal.getFechaOtroEst());
-                jdFechaNacimiento.setDate(buscarPersonal.getFechaNacimiento());
-                jdFechaTitulo.setDate(buscarPersonal.getFechaTitulo());
-                ComboDoc.setSelectedItem(buscarPersonal.getTipoDoc());
-                jCbxCiudad.setSelectedItem(buscarPersonal.getCiudad());
-                jCbxDepartamento.setSelectedItem(buscarPersonal.getDepart());
-                jCprofesion.setSelectedItem(buscarPersonal.getProfesion());
-                jCtiporh.setSelectedItem(buscarPersonal.getRh());
-                jCtiposangre.setSelectedItem(buscarPersonal.getSangre());
-                jcmbTipoContrato.setSelectedItem(buscarPersonal.getTipoContrato());
-                jTextField1.setText(buscarPersonal.getRutaImagen());
+         if (buscarPersonal != null) {
+         JTDocumento.setText(String.valueOf(buscarPersonal.getDocumento()));
+         JTDireccion.setText(buscarPersonal.getDireccion());
+         JTelefono.setText(String.valueOf(buscarPersonal.getTelefono()));
+         JTMovil.setText(String.valueOf(buscarPersonal.getMovil()));
+         JTCorreo.setText(buscarPersonal.getCorreo());
+         JTNombre.setText(buscarPersonal.getNombre());
+         jtCargo.setText(String.valueOf(buscarPersonal.getCargo()));
+         jtEstudios.setText(buscarPersonal.getOtroEst());
+         jdFechaContrato.setDate(buscarPersonal.getFechaContrato());
+         jdFechaFinal.setDate(buscarPersonal.getFechaOtroEst());
+         jdFechaNacimiento.setDate(buscarPersonal.getFechaNacimiento());
+         jdFechaTitulo.setDate(buscarPersonal.getFechaTitulo());
+         ComboDoc.setSelectedItem(buscarPersonal.getTipoDoc());
+         jCbxCiudad.setSelectedItem(buscarPersonal.getCiudad());
+         jCbxDepartamento.setSelectedItem(buscarPersonal.getDepart());
+         jCprofesion.setSelectedItem(buscarPersonal.getProfesion());
+         jCtiporh.setSelectedItem(buscarPersonal.getRh());
+         jCtiposangre.setSelectedItem(buscarPersonal.getSangre());
+         jcmbTipoContrato.setSelectedItem(buscarPersonal.getTipoContrato());
+         jTextField1.setText(buscarPersonal.getRutaImagen());
 
-                //Obtener el nombre la imagen
-                String fil = jTextField2.getText();
-                //Obtener la direccion donde se guarda la imagen
-                String file = jTextField1.getText();
-                jLabel1.setIcon(new ImageIcon(fil));
-                //Modificar la imagen
-                ImageIcon icon = new ImageIcon(fil);
-                //Extraer la imagen del icono
-                Image img = icon.getImage();
-                //Cambiar tamaño a la imagen       
-                Image newimg = img.getScaledInstance(153, 160, java.awt.Image.SCALE_SMOOTH);
-                //Se genera el ImageIcon con la nueva imagen
-                ImageIcon newIcon = new ImageIcon(newimg);
-                jLabel1.setIcon(newIcon);
-            } else {
+         //Obtener el nombre la imagen
+         String fil = jTextField2.getText();
+         //Obtener la direccion donde se guarda la imagen
+         String file = jTextField1.getText();
+         jLabel1.setIcon(new ImageIcon(fil));
+         //Modificar la imagen
+         ImageIcon icon = new ImageIcon(fil);
+         //Extraer la imagen del icono
+         Image img = icon.getImage();
+         //Cambiar tamaño a la imagen       
+         Image newimg = img.getScaledInstance(153, 160, java.awt.Image.SCALE_SMOOTH);
+         //Se genera el ImageIcon con la nueva imagen
+         ImageIcon newIcon = new ImageIcon(newimg);
+         jLabel1.setIcon(newIcon);
+         } else {
 
-                JOptionPane.showMessageDialog(null, "El registro no existe", "Gestionar Personal - G.A.P",
-                        JOptionPane.OK_OPTION, icoMensajeInfor);
-                this.activarBotones();
-            }
-        } else {
+         JOptionPane.showMessageDialog(null, "El registro no existe", "Gestionar Personal - G.A.P",
+         JOptionPane.OK_OPTION, icoMensajeInfor);
+         this.activarBotones();
+         }
+         } else {
 
-            JOptionPane.showMessageDialog(null, "Se cancelo la consulta", "Gestionar Personal - G.A.P",
-                    JOptionPane.OK_OPTION, icoMensajeInfor);
-        }
-        buscarPersonal = null;
+         JOptionPane.showMessageDialog(null, "Se cancelo la consulta", "Gestionar Personal - G.A.P",
+         JOptionPane.OK_OPTION, icoMensajeInfor);
+         }
+         buscarPersonal = null;*/
     }
 
     private String validacionObligatorios() {
@@ -1819,47 +1788,40 @@ public class RegistroPersonal extends javax.swing.JFrame {
 
     }
 
-    private void cargarComboBox() {
-
-        ComboDoc.addItem("Cedula de Ciudadanía");
-        ComboDoc.addItem("Cedula de Extranjería");
-        ComboDoc.addItem("Contraseña");
-        ComboDoc.addItem("Pasaporte");
-
-        jCtiposangre.addItem("A");
-        jCtiposangre.addItem("B");
-        jCtiposangre.addItem("O");
-        jCtiposangre.addItem("AB");
-
+    private void cargarComboBoxs() {
+        
+        
+        listaTipoDoc = basePersonal.obtenerTipoDocumento();
+        for (DatosDependencias tipoDocumento : listaTipoDoc) {
+            ComboDoc.addItem(tipoDocumento.getNombre());
+        }
+        
+        listaTipoRh = basePersonal.obtenerTipoRh();
+        for (DatosDependencias tipoRh : listaTipoRh) {
+            jCtiporh.addItem(tipoRh.getNombre());
+        }
+        
+        listaTipoSangre = basePersonal.obtenerTipoSangre();
+        for (DatosDependencias tipoSangre : listaTipoSangre) {
+            jCtiposangre.addItem(tipoSangre.getNombre());
+        }
+        
+        listaTipoContrato = basePersonal.obtenerTipoContrato();
+        for (DatosDependencias tipoContrato : listaTipoContrato) {
+            jcmbTipoContrato.addItem(tipoContrato.getNombre());
+        }
+        
+        listaTipoCargo = basePersonal.obtenerTipoCargos();
+        for (DatosDependencias tipoCargo : listaTipoCargo) {
+            jComboCargo.addItem(tipoCargo.getNombre());
+        }
+        
+        listaTipoProfesion = basePersonal.obtenerTipoProfesiones();
+        for (DatosDependencias tipoProfe : listaTipoProfesion) {
+            jCprofesion.addItem(tipoProfe.getNombre());
+        }
     }
 
-    /*  private void cargarComboBoxCiudad(int newIndex, int newSw) {
-     int i = newIndex - 1;
-     int sw = newSw;
-
-     if (sw == 0) {
-     jCbxCiudad.removeAllItems();
-     jCbxCiudad.setEnabled(true);
-
-     if (i == -1) {
-     jCbxCiudad.addItem("...");
-     jCbxCiudad.setEnabled(false);
-     } else {
-     deparMuni.cargarMunicipios(i, jCbxCiudad);
-     }
-     } else {
-     jCtiporh.removeAllItems();
-     jCtiporh.setEnabled(true);
-
-     if (i == -1) {
-     jCtiporh.addItem("...");
-     jCtiporh.setEnabled(false);
-     } else {
-     jCtiporh.addItem("+");
-     jCtiporh.addItem("-");
-     }
-     }
-     }*/
     private void habilitarBotonGuardar() {
 
         String n = JTDocumento.getText();

@@ -5,8 +5,10 @@
  */
 package util;
 
+import Identidades.DatosPerfil;
 import Identidades.DatosPersonal;
 import Utilidades.DepartamentosMunicipios;
+import crudBaseDatos.CrudPerfil;
 import crudBaseDatos.CrudPersonal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,6 +16,7 @@ import java.sql.SQLException;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import static porcicolawilbur.PorcicolaWilbur.ruta;
 
 /**
@@ -71,7 +74,7 @@ public class Test {
             co.cerrarConexion(cone);
         }*/
         CrudPersonal base = new CrudPersonal();
-      /*  DatosPersonal persona = new DatosPersonal();
+     /*   DatosPersonal persona = new DatosPersonal();
     	persona.setTipoDoc(1);
     	persona.setDocumento(8359459);
     	persona.setNombre("Ivan Dario");
@@ -102,7 +105,7 @@ public class Test {
             System.out.println("No se guardo");
         }
         
-        DatosPersonal persona = new DatosPersonal();
+      /*  DatosPersonal persona = new DatosPersonal();
     	persona.setTipoDoc(1);
     	persona.setDocumento(2222);
     	persona.setNombre("Juan Esteban");
@@ -131,15 +134,28 @@ public class Test {
             System.out.println("Se actualizo");
         }else{
             System.out.println("No se actualizo");
-        }
+        }*/
         DatosPersonal con = null;
-        con = base.obtenerUsuario(2222);
+        con = base.obtenerUsuario(8359459);
         if (con != null){
             System.out.println("el usuario "+ con.getNombre() + " " + con.getPrimerApellido() + " fue consultado");
         }else{
             System.out.println("no consulto");
+        }
+      //  base.eliminarUsuario(2222);
+     //   CrudPerfil ba = new CrudPerfil();
+      /*  DatosPerfil per = new DatosPerfil();
+        per.setUsuario("Juan");
+        per.setContraIngreso("Juan.1585");
+        per.setTipoPerfil(2);
+        per.setNumCedula(2222);
+        per.setIdPerfil(1);
+        if (ba.eliminarRegistro(1)){
+            JOptionPane.showMessageDialog(null,"se elimino");
+        }else{
+            JOptionPane.showMessageDialog(null,"no se elimino");            
         }*/
-        base.eliminarUsuario(2222);
+        
     }
 
 }

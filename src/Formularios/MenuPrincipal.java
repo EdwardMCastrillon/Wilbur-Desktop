@@ -13,7 +13,6 @@ import java.awt.event.*;
 import java.util.*;
 import java.io.*;
 import java.awt.Desktop;
-import Listas.*;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.FileInputStream;
@@ -37,18 +36,13 @@ public class MenuPrincipal implements ActionListener {
     Image icoCabecera;
     JLabel labelFondo;
     int control;
-    ListaAnimal listaAnimal;
-    ListaPartos listaParto;
-    ListaRazas listaRaza;
-    ListaUsuario listaPersona;
-    ListaPerfil listaPerfi;
     ReporteAnimal reporteAnimal;
     ReportePartos reporteParto;
     ReportePersonal reportePersonal;
 
-    public MenuPrincipal( String perfil, String nombre, ListaAnimal listaAnima, ListaUsuario listaPersona, ListaPartos listaPart, ListaRazas R, ListaPerfil listaPerfi) {
+    public MenuPrincipal( String perfil) {
 
-        FraMenuPri = new JFrame("Menú Principal - " + nombre);
+        FraMenuPri = new JFrame("Menú Principal - ");
         FraMenuPri.setBounds(10, 10, 1350, 710);
         FraMenuPri.setLayout(null);
         FraMenuPri.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//DETENER LA EJECUCIÓN CUANDO CIERRE
@@ -224,14 +218,6 @@ public class MenuPrincipal implements ActionListener {
         }
 
         icoMensajePre = new ImageIcon("C:\\OriginalPorcicolaWilbur\\src\\Imagenes\\IconoPregunta.jpg");
-        this.listaAnimal = listaAnima;
-        this.listaParto = listaPart;
-        this.listaRaza = R;
-        this.listaPersona = listaPersona; 
-        this.listaPerfi=listaPerfi;
-        this.reporteAnimal = new ReporteAnimal();
-        this.reporteParto = new ReportePartos();
-        this.reportePersonal = new ReportePersonal();
 
     }
 
@@ -239,54 +225,54 @@ public class MenuPrincipal implements ActionListener {
 
         if (e.getSource() == menItemPersonal) {
 
-            RegistroPersonal rp = new RegistroPersonal(listaPersona);
+           // RegistroPersonal rp = new RegistroPersonal(listaPersona);
 
         }
 
         if (e.getSource() == menItemPerfil) {
 
-            AsignarPerfil gPer = new AsignarPerfil(listaPersona, listaPerfi);
+            AsignarPerfil gPer = new AsignarPerfil();
 
         }
 
         if (e.getSource() == menItemRecuperar) {
 
-            RecuperarPass rC = new RecuperarPass(listaPersona.getPrimero(), listaPerfi.getCabeza());
+            RecuperarPass rC = new RecuperarPass();
 
         }
 
         if (e.getSource() == menItemModContra) {
 
-            JFrameCambiarContraseña cc = new JFrameCambiarContraseña(listaPerfi, listaPersona);
+            JFrameCambiarContraseña cc = new JFrameCambiarContraseña();
         }
 
         if (e.getSource() == menItemReportesPartos) {
             String Tabla = "Partos";
             String Campo = "Registros";
-            reporteParto.crearInformeTabla(Tabla,Campo,listaParto);
+         //   reporteParto.crearInformeTabla(Tabla,Campo,listaParto);
 
         }
         
         if (e.getSource() == menItemReportesPersonal) {
             String Tabla = "Personal";
             String Campo = "Registros";
-            reportePersonal.crearInformeTabla(Tabla,Campo,listaPersona);
+         //   reportePersonal.crearInformeTabla(Tabla,Campo,listaPersona);
 
         }
         
         if (e.getSource() == menItemReportesAnimal) {
             String Tabla = "Animales";
             String Campo = "Registros";
-            reporteAnimal.crearInformeTabla(Tabla,Campo,listaAnimal);
+           // reporteAnimal.crearInformeTabla(Tabla,Campo,listaAnimal);
 
         }
 
         if (e.getSource() == menItemAnimal) {
-            JFrameGestionDatAnimal da = new JFrameGestionDatAnimal(listaAnimal, listaRaza, listaParto);
+            JFrameGestionDatAnimal da = new JFrameGestionDatAnimal();
         }
         
         if (e.getSource() == menItemPartos) {
-            JFramePartos da = new JFramePartos(listaParto, listaAnimal);
+            JFramePartos da = new JFramePartos();
         }
 
         if (e.getSource() == menItemManual) {
@@ -306,7 +292,7 @@ public class MenuPrincipal implements ActionListener {
                     JOptionPane.QUESTION_MESSAGE, icoMensajePre);
             if (opc == 0) {
                 FraMenuPri.dispose();
-                Ingreso i = new Ingreso( listaPersona, listaParto, listaAnimal, listaRaza, listaPerfi);
+                Ingreso i = new Ingreso();
 
             }
         }

@@ -7,8 +7,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import Listas.*;
 import Utilidades.Validaciones;
+import crudBaseDatos.CrudPerfil;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  *
@@ -17,41 +19,28 @@ import Utilidades.Validaciones;
 public class Ingreso extends javax.swing.JFrame {
 
     String perfil;
-    ListaAnimal listaAnimal;
-    ListaUsuario listaPersonal;
-    ListaPartos listaParto;
-    ListaRazas listaRaza;
-    ListaPerfil listaPerfi;
     ImageIcon icoMensajeInfor, icoMensajePre;
     Validaciones validar;
     String nombreVentana;
-    int boton =1;
-
-    public Ingreso() {
-        initComponents();
-    }
+    int boton = 1;
+    CrudPerfil base;
+    ResultSet respuesta;
 
     /**
      * @param usuarios[][]: Represanta la matriz de los usuarios del sistema.
      * @param Lu : Lista de personal *
      */
-    public Ingreso(ListaUsuario Lu, ListaPartos Lp, ListaAnimal La, ListaRazas Lr, ListaPerfil listaPerfi) {
+    public Ingreso() {
         initComponents();
         setVisible(true);
-        listaPersonal = Lu;
-        listaParto = Lp;
-        listaAnimal = La;
-        listaRaza = Lr;
-        this.listaPerfi = listaPerfi;
         setLocationRelativeTo(null);
         setResizable(false);
         setTitle("Ingreso al Sistema");
-        setIconImage(new ImageIcon(getClass().getResource("..\\Imagenes\\1_Icono_Form.JPG")).getImage());
         icoMensajeInfor = new ImageIcon("C:\\OriginalPorcicolaWilbur\\src\\Imagenes\\IconoInformacion.JPG");
         icoMensajePre = new ImageIcon("C:\\OriginalPorcicolaWilbur\\src\\Imagenes\\IconoPregunta.JPG");
         validar = new Validaciones();
         nombreVentana = "Ingreso al Sistema - G.A.P.";
-
+        base = new CrudPerfil();
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -236,38 +225,48 @@ public class Ingreso extends javax.swing.JFrame {
     private void JBIngresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBIngresoActionPerformed
 
         String nombre;
-        DatosPerfil perfi = listaPerfi.confirmarUsuario(JTUsuario.getText(), JTClave.getText());
-        long dif;
-        if (perfi != null) {
-            if (perfi.getUsuario().equals(JTUsuario.getText()) && perfi.getContraIngreso().equals(JTClave.getText())) {
-                nombre = perfi.getNombre();
-                perfil = perfi.getPerfil();
-                dif = listaPerfi.fechaCambioContra(perfi.getFecha());
-                if (dif >= 25 && dif < 30) {
-                    ///if (listaPerfi.fechaCambioContra(perfi.getFecha())) {
-                    JOptionPane.showMessageDialog(null, "Debe cambiar su contraseña." + "\n" + "Se recomienda cambiar cada 30 días,"
-                            + "\n" + "después del primer registro", "Inicio de Sesion - S.G.P", JOptionPane.OK_OPTION, icoMensajeInfor);
-                    MenuPrincipal MeP = new MenuPrincipal(perfil, nombre, listaAnimal, listaPersonal, listaParto, listaRaza, listaPerfi);
-                    this.dispose();
-                } else {
-                    if (dif >= 30) {
-                        JFrameCambiarContraseña jc = new JFrameCambiarContraseña(listaPerfi, listaPersonal);
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Bienvenido al sistema G.A.P", "Inicio de Sesion - S.G.P",
-                                JOptionPane.OK_OPTION, icoMensajeInfor);
-                        MenuPrincipal MeP = new MenuPrincipal(perfil, nombre, listaAnimal, listaPersonal, listaParto, listaRaza, listaPerfi);
-                        this.dispose();
-                    }
-                }
+        /* DatosPerfil perfi = listaPerfi.confirmarUsuario(JTUsuario.getText(), JTClave.getText());
+         long dif;
+         if (perfi != null) {
+         if (perfi.getUsuario().equals(JTUsuario.getText()) && perfi.getContraIngreso().equals(JTClave.getText())) {
+         nombre = perfi.getNombre();
+         perfil = perfi.getPerfil();
+         dif = listaPerfi.fechaCambioContra(perfi.getFecha());
+         if (dif >= 25 && dif < 30) {
+         ///if (listaPerfi.fechaCambioContra(perfi.getFecha())) {
+         JOptionPane.showMessageDialog(null, "Debe cambiar su contraseña." + "\n" + "Se recomienda cambiar cada 30 días,"
+         + "\n" + "después del primer registro", "Inicio de Sesion - S.G.P", JOptionPane.OK_OPTION, icoMensajeInfor);
+         MenuPrincipal MeP = new MenuPrincipal(perfil);
+         this.dispose();
+         } else {
+         if (dif >= 30) {
+         JFrameCambiarContraseña jc = new JFrameCambiarContraseña();
+         } else {
+         JOptionPane.showMessageDialog(null, "Bienvenido al sistema G.A.P", "Inicio de Sesion - S.G.P",
+         JOptionPane.OK_OPTION, icoMensajeInfor);
+         MenuPrincipal MeP = new MenuPrincipal(perfil);
+         this.dispose();
+         }
+         }
 
+         }
+         } else {
+
+         JOptionPane.showMessageDialog(null, "El usuario no existe", "Inicio de Sesion - G.A.P",
+         JOptionPane.OK_OPTION, icoMensajeInfor);
+         JTUsuario.requestFocus();
+         JTUsuario.setText("");
+         JTClave.setText("");
+         }*/
+        respuesta = base.validarUsuario(JTUsuario.getText(), JTClave.getText());
+        try {
+            if (respuesta.next()) {
+                MenuPrincipal menu = new MenuPrincipal(respuesta.getString("TPE.NOM_TPERFIL"));
+            } else {
+                JOptionPane.showMessageDialog(null, "Usuario no existe");
             }
-        } else {
-
-            JOptionPane.showMessageDialog(null, "El usuario no existe", "Inicio de Sesion - G.A.P",
-                    JOptionPane.OK_OPTION, icoMensajeInfor);
-            JTUsuario.requestFocus();
-            JTUsuario.setText("");
-            JTClave.setText("");
+        } catch (SQLException ex) {
+            Logger.getLogger(Ingreso.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         // TODO add your handling code here:
@@ -278,7 +277,7 @@ public class Ingreso extends javax.swing.JFrame {
 
     private void JBOlvidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBOlvidoActionPerformed
 
-        new RecuperarPass(listaPersonal.getPrimero(), listaPerfi.getCabeza());
+        new RecuperarPass();
 
         // TODO add your handling code here:
     }//GEN-LAST:event_JBOlvidoActionPerformed

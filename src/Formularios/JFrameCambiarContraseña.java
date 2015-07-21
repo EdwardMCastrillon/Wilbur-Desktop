@@ -6,8 +6,6 @@ package Formularios;
 
 import Identidades.DatosPerfil;
 import Identidades.DatosPersonal;
-import Listas.ListaPerfil;
-import Listas.ListaUsuario;
 import javax.swing.ImageIcon; //Se importa la clase para poner el icono en los formularios.
 import javax.swing.JOptionPane;
 import Utilidades.*;
@@ -27,29 +25,22 @@ public class JFrameCambiarContraseña extends javax.swing.JFrame {
     DatosPerfil perfilModifiContra, datosPerfilEmail;
     DatosPersonal usuario;
     String pasActual, correo, usuari, nombre, contraseña;
-    ListaPerfil listaPerfi;
-    ListaUsuario listaPerso;
     EnviarEmail mail;
     String mensaje = "Se envio un correo a la dirección registrada," + "\n" + "con los datos de la nueva contraseña de ingreso";
     String tipoMensaje = "Modificar Contraseña - G.A.P.";
     Validaciones vali;
     int[] conta;
 
-    public JFrameCambiarContraseña() {
-    }
 
-    public JFrameCambiarContraseña(ListaPerfil listaPerfi, ListaUsuario listaPerso) {
+    public JFrameCambiarContraseña() {
         initComponents();
         this.ValidarEspacios();
         this.setVisible(true);
         setLocationRelativeTo(null);
         setResizable(false);
         setTitle("Cambiar Contraseña");
-        setIconImage(new ImageIcon(getClass().getResource("/Imagenes/1_Icono_Form.JPG")).getImage());
         icoMensajeInfor = new ImageIcon("C:\\OriginalPorcicolaWilbur\\src\\Imagenes\\IconoInformacion.jpg");
         icoMensajePre = new ImageIcon("C:\\OriginalPorcicolaWilbur\\src\\Imagenes\\IconoPregunta.jpg");
-        this.listaPerfi = listaPerfi;
-        this.listaPerso = listaPerso;
         this.desactivarCampos(); 
         perfilModifiContra = new DatosPerfil();
         vali = new Validaciones();
@@ -252,7 +243,7 @@ public class JFrameCambiarContraseña extends javax.swing.JFrame {
 
     private void jBtnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnGuardarActionPerformed
 
-        this.guardarModificacion();
+   /*     this.guardarModificacion();
         datosPerfilEmail = listaPerfi.modificarContraseñaIngrse(perfilModifiContra, pasActual);
         if (datosPerfilEmail != null) {
             usuario = listaPerso.cargarUsuario(datosPerfilEmail.getNumCedula());
@@ -267,7 +258,7 @@ public class JFrameCambiarContraseña extends javax.swing.JFrame {
 
             JOptionPane.showMessageDialog(null, "Datos incorrectos", "Modificar Contraseña - S.G.P.", JOptionPane.OK_OPTION, icoMensajeInfor);
             jTuserName.requestFocus();
-        }
+        }*/
     }//GEN-LAST:event_jBtnGuardarActionPerformed
 
     private void jBtnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnLimpiarActionPerformed
@@ -445,7 +436,7 @@ public class JFrameCambiarContraseña extends javax.swing.JFrame {
         perfilModifiContra.setUsuario(jTuserName.getText());
         pasActual = jPactPass.getText();
         perfilModifiContra.setContraIngreso(jPnewPass.getText());
-        perfilModifiContra.setRepetirContraIngreso(jPconfPass.getText());
+       // perfilModifiContra.setRepetirContraIngreso(jPconfPass.getText());
         perfilModifiContra.setFecha(new Date());
     }
 

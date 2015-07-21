@@ -5,15 +5,17 @@
  */
 package crudBaseDatos;
 
+import Identidades.DatosDependencias;
 import Identidades.DatosPersonal;
 import Utilidades.Validaciones;
-import java.awt.List;
+import java.util.List;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -24,34 +26,32 @@ import util.Conexion;
  * @author ivan
  */
 public class CrudPersonal {
-    
-    private Connection connection;
+
     private Conexion conexion;
-    private Validaciones validar; 
-    private Date fechaSql;
-    
-    public CrudPersonal(){
+    private Validaciones validar;
+
+    public CrudPersonal() {
         conexion = new Conexion();
         validar = new Validaciones();
     }
 
-     public boolean ingresarDatosPersonal(DatosPersonal personal) {
+    public boolean ingresarDatosPersonal(DatosPersonal personal) {
         boolean respuesta = false;
         try {
             Connection connection = conexion.getConection();
-            
-            PreparedStatement insertarDatos = 
-                    connection.prepareStatement("INSERT INTO USUARIOS (NUM_DOC, TIPO_DOC,"
-                    + "NOMBRES, APELLIDO1, APELLIDO2, FECHA_NAC, DEPARTAMENTO, CIUDAD, TIPO_SANGRE,"
-                    + "TIPO_RH, ESTADO, DIRECCION, TEL_FIJO, TEL_MOVIL,EMAIL,PROFESION,FECHA_OBT_TITULO,"
-                    + "CARGO, FECHA_CONTRATO, TIPO_CONTR, FOTO, OTROS_ESTUDIO, TITULO_OBTE, FECHA_FINAL)"
-                    + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
- 
+
+            PreparedStatement insertarDatos
+                    = connection.prepareStatement("INSERT INTO USUARIOS (NUM_DOC, TIPO_DOC,"
+                            + "NOMBRES, APELLIDO1, APELLIDO2, FECHA_NAC, DEPARTAMENTO, CIUDAD, TIPO_SANGRE,"
+                            + "TIPO_RH, ESTADO, DIRECCION, TEL_FIJO, TEL_MOVIL,EMAIL,PROFESION,FECHA_OBT_TITULO,"
+                            + "CARGO, FECHA_CONTRATO, TIPO_CONTR, FOTO, OTROS_ESTUDIO, TITULO_OBTE, FECHA_FINAL)"
+                            + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+
             insertarDatos.setInt(1, personal.getDocumento());
             insertarDatos.setInt(2, personal.getTipoDoc());
             insertarDatos.setString(3, personal.getNombre());
             insertarDatos.setString(4, personal.getPrimerApellido());
-            insertarDatos.setString(5, personal.getSegundoApellido()); 
+            insertarDatos.setString(5, personal.getSegundoApellido());
             insertarDatos.setDate(6, new java.sql.Date(personal.getFechaNacimiento().getTime()));
             insertarDatos.setInt(7, personal.getDepart());
             insertarDatos.setInt(8, personal.getCiudad());
@@ -92,41 +92,40 @@ public class CrudPersonal {
      */
     public boolean modificarDatosTablaPersonal(DatosPersonal modificarPersonal) {
         boolean respuesta = false;
-        
+
         try {
-            connection = conexion.getConection();
-            
+            Connection connection = conexion.getConection();
+
             /**
-             * Variable modificarSQL de tipo <code>String</code> en
-             * la cual se cargara la petición a la base de datos para insertar
-             * los datos.
+             * Variable modificarSQL de tipo <code>String</code> en la cual se
+             * cargara la petición a la base de datos para insertar los datos.
              */
             String modificarSQL;
 
             modificarSQL = ("UPDATE USUARIOS SET "
-                    + "TIPO_DOC = " + modificarPersonal.getTipoDoc()+ ","
-                    + "NOMBRES = " + modificarPersonal.getNombre()+ ", "
-                    + "APELLIDO1 = " + modificarPersonal.getPrimerApellido() + ", "
-                    + "APELLIDO2 = " + modificarPersonal.getSegundoApellido()+ ","
-                    + "FECHA_NAC = " + new java.sql.Date(modificarPersonal.getFechaNacimiento().getTime()) + ", "
+                    + "TIPO_DOC = " + modificarPersonal.getTipoDoc() + ","
+                    + "NOMBRES = '" + modificarPersonal.getNombre() + "', "
+                    + "APELLIDO1 = '" + modificarPersonal.getPrimerApellido() + "', "
+                    + "APELLIDO2 = '" + modificarPersonal.getSegundoApellido() + "',"
+                    + "FECHA_NAC = to_date('" + new java.sql.Date(modificarPersonal.getFechaNacimiento().getTime()) + "','YYYY-MM-DD'),"
                     + "DEPARTAMENTO = " + modificarPersonal.getDepart() + ", "
                     + "CIUDAD = " + modificarPersonal.getCiudad() + ", "
-                    + "TIPO_SANGRE = " + modificarPersonal.getSangre()+ ", "
+                    + "TIPO_SANGRE = " + modificarPersonal.getSangre() + ", "
                     + "TIPO_RH = " + modificarPersonal.getRh() + ", "
                     + "ESTADO = " + modificarPersonal.getEstado() + ", "
-                    + "DIRECCION = " + modificarPersonal.getDireccion() + ", "
+                    + "DIRECCION = '" + modificarPersonal.getDireccion() + "', "
                     + "TEL_FIJO = " + modificarPersonal.getTelefono() + ","
                     + "TEL_MOVIL = " + modificarPersonal.getMovil() + ", "
-                    + "EMAIL = " + modificarPersonal.getCorreo() + " "
+                    + "EMAIL = '" + modificarPersonal.getCorreo() + "', "
                     + "PROFESION = " + modificarPersonal.getProfesion() + ", "
-                    + "FECHA_OBT_TITULO = " +new java.sql.Date(modificarPersonal.getFechaTitulo().getTime()) +","
+                    + "FECHA_OBT_TITULO = to_date('" + new java.sql.Date(modificarPersonal.getFechaTitulo().getTime()) + "','YYYY-MM-DD'),"
                     + "CARGO = " + modificarPersonal.getCargo() + ", "
-                    + "FECHA_CONTRATO = " + new java.sql.Date(modificarPersonal.getFechaContrato().getTime())+","
+                    + "FECHA_CONTRATO = to_date('" + new java.sql.Date(modificarPersonal.getFechaContrato().getTime()) + "','YYYY-MM-DD'),"
                     + "TIPO_CONTR = " + modificarPersonal.getTipoContrato() + ", "
-                    + "FOTO = " + modificarPersonal.getRutaImagen()+ ", "
-                    + "OTROS_ESTUDIO = " + modificarPersonal.getOtroEst() + ", "
-                    + "TITULO_OBTE = " + modificarPersonal.getObtenidoEstudio() + ", "
-                    + "FECHA_FINAL = " + new java.sql.Date(modificarPersonal.getFechaOtroEst().getTime()) 
+                    + "FOTO = '" + modificarPersonal.getRutaImagen() + "', "
+                    + "OTROS_ESTUDIO = '" + modificarPersonal.getOtroEst() + "', "
+                    + "TITULO_OBTE = '" + modificarPersonal.getObtenidoEstudio() + "', "
+                    + "FECHA_FINAL = to_date('" + new java.sql.Date(modificarPersonal.getFechaOtroEst().getTime()) + "','YYYY-MM-DD')"
                     + "WHERE NUM_DOC = " + modificarPersonal.getDocumento());
 
             Statement statement = connection.createStatement();
@@ -144,14 +143,14 @@ public class CrudPersonal {
      * Método para eliminar un registro especifico almacenado en la base de
      * datos de la empresa Oncaribean.
      *
-     * @param codReserva recibe un dato <code>int</code> con el número
-     * de la reserva a eliminar de la base de datos.
+     * @param codReserva recibe un dato <code>int</code> con el número de la
+     * reserva a eliminar de la base de datos.
      */
-    public void eliminarUsuario(int numDoc) {
-        
+    public boolean eliminarUsuario(int numDoc) {
+        boolean respuesta = false;
         try {
-            connection = conexion.getConection();
-            
+            Connection connection = conexion.getConection();
+
             /**
              * Variable eliminarSQL de tipo <code>String</code> en la cual se
              * cargara la petición para eliminar el registro.
@@ -163,96 +162,244 @@ public class CrudPersonal {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(eliminarSQL);
             System.out.println("se elimino");
+            respuesta = true;
             conexion.cerrarConexion(connection);
-            
+
         } catch (Exception e) {
-            
+            respuesta = false;
             JOptionPane.showMessageDialog(null, "No ha sido posible la conexión a la Base de Datos \n" + e);
         }
-    } 
+        return respuesta;
+    }
 
+    public DatosPersonal obtenerUsuario(int numDoc) {
 
-    
-    public DatosPersonal obtenerUsuario(int numDoc){
-        
         String sql;
         DatosPersonal personal;
-        
-        try {           
-            connection = conexion.getConection();
-            
+
+        try {
+            Connection connection = conexion.getConection();
+
             personal = null;
-            
+
             sql = ("SELECT * FROM USUARIOS WHERE NUM_DOC = " + numDoc);
-            
+
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(sql);
 
             if (resultSet.next()) {
-                
+
                 personal = new DatosPersonal(
-                        resultSet.getInt("NUM_DOC"), 
+                        resultSet.getInt("NUM_DOC"),
                         resultSet.getInt("TIPO_DOC"),
                         resultSet.getString("NOMBRES"),
                         resultSet.getString("APELLIDO1"),
                         resultSet.getString("APELLIDO2"),
-                        resultSet.getDate("FECHA_NAC"), 
-                        resultSet.getInt("DEPARTAMENTO"), 
+                        resultSet.getDate("FECHA_NAC"),
+                        resultSet.getInt("DEPARTAMENTO"),
                         resultSet.getInt("CIUDAD"),
-                        resultSet.getInt("TIPO_SANGRE"), 
-                        resultSet.getInt("TIPO_RH"), 
-                        resultSet.getInt("ESTADO"), 
+                        resultSet.getInt("TIPO_SANGRE"),
+                        resultSet.getInt("TIPO_RH"),
+                        resultSet.getInt("ESTADO"),
                         resultSet.getString("DIRECCION"),
-                        resultSet.getInt("TEL_FIJO"), 
-                        resultSet.getInt("TEL_MOVIL"), 
-                        resultSet.getString("EMAIL"), 
-                        resultSet.getInt("PROFESION"), 
-                        resultSet.getDate("FECHA_OBT_TITULO"), 
+                        resultSet.getInt("TEL_FIJO"),
+                        resultSet.getInt("TEL_MOVIL"),
+                        resultSet.getString("EMAIL"),
+                        resultSet.getInt("PROFESION"),
+                        resultSet.getDate("FECHA_OBT_TITULO"),
                         resultSet.getInt("CARGO"),
-                        resultSet.getDate("FECHA_CONTRATO"), 
+                        resultSet.getDate("FECHA_CONTRATO"),
                         resultSet.getInt("TIPO_CONTR"),
                         resultSet.getString("FOTO"),
                         resultSet.getString("OTROS_ESTUDIO"),
                         resultSet.getString("TITULO_OBTE"),
-                        resultSet.getDate("FECHA_FINAL"));                  
+                        resultSet.getDate("FECHA_FINAL"));
             }
             conexion.cerrarConexion(connection);
             return personal;
-            
-        } catch (SQLException e) {
-            
-            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, e);
-            return null;
-        }
-    }
-       
-   /* public ResultSet obtenerTipoDocumento(){
-        
-        String sql;
-                
-        try {
-            conectar();
-            
-            sql = ("SELECT * FROM TIPO_DOCUMENTO ORDER BY NOM_TDOC");
 
-            statement = conexion.createStatement();
-            resultSet = statement.executeQuery(sql);
-           
         } catch (SQLException e) {
-            
+
             Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, e);
             return null;
         }
-        return resultSet;
     }
-    
- 
-            
-    public int obtenerCodigoTipoDocumento(String tDoc){
+
+    public java.util.List<DatosPersonal> cargarUsuarios() {
+        java.util.List<DatosPersonal> listaPersonal = new ArrayList<DatosPersonal>();
+        try {
+            Connection connection = conexion.getConection();
+            DatosPersonal personal;
+            Statement statement = connection.createStatement();
+            ResultSet respuesta = statement.executeQuery("SELECT * FROM USUARIOS");
+            while (respuesta.next()) {
+                personal = new DatosPersonal(
+                        respuesta.getInt("NUM_DOC"),
+                        respuesta.getInt("TIPO_DOC"),
+                        respuesta.getString("NOMBRES"),
+                        respuesta.getString("APELLIDO1"),
+                        respuesta.getString("APELLIDO2"),
+                        respuesta.getDate("FECHA_NAC"),
+                        respuesta.getInt("DEPARTAMENTO"),
+                        respuesta.getInt("CIUDAD"),
+                        respuesta.getInt("TIPO_SANGRE"),
+                        respuesta.getInt("TIPO_RH"),
+                        respuesta.getInt("ESTADO"),
+                        respuesta.getString("DIRECCION"),
+                        respuesta.getInt("TEL_FIJO"),
+                        respuesta.getInt("TEL_MOVIL"),
+                        respuesta.getString("EMAIL"),
+                        respuesta.getInt("PROFESION"),
+                        respuesta.getDate("FECHA_OBT_TITULO"),
+                        respuesta.getInt("CARGO"),
+                        respuesta.getDate("FECHA_CONTRATO"),
+                        respuesta.getInt("TIPO_CONTR"),
+                        respuesta.getString("FOTO"),
+                        respuesta.getString("OTROS_ESTUDIO"),
+                        respuesta.getString("TITULO_OBTE"),
+                        respuesta.getDate("FECHA_FINAL")
+                );
+                listaPersonal.add(personal);
+            }
+            conexion.cerrarConexion(connection);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return listaPersonal;
+    }
+
+    public List obtenerTipoDocumento() {
+
+        List<DatosDependencias> listaTipoDocumentos = new ArrayList<DatosDependencias>();
+        try {
+            Connection connection = conexion.getConection();
+            DatosDependencias documen;
+            Statement statement = connection.createStatement();
+            ResultSet respuesta = statement.executeQuery("SELECT * FROM TIPO_DOCUMENTO ORDER BY NOM_DOC");
+            while (respuesta.next()) {
+                documen = new DatosDependencias();
+                documen.setId(respuesta.getInt("ID_DOCUM"));
+                documen.setNombre(respuesta.getString("NOM_DOC"));
+                listaTipoDocumentos.add(documen);
+            }
+            conexion.cerrarConexion(connection);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return listaTipoDocumentos;
+    }
+
+    public List obtenerTipoRh() {
+
+        List<DatosDependencias> listaTipoRh = new ArrayList<DatosDependencias>();
+        try {
+            Connection connection = conexion.getConection();
+            DatosDependencias rh;
+            Statement statement = connection.createStatement();
+            ResultSet respuesta = statement.executeQuery("SELECT * FROM TIPO_RH ORDER BY NOM_RH");
+            while (respuesta.next()) {
+                rh = new DatosDependencias();
+                rh.setId(respuesta.getInt("ID_RH"));
+                rh.setNombre(respuesta.getString("NOM_RH"));
+                listaTipoRh.add(rh);
+            }
+            conexion.cerrarConexion(connection);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return listaTipoRh;
+    }
+
+    public List obtenerTipoSangre() {
+
+        List<DatosDependencias> listaTipoSangre = new ArrayList<DatosDependencias>();
+        try {
+            Connection connection = conexion.getConection();
+            DatosDependencias sangre;
+            Statement statement = connection.createStatement();
+            ResultSet respuesta = statement.executeQuery("SELECT * FROM TIPO_SANGRE ORDER BY NOM_SANGRE");
+            while (respuesta.next()) {
+                sangre = new DatosDependencias();
+                sangre.setId(respuesta.getInt("ID_SANGRE"));
+                sangre.setNombre(respuesta.getString("NOM_SANGRE"));
+                listaTipoSangre.add(sangre);
+            }
+            conexion.cerrarConexion(connection);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return listaTipoSangre;
+    }
+
+    public List obtenerTipoContrato() {
+
+        List<DatosDependencias> listaTipoContrato = new ArrayList<DatosDependencias>();
+        try {
+            Connection connection = conexion.getConection();
+            DatosDependencias contrato;
+            Statement statement = connection.createStatement();
+            ResultSet respuesta = statement.executeQuery("SELECT * FROM TIPO_CONTRATO ORDER BY NOM_TCONT");
+            while (respuesta.next()) {
+                contrato = new DatosDependencias();
+                contrato.setId(respuesta.getInt("ID_TCONT"));
+                contrato.setNombre(respuesta.getString("NOM_TCONT"));
+                listaTipoContrato.add(contrato);
+            }
+            conexion.cerrarConexion(connection);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return listaTipoContrato;
+    }
+
+    public List obtenerTipoProfesiones() {
+
+        List<DatosDependencias> listaTipoProfesiones = new ArrayList<DatosDependencias>();
+        try {
+            Connection connection = conexion.getConection();
+            DatosDependencias profesion;
+            Statement statement = connection.createStatement();
+            ResultSet respuesta = statement.executeQuery("SELECT * FROM PROFESIONES ORDER BY NOM_PROF");
+            while (respuesta.next()) {
+                profesion = new DatosDependencias();
+                profesion.setId(respuesta.getInt("ID_PROF"));
+                profesion.setNombre(respuesta.getString("NOM_PROF"));
+                listaTipoProfesiones.add(profesion);
+            }
+            conexion.cerrarConexion(connection);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return listaTipoProfesiones;
+    }
+
+    public List obtenerTipoCargos() {
+
+        List<DatosDependencias> listaCargos = new ArrayList<DatosDependencias>();
+        try {
+            Connection connection = conexion.getConection();
+            DatosDependencias cargo;
+            Statement statement = connection.createStatement();
+            ResultSet respuesta = statement.executeQuery("SELECT * FROM CARGOS ORDER BY NOM_CARGO");
+            while (respuesta.next()) {
+                cargo = new DatosDependencias();
+                cargo.setId(respuesta.getInt("ID_CARGO"));
+                cargo.setNombre(respuesta.getString("NOM_CARGO"));
+                listaCargos.add(cargo);
+            }
+            conexion.cerrarConexion(connection);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return listaCargos;
+    }
+
+    public int obtenerCodigoTipoDocumento(String tDoc) {
         return 0;
     }
-    
-    public int obtenerCodigoPerfil(String perfil){
+
+    public int obtenerCodigoPerfil(String perfil) {
         return 0;
     }
 
@@ -263,33 +410,32 @@ public class CrudPersonal {
      * @return un <code>ResultSet</code> con la información consultada a la base
      * de datos.
      */
-  /*  public ResultSet listarReservas() {
+    /*  public ResultSet listarReservas() {
         
-        /**
-         * Variable consultaSQL de tipo <code> String</code> a la cual se le
-         * asignara la petición para la base de datos.
-         */
-  /*      String consultaSQL;
+     /**
+     * Variable consultaSQL de tipo <code> String</code> a la cual se le
+     * asignara la petición para la base de datos.
+     */
+    /*      String consultaSQL;
                 
-        try {
-            conectar();
+     try {
+     conectar();
             
-            consultaSQL = ("SELECT R.COD_RESERV, R.FECHA_INI, R.FECHA_FIN, C.NOMBRE_CLI, C.APELLIDO1_CLI, "
-                          + "C.APELLIDO2_CLI, CI.NOM_CIUDAD FROM RESERVACIONES R INNER JOIN CLIENTE C "
-                          + "ON CLIENTE = ID_CLIENTE INNER JOIN PAQUETE P ON R.PAQUETE = P.COD_PAQUETE "
-                          + "INNER JOIN HOTELES H ON P.HOTEL = H.COD_HOTEL INNER JOIN CIUDAD CI ON "
-                          + "H.UBICACION = CI.COD_CIUDAD ORDER BY COD_RESERV");
+     consultaSQL = ("SELECT R.COD_RESERV, R.FECHA_INI, R.FECHA_FIN, C.NOMBRE_CLI, C.APELLIDO1_CLI, "
+     + "C.APELLIDO2_CLI, CI.NOM_CIUDAD FROM RESERVACIONES R INNER JOIN CLIENTE C "
+     + "ON CLIENTE = ID_CLIENTE INNER JOIN PAQUETE P ON R.PAQUETE = P.COD_PAQUETE "
+     + "INNER JOIN HOTELES H ON P.HOTEL = H.COD_HOTEL INNER JOIN CIUDAD CI ON "
+     + "H.UBICACION = CI.COD_CIUDAD ORDER BY COD_RESERV");
 
-            statement = conexion.createStatement();
-            resultSet = statement.executeQuery(consultaSQL);
+     statement = conexion.createStatement();
+     resultSet = statement.executeQuery(consultaSQL);
 
-            //conexion.close();
-        } catch (SQLException e) {
+     //conexion.close();
+     } catch (SQLException e) {
             
-            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, e);
-            return null;
-        }
-        return resultSet;
-    }*/
-   
+     Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, e);
+     return null;
+     }
+     return resultSet;
+     }*/
 }

@@ -2,12 +2,12 @@ package Formularios;
 
 import Identidades.DatosPerfil;
 import Identidades.DatosPersonal;
-import Listas.ListaPerfil;
-import Listas.ListaUsuario;
-import Nodos.NodoUsuario;
+import Identidades.DatosDependencias;
 import Utilidades.ReportePerfil;
 import javax.swing.JOptionPane;
 import Utilidades.Validaciones;
+import crudBaseDatos.CrudPerfil;
+import java.util.List;
 import java.awt.event.ItemEvent;
 import java.util.Date;
 import javax.swing.ImageIcon;
@@ -18,7 +18,6 @@ import javax.swing.ImageIcon;
  */
 public class AsignarPerfil extends javax.swing.JFrame {
 
-    ListaUsuario u;
     Validaciones validar;
     int[] conta;
     int swModif = 0;
@@ -26,35 +25,31 @@ public class AsignarPerfil extends javax.swing.JFrame {
     DatosPersonal buscarUsuario;
     DatosPerfil perfil, buscarPerfil;
     String nombreVentana;
-    ListaPerfil listaPerfi;
+    CrudPerfil basePerfil;
+    List <DatosDependencias> listaTipoPerfil;
+
+  
 
     public AsignarPerfil() {
-        initComponents();
-    }
-
-    public AsignarPerfil(ListaUsuario Lu, ListaPerfil listaPerfi) {
         initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.setTitle("Asignar Perfiles");
-        u = Lu;
         validar = new Validaciones();
         conta = new int[4];
+        basePerfil = new CrudPerfil();
         icoMensajeInfor = new ImageIcon("C:\\OriginalPorcicolaWilbur\\src\\Imagenes\\IconoInformacion.jpg");
         icoMensajePre = new ImageIcon("C:\\OriginalPorcicolaWilbur\\src\\Imagenes\\IconoPregunta.jpg");
         jtxtNombrePerf.setEnabled(true);
         //jtxtPass.setEnabled(true);
         //jtxtConfirm.setEnabled(true);
-
-        JComboPerfil.addItem("Administrador");
-        JComboPerfil.addItem("Jaulas");
-        JComboPerfil.addItem("Reportes");
-        JComboPerfil.addItem("Almacen");
-        JComboPerfil.addItem("Veterinario");
+        listaTipoPerfil = basePerfil.cargarTipoPerfil();
+        for (DatosDependencias tipoPerfil : listaTipoPerfil) {
+            JComboPerfil.addItem(tipoPerfil.getNombre());
+        }
         this.desactivarCampos();
-        this.listaPerfi = listaPerfi;
-        this.validarCampos();
+       // this.validarCampos();
 
         nombreVentana = "Asignar Perfil - G.A.P.";
     }
@@ -390,7 +385,7 @@ public class AsignarPerfil extends javax.swing.JFrame {
             jPassContra.setText("");
         } else {
 
-            if (swModif == 0) {
+          /*  if (swModif == 0) {
 
                 if (listaPerfi.existePerfil(perfil.getNumCedula())) {
 
@@ -426,7 +421,7 @@ public class AsignarPerfil extends javax.swing.JFrame {
                                 JOptionPane.OK_OPTION, icoMensajeInfor);
                     }
                 }
-            }
+            }*/
 
             JButtonCrearPerfil.setEnabled(false);
         }
@@ -473,7 +468,7 @@ public class AsignarPerfil extends javax.swing.JFrame {
 
         String s = JOptionPane.showInputDialog(null, "Ingrese el número de documento del perfil que desea eliminar", "Gestionar Perfil - G.A.P.",
                 JOptionPane.QUESTION_MESSAGE);
-        if (listaPerfi.existePerfil(s)) {
+      /*  if (listaPerfi.existePerfil(s)) {
 
             if (listaPerfi.eliminarPerfil(s)) {
 
@@ -490,14 +485,14 @@ public class AsignarPerfil extends javax.swing.JFrame {
 
             JOptionPane.showMessageDialog(null, "El número de documento no existe", "Gestionar Perfil - G.A.P.",
                     JOptionPane.OK_OPTION, icoMensajeInfor);
-        }
+        }*/
 
         // TODO add your handling code here:
     }//GEN-LAST:event_JBEliminarUActionPerformed
 
     private void JBListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBListarActionPerformed
 
-        ReportePerfil rp = new ReportePerfil(listaPerfi.getCabeza());
+     //   ReportePerfil rp = new ReportePerfil(listaPerfi.getCabeza());
         // TODO add your handling code here:
     }//GEN-LAST:event_JBListarActionPerformed
 
@@ -527,7 +522,7 @@ public class AsignarPerfil extends javax.swing.JFrame {
 
     private void jtxtDocumentoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtxtDocumentoFocusLost
 
-        if (jtxtDocumento.getText().equals("")) {
+  /*      if (jtxtDocumento.getText().equals("")) {
 
             JOptionPane.showMessageDialog(null, "Campo obligatorio", "Asignar Perfil - G.A.P", JOptionPane.YES_OPTION,
                     icoMensajeInfor);
@@ -555,7 +550,7 @@ public class AsignarPerfil extends javax.swing.JFrame {
                 this.desactivarCampos();
                 this.activarBotones();
             }
-        }
+        }*/
 // TODO add your handling code here:
     }//GEN-LAST:event_jtxtDocumentoFocusLost
 
@@ -566,7 +561,7 @@ public class AsignarPerfil extends javax.swing.JFrame {
 
     private void jtxtNombrePerfFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtxtNombrePerfFocusLost
 
-        if (jtxtNombrePerf.getText().equals("")) {
+    /*    if (jtxtNombrePerf.getText().equals("")) {
 
             JOptionPane.showMessageDialog(null, "Campo obligatorio", "Asignar Perfil - G.A.P", JOptionPane.YES_OPTION,
                     icoMensajeInfor);
@@ -580,13 +575,13 @@ public class AsignarPerfil extends javax.swing.JFrame {
             } else {
                 jtxtNombrePerf.transferFocus();
             }
-        }
+        }*/
 // TODO add your handling code here:
     }//GEN-LAST:event_jtxtNombrePerfFocusLost
 
     private void jPassContraFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPassContraFocusLost
 
-        this.inicializarCont(conta);
+     /*   this.inicializarCont(conta);
         if (!jPassContra.getPassword().toString().equals("")) {
 
             if (!validar.validarContraseñ(validar.convertirPassword(jPassContra.getPassword()), conta)) {
@@ -611,7 +606,7 @@ public class AsignarPerfil extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Campo obligatorio", "Asignar Perfil - G.A.P", JOptionPane.YES_OPTION,
                     icoMensajeInfor);
             jPassContra.requestFocusInWindow();
-        }
+        }*/
 // TODO add your handling code here:
     }//GEN-LAST:event_jPassContraFocusLost
 
@@ -745,14 +740,14 @@ public class AsignarPerfil extends javax.swing.JFrame {
 
     public void guardarCamposPerfil() {
 
-        perfil = new DatosPerfil();
+    /*    perfil = new DatosPerfil();
         perfil.setNumCedula(jtxtDocumento.getText());
         perfil.setNombre(jtxtNombre.getText());
         perfil.setPerfil((String) JComboPerfil.getSelectedItem());
         perfil.setUsuario(jtxtNombrePerf.getText());
         perfil.setContraIngreso(jPassContra.getText());
         perfil.setRepetirContraIngreso(jPassRepeContra.getText());
-        perfil.setFecha(new Date());
+        perfil.setFecha(new Date());*/
     }
 
     public void desactivarCampos() {
@@ -803,7 +798,7 @@ public class AsignarPerfil extends javax.swing.JFrame {
 
     public void llenarDatos() {
 
-        int opc = -2;
+    /*    int opc = -2;
         String[] opciones = {"Número de Documento", "Nombre Usuario", "Nombre"};
         if (swModif == 1) {
 
@@ -874,6 +869,6 @@ public class AsignarPerfil extends javax.swing.JFrame {
                 validar.validarLongitudPas(12, jPassRepeContra, e);
             }
         });
-
+*/
     }
 }

@@ -2,6 +2,12 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/home/ivan/Escritorio/Wilbur-Desktop/src/crudBaseDatos/CrudPersonal.java</file>
+            <file>file:/home/ivan/Escritorio/Wilbur-Desktop/src/util/Test.java</file>
+            <file>file:/home/ivan/Escritorio/Wilbur-Desktop/src/crudBaseDatos/CrudPerfil.java</file>
+            <file>file:/home/ivan/Escritorio/Wilbur-Desktop/src/Formularios/AsignarPerfil.java</file>
+            <file>file:/home/ivan/Escritorio/Wilbur-Desktop/src/util/Conexion.java</file>
+        </group>
     </open-files>
 </project-private>

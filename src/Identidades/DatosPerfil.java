@@ -13,30 +13,37 @@ import java.util.Date;
  */
 public class DatosPerfil {
 
-    private String numCedula,  perfil,usuario, contraIngreso, RepetirContraIngreso, nombre  ; 
+    private int idPerfil, numCedula,  tipoPerfil;
+    private String usuario, contraIngreso; 
+    private Date fecha;
+    
+    public DatosPerfil(){}
+    
+    
 
-    public String getNombre() {
-        return nombre;
+    public int getIdPerfil() {
+        return idPerfil;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setIdPerfil(int idPerfil) {
+        this.idPerfil = idPerfil;
     }
 
-    public String getNumCedula() {
+    public int getNumCedula() {
         return numCedula;
     }
 
-    public void setNumCedula(String numCedula) {
+    public void setNumCedula(int numCedula) {
         this.numCedula = numCedula;
-    } 
-    public String getPerfil() {
-        return perfil;
     }
 
-    public void setPerfil(String perfil) {
-        this.perfil = perfil;
-    } 
+    public int getTipoPerfil() {
+        return tipoPerfil;
+    }
+
+    public void setTipoPerfil(int tipoPerfil) {
+        this.tipoPerfil = tipoPerfil;
+    }
 
     public String getUsuario() {
         return usuario;
@@ -54,14 +61,6 @@ public class DatosPerfil {
         this.contraIngreso = contraIngreso;
     }
 
-    public String getRepetirContraIngreso() {
-        return RepetirContraIngreso;
-    }
-
-    public void setRepetirContraIngreso(String RepetirContraIngreso) {
-        this.RepetirContraIngreso = RepetirContraIngreso;
-    }
-
     public Date getFecha() {
         return fecha;
     }
@@ -69,6 +68,5 @@ public class DatosPerfil {
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
-    private Date fecha;
-
+    
 }
