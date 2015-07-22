@@ -28,18 +28,16 @@ import util.Conexion;
  */
 public class CrudPerfil {
 
-    private Connection connection;
-    private Conexion conexion;
     private Validaciones validar;
 
     public CrudPerfil() {
-        conexion = new Conexion();
         validar = new Validaciones();
     }
 
     public ResultSet validarUsuario(String usuario, String clave) {
             ResultSet respuesta = null;
         try {
+            Conexion conexion = new Conexion();
             Connection connection = conexion.getConection();
             String consulta = ("SELECT TPE.NOM_TPERFIL FROM PERFILES PE INNER JOIN TIPO_PERFIL TPE ON PE.TPERFIL = TPE.ID_TPERFIL"
                     + " WHERE NOM_USUARIO = '"+ usuario + "' AND CLAVE = '" + clave + "'");
@@ -50,6 +48,7 @@ public class CrudPerfil {
             } else {
                 JOptionPane.showMessageDialog(null, "Usuario no existe");
             }*/
+            conexion.cerrarConexion(connection);
         } catch (SQLException ex) {
             Logger.getLogger(CrudPerfil.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -68,7 +67,8 @@ public class CrudPerfil {
     public boolean ingresarDatosAsignarPerfil(DatosPerfil perfil) {
         boolean respuesta = false;
         try {
-            connection = conexion.getConection();
+            Conexion conexion = new Conexion();
+            Connection connection = conexion.getConection();
             
             PreparedStatement insertarDatos;
 
@@ -102,8 +102,8 @@ public class CrudPerfil {
     public boolean modificarDatosPerfiles(DatosPerfil modificarPerfil) {
         boolean respuesta = false;
         try {
-            
-            connection = conexion.getConection();
+            Conexion conexion = new Conexion();
+            Connection connection = conexion.getConection();
             /**
              * Variable modificarSQL de tipo <code>String</code> en
              * la cual se cargara la petición a la base de datos para insertar
@@ -138,8 +138,8 @@ public class CrudPerfil {
     public boolean eliminarRegistro(int idPerfil) {
         boolean respuesta = false;
         try {
-            
-            connection = conexion.getConection();
+            Conexion conexion = new Conexion();
+            Connection connection = conexion.getConection();
             
             /**
              * Variable eliminarSQL de tipo <code>String</code> en la cual se
@@ -153,7 +153,6 @@ public class CrudPerfil {
             ResultSet resultSet = statement.executeQuery(eliminarSQL);
             respuesta = true;
             conexion.cerrarConexion(connection);
-            
         } catch (Exception e) {
             respuesta = false;
             JOptionPane.showMessageDialog(null, "No ha sido posible la conexión a la Base de Datos \n" + e);
@@ -163,7 +162,8 @@ public class CrudPerfil {
 
     public DatosPerfil consultarPerfil(int idPerfil){
         DatosPerfil perfil = null;
-        Connection connection = conexion.getConection();
+            Conexion conexion = new Conexion();
+            Connection connection = conexion.getConection();
         String consulta = "SELECT * FROM PERFILES WHERE ID_PERFIL = " + idPerfil;
         try {
             Statement consultaperfil = connection.createStatement();
@@ -177,6 +177,7 @@ public class CrudPerfil {
                 perfil.setNumCedula(respuesta.getInt("NUM_DOC_USU"));
                 
             }
+            conexion.cerrarConexion(connection);
         } catch (SQLException ex) {
             Logger.getLogger(CrudPerfil.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -186,7 +187,8 @@ public class CrudPerfil {
     public java.util.List<DatosPerfil> cargarPerfiles() {
         java.util.List<DatosPerfil> listaPerfil = new ArrayList<DatosPerfil>();
         try {
-            Connection  connection = conexion.getConection();
+            Conexion conexion = new Conexion();
+            Connection connection = conexion.getConection();
             DatosPerfil perfil;
             Statement statement = connection.createStatement();
             ResultSet respuesta = statement.executeQuery("SELECT * FROM PERFILES");
@@ -199,6 +201,7 @@ public class CrudPerfil {
                 perfil.setNumCedula(respuesta.getInt("NUM_DOC_USU"));
                 listaPerfil.add(perfil);
             }
+            conexion.cerrarConexion(connection);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -209,7 +212,8 @@ public class CrudPerfil {
     public java.util.List<DatosDependencias> cargarTipoPerfil(){
         java.util.List<DatosDependencias> listaTipoPerfil = new ArrayList<DatosDependencias>();
         try {
-            Connection  connection = conexion.getConection();
+            Conexion conexion = new Conexion();
+            Connection connection = conexion.getConection();
             DatosDependencias perfil;
             Statement statement = connection.createStatement();
             ResultSet respuesta = statement.executeQuery("SELECT * FROM TIPO_PERFIL ORDER BY NOM_TPERFIL");

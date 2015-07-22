@@ -1791,34 +1791,34 @@ public class RegistroPersonal extends javax.swing.JFrame {
     private void cargarComboBoxs() {
         
         
-        listaTipoDoc = basePersonal.obtenerTipoDocumento();
+        listaTipoDoc = basePersonal.obtenerDependencias("TIPO_DOCUMENTO", "ID_DOCUM", "NOM_DOC");
         for (DatosDependencias tipoDocumento : listaTipoDoc) {
             ComboDoc.addItem(tipoDocumento.getNombre());
         }
         
-        listaTipoRh = basePersonal.obtenerTipoRh();
+        listaTipoRh = basePersonal.obtenerDependencias("TIPO_RH", "ID_RH", "NOM_RH");
         for (DatosDependencias tipoRh : listaTipoRh) {
             jCtiporh.addItem(tipoRh.getNombre());
         }
         
-        listaTipoSangre = basePersonal.obtenerTipoSangre();
+        listaTipoSangre = basePersonal.obtenerDependencias("TIPO_SANGRE", "ID_SANGRE", "NOM_SANGRE");
         for (DatosDependencias tipoSangre : listaTipoSangre) {
             jCtiposangre.addItem(tipoSangre.getNombre());
         }
         
-        listaTipoContrato = basePersonal.obtenerTipoContrato();
+        listaTipoContrato = basePersonal.obtenerDependencias("TIPO_CONTRATO", "ID_TCONT", "NOM_TCONT");
         for (DatosDependencias tipoContrato : listaTipoContrato) {
             jcmbTipoContrato.addItem(tipoContrato.getNombre());
         }
         
-        listaTipoCargo = basePersonal.obtenerTipoCargos();
-        for (DatosDependencias tipoCargo : listaTipoCargo) {
-            jComboCargo.addItem(tipoCargo.getNombre());
-        }
-        
-        listaTipoProfesion = basePersonal.obtenerTipoProfesiones();
+        listaTipoProfesion = basePersonal.obtenerDependencias("PROFESIONES", "ID_PROF", "NOM_PROF");
         for (DatosDependencias tipoProfe : listaTipoProfesion) {
             jCprofesion.addItem(tipoProfe.getNombre());
+        }
+        
+        listaTipoCargo = basePersonal.obtenerDependencias("CARGOS", "ID_CARGO", "NOM_CARGO");
+        for (DatosDependencias tipoCargo : listaTipoCargo) {
+            jComboCargo.addItem(tipoCargo.getNombre());
         }
     }
 

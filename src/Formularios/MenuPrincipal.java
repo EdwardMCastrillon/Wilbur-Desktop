@@ -225,7 +225,7 @@ public class MenuPrincipal implements ActionListener {
 
         if (e.getSource() == menItemPersonal) {
 
-           // RegistroPersonal rp = new RegistroPersonal(listaPersona);
+           RegistroPersonal rp = new RegistroPersonal();
 
         }
 

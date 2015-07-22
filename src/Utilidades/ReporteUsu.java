@@ -5,8 +5,6 @@
  */
 package Utilidades;
 
-import Nodos.NodoAnimal;
-import Nodos.NodoUsuario;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -28,7 +26,7 @@ public class ReporteUsu extends JFrame {
 
     JScrollPane scroll;
 
-    public ReporteUsu(NodoUsuario L) {
+    public ReporteUsu() {
         super("Reporte de Personal");
         JScrollPane caja;
         JLabel lbtitulo;
@@ -52,7 +50,7 @@ public class ReporteUsu extends JFrame {
             modelo.addColumn(Identificadores[j]);
         }
 
-        while (L != null) {
+      /*  while (L != null) {
 
             Secundarios[0] = L.getUsuario().getTipoDoc();
             Secundarios[1] = L.getUsuario().getDocumento();
@@ -67,7 +65,7 @@ public class ReporteUsu extends JFrame {
             i++;
             L = L.getLiga();
 
-        }
+        }*/
         tabla = new JTable(modelo);//se añade el modelo a la tabla
 
         caja = new JScrollPane(tabla);//se añade la tabla al scroll (contenedor)

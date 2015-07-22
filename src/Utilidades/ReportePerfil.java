@@ -7,7 +7,6 @@ package Utilidades;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import Nodos.NodoPerfil;
 
 public class ReportePerfil extends JFrame{
 
@@ -15,7 +14,7 @@ public class ReportePerfil extends JFrame{
     JScrollPane scroll;
     DefaultTableModel modeloPartos;
 
-    public ReportePerfil(NodoPerfil auxi) {
+    public ReportePerfil() {
 
         super("Base de Datos Partos");
         setSize(1300, 325);
@@ -43,7 +42,7 @@ public class ReportePerfil extends JFrame{
 
         try {
 
-            while (auxi != null) {
+       /*     while (auxi != null) {
 
                 datosAnimal[0] = auxi.getPerfil().getNumCedula();
                 datosAnimal[1] = auxi.getPerfil().getNombre();
@@ -54,7 +53,7 @@ public class ReportePerfil extends JFrame{
 
                 auxi = auxi.getLiga();
 
-            }
+            }*/
         } catch (Exception ex) {
             System.out.print(ex);
         }

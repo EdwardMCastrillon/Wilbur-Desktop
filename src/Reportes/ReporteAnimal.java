@@ -2,10 +2,6 @@
 package Reportes;
 
 
-import Listas.*;
-import Nodos.NodoAnimal;
-
-import Nodos.NodoUsuario;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -26,15 +22,13 @@ import javax.swing.JOptionPane;
  */
 public class ReporteAnimal {
     int NumeroColumnas;
-    public static NodoAnimal Nodo = new NodoAnimal();
     
-    public void crearInformeTabla(String tabla,String campo,ListaAnimal P) 
+    public void crearInformeTabla(String tabla,String campo) 
     {
         String nombreArchivo="Reporte_Animal.pdf";
         Document documento=null;
        // Se crea el raza
        documento = new Document();
-       Nodo = P.getPrimero();
       try
       {      
 	
@@ -125,7 +119,7 @@ public class ReporteAnimal {
 	            numeroColumnas = 5;   
 	            tabla = new PdfPTable(numeroColumnas);//construye una tabla con el número de columnas requeridas
 	            
-	            while(Nodo != null) // recorre cada registro del resultset
+	     /*       while(Nodo != null) // recorre cada registro del resultset
 	            {
 	            	codigo = Nodo.getAnimal().getCod_animal();
 	            	raza = Nodo.getAnimal().getRaza();
@@ -148,7 +142,7 @@ public class ReporteAnimal {
 	                        tabla.addCell(celda);
 	                }
 	                Nodo = Nodo.getLiga();
-	            }
+	            }*/
 	            
 	  			
 	      return tabla; 

@@ -4,16 +4,10 @@ package Formularios;
  *
  * @author Edward
  */
-import Listas.*;
-import Nodos.NodoPerfil;
-import Nodos.NodoUsuario;
 import Utilidades.*;
 import javax.swing.JOptionPane;
 
 public class RecuperarPass extends javax.swing.JFrame {
-
-    NodoPerfil auxi;
-    NodoUsuario auxiliarUsuaro;
     boolean sw = false;
     boolean sw1 = false;
     String correo, nombre, usuario, contraseña, perfil;
@@ -21,20 +15,13 @@ public class RecuperarPass extends javax.swing.JFrame {
     String mensaje = "Se envio un correo a la dirección registrada," + "\n" + "con el nombre de usuario y la contraseña de ingreso";
     String tipoMensaje = "Recuperar Contraseña - G.A.P.";
 
+
     public RecuperarPass() {
         initComponents();
-        setVisible(true);
-    }
-
-    public RecuperarPass(NodoUsuario N, NodoPerfil auxi) {
         this.setVisible(true);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         this.setTitle("Recuperar password");
-
-        initComponents();
-        auxiliarUsuaro = N;
-        this.auxi = auxi;
 
         //Ensayando actualizaciones en GitHub
     }
@@ -117,7 +104,7 @@ public class RecuperarPass extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String documento = jtxtDocumento.getText();
+   /*     String documento = jtxtDocumento.getText();
         while (auxiliarUsuaro != null && sw == false) {
             if (auxiliarUsuaro.getUsuario().getDocumento().equals(documento)) {
                 nombre = auxiliarUsuaro.getUsuario().getNombre();
@@ -142,7 +129,7 @@ public class RecuperarPass extends javax.swing.JFrame {
         }
         if (sw == false) {
             JOptionPane.showMessageDialog(this, "Este usuario no esta registrado");
-        }
+        }*/
 
     }//GEN-LAST:event_jButton1ActionPerformed
 

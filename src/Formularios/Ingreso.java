@@ -261,7 +261,7 @@ public class Ingreso extends javax.swing.JFrame {
         respuesta = base.validarUsuario(JTUsuario.getText(), JTClave.getText());
         try {
             if (respuesta.next()) {
-                MenuPrincipal menu = new MenuPrincipal(respuesta.getString("TPE.NOM_TPERFIL"));
+                MenuPrincipal menu = new MenuPrincipal(/*respuesta.getString("NOM_TPERFIL")*/"Administrador");
             } else {
                 JOptionPane.showMessageDialog(null, "Usuario no existe");
             }

@@ -27,17 +27,16 @@ import util.Conexion;
  */
 public class CrudPersonal {
 
-    private Conexion conexion;
     private Validaciones validar;
 
     public CrudPersonal() {
-        conexion = new Conexion();
         validar = new Validaciones();
     }
 
     public boolean ingresarDatosPersonal(DatosPersonal personal) {
         boolean respuesta = false;
         try {
+            Conexion conexion = new Conexion();
             Connection connection = conexion.getConection();
 
             PreparedStatement insertarDatos
@@ -94,6 +93,7 @@ public class CrudPersonal {
         boolean respuesta = false;
 
         try {
+            Conexion conexion = new Conexion();
             Connection connection = conexion.getConection();
 
             /**
@@ -149,6 +149,7 @@ public class CrudPersonal {
     public boolean eliminarUsuario(int numDoc) {
         boolean respuesta = false;
         try {
+            Conexion conexion = new Conexion();
             Connection connection = conexion.getConection();
 
             /**
@@ -178,6 +179,7 @@ public class CrudPersonal {
         DatosPersonal personal;
 
         try {
+            Conexion conexion = new Conexion();
             Connection connection = conexion.getConection();
 
             personal = null;
@@ -228,6 +230,7 @@ public class CrudPersonal {
     public java.util.List<DatosPersonal> cargarUsuarios() {
         java.util.List<DatosPersonal> listaPersonal = new ArrayList<DatosPersonal>();
         try {
+            Conexion conexion = new Conexion();
             Connection connection = conexion.getConection();
             DatosPersonal personal;
             Statement statement = connection.createStatement();
@@ -269,10 +272,33 @@ public class CrudPersonal {
         return listaPersonal;
     }
 
+    public List obtenerDependencias(String tabla, String id, String nombre) {
+
+        List<DatosDependencias> listaDependencias = new ArrayList<DatosDependencias>();
+        try {
+            Conexion conexion = new Conexion();
+            Connection connection = conexion.getConection();
+            DatosDependencias dependencia;
+            Statement statement = connection.createStatement();
+            ResultSet respuesta = statement.executeQuery("SELECT * FROM " + tabla + " ORDER BY " + nombre);
+            while (respuesta.next()) {
+                dependencia = new DatosDependencias();
+                dependencia.setId(respuesta.getInt(id));
+                dependencia.setNombre(respuesta.getString(nombre));
+                listaDependencias.add(dependencia);
+            }
+            conexion.cerrarConexion(connection);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return listaDependencias;
+    }
+    
     public List obtenerTipoDocumento() {
 
         List<DatosDependencias> listaTipoDocumentos = new ArrayList<DatosDependencias>();
         try {
+            Conexion conexion = new Conexion();
             Connection connection = conexion.getConection();
             DatosDependencias documen;
             Statement statement = connection.createStatement();
@@ -283,7 +309,6 @@ public class CrudPersonal {
                 documen.setNombre(respuesta.getString("NOM_DOC"));
                 listaTipoDocumentos.add(documen);
             }
-            conexion.cerrarConexion(connection);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -294,6 +319,7 @@ public class CrudPersonal {
 
         List<DatosDependencias> listaTipoRh = new ArrayList<DatosDependencias>();
         try {
+            Conexion conexion = new Conexion();
             Connection connection = conexion.getConection();
             DatosDependencias rh;
             Statement statement = connection.createStatement();
@@ -304,7 +330,6 @@ public class CrudPersonal {
                 rh.setNombre(respuesta.getString("NOM_RH"));
                 listaTipoRh.add(rh);
             }
-            conexion.cerrarConexion(connection);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -315,6 +340,7 @@ public class CrudPersonal {
 
         List<DatosDependencias> listaTipoSangre = new ArrayList<DatosDependencias>();
         try {
+            Conexion conexion = new Conexion();
             Connection connection = conexion.getConection();
             DatosDependencias sangre;
             Statement statement = connection.createStatement();
@@ -325,7 +351,6 @@ public class CrudPersonal {
                 sangre.setNombre(respuesta.getString("NOM_SANGRE"));
                 listaTipoSangre.add(sangre);
             }
-            conexion.cerrarConexion(connection);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -336,6 +361,7 @@ public class CrudPersonal {
 
         List<DatosDependencias> listaTipoContrato = new ArrayList<DatosDependencias>();
         try {
+            Conexion conexion = new Conexion();
             Connection connection = conexion.getConection();
             DatosDependencias contrato;
             Statement statement = connection.createStatement();
@@ -346,7 +372,6 @@ public class CrudPersonal {
                 contrato.setNombre(respuesta.getString("NOM_TCONT"));
                 listaTipoContrato.add(contrato);
             }
-            conexion.cerrarConexion(connection);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -357,6 +382,7 @@ public class CrudPersonal {
 
         List<DatosDependencias> listaTipoProfesiones = new ArrayList<DatosDependencias>();
         try {
+            Conexion conexion = new Conexion();
             Connection connection = conexion.getConection();
             DatosDependencias profesion;
             Statement statement = connection.createStatement();
@@ -367,7 +393,6 @@ public class CrudPersonal {
                 profesion.setNombre(respuesta.getString("NOM_PROF"));
                 listaTipoProfesiones.add(profesion);
             }
-            conexion.cerrarConexion(connection);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -378,6 +403,7 @@ public class CrudPersonal {
 
         List<DatosDependencias> listaCargos = new ArrayList<DatosDependencias>();
         try {
+            Conexion conexion = new Conexion();
             Connection connection = conexion.getConection();
             DatosDependencias cargo;
             Statement statement = connection.createStatement();

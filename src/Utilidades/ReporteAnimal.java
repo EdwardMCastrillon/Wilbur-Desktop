@@ -5,8 +5,6 @@ package Utilidades;
  *
  * @author Edward
  */
-import Listas.*;
-import Nodos.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JFrame;
@@ -22,7 +20,7 @@ public class ReporteAnimal extends JFrame {
 
     JScrollPane scroll;
 
-    public ReporteAnimal(NodoAnimal L) {
+    public ReporteAnimal() {
         super("Reporte de Partos");
         JScrollPane caja;
         JLabel lbtitulo;
@@ -46,7 +44,7 @@ public class ReporteAnimal extends JFrame {
         {
             modelo.addColumn(Identificadores[j]);
         }
-        while (L != null) {
+    /*    while (L != null) {
 
             Secundarios[0] = L.getAnimal().getCod_animal();
             Secundarios[1] = L.getAnimal().getRaza();
@@ -62,7 +60,7 @@ public class ReporteAnimal extends JFrame {
             modelo.addRow(Secundarios);//se añade el registro al modelo
             L = L.getLiga();
 
-        }
+        }*/
 
         tabla = new JTable(modelo);//se añade el modelo a la tabla
 

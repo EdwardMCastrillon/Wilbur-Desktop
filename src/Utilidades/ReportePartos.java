@@ -13,8 +13,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import Utilidades.*;
-import Listas.*;
-import Nodos.NodoParto;
 
 /**
  *
@@ -26,7 +24,7 @@ public class ReportePartos extends JFrame {
 
     JScrollPane scroll;
 
-    public ReportePartos(NodoParto P) {
+    public ReportePartos() {
         super("Reporte de Partos");
         JScrollPane caja;
         JLabel lbtitulo;
@@ -47,7 +45,7 @@ public class ReportePartos extends JFrame {
         {
             modelo.addColumn(Identificadores[j]);
         }
-        while (P != null) {
+   /*     while (P != null) {
 
             Secundarios[0] = P.getParto().getCodPart();
             Secundarios[1] = P.getParto().getFechaParto().toString();
@@ -60,7 +58,7 @@ public class ReportePartos extends JFrame {
             modelo.addRow(Secundarios);//se añade el registro al modelo
             i++;
             P = P.getLiga();
-        }
+        }*/
 
         tabla = new JTable(modelo);//se añade el modelo a la tabla
 
