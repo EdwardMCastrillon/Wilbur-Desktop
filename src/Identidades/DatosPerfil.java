@@ -14,12 +14,18 @@ import java.util.Date;
 public class DatosPerfil {
 
     private int idPerfil, numCedula,  tipoPerfil;
-    private String usuario, contraIngreso; 
+    private String usuario, contraIngreso, nombrePerfil; 
     private Date fecha;
     
     public DatosPerfil(){}
-    
-    
+
+    public String getNombrePerfil() {
+        return nombrePerfil;
+    }
+
+    public void setNombrePerfil(String nombrePerfil) {
+        this.nombrePerfil = nombrePerfil;
+    }    
 
     public int getIdPerfil() {
         return idPerfil;

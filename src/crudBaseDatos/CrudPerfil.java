@@ -34,20 +34,18 @@ public class CrudPerfil {
         validar = new Validaciones();
     }
 
-    public ResultSet validarUsuario(String usuario, String clave) {
-            ResultSet respuesta = null;
+    public boolean validarUsuario(String usuario, String clave) {
+        boolean respuesta = false;
         try {
             Conexion conexion = new Conexion();
             Connection connection = conexion.getConection();
             String consulta = ("SELECT TPE.NOM_TPERFIL FROM PERFILES PE INNER JOIN TIPO_PERFIL TPE ON PE.TPERFIL = TPE.ID_TPERFIL"
-                    + " WHERE NOM_USUARIO = '"+ usuario + "' AND CLAVE = '" + clave + "'");
+                    + " WHERE NOM_USUARIO = '" + usuario + "' AND CLAVE = '" + clave + "'");
             Statement st = connection.createStatement();
-            respuesta = st.executeQuery(consulta);
-            /*if (respuesta.next()) {
-                MenuPrincipal menu = new MenuPrincipal("Administrador");
-            } else {
-                JOptionPane.showMessageDialog(null, "Usuario no existe");
-            }*/
+            ResultSet respu = st.executeQuery(consulta);
+            if (respu.next()) {
+                respuesta = true;
+            }            
             conexion.cerrarConexion(connection);
         } catch (SQLException ex) {
             Logger.getLogger(CrudPerfil.class.getName()).log(Level.SEVERE, null, ex);
@@ -57,8 +55,8 @@ public class CrudPerfil {
     }
 
     /**
-     * Método para la inserción de datos nuevos a la base de datos de la
-     * Granja Wilbur
+     * Método para la inserción de datos nuevos a la base de datos de la Granja
+     * Wilbur
      *
      * @param perfil recibe un objeto de tipo <code>DatosPerfil</code> con el
      * contenido de los datos a insertar.
@@ -69,7 +67,7 @@ public class CrudPerfil {
         try {
             Conexion conexion = new Conexion();
             Connection connection = conexion.getConection();
-            
+
             PreparedStatement insertarDatos;
 
             insertarDatos = connection.prepareStatement("INSERT INTO PERFILES (ID_PERFIL, NOM_USUARIO, "
@@ -89,13 +87,13 @@ public class CrudPerfil {
         }
         return respuesta;
     }
-    
-     /**
+
+    /**
      * Método para modificar los datos existentes de un registro almacenado en
      * la base de datos de la Granja Wilbur.
      *
-     * @param modificarPerfil recibe un objeto de tipo <code>Reservas</code>
-     * con el contenido de los datos modificados para actualizar en la base de
+     * @param modificarPerfil recibe un objeto de tipo <code>Reservas</code> con
+     * el contenido de los datos modificados para actualizar en la base de
      * datos.
      * @see <code>DatosPerfil</code>
      */
@@ -105,16 +103,16 @@ public class CrudPerfil {
             Conexion conexion = new Conexion();
             Connection connection = conexion.getConection();
             /**
-             * Variable modificarSQL de tipo <code>String</code> en
-             * la cual se cargara la petición a la base de datos para insertar
-             * los datos a actualizar.
+             * Variable modificarSQL de tipo <code>String</code> en la cual se
+             * cargara la petición a la base de datos para insertar los datos a
+             * actualizar.
              */
             String modificarSQL;
 
             modificarSQL = ("UPDATE PERFILES SET "
                     + "NOM_USUARIO = '" + modificarPerfil.getUsuario() + "', "
                     + "CLAVE = '" + modificarPerfil.getContraIngreso() + "', "
-                    + "TPERFIL = " + modificarPerfil.getTipoPerfil() 
+                    + "TPERFIL = " + modificarPerfil.getTipoPerfil()
                     + "WHERE NUM_DOC_USU = " + modificarPerfil.getNumCedula());
 
             Statement statement = connection.createStatement();
@@ -127,20 +125,20 @@ public class CrudPerfil {
         }
         return respuesta;
     }
-    
-     /**
+
+    /**
      * Método para eliminar un registro especifico almacenado en la base de
      * datos de la Granja Wilbur.
      *
-     * @param idPerfil recibe un dato <code>int</code> con el número
-     * de la reserva a eliminar de la base de datos.
+     * @param idPerfil recibe un dato <code>int</code> con el número de la
+     * reserva a eliminar de la base de datos.
      */
     public boolean eliminarRegistro(int idPerfil) {
         boolean respuesta = false;
         try {
             Conexion conexion = new Conexion();
             Connection connection = conexion.getConection();
-            
+
             /**
              * Variable eliminarSQL de tipo <code>String</code> en la cual se
              * cargara la petición para eliminar el registro.
@@ -160,22 +158,22 @@ public class CrudPerfil {
         return respuesta;
     }
 
-    public DatosPerfil consultarPerfil(int idPerfil){
+    public DatosPerfil consultarPerfil(int id, String campo) {
         DatosPerfil perfil = null;
-            Conexion conexion = new Conexion();
-            Connection connection = conexion.getConection();
-        String consulta = "SELECT * FROM PERFILES WHERE ID_PERFIL = " + idPerfil;
+        Conexion conexion = new Conexion();
+        Connection connection = conexion.getConection();
+        String consulta = "SELECT * FROM PERFILES WHERE " + campo + " = " + id;
         try {
             Statement consultaperfil = connection.createStatement();
             ResultSet respuesta = consultaperfil.executeQuery(consulta);
-            if ( respuesta.next()){
+            if (respuesta.next()) {
                 perfil = new DatosPerfil();
                 perfil.setIdPerfil(respuesta.getInt("ID_PERFIL"));
                 perfil.setUsuario(respuesta.getString("NOM_USUARIO"));
                 perfil.setContraIngreso(respuesta.getString("CLAVE"));
                 perfil.setTipoPerfil(respuesta.getInt("TPERFIL"));
                 perfil.setNumCedula(respuesta.getInt("NUM_DOC_USU"));
-                
+
             }
             conexion.cerrarConexion(connection);
         } catch (SQLException ex) {
@@ -184,6 +182,59 @@ public class CrudPerfil {
         return perfil;
     }
     
+    public DatosPerfil consultarPerfilUsuario(String usuario) {
+        DatosPerfil perfil = null;
+        Conexion conexion = new Conexion();
+        Connection connection = conexion.getConection();
+        String consulta = "SELECT * FROM PERFILES WHERE NOM_USUARIO = '" + usuario + "'";
+        try {
+            Statement consultaperfil = connection.createStatement();
+            ResultSet respuesta = consultaperfil.executeQuery(consulta);
+            if (respuesta.next()) {
+                perfil = new DatosPerfil();
+                perfil.setIdPerfil(respuesta.getInt("ID_PERFIL"));
+                perfil.setUsuario(respuesta.getString("NOM_USUARIO"));
+                perfil.setContraIngreso(respuesta.getString("CLAVE"));
+                perfil.setTipoPerfil(respuesta.getInt("TPERFIL"));
+                perfil.setNumCedula(respuesta.getInt("NUM_DOC_USU"));
+
+            }
+            conexion.cerrarConexion(connection);
+        } catch (SQLException ex) {
+            Logger.getLogger(CrudPerfil.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return perfil;
+    }
+
+    public boolean consultarUsuContra(String consulta, String campo) {
+        boolean respuesta = false;
+        try {
+            Conexion conexion = new Conexion();
+            Connection connection = conexion.getConection();
+
+            /**
+             * Variable eliminarSQL de tipo <code>String</code> en la cual se
+             * cargara la petición para eliminar el registro.
+             */
+            String sql;
+
+            sql = ("SELECT * FROM PERFILES WHERE " + campo + " = '" + consulta + "'");
+
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+            if (resultSet.next()) {
+                if (resultSet.getString(campo).equals(consulta)) {
+                    respuesta = true;
+                }
+            }
+            conexion.cerrarConexion(connection);
+        } catch (Exception e) {
+            respuesta = false;
+            JOptionPane.showMessageDialog(null, "No ha sido posible la conexión a la Base de Datos \n" + e);
+        }
+        return respuesta;
+    }
+
     public java.util.List<DatosPerfil> cargarPerfiles() {
         java.util.List<DatosPerfil> listaPerfil = new ArrayList<DatosPerfil>();
         try {
@@ -191,13 +242,13 @@ public class CrudPerfil {
             Connection connection = conexion.getConection();
             DatosPerfil perfil;
             Statement statement = connection.createStatement();
-            ResultSet respuesta = statement.executeQuery("SELECT * FROM PERFILES");
+            ResultSet respuesta = statement.executeQuery("SELECT PE.ID_PERFIL, PE.NUM_DOC_USU, PE.NOM_USUARIO, TPE.NOM_TPERFIL "
+                    + "FROM PERFILES PE INNER JOIN TIPO_PERFIL TPE ON PE.TPERFIL = TPE.ID_TPERFIL");
             while (respuesta.next()) {
                 perfil = new DatosPerfil();
                 perfil.setIdPerfil(respuesta.getInt("ID_PERFIL"));
                 perfil.setUsuario(respuesta.getString("NOM_USUARIO"));
-                perfil.setContraIngreso(respuesta.getString("CLAVE"));
-                perfil.setTipoPerfil(respuesta.getInt("TPERFIL"));
+                perfil.setNombrePerfil(respuesta.getString("NOM_TPERFIL"));
                 perfil.setNumCedula(respuesta.getInt("NUM_DOC_USU"));
                 listaPerfil.add(perfil);
             }
@@ -209,7 +260,46 @@ public class CrudPerfil {
         return listaPerfil;
     }
     
-    public java.util.List<DatosDependencias> cargarTipoPerfil(){
+    public boolean validarDocumentoPer(int documento) {
+        boolean respu = false;
+        try {
+            Conexion conexion = new Conexion();
+            Connection connection = conexion.getConection();
+            Statement statement = connection.createStatement();
+            ResultSet respuesta = statement.executeQuery("SELECT * FROM PERFILES WHERE NUM_DOC_USU = " + documento);
+            while (respuesta.next()) {
+                if (respuesta.getInt("NUM_DOC_USU") == documento){
+                    respu = true;
+                }
+            }
+            conexion.cerrarConexion(connection);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return respu;
+    }
+
+    public DatosPersonal validarDocumento(int documento) {
+        DatosPersonal persona = null;
+        try {
+            Conexion conexion = new Conexion();
+            Connection connection = conexion.getConection();
+            String consulta = "SELECT * FROM USUARIOS WHERE NUM_DOC = " + documento;
+            Statement consultaPersonal = connection.createStatement();
+            ResultSet respuesta = consultaPersonal.executeQuery(consulta);
+            if (respuesta.next()) {
+                persona = new DatosPersonal(
+                        respuesta.getString("NOMBRES"),
+                        respuesta.getString("APELLIDO1")
+                );
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CrudPerfil.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return persona;
+    }
+
+    public java.util.List<DatosDependencias> cargarTipoPerfil() {
         java.util.List<DatosDependencias> listaTipoPerfil = new ArrayList<DatosDependencias>();
         try {
             Conexion conexion = new Conexion();
@@ -229,5 +319,5 @@ public class CrudPerfil {
 
         return listaTipoPerfil;
     }
-    
+
 }

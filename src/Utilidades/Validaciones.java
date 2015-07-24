@@ -10,7 +10,9 @@ import java.text.DateFormat;
 import java.text.Format;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
@@ -260,6 +262,12 @@ public class Validaciones {
         
         date= new java.sql.Date(fecha1.getTime());
         return date;     
+    }
+    
+    public int capturarIdDependencia(List<DatosDependencias> listaDependencia, int index){
+        int id;
+        id = listaDependencia.get(index - 1).getId();
+        return id;
     }
 
 }

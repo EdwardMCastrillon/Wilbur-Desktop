@@ -5,6 +5,9 @@
  */
 package Utilidades;
 
+import Identidades.DatosPerfil;
+import crudBaseDatos.CrudPerfil;
+import java.util.List;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
@@ -13,6 +16,8 @@ public class ReportePerfil extends JFrame{
     JTable tablaPartos = null;//tabla
     JScrollPane scroll;
     DefaultTableModel modeloPartos;
+    CrudPerfil basePerfil;
+    List<DatosPerfil> listaPerfiles ;
 
     public ReportePerfil() {
 
@@ -22,18 +27,19 @@ public class ReportePerfil extends JFrame{
         setResizable(false);
         setLocation(10, 150);
         String Identificadores[] = new String[4];
-        String datosAnimal[] = new String[4];
+        String datosPerfil[] = new String[4];
         modeloPartos = new DefaultTableModel();
         tablaPartos = new JTable(modeloPartos);//se añade el modelo a la tabla
         scroll = new JScrollPane(tablaPartos);//se añade la tabla al scroll (contenedor)
         scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
         scroll.reshape(50, 50, 1100, 170);//dimensiones
         getContentPane().add(scroll);
+        basePerfil = new CrudPerfil();
         int i = 0;
-        Identificadores[0] = "Núumero Documento";
-        Identificadores[1] = "Nombre";
+        Identificadores[0] = "Id Perfil";
+        Identificadores[1] = "Número de Documento";
         Identificadores[2] = "Perfil";
-        Identificadores[3] = "Nombre Usuario"; 
+        Identificadores[3] = "Nombre de Usuario"; 
 
         for (int j = 0; j < 3; j++) //añaden columnas
         {
@@ -41,19 +47,17 @@ public class ReportePerfil extends JFrame{
         }
 
         try {
+            listaPerfiles = basePerfil.cargarPerfiles();
+            for (DatosPerfil perfil : listaPerfiles) {
 
-       /*     while (auxi != null) {
+                datosPerfil[0] = String.valueOf(perfil.getIdPerfil());
+                datosPerfil[1] = String.valueOf(perfil.getNumCedula());
+                datosPerfil[2] = perfil.getNombrePerfil();
+                datosPerfil[3] = perfil.getUsuario(); 
 
-                datosAnimal[0] = auxi.getPerfil().getNumCedula();
-                datosAnimal[1] = auxi.getPerfil().getNombre();
-                datosAnimal[2] = auxi.getPerfil().getPerfil();
-                datosAnimal[3] = auxi.getPerfil().getUsuario(); 
+                modeloPartos.addRow(datosPerfil);//se añade el registro al modelo
 
-                modeloPartos.addRow(datosAnimal);//se añade el registro al modelo
-
-                auxi = auxi.getLiga();
-
-            }*/
+            }
         } catch (Exception ex) {
             System.out.print(ex);
         }

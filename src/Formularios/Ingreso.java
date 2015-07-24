@@ -24,7 +24,7 @@ public class Ingreso extends javax.swing.JFrame {
     String nombreVentana;
     int boton = 1;
     CrudPerfil base;
-    ResultSet respuesta;
+    boolean respuesta;
 
     /**
      * @param usuarios[][]: Represanta la matriz de los usuarios del sistema.
@@ -258,15 +258,12 @@ public class Ingreso extends javax.swing.JFrame {
          JTUsuario.setText("");
          JTClave.setText("");
          }*/
-        respuesta = base.validarUsuario(JTUsuario.getText(), JTClave.getText());
-        try {
-            if (respuesta.next()) {
-                MenuPrincipal menu = new MenuPrincipal(/*respuesta.getString("NOM_TPERFIL")*/"Administrador");
-            } else {
-                JOptionPane.showMessageDialog(null, "Usuario no existe");
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Ingreso.class.getName()).log(Level.SEVERE, null, ex);
+        if (base.validarUsuario(JTUsuario.getText(), JTClave.getText())) {
+            MenuPrincipal menu = new MenuPrincipal(/*respuesta.getString("NOM_TPERFIL")*/"Administrador");
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Usuario no existe");
+
         }
 
         // TODO add your handling code here:

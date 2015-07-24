@@ -226,6 +226,60 @@ public class CrudPersonal {
             return null;
         }
     }
+    
+        public DatosPersonal obtenerUsuarioCorreo(String correo) {
+
+        String sql;
+        DatosPersonal personal;
+
+        try {
+            Conexion conexion = new Conexion();
+            Connection connection = conexion.getConection();
+
+            personal = null;
+
+            sql = ("SELECT * FROM USUARIOS WHERE EMAIL = '" + correo + "'");
+
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+
+            if (resultSet.next()) {
+
+                personal = new DatosPersonal(
+                        resultSet.getInt("NUM_DOC"),
+                        resultSet.getInt("TIPO_DOC"),
+                        resultSet.getString("NOMBRES"),
+                        resultSet.getString("APELLIDO1"),
+                        resultSet.getString("APELLIDO2"),
+                        resultSet.getDate("FECHA_NAC"),
+                        resultSet.getInt("DEPARTAMENTO"),
+                        resultSet.getInt("CIUDAD"),
+                        resultSet.getInt("TIPO_SANGRE"),
+                        resultSet.getInt("TIPO_RH"),
+                        resultSet.getInt("ESTADO"),
+                        resultSet.getString("DIRECCION"),
+                        resultSet.getInt("TEL_FIJO"),
+                        resultSet.getInt("TEL_MOVIL"),
+                        resultSet.getString("EMAIL"),
+                        resultSet.getInt("PROFESION"),
+                        resultSet.getDate("FECHA_OBT_TITULO"),
+                        resultSet.getInt("CARGO"),
+                        resultSet.getDate("FECHA_CONTRATO"),
+                        resultSet.getInt("TIPO_CONTR"),
+                        resultSet.getString("FOTO"),
+                        resultSet.getString("OTROS_ESTUDIO"),
+                        resultSet.getString("TITULO_OBTE"),
+                        resultSet.getDate("FECHA_FINAL"));
+            }
+            conexion.cerrarConexion(connection);
+            return personal;
+
+        } catch (SQLException e) {
+
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, e);
+            return null;
+        }
+    }
 
     public java.util.List<DatosPersonal> cargarUsuarios() {
         java.util.List<DatosPersonal> listaPersonal = new ArrayList<DatosPersonal>();
@@ -234,33 +288,27 @@ public class CrudPersonal {
             Connection connection = conexion.getConection();
             DatosPersonal personal;
             Statement statement = connection.createStatement();
-            ResultSet respuesta = statement.executeQuery("SELECT * FROM USUARIOS");
+            ResultSet respuesta = statement.executeQuery("SELECT US.NUM_DOC, TD.NOM_DOC, US.NOMBRES, US.APELLIDO1, "
+                + "US.APELLIDO2, US.FECHA_NAC, US.DIRECCION, US.TEL_FIJO, US.EMAIL, PR.NOM_PROF, CA.NOM_CARGO, TC.NOM_TCONT, "
+                + "US.FECHA_CONTRATO FROM USUARIOS US INNER JOIN TIPO_DOCUMENTO TD ON US.TIPO_DOC = TD.ID_DOCUM "
+                + "INNER JOIN PROFESIONES PR ON US.PROFESION = PR.ID_PROF "
+                + "INNER JOIN CARGOS CA ON US.CARGO = CA.ID_CARGO "
+                + "INNER JOIN TIPO_CONTRATO TC ON US.TIPO_CONTR = TC.ID_TCONT");
             while (respuesta.next()) {
                 personal = new DatosPersonal(
                         respuesta.getInt("NUM_DOC"),
-                        respuesta.getInt("TIPO_DOC"),
+                        respuesta.getString("NOM_DOC"),
                         respuesta.getString("NOMBRES"),
                         respuesta.getString("APELLIDO1"),
                         respuesta.getString("APELLIDO2"),
                         respuesta.getDate("FECHA_NAC"),
-                        respuesta.getInt("DEPARTAMENTO"),
-                        respuesta.getInt("CIUDAD"),
-                        respuesta.getInt("TIPO_SANGRE"),
-                        respuesta.getInt("TIPO_RH"),
-                        respuesta.getInt("ESTADO"),
                         respuesta.getString("DIRECCION"),
                         respuesta.getInt("TEL_FIJO"),
-                        respuesta.getInt("TEL_MOVIL"),
                         respuesta.getString("EMAIL"),
-                        respuesta.getInt("PROFESION"),
-                        respuesta.getDate("FECHA_OBT_TITULO"),
-                        respuesta.getInt("CARGO"),
-                        respuesta.getDate("FECHA_CONTRATO"),
-                        respuesta.getInt("TIPO_CONTR"),
-                        respuesta.getString("FOTO"),
-                        respuesta.getString("OTROS_ESTUDIO"),
-                        respuesta.getString("TITULO_OBTE"),
-                        respuesta.getDate("FECHA_FINAL")
+                        respuesta.getString("NOM_PROF"),
+                        respuesta.getString("NOM_CARGO"),
+                        respuesta.getString("NOM_TCONT"),
+                        respuesta.getDate("FECHA_CONTRATO")
                 );
                 listaPersonal.add(personal);
             }
@@ -294,25 +342,65 @@ public class CrudPersonal {
         return listaDependencias;
     }
     
-    public List obtenerTipoDocumento() {
+    public List obtenerMunicipios(int index, String id, String nombre) {
 
-        List<DatosDependencias> listaTipoDocumentos = new ArrayList<DatosDependencias>();
+        List<DatosDependencias> listaDependencias = new ArrayList<DatosDependencias>();
         try {
             Conexion conexion = new Conexion();
             Connection connection = conexion.getConection();
-            DatosDependencias documen;
+            DatosDependencias dependencia;
             Statement statement = connection.createStatement();
-            ResultSet respuesta = statement.executeQuery("SELECT * FROM TIPO_DOCUMENTO ORDER BY NOM_DOC");
+            ResultSet respuesta = statement.executeQuery("SELECT * FROM CIUDADES WHERE ID_DEPART = " + index + 
+                                                         " ORDER BY NOM_CIUDAD");
             while (respuesta.next()) {
-                documen = new DatosDependencias();
-                documen.setId(respuesta.getInt("ID_DOCUM"));
-                documen.setNombre(respuesta.getString("NOM_DOC"));
-                listaTipoDocumentos.add(documen);
+                dependencia = new DatosDependencias();
+                dependencia.setId(respuesta.getInt(id));
+                dependencia.setNombre(respuesta.getString(nombre));
+                listaDependencias.add(dependencia);
             }
+            conexion.cerrarConexion(connection);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return listaTipoDocumentos;
+        return listaDependencias;
+    }
+    
+    public boolean validarDocumento(int documento) {
+        boolean respu = false;
+        try {
+            Conexion conexion = new Conexion();
+            Connection connection = conexion.getConection();
+            Statement statement = connection.createStatement();
+            ResultSet respuesta = statement.executeQuery("SELECT * FROM USUARIOS WHERE NUM_DOC = " + documento);
+            while (respuesta.next()) {
+                if (respuesta.getInt("NUM_DOC") == documento){
+                    respu = true;
+                }
+            }
+            conexion.cerrarConexion(connection);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return respu;
+    }
+    
+    public boolean validarCorreo(String correo) {
+        boolean respu = false;
+        try {
+            Conexion conexion = new Conexion();
+            Connection connection = conexion.getConection();
+            Statement statement = connection.createStatement();
+            ResultSet respuesta = statement.executeQuery("SELECT * FROM USUARIOS WHERE EMAIL = '" + correo + "'");
+            while (respuesta.next()) {
+                if (respuesta.getString("EMAIL").equals(correo)){
+                    respu = true;
+                }
+            }
+            conexion.cerrarConexion(connection);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return respu;
     }
 
     public List obtenerTipoRh() {

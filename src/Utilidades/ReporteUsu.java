@@ -5,9 +5,12 @@
  */
 package Utilidades;
 
+import Identidades.DatosPersonal;
+import crudBaseDatos.CrudPersonal;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -25,6 +28,8 @@ public class ReporteUsu extends JFrame {
     JTable tabla;//tabla
 
     JScrollPane scroll;
+    List<DatosPersonal> listaPersonal;
+    CrudPersonal basePersonal;
 
     public ReporteUsu() {
         super("Reporte de Personal");
@@ -32,40 +37,49 @@ public class ReporteUsu extends JFrame {
         JLabel lbtitulo;
         DefaultTableModel modelo = null;
         String Identificadores[] = new String[13];
-        String Secundarios[] = new String[13];
+        String datosUsuarios[] = new String[13];
         int i = 0;
-        Identificadores[0] = "Tipo Documento";
-        Identificadores[1] = "# Documento";
-        Identificadores[2] = "Nombre y Apellido";
-        Identificadores[3] = "Fecha Nacimiento";
-        Identificadores[4] = "Direccion";
-        Identificadores[5] = "Telefono";
-        Identificadores[6] = "Movil";
-        Identificadores[7] = "Correo";
+        basePersonal = new CrudPersonal();
+        Identificadores[0] = "Número Documento";
+        Identificadores[1] = "Tipo Documento";
+        Identificadores[2] = "Nombres";
+        Identificadores[3] = "Apellido1";
+        Identificadores[4] = "Apellido2";
+        Identificadores[5] = "Fecha Nacimiento";
+        Identificadores[6] = "Dirección";
+        Identificadores[7] = "Teléfono Fijo";
+        Identificadores[8] = "Correo";
+        Identificadores[9] = "Profesion";
+        Identificadores[10] = "Cargo";
+        Identificadores[11] = "Tipo Contrato";
+        Identificadores[12] = "Fecha Contrato";
 
         //modelo 
         modelo = new DefaultTableModel();//inicializa
-        for (int j = 0; j <= 7; j++) //añaden columnas
+        for (int j = 0; j < 12; j++) //añaden columnas
         {
             modelo.addColumn(Identificadores[j]);
         }
+        listaPersonal = basePersonal.cargarUsuarios();
+        for (DatosPersonal usuario : listaPersonal) {
 
-      /*  while (L != null) {
+            datosUsuarios[0] = String.valueOf(usuario.getDocumento());
+            datosUsuarios[1] = usuario.getNombreTipoDoc();
+            datosUsuarios[2] = usuario.getNombre();
+            datosUsuarios[3] = usuario.getPrimerApellido();
+            datosUsuarios[4] = usuario.getSegundoApellido();
+            datosUsuarios[5] = usuario.getFechaNacimiento().toString();
+            datosUsuarios[6] = usuario.getDireccion();
+            datosUsuarios[7] = String.valueOf(usuario.getTelefono());
+            datosUsuarios[8] = usuario.getCorreo();
+            datosUsuarios[9] = usuario.getNombreProf();
+            datosUsuarios[10] = usuario.getNombreCargo();
+            datosUsuarios[11] = usuario.getNombreTipoCont();
+            datosUsuarios[12] = usuario.getFechaContrato().toString();
 
-            Secundarios[0] = L.getUsuario().getTipoDoc();
-            Secundarios[1] = L.getUsuario().getDocumento();
-            Secundarios[2] = L.getUsuario().getNombre();
-            Secundarios[3] = L.getUsuario().getFechaNacimiento().toString();
-            Secundarios[4] = L.getUsuario().getDireccion();
-            Secundarios[5] = L.getUsuario().getTelefono();
-            Secundarios[6] = L.getUsuario().getMovil();
-            Secundarios[7] = L.getUsuario().getCorreo();
+            modelo.addRow(datosUsuarios);//se añade el registro al modelo
 
-            modelo.addRow(Secundarios);//se añade el registro al modelo
-            i++;
-            L = L.getLiga();
-
-        }*/
+        }
         tabla = new JTable(modelo);//se añade el modelo a la tabla
 
         caja = new JScrollPane(tabla);//se añade la tabla al scroll (contenedor)

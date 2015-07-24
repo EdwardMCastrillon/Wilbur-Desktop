@@ -15,7 +15,7 @@ public class DatosPersonal {
     
     private int tipoDoc,profesion, documento, telefono, movil, depart, ciudad, rh, sangre, estado,cargo, tipoContrato;
     private String direccion, nombre, correo,rutaImagen, primerApellido, segundoApellido;
-    private String  otroEst, obtenidoEstudio;
+    private String  otroEst, obtenidoEstudio, nombreTipoDoc, nombreProf, nombreCargo, nombreTipoCont;
     private Date fechaNacimiento, fechaTitulo, fechaOtroEst, fechaContrato;
     
     public  DatosPersonal(){}
@@ -49,8 +49,61 @@ public class DatosPersonal {
         this.fechaOtroEst = fechaOtroEst;
         this.fechaContrato = fechaContrato;
     }
+
+    public DatosPersonal(String nombre, String primerApellido) {
+        this.nombre = nombre;
+        this.primerApellido = primerApellido;
+    }
+
+    public DatosPersonal(int documento, String nombreTipoDoc, String nombre, String primerApellido, String segundoApellido, Date fechaNacimiento, String direccion, int telefono, String correo,  String nombreProf, String nombreCargo, String nombreTipoCont, Date fechaContrato) {
+        this.documento = documento;
+        this.telefono = telefono;
+        this.direccion = direccion;
+        this.nombre = nombre;
+        this.correo = correo;
+        this.primerApellido = primerApellido;
+        this.segundoApellido = segundoApellido;
+        this.nombreTipoDoc = nombreTipoDoc;
+        this.nombreProf = nombreProf;
+        this.nombreCargo = nombreCargo;
+        this.nombreTipoCont = nombreTipoCont;
+        this.fechaNacimiento = fechaNacimiento;
+        this.fechaContrato = fechaContrato;
+    }
     
     
+
+    public String getNombreTipoDoc() {
+        return nombreTipoDoc;
+    }
+
+    public void setNombreTipoDoc(String nombreTipoDoc) {
+        this.nombreTipoDoc = nombreTipoDoc;
+    }
+
+    public String getNombreProf() {
+        return nombreProf;
+    }
+
+    public void setNombreProf(String nombreProf) {
+        this.nombreProf = nombreProf;
+    }
+
+    public String getNombreCargo() {
+        return nombreCargo;
+    }
+
+    public void setNombreCargo(String nombreCargo) {
+        this.nombreCargo = nombreCargo;
+    }
+
+    public String getNombreTipoCont() {
+        return nombreTipoCont;
+    }
+
+    public void setNombreTipoCont(String nombreTipoCont) {
+        this.nombreTipoCont = nombreTipoCont;
+    }
 
     public int getTipoDoc() {
         return tipoDoc;
