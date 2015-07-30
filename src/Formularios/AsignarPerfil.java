@@ -342,11 +342,11 @@ public class AsignarPerfil extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(JBLimpiarU)
                 .addGap(18, 18, 18)
-                .addComponent(JBVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addComponent(JBVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {JBEliminarU, JBLimpiarU, JBListar, JBModificarU, JBNuevo, JBVolver, JButtonCrearPerfil});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {JBEliminarU, JBLimpiarU, JBListar, JBModificarU, JBNuevo, JButtonCrearPerfil});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -358,17 +358,17 @@ public class AsignarPerfil extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(1, 1, 1)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(JBVolver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(JBLimpiarU, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(JBListar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(JBEliminarU)))
+                            .addComponent(JBEliminarU)
+                            .addComponent(JBVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(JButtonCrearPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(JBConsultaru)
                     .addComponent(JBModificarU))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {JBConsultaru, JBEliminarU, JBLimpiarU, JBListar, JBModificarU, JBNuevo, JBVolver, JButtonCrearPerfil});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {JBConsultaru, JBEliminarU, JBLimpiarU, JBListar, JBModificarU, JBNuevo, JButtonCrearPerfil});
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

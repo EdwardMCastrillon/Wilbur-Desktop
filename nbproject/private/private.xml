@@ -3,14 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/ivan/Escritorio/Wilbur-Desktop/src/Formularios/Ingreso.java</file>
-            <file>file:/home/ivan/Escritorio/Wilbur-Desktop/src/crudBaseDatos/CrudPerfil.java</file>
-            <file>file:/home/ivan/Escritorio/Wilbur-Desktop/src/Formularios/MenuPrincipal.java</file>
-            <file>file:/home/ivan/Escritorio/Wilbur-Desktop/src/Identidades/DatosPersonal.java</file>
+            <file>file:/home/ivan/Escritorio/Wilbur-Desktop/src/Formularios/RegistroPersonal.java</file>
+            <file>file:/home/ivan/Escritorio/Wilbur-Desktop/src/crudBaseDatos/CrudDependencias.java</file>
+            <file>file:/home/ivan/Escritorio/Wilbur-Desktop/src/Formularios/FormularioDependencias.java</file>
             <file>file:/home/ivan/Escritorio/Wilbur-Desktop/src/util/Test.java</file>
-            <file>file:/home/ivan/Escritorio/Wilbur-Desktop/src/Formularios/AsignarPerfil.java</file>
-            <file>file:/home/ivan/Escritorio/Wilbur-Desktop/src/crudBaseDatos/CrudPersonal.java</file>
-            <file>file:/home/ivan/Escritorio/Wilbur-Desktop/src/util/Conexion.java</file>
         </group>
     </open-files>
 </project-private>

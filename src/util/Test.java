@@ -5,6 +5,7 @@
  */
 package util;
 
+import Formularios.FormularioDependencias;
 import Identidades.DatosPerfil;
 import Identidades.DatosPersonal;
 import Utilidades.DepartamentosMunicipios;
@@ -73,7 +74,8 @@ public class Test {
             System.out.println("\n");
             co.cerrarConexion(cone);
         }*/
-        CrudPersonal base = new CrudPersonal();
+        Formularios.FormularioDependencias f = new FormularioDependencias("Id Profesion:", "Profesion", "Profesiones", "gg", "ff", "dd");
+      //  CrudPersonal base = new CrudPersonal();
      /*   DatosPersonal persona = new DatosPersonal();
     	persona.setTipoDoc(1);
     	persona.setDocumento(8359459);
@@ -134,7 +136,7 @@ public class Test {
             System.out.println("Se actualizo");
         }else{
             System.out.println("No se actualizo");
-        }*/
+        }
         DatosPersonal con = null;
         con = base.obtenerUsuario(8359459);
         if (con != null){

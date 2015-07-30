@@ -40,8 +40,8 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="JBLimpiarU" linkSize="6" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="JBVolver" linkSize="6" min="-2" pref="53" max="-2" attributes="0"/>
-              <EmptySpace pref="39" max="32767" attributes="0"/>
+              <Component id="JBVolver" min="-2" pref="55" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -55,10 +55,10 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="JBVolver" linkSize="7" alignment="0" max="32767" attributes="0"/>
                           <Component id="JBLimpiarU" linkSize="7" alignment="0" max="32767" attributes="0"/>
                           <Component id="JBListar" linkSize="7" alignment="0" min="-2" pref="35" max="-2" attributes="0"/>
                           <Component id="JBEliminarU" linkSize="7" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="JBVolver" alignment="0" min="-2" pref="38" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Component id="JButtonCrearPerfil" linkSize="7" alignment="0" min="-2" pref="34" max="-2" attributes="0"/>

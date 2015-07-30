@@ -22,6 +22,7 @@ import java.util.Date;
 import java.util.List;
 import javax.swing.ButtonGroup;
 import javax.swing.JComboBox;
+import Formularios.FormularioDependencias;
 
 public class RegistroPersonal extends javax.swing.JFrame {
 
@@ -47,6 +48,7 @@ public class RegistroPersonal extends javax.swing.JFrame {
     List<DatosDependencias> listaDepartamentos;
     List<DatosDependencias> listaMunicipios;
     CrudPersonal basePersonal;
+    FormularioDependencias formulario;
 
     public RegistroPersonal() {
         initComponents();
@@ -60,10 +62,10 @@ public class RegistroPersonal extends javax.swing.JFrame {
         año = fecha.getYear() - 18;
         mes = fecha.getMonth();
         dia = fecha.getDay();
-     /*   jdFechaNacimiento.setMaxSelectableDate(new Date(año, mes, dia));
-        jdFechaContrato.setMaxSelectableDate(new Date());
-        jdFechaFinal.setMaxSelectableDate(new Date());
-        jdFechaTitulo.setMaxSelectableDate(new Date());*/
+        /*   jdFechaNacimiento.setMaxSelectableDate(new Date(año, mes, dia));
+         jdFechaContrato.setMaxSelectableDate(new Date());
+         jdFechaFinal.setMaxSelectableDate(new Date());
+         jdFechaTitulo.setMaxSelectableDate(new Date());*/
         this.setVisible(true);
         setLocationRelativeTo(null);
         setResizable(false);
@@ -1035,7 +1037,7 @@ public class RegistroPersonal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JBListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBListarActionPerformed
-      
+
         new ReporteUsu();
 
         // TODO add your handling code here:
@@ -1080,12 +1082,12 @@ public class RegistroPersonal extends javax.swing.JFrame {
         if (JrbnInactivo.isSelected()) {
 
             estado = "1";
-            if (!validacionObligatorios().equals("")){
+            if (!validacionObligatorios().equals("")) {
                 this.DesactivarCampos();
                 JBGuardarU.setEnabled(true);
-            }else{
-                JOptionPane.showMessageDialog(null, "Digite todos los campos obligatorios", 
-                        "Gestionar Personal - G.A.P.",JOptionPane.YES_OPTION,icoMensajePre);
+            } else {
+                JOptionPane.showMessageDialog(null, "Digite todos los campos obligatorios",
+                        "Gestionar Personal - G.A.P.", JOptionPane.YES_OPTION, icoMensajePre);
             }
         }
         // TODO add your handling code here:
@@ -1096,12 +1098,12 @@ public class RegistroPersonal extends javax.swing.JFrame {
         if (JrbnActivo.isSelected()) {
 
             estado = "2";
-            if (!validacionObligatorios().equals("")){
+            if (!validacionObligatorios().equals("")) {
                 this.DesactivarCampos();
                 JBGuardarU.setEnabled(true);
-            }else{
-                JOptionPane.showMessageDialog(null, "Digite todos los campos obligatorios", 
-                        "Gestionar Personal - G.A.P.",JOptionPane.YES_OPTION,icoMensajePre);
+            } else {
+                JOptionPane.showMessageDialog(null, "Digite todos los campos obligatorios",
+                        "Gestionar Personal - G.A.P.", JOptionPane.YES_OPTION, icoMensajePre);
             }
         }
         // TODO add your handling code here:
@@ -1138,7 +1140,7 @@ public class RegistroPersonal extends javax.swing.JFrame {
 
                 index = jCbxDepartamento.getSelectedIndex();
                 listaMunicipios = basePersonal.obtenerMunicipios(index, "ID_CIUDAD", "NOM_CIUDAD");
-                jCbxCiudad = this.cargarCombobox(jCbxCiudad, listaMunicipios);
+                jCbxCiudad = this.cargarCombobox(jCbxCiudad, listaMunicipios, "Municipio");
                 jCbxCiudad.setEnabled(true);
                 jCbxDepartamento.transferFocus();
             }
@@ -1198,7 +1200,7 @@ public class RegistroPersonal extends javax.swing.JFrame {
 
     private void ComboDocFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ComboDocFocusLost
 
-        if (ComboDoc.getSelectedIndex() == 0) {
+    /*    if (ComboDoc.getSelectedIndex() == 0) {
 
             JOptionPane.showMessageDialog(null, "Debe seleccionar un tipo de documento", "Registrar Personal - G.A.P", JOptionPane.YES_OPTION,
                     icoMensajeInfor);
@@ -1206,24 +1208,30 @@ public class RegistroPersonal extends javax.swing.JFrame {
         } else {
 
             ComboDoc.transferFocus();
-        }
+        }*/
         // TODO add your handling code here:
     }//GEN-LAST:event_ComboDocFocusLost
 
     private void ComboDocItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ComboDocItemStateChanged
 
-        /*   if (evt.getStateChange() == ItemEvent.SELECTED) {
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
 
-         if (ComboDoc.getSelectedIndex() == 0) {
+            if (ComboDoc.getSelectedIndex() == 0) {
 
-         JOptionPane.showMessageDialog(null, "Debe seleccionar un tipo de documento", "Registrar Personal - G.A.P", JOptionPane.YES_OPTION,
-         icoMensajeInfor);
-         ComboDoc.requestFocusInWindow();
-         } else {
-
-         ComboDoc.transferFocus();
-         }
-         }*/
+                JOptionPane.showMessageDialog(null, "Debe seleccionar un tipo de documento", "Registrar Personal - G.A.P", JOptionPane.YES_OPTION,
+                        icoMensajeInfor);
+                ComboDoc.requestFocusInWindow();
+            } else {
+                int tam = listaTipoDoc.size() + 1; 
+                if (ComboDoc.getSelectedIndex() == tam) {
+                    formulario = new FormularioDependencias("Id Tipo Documento:", "Tipo Documento", "Tipo Documentos",
+                            "TIPO_DOCUMENTO", "ID_DOCUM", "NOM_DOC");
+                    listaTipoDoc = basePersonal.obtenerDependencias("TIPO_DOCUMENTO", "ID_DOCUM", "NOM_DOC");
+                    ComboDoc = this.cargarCombobox(ComboDoc, listaTipoDoc, "Tipo Documento");
+                    ComboDoc.requestFocusInWindow();
+                }
+            }
+        }
         // TODO add your handling code here:
     }//GEN-LAST:event_ComboDocItemStateChanged
 
@@ -1736,7 +1744,7 @@ public class RegistroPersonal extends javax.swing.JFrame {
         u2.setSegundoApellido(jTextApellido2.getText());
         u2.setEstado(Integer.parseInt(estado));
         u2.setObtenidoEstudio(obtenido);
-        u2.setCargo(Va.capturarIdDependencia(listaTipoCargo,jComboCargo.getSelectedIndex()));
+        u2.setCargo(Va.capturarIdDependencia(listaTipoCargo, jComboCargo.getSelectedIndex()));
         u2.setTipoContrato(jcmbTipoContrato.getSelectedIndex());
         u2.setOtroEst(jtEstudios.getText());
         u2.setFechaContrato(jdFechaContrato.getDate());
@@ -1746,7 +1754,7 @@ public class RegistroPersonal extends javax.swing.JFrame {
         u2.setTipoDoc(Va.capturarIdDependencia(listaTipoDoc, ComboDoc.getSelectedIndex()));
         u2.setCiudad(Va.capturarIdDependencia(listaMunicipios, jCbxCiudad.getSelectedIndex()));
         u2.setDepart(Va.capturarIdDependencia(listaDepartamentos, jCbxDepartamento.getSelectedIndex()));
-        u2.setProfesion(Va.capturarIdDependencia(listaTipoProfesion,jCprofesion.getSelectedIndex()));
+        u2.setProfesion(Va.capturarIdDependencia(listaTipoProfesion, jCprofesion.getSelectedIndex()));
         u2.setRh(Va.capturarIdDependencia(listaTipoRh, jCtiporh.getSelectedIndex()));
         u2.setSangre(Va.capturarIdDependencia(listaTipoSangre, jCtiposangre.getSelectedIndex()));
         u2.setTipoContrato(Va.capturarIdDependencia(listaTipoContrato, jcmbTipoContrato.getSelectedIndex()));
@@ -1880,31 +1888,34 @@ public class RegistroPersonal extends javax.swing.JFrame {
     private void cargarComboBoxs() {
 
         listaTipoDoc = basePersonal.obtenerDependencias("TIPO_DOCUMENTO", "ID_DOCUM", "NOM_DOC");
-        ComboDoc = this.cargarCombobox(ComboDoc, listaTipoDoc);
+        ComboDoc = this.cargarCombobox(ComboDoc, listaTipoDoc, "Tipo Documento");
 
         listaTipoRh = basePersonal.obtenerDependencias("TIPO_RH", "ID_RH", "NOM_RH");
-        jCtiporh = this.cargarCombobox(jCtiporh, listaTipoRh);
+        jCtiporh = this.cargarCombobox(jCtiporh, listaTipoRh, "Tipo Rh");
 
         listaTipoSangre = basePersonal.obtenerDependencias("TIPO_SANGRE", "ID_SANGRE", "NOM_SANGRE");
-        jCtiposangre = this.cargarCombobox(jCtiposangre, listaTipoSangre);
+        jCtiposangre = this.cargarCombobox(jCtiposangre, listaTipoSangre, "Tpo de Sangre");
 
         listaTipoContrato = basePersonal.obtenerDependencias("TIPO_CONTRATO", "ID_TCONT", "NOM_TCONT");
-        jcmbTipoContrato = this.cargarCombobox(jcmbTipoContrato, listaTipoContrato);
+        jcmbTipoContrato = this.cargarCombobox(jcmbTipoContrato, listaTipoContrato, "Tipo de Contrato");
 
         listaTipoProfesion = basePersonal.obtenerDependencias("PROFESIONES", "ID_PROF", "NOM_PROF");
-        jCprofesion = this.cargarCombobox(jCprofesion, listaTipoProfesion);
+        jCprofesion = this.cargarCombobox(jCprofesion, listaTipoProfesion, "Profesion");
 
         listaTipoCargo = basePersonal.obtenerDependencias("CARGOS", "ID_CARGO", "NOM_CARGO");
-        jComboCargo = this.cargarCombobox(jComboCargo, listaTipoCargo);
+        jComboCargo = this.cargarCombobox(jComboCargo, listaTipoCargo, "Cargo");
 
         listaDepartamentos = basePersonal.obtenerDependencias("DEPARTAMENTOS", "ID_DEPART", "NOM_DEPART");
-        jCbxDepartamento = this.cargarCombobox(jCbxDepartamento, listaDepartamentos);
+        jCbxDepartamento = this.cargarCombobox(jCbxDepartamento, listaDepartamentos, "Departamento");
     }
 
-    public JComboBox cargarCombobox(JComboBox combo, List<DatosDependencias> listaDependencia) {
+    public JComboBox cargarCombobox(JComboBox combo, List<DatosDependencias> listaDependencia, String nomCombo) {
+        combo.removeAllItems();
+        combo.addItem("....");
         for (DatosDependencias dependencia : listaDependencia) {
             combo.addItem(dependencia.getNombre());
         }
+        combo.addItem("Agregar " + nomCombo);
         return combo;
     }
 
