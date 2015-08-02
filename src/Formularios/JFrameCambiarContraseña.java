@@ -22,7 +22,8 @@ public class JFrameCambiarContraseña extends javax.swing.JFrame {
     private String userName, actPass, newPass, confPass;
     int nickName;
     ImageIcon icoMensajeInfor, icoMensajePre;
-    DatosPerfil perfilModifiContra, datosPerfilEmail;
+    DatosPerfil perfilModifiContra;
+    DatosPerfil datosPerfilEmail;
     DatosPersonal usuario;
     String pasActual, correo, usuari, nombre, contraseña;
     EnviarEmail mail;

@@ -5,7 +5,7 @@
 package Formularios;
 
 import Listas.*;
-import Utilidades.ReporteAnimal;
+import reportesListar.ReporteAnimal;
 import Utilidades.Validaciones;
 import java.awt.event.KeyEvent;
 import java.text.DateFormat;

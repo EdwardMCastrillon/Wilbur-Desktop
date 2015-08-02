@@ -5,6 +5,7 @@
  */
 package Formularios;
 
+import reportesListar.ReporteUsu;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;

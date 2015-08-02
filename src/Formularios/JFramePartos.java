@@ -16,7 +16,7 @@ import javax.swing.JTextField;
 import porcicolawilbur.*;
 import Identidades.*;
 import Listas.*;
-import Utilidades.ReportePartos;
+import reportesListar.ReportePartos;
 import Utilidades.Validaciones;
 
 /**

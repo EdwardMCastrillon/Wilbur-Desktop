@@ -1,10 +1,10 @@
-
-package Utilidades;
-
-/**
- *
- * @author Edward
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
+package reportesListar;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JFrame;
@@ -12,15 +12,19 @@ import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import Utilidades.*;
 
-
-public class ReporteAnimal extends JFrame {
+/**
+ *
+ * @author EDWARD:.
+ */
+public class ReportePartos extends JFrame {
 
     JTable tabla;//tabla
 
     JScrollPane scroll;
 
-    public ReporteAnimal() {
+    public ReportePartos() {
         super("Reporte de Partos");
         JScrollPane caja;
         JLabel lbtitulo;
@@ -28,38 +32,32 @@ public class ReporteAnimal extends JFrame {
         String Identificadores[] = new String[13];
         String Secundarios[] = new String[13];
         int i = 0;
-        Identificadores[0] = "Codigo Animal";
-        Identificadores[1] = "Raza";
-        Identificadores[2] = "Sexo";
-        Identificadores[3] = "Peso al Nacer";
-        Identificadores[4] = "Peso al destete";
-        Identificadores[5] = "Fecha Destete";
-        Identificadores[6] = "Fecha consumo Alimento";
-        Identificadores[7] = "Raza Madre";
-        Identificadores[8] = "Raza Padre";
-        Identificadores[9] = "Procedencia";
+        Identificadores[0] = "Codigo del Parto";
+        Identificadores[1] = "Fecha del parto";
+        Identificadores[2] = "Codigo Madre";
+        Identificadores[3] = "Raza Madre";
+        Identificadores[4] = "Edad Madre";
+        Identificadores[5] = "Numero de Vivos";
+        Identificadores[6] = "Numero de Muertos";
         //modelo 
         modelo = new DefaultTableModel();//inicializa
-        for (int j = 0; j < 9; j++) //añaden columnas
+        for (int j = 0; j <= 6; j++) //añaden columnas
         {
             modelo.addColumn(Identificadores[j]);
         }
-    /*    while (L != null) {
+   /*     while (P != null) {
 
-            Secundarios[0] = L.getAnimal().getCod_animal();
-            Secundarios[1] = L.getAnimal().getRaza();
-            Secundarios[2] = L.getAnimal().getSexo();
-            Secundarios[3] = L.getAnimal().getPeso_nacer();
-            Secundarios[4] = L.getAnimal().getPeso_destete();
-            Secundarios[5] = L.getAnimal().getFecha_dest().toString();
-            Secundarios[6] = L.getAnimal().getFecha_consumo().toString();
-            Secundarios[7] = L.getAnimal().getRazaMadre();
-            Secundarios[8] = L.getAnimal().getRazaPadre();
-            Secundarios[9] = L.getAnimal().getProcedencia();
+            Secundarios[0] = P.getParto().getCodPart();
+            Secundarios[1] = P.getParto().getFechaParto().toString();
+            Secundarios[2] = P.getParto().getCodigo();
+            Secundarios[3] = P.getParto().getRaza();
+            Secundarios[4] = P.getParto().getEdad();
+            Secundarios[5] = P.getParto().getNroVivos();
+            Secundarios[6] = P.getParto().getNroMuertos();
 
             modelo.addRow(Secundarios);//se añade el registro al modelo
-            L = L.getLiga();
-
+            i++;
+            P = P.getLiga();
         }*/
 
         tabla = new JTable(modelo);//se añade el modelo a la tabla
@@ -72,15 +70,14 @@ public class ReporteAnimal extends JFrame {
         this.setVisible(true);
         repaint();
     }
-    
-    //Fecha actual
+
     public static String getFechaActual() {
         Date ahora = new Date();
         SimpleDateFormat formateador = new SimpleDateFormat("dd-MM-yyyy");
         return formateador.format(ahora);
     }
 
-    //Hora actual
+    //hora actual
     public static String getHoraActual() {
         Date ahora = new Date();
         SimpleDateFormat formateador = new SimpleDateFormat("hh:mm:ss");

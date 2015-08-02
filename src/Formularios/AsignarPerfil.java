@@ -3,7 +3,7 @@ package Formularios;
 import Identidades.DatosPerfil;
 import Identidades.DatosPersonal;
 import Identidades.DatosDependencias;
-import Utilidades.ReportePerfil;
+import reportesListar.ReportePerfil;
 import javax.swing.JOptionPane;
 import Utilidades.Validaciones;
 import crudBaseDatos.CrudPerfil;
@@ -24,7 +24,8 @@ public class AsignarPerfil extends javax.swing.JFrame {
     int swModif = 0;
     ImageIcon icoMensajeInfor, icoMensajePre;
     DatosPersonal buscarUsuario;
-    DatosPerfil perfil, buscarPerfil;
+    DatosPerfil perfil;
+    DatosPerfil buscarPerfil;
     String nombreVentana;
     CrudPerfil basePerfil;
     List <DatosDependencias> listaTipoPerfil;
